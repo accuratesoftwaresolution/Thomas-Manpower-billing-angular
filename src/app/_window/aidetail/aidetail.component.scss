@@ -1,0 +1,36 @@
+:host ::ng-deep .p-panel.p-panel-toggleable .p-panel-header {
+    padding: 0.5rem 1rem;
+    background-color: #3f51b5de;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-header {
+    background-color: #ffffffde;
+}
+
+.editable {
+    background-color: rgb(149, 236, 149);
+}
+
+.noneditable {
+    background-color: rgb(214, 210, 241);
+}
+
+#stockQtyOptions{
+    width: 87px;
+    height: 26px;
+    border-radius: 7px;
+    text-align: center;
+    -webkit-text-stroke-width: thin;
+}
+#remarks{
+height: 30px;
+border: groove;
+}
+
+#signIntSelection{
+    height: 30px;
+    border: groove;
+    text-align: center;
+    width: 113px;
+    -webkit-text-stroke-width: medium;
+}

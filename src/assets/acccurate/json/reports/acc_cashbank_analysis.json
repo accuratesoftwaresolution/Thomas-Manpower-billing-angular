@@ -1,0 +1,19 @@
+{
+    "reportHeading": "Cash Bank Analysis",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "",
+    "detail": false,
+    "detailPropertyName": "",
+    "rptLanguage": "E",
+    "reportId": "acc_cashbank_analysis",
+    "printColumnMetaData": [
+        {   "column": "acCode", "columnHeading": "account","size":"7em"  },
+        {   "column": "ac4AcName", "columnHeading": "acName" },
+        {   "column": "opening", "columnHeading": "opening" },
+        {   "column": "debit", "columnHeading": "debit", "type": "amount" ,"size":"10em"},
+        {   "column": "credit", "columnHeading": "credit", "type": "amount" },
+        {   "column": "balance", "columnHeading": "balance", "type": "amountexp", "size":"10em",
+            "expressionArray": { "type": "row", "exp": ["opening","+","debit","+","credit"] } 
+        }
+    ]
+}

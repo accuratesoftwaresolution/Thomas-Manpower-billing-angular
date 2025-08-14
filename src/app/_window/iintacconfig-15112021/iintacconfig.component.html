@@ -1,0 +1,113 @@
+<p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+            (click)="openNew();"></button>
+    </ng-template>
+
+</p-toolbar>
+
+<p-table #dt [value]="service.header.iintacconfig" [rows]="10" [paginator]="true" responsiveLayout="scroll"
+    [rowHover]="true" dataKey="intCode" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="shortName">{{'account'|first}}
+                <p-sortIcon field="shortName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="signInt">{{'signInt'|first}}
+                <p-sortIcon field="signInt"></p-sortIcon>
+            </th>
+            <th pSortableColumn="rate">{{'rate'|first}}
+                <p-sortIcon field="rate"></p-sortIcon>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-ri="rowIndex">
+        <tr>
+            <td>{{product.shortName}}</td>
+            <td>{{product.signInt==1?'Dr':'Cr'}}</td>
+            <td>{{product.rate}}</td>
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                    (click)="editProduct(product)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteProduct(product,ri)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Account Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label>{{'shortName' | first}}</label>
+            <p-dropdown [options]="setupLovData" [(ngModel)]="service.selectedDetailRow.shortName" optionLabel="label"
+                optionValue='value'>
+            </p-dropdown>
+        </div>
+        <div class="p-field">
+            <label>{{'signInt' | first}}</label>
+            <p-dropdown [(ngModel)]="service.selectedDetailRow.signInt" inputId="signInt" [options]="drCrLovData"
+                placeholder="Select" optionValue='value'>
+                <ng-template let-option pTemplate="item">
+                    <span>{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="p-field">
+            <label>{{'rate' | first}}</label>
+            <p-dropdown [(ngModel)]="service.selectedDetailRow.rate" inputId="rate" [options]="rateLovData"
+                placeholder="Select" optionValue='value'>
+                <ng-template let-option pTemplate="item">
+                    <span>{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+            (click)="saveDetail(service.selectedDetailRow)"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+
+<!-- <p-dialog header="Company List" modal="modal" showEffect="fade" [closable]="true" [(visible)]="searchDisplay"
+    [baseZIndex]="10000" [style]="{width: '30vw'}">
+    <div class="ui-g">
+        <div class="p-grid nested-grid">
+            <div class="p-col-12 p-md-6">
+                <label>{{'shortName' | first}}</label>
+                <div style="width: 100%;">
+                    <p-dropdown [options]="setupLovData" [(ngModel)]="selectedDetailRow.shortName" optionLabel="label"
+                        optionValue='value'>
+                    </p-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12 p-md-6">
+            <label>{{'signInt' | first}}</label>
+            <div style="width: 100%;">
+                <p-dropdown [options]="drCrLovData" [(ngModel)]="selectedDetailRow.signInt" optionLabel="label"
+                    optionValue='value'>
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="p-col-12 p-md-6">
+            <div style="width: 100%;">
+                <label>{{'rate' | first}}</label>
+                <p-dropdown [options]="rateLovData" [(ngModel)]="selectedDetailRow.rate" optionLabel="label"
+                    optionValue='value'>
+                </p-dropdown>
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="searchDisplay=false;save()" label="Save"></button>
+    </p-footer>
+</p-dialog> -->

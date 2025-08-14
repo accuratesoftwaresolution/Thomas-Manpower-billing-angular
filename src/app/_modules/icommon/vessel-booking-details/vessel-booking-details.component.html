@@ -1,0 +1,815 @@
+<div class="container" style="background-color: #d1e2f1 ;  border-radius: 8px;">
+    <div
+        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsBRef_No']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Vessel Booking Reference
+                        <span *ngIf="fieldSettings['VSsBRef_No']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsBRef_No']?.disabled"
+                        [required]="fieldSettings['VSsBRef_No']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsBRef_No"
+                        style="background-color:#ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;"></div>
+            <div *ngIf="!fieldSettings['VSsBooking_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Vessel Booking Date
+                        <span *ngIf="fieldSettings['VSsBooking_Date']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsBooking_Date']?.disabled"
+                        [required]="fieldSettings['VSsBooking_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsBooking_Date"
+                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsFactory_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('factory')">Factory Code
+                        <span *ngIf="fieldSettings['VSsFactory_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsFactory_Code']?.disabled"
+                        [required]="fieldSettings['VSsFactory_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsFactory_Code"
+                        style="background-color:  #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsFactory_Code']?.disabled"
+                        (click)="ShowPopUp('VesFactoryCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsFactory_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Factory Name
+                        <span *ngIf="fieldSettings['VSsFactory_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsFactory_Name']?.disabled"
+                        [required]="fieldSettings['VSsFactory_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsFactory_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsPlant_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('prod-plant')">Production Plant Code
+                        <span *ngIf="fieldSettings['VSsPlant_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsPlant_Code']?.disabled"
+                        [required]="fieldSettings['VSsPlant_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsPlant_Code"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsPlant_Code']?.disabled"
+                        (click)="ShowPopUp('VesProdPlantCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsPlant_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Production Plant Name
+                        <span *ngIf="fieldSettings['VSsPlant_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsPlant_Name']?.disabled"
+                        [required]="fieldSettings['VSsPlant_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsPlant_Name"
+                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsPickup_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('pickup-point')">Pickup Point Code
+                        <span *ngIf="fieldSettings['VSsPickup_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsPickup_Code']?.disabled"
+                        [required]="fieldSettings['VSsPickup_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsPickup_Code"
+                        style="background-color:  #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsPickup_Code']?.disabled"
+                        (click)="ShowPopUp('VesPickupPointCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsPickup_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Pickup Point Name
+                        <span *ngIf="fieldSettings['VSsPickup_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsPickup_Name']?.disabled"
+                        [required]="fieldSettings['VSsPickup_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsPickup_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsPickup_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Pickup Date
+                        <span *ngIf="fieldSettings['VSsPickup_Date']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsPickup_Date']?.disabled"
+                        [required]="fieldSettings['VSsPickup_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsPickup_Date"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsBAgent_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('bookagent')">Booking Agent Code
+                        <span *ngIf="fieldSettings['VSsBAgent_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsBAgent_Code']?.disabled"
+                        [required]="fieldSettings['VSsBAgent_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsBAgent_Code"
+                        style="background-color:  #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsBAgent_Code']?.disabled"
+                        (click)="ShowPopUp('VesBookAgentCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsBAgent_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Booking Agent Name
+                        <span *ngIf="fieldSettings['VSsBAgent_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsBAgent_Name']?.disabled"
+                        [required]="fieldSettings['VSsBAgent_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsBAgent_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsLine_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('shipline')">Shipping Line Code
+                        <span *ngIf="fieldSettings['VSsLine_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsLine_Code']?.disabled"
+                        [required]="fieldSettings['VSsLine_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsLine_Code"
+                        style="background-color:  #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsLine_Code']?.disabled"
+                        (click)="ShowPopUp('VesShipLineCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsLine_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Shipping Line Name
+                        <span *ngIf="fieldSettings['VSsLine_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsLine_Name']?.disabled"
+                        [required]="fieldSettings['VSsLine_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsLine_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsLPort_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('loadingport')">Loading Port Code
+                        <span *ngIf="fieldSettings['VSsLPort_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsLPort_Code']?.disabled"
+                        [required]="fieldSettings['VSsLPort_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsLPort_Code"
+                        style="background-color:  #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsLPort_Code']?.disabled"
+                        (click)="ShowPopUp('VesLoadingPortCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsLPort_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Loading Port Name
+                        <span *ngIf="fieldSettings['VSsLPort_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsLPort_Name']?.disabled"
+                        [required]="fieldSettings['VSsLPort_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsLPort_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsLoad_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Loading Date
+                        <span *ngIf="fieldSettings['VSsLoad_Date']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsLoad_Date']?.disabled"
+                        [required]="fieldSettings['VSsLoad_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsLoad_Date"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsTPort_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('transitport')">Transit Port Code
+                        <span *ngIf="fieldSettings['VSsTPort_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsTPort_Code']?.disabled"
+                        [required]="fieldSettings['VSsTPort_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsTPort_Code"
+                        style="background-color:  #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsTPort_Code']?.disabled"
+                        (click)="ShowPopUp('VesTransitPortCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsTPort_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Transit Port Name
+                        <span *ngIf="fieldSettings['VSsTPort_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsTPort_Name']?.disabled"
+                        [required]="fieldSettings['VSsTPort_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsTPort_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsPortDisch_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('portdischarge')">Port Of Discharge Code
+                        <span *ngIf="fieldSettings['VSsPortDisch_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsPortDisch_Code']?.disabled"
+                        [required]="fieldSettings['VSsPortDisch_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsPortDisch_Code"
+                        style="background-color:  #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsPortDisch_Code']?.disabled"
+                        (click)="ShowPopUp('VesPortDisCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsPortDisch_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Port Of Discharge Name
+                        <span *ngIf="fieldSettings['VSsPortDisch_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsPortDisch_Name']?.disabled"
+                        [required]="fieldSettings['VSsPortDisch_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsPortDisch_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsCAgent_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('clearing-agent')">Clearing Agent
+                        Code
+                        <span *ngIf="fieldSettings['VSsCAgent_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsCAgent_Code']?.disabled"
+                        [required]="fieldSettings['VSsCAgent_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsCAgent_Code"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsCAgent_Code']?.disabled"
+                        (click)="ShowPopUp('VesClearingAgent')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+
+            <div *ngIf="!fieldSettings['VSsCAgent_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Clearing Agent
+                        Name
+                        <span *ngIf="fieldSettings['VSsCAgent_Name']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsCAgent_Name']?.disabled"
+                        [required]="fieldSettings['VSsCAgent_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsCAgent_Name"
+                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsSwitch_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('switchblport')">Switch BL Port Code
+                        <span *ngIf="fieldSettings['VSsSwitch_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsSwitch_Code']?.disabled"
+                        [required]="fieldSettings['VSsSwitch_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsSwitch_Code"
+                        style="background-color:  #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsSwitch_Code']?.disabled"
+                        (click)="ShowPopUp('VesSwitchBLPortCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsSwitch_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Switch BL Port Name
+                        <span *ngIf="fieldSettings['VSsSwitch_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsSwitch_Name']?.disabled"
+                        [required]="fieldSettings['VSsSwitch_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsSwitch_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsSAgent_Code']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;text-decoration: underline;"
+                        (click)="routeTo('switchblagent')">Switch BL Agent Code
+                        <span *ngIf="fieldSettings['VSsSAgent_Code']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsSAgent_Code']?.disabled"
+                        [required]="fieldSettings['VSsSAgent_Code']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsSAgent_Code"
+                        style="background-color:  #ffffff; width: 30%; height: 2vh;">
+                    <button pButton *ngIf="!fieldSettings['VSsSAgent_Code']?.disabled"
+                        (click)="ShowPopUp('VesSwitchBLAgent')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsSAgent_Name']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Switch BL Agent Name
+                        <span *ngIf="fieldSettings['VSsSAgent_Name']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsSAgent_Name']?.disabled"
+                        [required]="fieldSettings['VSsSAgent_Name']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsSAgent_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsLoss_Reason']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Lose and Reason
+                        <span *ngIf="fieldSettings['VSsLoss_Reason']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsLoss_Reason']?.disabled"
+                        [required]="fieldSettings['VSsLoss_Reason']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsLoss_Reason"
+                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsNCR_Number']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">NCR Number
+                        <span *ngIf="fieldSettings['VSsNCR_Number']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Number']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Number']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Number"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsNCR_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">NCR Date
+                        <span *ngIf="fieldSettings['VSsNCR_Date']?.mandatory" style="color: red;">*</span>
+
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Date']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Date"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsNCR_Suppl_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">NCR Issue To Supplier
+                        Date
+                        <span *ngIf="fieldSettings['VSsNCR_Suppl_Date']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Suppl_Date']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Suppl_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Suppl_Date"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsNCR_Suppl_ClaimRec_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Supplier Claim Received
+                        Date
+                        <span *ngIf="fieldSettings['VSsNCR_Suppl_ClaimRec_Date']?.mandatory"
+                            style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Suppl_ClaimRec_Date']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Suppl_ClaimRec_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Suppl_ClaimRec_Date"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsNCR_Suppl_ClaimClose_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">NCR Issue To Supplier
+                        Closed Date
+                        <span *ngIf="fieldSettings['VSsNCR_Suppl_ClaimClose_Date']?.mandatory"
+                            style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Suppl_ClaimClose_Date']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Suppl_ClaimClose_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Suppl_ClaimClose_Date"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsNCR_Suppl_ClaimClose_Reason']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;"> NCR Issue To Supplier
+                        Reason For Closing
+                        <span *ngIf="fieldSettings['VSsNCR_Suppl_ClaimClose_Reason']?.mandatory"
+                            style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Suppl_ClaimClose_Reason']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Suppl_ClaimClose_Reason']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Suppl_ClaimClose_Reason"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div *ngIf="!fieldSettings['VSsNCR_Insu_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">NCR Issued To Insurance
+                        Company Date
+                        <span *ngIf="fieldSettings['VSsNCR_Insu_Date']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Insu_Date']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Insu_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Insu_Date"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsNCR_Insu_ClaimRec_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Insurance Claim Recieved
+                        Date
+                        <span *ngIf="fieldSettings['VSsNCR_Insu_ClaimRec_Date']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Insu_ClaimRec_Date']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Insu_ClaimRec_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Insu_ClaimRec_Date"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsNCR_Insu_ClaimClose_Date']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">NCR Issued To Insurance
+                        Company Closed Date
+                        <span *ngIf="fieldSettings['VSsNCR_Insu_ClaimClose_Date']?.mandatory"
+                            style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Insu_ClaimClose_Date']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Insu_ClaimClose_Date']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Insu_ClaimClose_Date"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+
+            <div *ngIf="!fieldSettings['VSsNCR_Insu_ClaimClose_Reason']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">NCR Issued To Insurance
+                        Reason For Closing
+                        <span *ngIf="fieldSettings['VSsNCR_Insu_ClaimClose_Reason']?.mandatory"
+                            style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsNCR_Insu_ClaimClose_Reason']?.disabled"
+                        [required]="fieldSettings['VSsNCR_Insu_ClaimClose_Reason']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsNCR_Insu_ClaimClose_Reason"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+            <div *ngIf="!fieldSettings['VSsTracking_Link']?.hidden" class="p-col-12 p-md-4"
+                style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 40%;">Tracking Link
+
+                        <span *ngIf="fieldSettings['VSsTracking_Link']?.mandatory" style="color: red;">*</span>
+                    </label>
+                    <input type="text" pInputText [readonly]="fieldSettings['VSsTracking_Link']?.disabled"
+                        [required]="fieldSettings['VSsTracking_Link']?.mandatory"
+                        [(ngModel)]="this.dto?.tblVesBook[0].VSsTracking_Link"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="custom-tabs">
+            <div class="tab-headers">
+                <div class="tab-header" *ngFor="let tab of VesselTab; let i = index" [class.active]="activeIndex === i"
+                    (click)="changeIndex(i)">
+                    {{ tab.title }}
+                </div>
+            </div>
+            <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+
+
+                <ng-container *ngIf="VesselTab[activeIndex] && activeIndex == 0">
+
+                    <p-table [value]="this.dto.tblVesDetail" [scrollable]="true" scrollHeight="270px" scrollWidth="100%"
+                        [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <ng-container *ngFor="let col of tblVesDetail">
+                                    <th *ngIf="!col.hide && !col.routeTo"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                    <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                </ng-container>
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 6rem;"></th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <tr>
+                                <ng-container *ngFor="let col of tblVesDetail">
+                                    <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                        [ngStyle]="{'width':col.width}">
+
+                                        <ng-container *ngIf="!col.readOnly && !col.PopUpData">
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                                [(ngModel)]="product[col.bind]" (click)="toggle(0)" />
+                                        </ng-container>
+
+                                        <!-- Editable Input with Pop-Up -->
+                                        <ng-container *ngIf="!col.readOnly && col.PopUpData">
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                                [(ngModel)]="product[col.bind]" (click)="toggle(0)" />
+                                            <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                                class="custom-button" style="position: absolute; padding: 0;"
+                                                (click)="ShowPopUp(col.PopUpData, i)"></button>
+                                        </ng-container>
+
+                                        <!-- Read-Only Fields -->
+                                        <ng-container *ngIf="col.readOnly">
+                                            <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                        </ng-container>
+
+                                    </td>
+                                </ng-container>
+                                <td style="width: 4rem;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow('tblVesDetail',i ,product)" class="custom-button"></button>
+                                </td>
+                                <td style="width: 6rem;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button"
+                                        (click)="addRow('tblVesDetail',i)"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+
+                </ng-container>
+
+                <ng-container *ngIf="VesselTab[activeIndex] && activeIndex == 1">
+
+                    <p-table [value]="this.dto.tblVesContDtChange" [scrollable]="true" scrollHeight="270px"
+                        scrollWidth="100%" [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <ng-container *ngFor="let col of tblVesContDtChange">
+                                    <th *ngIf="!col.hide && !col.routeTo"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                    <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                </ng-container>
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 6rem;"></th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <tr>
+                                <ng-container *ngFor="let col of tblVesContDtChange">
+                                    <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                        [ngStyle]="{'width':col.width}">
+
+                                        <ng-container *ngIf="!col.readOnly && !col.PopUpData">
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                                [(ngModel)]="product[col.bind]" (click)="toggle(0)" />
+                                        </ng-container>
+
+                                        <!-- Editable Input with Pop-Up -->
+                                        <ng-container *ngIf="!col.readOnly && col.PopUpData">
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                                [(ngModel)]="product[col.bind]" (click)="toggle(0)" />
+                                            <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                                class="custom-button" style="position: absolute; padding: 0;"
+                                                (click)="ShowPopUp(col.PopUpData, i)"></button>
+                                        </ng-container>
+
+                                        <!-- Read-Only Fields -->
+                                        <ng-container *ngIf="col.readOnly">
+                                            <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                        </ng-container>
+
+                                    </td>
+                                </ng-container>
+                                <td style="width: 4rem;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow('tblVesContDtChange',i,product)" class="custom-button"></button>
+                                </td>
+                                <td style="width: 6rem;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button"
+                                        (click)="addRow('tblVesContDtChange',i)"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+                </ng-container>
+
+
+                <ng-container *ngIf="VesselTab[activeIndex] && activeIndex == 2">
+
+                    <p-table [value]="this.dto.tblShipCost" [scrollable]="true" scrollHeight="270px" scrollWidth="100%"
+                        [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <ng-container *ngFor="let col of tblVesShipCost">
+                                    <th *ngIf="!col.hide && !col.routeTo"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                    <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                </ng-container>
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 6rem;"></th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <tr>
+                                <ng-container *ngFor="let col of tblVesShipCost">
+                                    <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                        [ngStyle]="{'width':col.width}">
+
+                                        <ng-container *ngIf="!col.readOnly && !col.PopUpData">
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                                [(ngModel)]="product[col.bind]" (click)="toggle(0)" />
+                                        </ng-container>
+
+                                        <!-- Editable Input with Pop-Up -->
+                                        <ng-container *ngIf="!col.readOnly && col.PopUpData">
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                                [(ngModel)]="product[col.bind]" (click)="toggle(0)" />
+                                            <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                                class="custom-button" style="position: absolute; padding: 0;"
+                                                (click)="ShowPopUp(col.PopUpData, i)"></button>
+                                        </ng-container>
+
+                                        <!-- Read-Only Fields -->
+                                        <ng-container *ngIf="col.readOnly">
+                                            <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                        </ng-container>
+
+                                    </td>
+                                </ng-container>
+                                <td style="width: 4rem;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow('tblShipCost',i,product)" class="custom-button"></button>
+                                </td>
+                                <td style="width: 6rem;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button"
+                                        (click)="addRow('tblShipCost',i)"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+
+                </ng-container>
+
+                <ng-container *ngIf="VesselTab[activeIndex] && activeIndex == 3">
+                     <app-document-attachment [dto]="this.dto.tblVesDocAttach" [gridNo]="3000" [apiUrl]="this.transactionApiUrl"></app-document-attachment>
+                </ng-container>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+
+<p-confirmDialog></p-confirmDialog>

@@ -1,0 +1,40 @@
+<!-- 
+<p-progressBar *ngIf="loading" mode="indeterminate" [style]="{'height': '8px'}"></p-progressBar>
+
+<p-panel header="BRANCH INFO" [toggleable]="false" [style]="{'margin-bottom':'20px'}" >
+<p-panel  [toggleable]="false" [style]="{'margin-bottom':'20px'}"  *ngFor="let brDetail of _mainService.brDetails">
+    <div class="p-col-12">
+        <div class="p-grid nested-grid">
+            <div class="p-col-3 p-md-3">
+                <span class="p-inputfield">
+                    <label>{{'Branch Code' | first}}</label><br />
+                    <input style="text-transform: uppercase;" type="text" pInputText [(ngModel)]="brDetail.brCode"
+                        maxlength="50" disabled>
+                </span>
+            </div>
+            <div class="p-col-3 p-md-3">
+                <span class="p-inputfield">
+                    <label>{{'Store Code' | first}}</label><br />
+                    <input style="text-transform: uppercase;" type="text" pInputText [(ngModel)]="brDetail.storeCode"
+                        maxlength="50" disabled>
+                </span>
+            </div>
+            <div class="p-col-3 p-md-3">
+                <span class="p-inputfield">
+                    <label>{{'Item Qty' | first}}</label><br />
+                    <input style="text-transform: uppercase;" type="text" pInputText [(ngModel)]="brDetail.itemQty"
+                        maxlength="50" disabled>
+
+                </span>
+            </div>
+            <div class="p-col-3 p-md-3">
+                <span class="p-inputfield">
+                    <label>{{'Cost Rate' | first}}</label><br />
+                    <input type="text" pInputText placeholder=" " [(ngModel)]="brDetail.costRate" disabled>
+                </span>
+            </div>
+            
+        </div>
+    </div>
+</p-panel>
+</p-panel> -->

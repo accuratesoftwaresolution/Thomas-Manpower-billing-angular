@@ -1,0 +1,245 @@
+
+
+th {
+  background-color: antiquewhite !important;
+  border: 1px solid #ffffff !important;
+  white-space: normal;
+  text-align: center;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
+  padding: 0rem 0rem 0rem 0.5rem !important;
+}
+
+.p-field {
+  margin-bottom: 1px !important
+}
+
+.custom-button {
+  background-color: antiquewhite !important;
+  color: black !important;
+  border: 1px solid #737373;
+  box-shadow: none;
+  padding: 2px 10px;
+ 
+}
+
+.header-btn{
+    background-color: antiquewhite !important;
+    color: black !important; 
+    border: 1px solid #737373; 
+    box-shadow: none; 
+    padding: 5px 10px;
+}
+
+
+.manual-column {
+  background-color: #c0d6e9;
+}
+
+// tab styles
+.custom-tabs {
+  width: 100%;
+  border: 1px solid #ccc;
+ border-radius: 8px;
+  padding: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.tab-headers {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 1px solid #ccc;
+
+}
+
+.tab-header {
+  position: relative;
+  padding: 5px 15px;
+  cursor: pointer;
+  background-color: #d1e2f1;
+  margin-right: 1px;
+  border-radius: 30px 0px 0px 0px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.tab-header::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  margin-top: -5px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #eaeaea;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.tab-header:hover {
+  background-color: #dcdcdc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tab-header.active {
+  background-color: #5c96d4;
+  color: white;
+}
+
+.tab-content {
+  padding: 5px;
+  border-top: none;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #b7dbff;
+  border-radius: 5px;
+  background-color: #d1e2f1;
+
+}
+
+:host ::ng-deep .p-dropdown .p-hidden-accessible .p-dropdown-label .p-inputtext .p-placeholder {
+  padding: 0 !important;
+}
+/////////////////
+
+
+.table-style {
+  border: 1px solid #dcdcdc; border-radius: 8px; overflow: hidden;display: flex;
+}
+
+:host ::ng-deep .table-style th {
+  text-align: center;
+}
+
+:host ::ng-deep .table-style td {
+  padding: 0.75rem 0.75rem !important;
+
+}
+
+
+////context menu //////
+.custom-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  z-index: 1000;
+}
+
+.custom-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-menu-item {
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+}
+
+.custom-menu-item:hover {
+  background-color: #e3f2fd;
+  /* Light blue background */
+  font-weight: bold;
+  /* Bold text */
+  color: #1e88e5;
+}
+
+.menu-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Unique styles for the special menu item */
+.menu-item-unique {
+  background-color: #e3f2fd;
+  /* Light blue background */
+  font-weight: bold;
+  /* Bold text */
+  color: #1e88e5;
+  /* Blue text */
+}
+
+.menu-item-unique:hover {
+  background-color: #bbdefb;
+  /* Lighter blue on hover */
+}
+
+
+
+.applicable-company-table {
+  border: 1px solid #dcdcdc; border-radius: 8px; overflow: hidden;
+  width: 68%;
+  display: flex;
+}
+
+
+.applicable-company-table th {
+  background-color: antiquewhite; /* Light gray header */
+  color: #333; /* Dark text */
+  font-size: 14px;
+  padding: 10px;
+  text-align: left;
+}
+
+.applicable-company-table td {
+  font-size: 12px; /* Smaller font size */
+  padding: 8px;
+  text-align: left;
+}
+
+.applicable-company-table .actions-cell {
+  text-align: center;
+}
+.company-table {
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.company-table th {
+  background-color: antiquewhite;
+  font-size: 14px;
+  padding: 10px;
+  text-align: left;
+}
+
+.company-table td {
+  font-size: 12px;
+  padding: 8px;
+  text-align: right;
+}
+
+  ::ng-deep .custom-progressbar .p-progressbar {
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  height: 10px;
+}
+
+::ng-deep .custom-progressbar .p-progressbar-value {
+  background-color: #3b83d1 !important; /* Pink/Purple */
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .custom-progressbar .p-progressbar-label {
+  color: white;
+  font-weight: bold;
+}
+.spaced-buttons {
+  display: flex;
+  gap: 8px; /* adjust space as needed */
+}

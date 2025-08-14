@@ -1,0 +1,27 @@
+  :host ::ng-deep .p-cell-editing {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.p-toolbar {
+  background: #ffffff00;
+  // border: 1px solid #e0e0e0;
+  padding: 0.75rem;
+  border-radius: 4px;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+.your-block {
+  height: 116px;
+  visibility: collapse;
+  text-align: left;
+}
+
+.btn{
+  border-radius: 50%;
+  height: 1.75rem;
+  width: 1.75rem;
+}

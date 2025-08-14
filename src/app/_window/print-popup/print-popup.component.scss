@@ -1,0 +1,11 @@
+.custom-button {
+    background-color: antiquewhite !important; /* Ensure it overrides default styles */
+    color: black !important; /* Ensures the text color is black */
+    border: 1px solid #737373; /* Custom border color */
+    box-shadow: none; /* Remove any shadow if present */
+    padding: 5px 10px;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0rem 0rem 0rem 0.5rem !important;
+    }

@@ -1,0 +1,26 @@
+<!-- <div class="p-col-12"></div> -->
+<p-toast></p-toast>
+<p-progressBar *ngIf="loading" mode="indeterminate" [style]="{'height': '8px'}"></p-progressBar>
+
+<div class="ui-g">
+    <div class="p-grid nested-grid">
+        <div class="p-col-12 p-md-6 p-lg-12">
+            <div class="p-grid">
+                <div class="p-col-12 p-md-6 p-lg-12" style="padding-top: 2rem; padding-left: 0rem;">
+                    <div class="card" style="padding-left: 0.75rem;">
+                        <div class="p-col-12 p-md-12 p-lg-12">
+                            <form-aligner [columnMetaData]="columnMetaData" [selectedRow]="service.header">
+                            </form-aligner>
+                            <p-accordion>
+                                <p-accordionTab header="Address Info">
+                                    <form-aligner [columnMetaData]="addressMetaData" [selectedRow]="service.header">
+                                    </form-aligner>
+                                </p-accordionTab>
+                            </p-accordion>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

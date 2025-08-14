@@ -1,0 +1,482 @@
+<p-table *ngIf="!isSaLogic; else sadt;" #dt [columns]="columns" [value]="service.header.aidetail" selectionMode="single" [metaKeySelection]="true"
+    [(selection)]="service.selectedDetailRow" [scrollable]="true" scrollHeight="150px" scrollWidth="100%"
+    [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true" dataKey="srNo">
+    <ng-template pTemplate="caption">
+        <tr>
+            <!-- <td>
+                <button pButton type="button" iconPos="left" label="" (click)="createInsertRow()"
+                    style="margin-left: .25em;" icon="pi pi-plus"></button>
+            </td> -->
+            <!-- <td>
+                <button pButton type="button" iconPos="left" label="" icon="pi pi-trash" (click)="deleteRow()"
+                    style="margin-left: .25em;"></button>
+            </td> -->
+            <td>
+                    <p-button label="Generate Invoice"  (click)="generateInvoice()"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:3em"></th>
+
+            <th style="width:3em"></th>
+            <th style="width:12em">
+                <input pInputText type="text"
+                    (input)="dt.filter($event.target.value, 'ac_code','ac_code'.filterMatchMode)"></th>
+            <th style="width:12em">
+                <input pInputText type="text"
+                    (input)="dt.filter($event.target.value, 'ac_name','ac_name'.filterMatchMode)"></th>
+            <th style="width:14em" >
+                <input pInputText type="text" (input)="dt.filter($event.target.value, 'vr_no','vr_no'.filterMatchMode)"></th>
+            <th style="width:15em">
+                <input pInputText type="text" (input)="dt.filter($event.target.value, 'vr_date','vr_date'.filterMatchMode)"></th>
+            <th style="width:10em">
+                <input pInputText  type="text"
+                    (input)="dt.filter($event.target.value, 'bill_no','bill_no'.filterMatchMode)"></th>
+            <th style="width:10em">
+                <input pInputText  type="text"
+                    (input)="dt.filter($event.target.value, 'bill_date','bill_date'.filterMatchMode)"></th>
+            <th style="width:7em"></th>
+            <th style="width:7em"></th>
+            <th style="width:7em">
+                <input pInputText  type="text"
+                    (input)="dt.filter($event.target.value, 'ac_amt','ac_amt'.filterMatchMode)"></th>
+            <th style="width:7em"></th>
+            <th style="width:7em"></th>
+            <th style="width:12em">
+                <input pInputText  type="text"
+                    (input)="dt.filter($event.target.value, 'salesman','salesman'.filterMatchMode)"></th>
+                <!-- 13 fields -->
+        </tr>
+        <tr>
+            <th><p-checkbox [(ngModel)]="service.allSelect" binary="true" (onChange)="allCheck(service.allSelect)"> </p-checkbox></th>
+
+            <th>#</th>
+
+            <th [pSortableColumn]="'ac_code'">Account
+                <p-sortIcon [field]="'ac_code'" ariaLabel="Activate to sort"
+                    ariaLabelDesc="Activate to sort in descending order"
+                    ariaLabelAsc="Activate to sort in ascending order">
+                </p-sortIcon>
+            </th>
+            <th [pSortableColumn]="">Account Name</th>
+            <th [pSortableColumn]="'vr_no'">Vr No
+                <p-sortIcon [field]="'vr_no'" ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order">
+            </p-sortIcon>
+            </th>
+            <th [pSortableColumn]="'vr_date'">Vr Date
+                <p-sortIcon [field]="'vr_date'" ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order">
+            </p-sortIcon>
+            </th>
+            <th [pSortableColumn]="">Bill No</th>
+            <th [pSortableColumn]="">Bill Date</th>
+            <th [pSortableColumn]="">Lpo No</th>
+            <th [pSortableColumn]="">Lpo Date</th>
+            <th [pSortableColumn]="" style="text-align: right;">Amount</th>
+            <th [pSortableColumn]="" style="text-align: right;">Disc Amt</th>
+            <th [pSortableColumn]="">Cr Period</th>
+            <th [pSortableColumn]="">Salesman</th>
+            
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-ri="rowIndex">
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+
+            <td pEditableColumn style="text-align:center;width:3em;">
+                <p-checkbox (onChange)="singleCheck()" [(ngModel)]="rowData.selected" binary="true"> </p-checkbox>
+        </td>
+
+            <td pEditableColumn style="text-align:center;width:3em;"
+                [ngClass]="rowData==this.service.selectedDetailRow ? 'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                    <p-inputNumber disabled> </p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ri+1}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="width:12em" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input type="text" pInputText 
+                            style="width: 100px;" placeholder=" " disabled [(ngModel)]="rowData.ac_code">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.ac_code}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn style="width:12em" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input type="text" pInputText 
+                            style="width: 100px;" placeholder=" " disabled [(ngModel)]="rowData.ac_name">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.ac_name}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn style="width:14em" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input type="text" pInputText 
+                            style="width: 100px;" placeholder=" " disabled [(ngModel)]="rowData.vr_no">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.vr_no}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="width:15em" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.vr_date" disabled>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.vr_date ? (rowData.vr_date |date:'dd-MM-yyyy') : '' }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="width:10em" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" 
+                            [(ngModel)]="rowData.bill_no">
+
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.bill_no}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="width:10em;" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" disabled [(ngModel)]="rowData.bill_date" > 
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.bill_date ? (rowData.bill_date | date:'dd-MM-yyyy'): ''}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="text-align : left;width:7em"
+                [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.lpo_no">
+                        
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.lpo_no}}
+
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn style="text-align : left;width:7em"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null" >
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-inputNumber disabled [(ngModel)]="rowData.lpoDate">
+                        </p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.lpo_date ? (rowData.lpo_date | date:'dd-MM-yyyy'): ''}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="text-align : right;width:7em" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" disabled [(ngModel)]="rowData.ac_amt" >
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.ac_amt}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="text-align : right;width:7em"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-inputNumber  disabled [(ngModel)]="rowData.disc_amt">
+                        </p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.disc_amt}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+
+            <td pEditableColumn style="text-align : left;width:7em"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-inputNumber disabled [(ngModel)]="rowData.cr_period">
+                        </p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.cr_period}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+
+
+            <td pEditableColumn style="text-align : left;width:12em"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText disabled [(ngModel)]="rowData.salesman">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.salesman }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+
+            
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="footer" >
+        <tr>
+            <th style="width:3em"> </th>
+            <th style="width:3em"> </th>
+            <th style="width:12em"> </th>
+            <th style="width:12em"> </th>
+            <th style="width:14em" > </th>
+            <th style="width:15em"> </th>
+            <th style="width:10em"> </th>
+            <th style="width:10em"> </th>
+            <th style="width:7em"></th>
+            <th style="width:7em"></th>
+            <th style="width :7em">
+                <input type="text" disabled value='{{getTotalAmount()|number:actionService.ictAmount}}'
+                style="text-align: right;width: 100%;">
+            </th>
+            <th style="width:7em">
+                <input type="text" disabled value='{{getTotalDisc()|number:actionService.ictAmount}}'
+                    style="text-align: right;width: 100%;">
+            </th>
+
+            <th style="width:7em">
+                <input type="text" disabled value='{{getCrprTotal()|number:actionService.ictAmount}}'
+                    style="text-align: right;width: 100%;">
+            </th>
+            <th style="width :12em"> </th>
+            
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+            <td [attr.colspan]="columns.length">
+                No records found
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<ng-template #sadt>
+  
+        <p-table #dt [columns]="columns" [value]="service.header.aidetail" selectionMode="single" [metaKeySelection]="true"
+    [(selection)]="service.selectedDetailRow" [scrollable]="true" scrollHeight="300px" scrollWidth="100%"
+    [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true" dataKey="srNo">
+            <ng-template pTemplate="caption">
+                <tr>
+                    <td>
+                        <button pButton type="button" iconPos="left" label="" (click)="createInsertRow()"
+                            style="margin-left: .25em;" icon="pi pi-plus"></button>
+                    </td>
+                    <td>
+                        <button pButton type="button" iconPos="left" label="" icon="pi pi-trash" (click)="deleteRow()"
+                            style="margin-left: .25em;"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th  style="width:100px"> # </th>
+                    <th style="width:200px">Store </th>
+                    <th  style="width:200px">Item Code </th>
+                    <th style="width:200px">Item Desc </th>
+                    <th style="width:200px">Uom </th>
+                    <th style="width:200px">Current Stock</th>
+                    <th style="width:200px">Qty </th>
+                    <th style="width:200px">Item Rate </th>
+                    <th style="width:200px">Amount </th>
+                    <th style="width:200px">Net Amount </th>
+                    <th style="width:200px">+/- </th>
+                    <th style="width:200px">Remarks</th>
+                    
+                </tr>
+                
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-ri="rowIndex">
+                <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+
+                    <!-- id -->
+                    <td pEditableColumn style="width:100px;"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                    <p-inputNumber [(ngModel)]="rowData.srNo" disabled> </p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.srNo}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+                    <!-- store code -->
+            <td pEditableColumn style="width:200px; " [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+             <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input type="text" pInputText (click)="onStoreSelection(ri) ;selectedIndex=ri;"
+                         placeholder=" " [(ngModel)]="rowData.storeCode">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.storeCode}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+                        <!-- item code -->
+                    <td pEditableColumn style="width:200px" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" (click)="onItemSelection(ri) ;selectedIndex=ri"
+                                    [(ngModel)]="rowData.itemCode">
+        
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.itemCode}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                          <!-- item desc -->
+                    <td pEditableColumn style="width:200px;" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData.itemDesc" > 
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.itemDesc}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                        <!-- uom -->
+                    <td pEditableColumn style="width:200px"
+                    [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.uom" (click)="onUnitSelection(ri)" >
+                           
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{rowData.uom? getUnitName(rowData.uom):'Nos'}}
+    
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                        <!-- current stock -->
+                        <td pEditableColumn style="width:200px"
+                        [ngClass]="rowData==service.selectedDetailRow?'non-editable':null">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-inputNumber [(ngModel)]="rowData.curStock" disabled>
+                                </p-inputNumber>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.curStock}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+
+                        <!-- item qty -->
+                    <td pEditableColumn style="width:200px"
+                    [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-inputNumber [(ngModel)]="rowData.itemQty" >
+                            </p-inputNumber>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{rowData.itemQty}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                        <!-- item rate -->
+                        <td pEditableColumn style="width:200px"
+                        [ngClass]="rowData==service.selectedDetailRow?'non-editable':null">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-inputNumber [(ngModel)]="rowData.costRate" disabled>
+                                </p-inputNumber>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData.costRate| number: actionService.ictAmount }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <!-- Amount -->
+                    <td style="width:200px">
+                        {{ (convertToFloat((rowData.itemQty * rowData.costRate) )) |
+                        number: actionService.ictAmount }}
+                    </td>
+
+                    <!-- Net Amount -->
+                    <td style="width:200px">
+                        {{ (convertToFloat((rowData.itemQty * rowData.costRate) )) |
+                        number: actionService.ictAmount }}
+                    
+                    <!-- +/- -->
+                   
+                <td style="width: 200px;">  
+                    <select [(ngModel)]="rowData.signInt" id="signIntSelection">
+                        <option [value]="option.value" *ngFor="let option of signIntOptions">{{option.name}}</option>
+                    </select> 
+                </td>
+
+                    <!-- Remarks -->
+                    <td style="width:200px"><input type="text" id="remarks" [(ngModel)]="rowData.remarks"></td>
+
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+            <td [attr.colspan]="columns.length">
+                No records found
+            </td>
+        </tr>
+    </ng-template>
+        </p-table>
+    
+</ng-template>
+
+

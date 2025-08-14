@@ -1,0 +1,1238 @@
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px;margin-bottom: 1rem;">
+    <!-- Header with Title and Approval Status -->
+    <h3 style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+       Leave Application
+        <a style="text-decoration: underline; color: blue; font-size: 12px;">Check</a>
+        <!-- <button pButton label="Approval Status" (click)="showStatus = true" class="header-btn"></button> -->
+    </h3>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; flex: 2; min-width: 300px;">
+        <ng-container *ngFor="let btn of buttons">
+            <button pButton [label]="btn.label" (click)="btn.action ? btn.action() : null" [disabled]="btn.disabled"
+                class="header-btn" *ngIf="btn.visible">
+            </button>
+        </ng-container>
+    </div>
+</div>
+
+<div style="border: 1px solid #003366; padding: 6px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+    <br>
+
+    <div class="p-grid">
+        <div *ngIf="!fieldSettings['Allh_Vou_Number']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%; ">Voucher Number
+                    <span *ngIf="fieldSettings['Allh_Vou_Number']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblTransHead.Allh_Vou_Number" pInputText
+                    [readonly]="fieldSettings['Allh_Vou_Number']?.disabled"
+                    [required]="fieldSettings['Allh_Vou_Number']?.mandatory"
+                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+
+            </div>
+        </div>
+
+        <div *ngIf="!fieldSettings['Allh_Vou_Type']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;text-decoration: underline;"
+                    (click)="routeTo('/common/voucher-type')">Voucher
+                    Type
+                    <span *ngIf="fieldSettings['Allh_Vou_Type']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblTransHead.Allh_Vou_Type" pInputText
+                    [readonly]="fieldSettings['Allh_Vou_Type']?.disabled"
+                    [required]="fieldSettings['Allh_Vou_Type']?.mandatory"
+                    style="background-color: #ffffff; width: 25%; height: 2vh;">
+                <button *ngIf="!fieldSettings['Allh_Vou_Type']?.disabled" pButton (click)="ShowPopUp('VocherType')"
+                    icon="pi pi-ellipsis-h" class="custom-button" style="margin-left:10px"></button>
+
+            </div>
+        </div>
+
+        <div *ngIf="!fieldSettings['Allh_Vou_Date']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;">Date
+                    <span *ngIf="fieldSettings['Allh_Vou_Date']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="date" [(ngModel)]="_salesService.headerData.tblTransHead.Allh_Vou_Date" pInputText
+                    [readonly]="fieldSettings['Allh_Vou_Date']?.disabled"
+                    [required]="fieldSettings['Allh_Vou_Date']?.mandatory"
+                    style="background-color: #ffffff; width:30%; height: 2vh;">
+            </div>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div *ngIf="!fieldSettings['Allh_Empl_Code']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;text-decoration: underline;"
+                    (click)="routeTo('/common/narration-master')">Employee Code
+                    <span *ngIf="fieldSettings['Allh_Empl_Code']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblSecTransHead.Allh_Empl_Code" pInputText
+                    [readonly]="fieldSettings['Allh_Empl_Code']?.disabled"
+                    [required]="fieldSettings['Allh_Empl_Code']?.mandatory"
+                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+                <button pButton *ngIf="!fieldSettings['Allh_Empl_Code']?.disabled" (click)="ShowPopUp('EmployeeCode')"
+                    icon="pi pi-ellipsis-h" class="custom-button" style="margin-left:10px"></button>
+
+            </div>
+        </div>
+        <div *ngIf="!fieldSettings['Allh_Empl_Name']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;">Employee Name
+                    <span *ngIf="fieldSettings['Allh_Empl_Name']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblSecTransHead.Allh_Empl_Name" pInputText
+                    [readonly]="fieldSettings['Allh_Empl_Name']?.disabled"
+                    [required]="fieldSettings['Allh_Empl_Name']?.mandatory"
+                    style="background-color: #ffffff; width: 65%; height: 2vh;">
+            </div>
+        </div>
+    </div>
+
+    <div class="p-grid">
+        <div *ngIf="!fieldSettings['Allh_LPolicy_Code']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;text-decoration: underline;"
+                    (click)="routeTo('/common/narration-master')">Leave Policy Code
+                    <span *ngIf="fieldSettings['Allh_LPolicy_Code']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblSecTransHead.Allh_LPolicy_Code" pInputText
+                    [readonly]="fieldSettings['Allh_LPolicy_Code']?.disabled"
+                    [required]="fieldSettings['Allh_LPolicy_Code']?.mandatory"
+                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+                <button pButton *ngIf="!fieldSettings['Allh_LPolicy_Code']?.disabled"
+                    (click)="ShowPopUp('LeavePolicyCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                    style="margin-left:10px"></button>
+
+            </div>
+        </div>
+        <div *ngIf="!fieldSettings['Allh_LPolicy_Name']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;">Leave Policy Name
+                    <span *ngIf="fieldSettings['Allh_LPolicy_Name']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblSecTransHead.Allh_LPolicy_Name" pInputText
+                    [readonly]="fieldSettings['Allh_LPolicy_Name']?.disabled"
+                    [required]="fieldSettings['Allh_LPolicy_Name']?.mandatory"
+                    style="background-color: #ffffff; width: 65%; height: 2vh;">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="p-grid">
+        <div *ngIf="!fieldSettings['Allh_Narra_Code']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;text-decoration: underline;"
+                    (click)="routeTo('/common/narration-master')">Narration Code
+                    <span *ngIf="fieldSettings['Allh_Narra_Code']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblTransHead.Allh_Narra_Code" pInputText
+                    [readonly]="fieldSettings['Allh_Narra_Code']?.disabled"
+                    [required]="fieldSettings['Allh_Narra_Code']?.mandatory"
+                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+                <button pButton *ngIf="!fieldSettings['Allh_Narra_Code']?.disabled" (click)="ShowPopUp('NarrationCode')"
+                    icon="pi pi-ellipsis-h" class="custom-button" style="margin-left:10px"></button>
+
+            </div>
+        </div>
+        <div *ngIf="!fieldSettings['Allh_Narra_Name']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;">Narration Name
+                    <span *ngIf="fieldSettings['Allh_Narra_Name']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblTransHead.Allh_Narra_Name" pInputText
+                    [readonly]="fieldSettings['Allh_Narra_Name']?.disabled"
+                    [required]="fieldSettings['Allh_Narra_Name']?.mandatory"
+                    style="background-color: #ffffff; width: 65%; height: 2vh;">
+            </div>
+        </div>
+    </div>
+
+    <div class="p-grid">
+        <div *ngIf="!fieldSettings['Allh_DocTemp_Code']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0.5rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;text-decoration: underline;">Copy Doc From
+                    Template Code
+
+                    <span *ngIf="fieldSettings['Allh_DocTemp_Code']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblTransHead.Allh_DocTemp_Code" pInputText
+                    [readonly]="fieldSettings['Allh_DocTemp_Code']?.disabled"
+                    [required]="fieldSettings['Allh_DocTemp_Code']?.mandatory"
+                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+                <button pButton *ngIf="!fieldSettings['Allh_DocTemp_Code']?.disabled"
+                    (click)="ShowPopUp('CopyDocFromTemplateCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                    style="margin-left:10px"></button>
+
+            </div>
+
+        </div>
+        <div *ngIf="!fieldSettings['Allh_DocTemp_Name']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;">Copy Doc From Template Name
+                    <span *ngIf="fieldSettings['Allh_DocTemp_Name']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblTransHead.Allh_DocTemp_Name" pInputText
+                    [readonly]="fieldSettings['Allh_DocTemp_Name']?.disabled"
+                    [required]="fieldSettings['Allh_DocTemp_Name']?.mandatory"
+                    style="background-color: #ffffff; width: 65%; height: 2vh;">
+            </div>
+        </div>
+    </div>
+    <div class="p-grid">
+        <div *ngIf="!fieldSettings['Allh_Text']?.hidden" class="p-col-12 p-md-4"
+            style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;">Text
+                    <span *ngIf="fieldSettings['Allh_Text']?.mandatory" style="color: red;">*</span>
+                </label>
+                <input type="text" [(ngModel)]="_salesService.headerData.tblTransHead.Allh_Text" pInputText
+                    [readonly]="fieldSettings['Allh_Text']?.disabled" [required]="fieldSettings['Allh_Text']?.mandatory"
+                    style="background-color: #ffffff; width: 70%; height: 2vh;">
+
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="custom-tabs">
+
+        <div class="tab-headers">
+            <ng-container *ngFor="let tab of scrollableTabs; let i = index">
+                <div class="tab-header" [class.active]="activeIndex === i" *ngIf="tab.visible == true"
+                    (click)="changeIndex(i)">
+                    {{ tab.title }}
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+            <!-- 1 -->
+            <ng-container
+                *ngIf="scrollableTabs[activeIndex] && activeIndex == 0 && scrollableTabs[activeIndex].visible == true">
+
+                <p-table [value]="_salesService.headerData.tblTransDetail" [scrollable]="true" scrollHeight="270px"
+                    scrollWidth="100%" [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem;">
+                                <input type="checkbox"
+                                    [checked]="isAllSelected('tblTransDetail')"
+                                    (change)="toggleSelectAll($event,'tblTransDetail')" />
+                            </th>
+
+                            <ng-container *ngFor="let col of TableData">
+
+                                <th *ngIf="!col.hide && !col.routeTo"
+                                    [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                    <span>{{col.header}}</span>
+                                </th>
+                                <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                    [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                    <span>{{col.header}}</span>
+                                </th>
+
+                            </ng-container>
+
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-product let-i="rowIndex">
+                        <tr (click)="onRowClick(product, i)" (contextmenu)="onRightClick($event, product, i)">
+
+                            <td style="width: 3rem;">
+                                <input type="checkbox" [(ngModel)]="product.selected" />
+                            </td>
+
+                            <ng-container *ngFor="let col of TableData">
+                                <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                    [ngStyle]="{'width':col.width , 'text-align ': col.align}">
+
+                                    <ng-container *ngIf="!col.PopUpData">
+                                        <input pInputText [type]="col.type" style="padding: 0;"
+                                            [readonly]="col.readOnly" [required]="col.mandatory"
+                                            [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                            [(ngModel)]="product[col.bind]"
+                                            (ngModelChange)="onInputChange(product, col.bind)" (click)="toggle(0)" />
+                                    </ng-container>
+
+                                    <!-- Editable Input with Pop-Up -->
+                                    <ng-container *ngIf="!col.readOnly && col.PopUpData">
+
+                                        <input pInputText [type]="col.type" style="padding: 0;"
+                                            [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                            [(ngModel)]="product[col.bind]" [readonly]="col.readOnly"
+                                            [required]="col.mandatory"
+                                            (ngModelChange)="onInputChange(product, col.bind)" (click)="toggle(0)" />
+
+                                        <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                            class="custom-button" style="position: absolute; padding: 0;"
+                                            (click)="ShowPopUp(col.PopUpData, i)"></button>
+
+                                    </ng-container>
+
+                                    <!-- Read-Only Fields -->
+                                    <ng-container *ngIf="col.readOnly">
+                                        <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                    </ng-container>
+
+
+
+
+                                </td>
+
+
+                            </ng-container>
+
+
+                            <td style="width: 4rem;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow2('TblTransDetailDto',i)" class="custom-button"></button>
+                            </td>
+                            <td style="width: 6rem;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow2('TblTransDetailDto',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+
+                </p-table>
+            </ng-container>
+            <!-- 2 -->
+            <ng-container
+                *ngIf="scrollableTabs[activeIndex] && activeIndex == 1 && scrollableTabs[activeIndex].visible == true">
+
+                <p-table [value]="LeaveTable" [scrollable]="true" scrollHeight="270px" scrollWidth="100%"
+                    [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem;">
+                                <input type="checkbox" [checked]="isAllSelected('LeaveTable')"
+                                    (change)="toggleSelectAll($event , 'LeaveTable')" />
+                            </th>
+
+                            <ng-container *ngFor="let col of TableData1">
+
+                                <th *ngIf="!col.hide && !col.routeTo"
+                                    [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                    <span>{{col.header}}</span>
+                                </th>
+                                <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                    [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                    <span>{{col.header}}</span>
+                                </th>
+
+                            </ng-container>
+
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-product let-i="rowIndex">
+                        <tr (click)="onRowClick(product, i)" (contextmenu)="onRightClick($event, product, i)">
+
+                            <td style="width: 3rem;">
+                                <input type="checkbox" [(ngModel)]="product.selected" />
+                            </td>
+
+                            <ng-container *ngFor="let col of TableData1">
+                                <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                    [ngStyle]="{'width':col.width , 'text-align ': col.align}">
+
+                                    <ng-container *ngIf="!col.PopUpData">
+                                        <input pInputText [type]="col.type" style="padding: 0;"
+                                            [readonly]="col.readOnly" [required]="col.mandatory"
+                                            [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                            [(ngModel)]="product[col.bind]"
+                                            (ngModelChange)="onInputChange(product, col.bind)" (click)="toggle(0)" />
+                                    </ng-container>
+
+                                    <!-- Editable Input with Pop-Up -->
+                                    <ng-container *ngIf="!col.readOnly && col.PopUpData">
+
+                                        <input pInputText [type]="col.type" style="padding: 0;"
+                                            [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                            [(ngModel)]="product[col.bind]" [readonly]="col.readOnly"
+                                            [required]="col.mandatory"
+                                            (ngModelChange)="onInputChange(product, col.bind)" (click)="toggle(0)" />
+
+                                        <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                            class="custom-button" style="position: absolute; padding: 0;"
+                                            (click)="ShowPopUp(col.PopUpData, i)"></button>
+
+                                    </ng-container>
+
+                                    <!-- Read-Only Fields -->
+                                    <ng-container *ngIf="col.readOnly">
+                                        <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                    </ng-container>
+
+
+
+
+                                </td>
+
+
+                            </ng-container>
+
+
+                            <td style="width: 4rem;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow3('TblTransDetailDto',i)" class="custom-button"></button>
+                            </td>
+                            <td style="width: 6rem;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow3('TblTransDetailDto',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+
+                </p-table>
+            </ng-container>
+            <!-- 3 -->
+            <ng-container
+                *ngIf="scrollableTabs[activeIndex] && activeIndex == 2 && scrollableTabs[activeIndex].visible == true">
+
+                <p-table [value]="LeaveSummaryTable" [scrollable]="true" scrollHeight="270px" scrollWidth="100%"
+                    [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem;">
+                                <input type="checkbox" [checked]="isAllSelected('LeaveSummaryTable')"
+                                    (change)="toggleSelectAll($event,'LeaveSummaryTable')" />
+                            </th>
+
+                            <ng-container *ngFor="let col of TableData3">
+
+                                <th *ngIf="!col.hide && !col.routeTo"
+                                    [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                    <span>{{col.header}}</span>
+                                </th>
+                                <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                    [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                    <span>{{col.header}}</span>
+                                </th>
+
+                            </ng-container>
+
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-product let-i="rowIndex">
+                        <tr (click)="onRowClick(product, i)" (contextmenu)="onRightClick($event, product, i)">
+
+                            <td style="width: 3rem;">
+                                <input type="checkbox" [(ngModel)]="product.selected" />
+                            </td>
+
+                            <ng-container *ngFor="let col of TableData3">
+                                <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                    [ngStyle]="{'width':col.width , 'text-align ': col.align}">
+
+                                    <ng-container *ngIf="!col.PopUpData">
+                                        <input pInputText [type]="col.type" style="padding: 0;"
+                                            [readonly]="col.readOnly" [required]="col.mandatory"
+                                            [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                            [(ngModel)]="product[col.bind]"
+                                            (ngModelChange)="onInputChange(product, col.bind)" (click)="toggle(0)" />
+                                    </ng-container>
+
+                                    <!-- Editable Input with Pop-Up -->
+                                    <ng-container *ngIf="!col.readOnly && col.PopUpData">
+
+                                        <input pInputText [type]="col.type" style="padding: 0;"
+                                            [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                            [(ngModel)]="product[col.bind]" [readonly]="col.readOnly"
+                                            [required]="col.mandatory"
+                                            (ngModelChange)="onInputChange(product, col.bind)" (click)="toggle(0)" />
+
+                                        <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                            class="custom-button" style="position: absolute; padding: 0;"
+                                            (click)="ShowPopUp(col.PopUpData, i)"></button>
+
+                                    </ng-container>
+
+                                    <!-- Read-Only Fields -->
+                                    <ng-container *ngIf="col.readOnly">
+                                        <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                    </ng-container>
+
+
+
+
+                                </td>
+
+
+                            </ng-container>
+
+
+                            <td style="width: 4rem;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow4('TblTransDetailDto',i)" class="custom-button"></button>
+                            </td>
+                            <td style="width: 6rem;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow4('TblTransDetailDto',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+
+                </p-table>
+            </ng-container>
+        </div>
+    </div>
+
+
+
+</div>
+
+<!-- Button Functions -->
+
+<p-dialog [modal]="true" [(visible)]="display" [style]="{width: '50vw'}">
+    <p-table [value]="rights" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Rights</th>
+                <th>Rights Details</th>
+                <!-- <th>Action</th> -->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-right>
+            <tr>
+                <td>
+                    <input type="checkbox" [(ngModel)]="right.hasRight" />
+                </td>
+                <td>{{ right.detail }}</td>
+                <!-- <td>
+                    <input type="checkbox" [(ngModel)]="right.hasAction" />
+                </td> -->
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>
+
+<p-dialog [modal]="true" [(visible)]="showAuthMsg" [closable]="false" [style]="{width: '70vw'}">
+    <br>
+
+    <div class="p-grid" style="background-color: #d1e2f1;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+            background-color: #5c96d4;
+            color: white;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;
+          ">
+                Authorize with Message
+            </h6>
+
+            <p-table [value]="TblAuthMsg" class="table-style">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 6rem;">Employee Code</th>
+                        <th style="width: 6rem;">Employee Name</th>
+                        <th style="width: 6rem;">Alerts Code</th>
+                        <th style="width: 6rem;">Alerts Name</th>
+                        <th style="width: 6rem;">Alerts Email</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td pEditableColumn>
+                            <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                                [(ngModel)]="rowData.employeeCode">
+                            <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                (click)="ShowPopUp('AuthMsgEmpCode',i)" class="custom-button"></button>
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.employeeName">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                                [(ngModel)]="rowData.alertsCode">
+                            <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                (click)="ShowPopUp('AuthMsgAlertCode',i)" class="custom-button"></button>
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.alertsName">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.alertsEmail">
+                        </td>
+                    </tr>
+
+                </ng-template>
+            </p-table>
+
+        </div>
+    </div>
+
+    <br>
+    <div class="p-dialog-footer" style="padding: 0rem !important;">
+        <button pButton type="button" label="Send" class="custom-button"></button>
+        <button pButton type="button" label="Cancel" (click)="showAuthMsg = false" class="custom-button"></button>
+    </div>
+
+
+</p-dialog>
+
+<p-dialog [modal]="true" [(visible)]="showRejectMsg" [closable]="false" [style]="{width: '70vw'}">
+    <br>
+
+    <div class="p-grid" style="background-color: #d1e2f1;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+        background-color: #5c96d4;
+        color: white;
+        height: 4vh;
+        align-items: center;
+        display: flex;
+        padding-left: 8px;
+      ">
+                Reject with Message
+            </h6>
+
+            <p-table [value]="TblRejectMsg" class="table-style">
+                <ng-template pTemplate="header">
+                    <tr>
+
+                        <th style="width: 6rem;">Employee Code</th>
+                        <th style="width: 6rem;">Employee Name</th>
+                        <th style="width: 6rem;">Alerts Code</th>
+                        <th style="width: 6rem;">Alerts Name</th>
+                        <th style="width: 6rem;">Alerts Email</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td pEditableColumn>
+                            <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                                [(ngModel)]="rowData.employeeCode">
+                            <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                (click)="ShowPopUp('RejectMsgEmpCode',i)" class="custom-button"></button>
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.employeeName">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                                [(ngModel)]="rowData.alertsCode">
+                            <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                (click)="ShowPopUp('RejectMsgAlertCode',i)" class="custom-button"></button>
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.alertsName">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.alertsEmail">
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </div>
+    </div>
+
+    <br>
+    <div class="p-dialog-footer" style="padding: 0rem !important;">
+        <button pButton type="button" label="Send" class="custom-button" (click)="showRejectMsg = false"></button>
+        <button pButton type="button" label="Cancel" (click)="showRejectMsg = false" class="custom-button"></button>
+    </div>
+</p-dialog>
+
+<p-dialog [modal]="true" [(visible)]="showStatus" [closable]="false" [style]="{width: '50vw'}">
+
+    <div style="padding: 15px; background-color: #d1e2f1; font-size: 10px;">
+
+        <div class="p-grid">
+
+            <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <h6 style="color: #003366;">Finance Approval Status</h6>
+            </div>
+
+        </div>
+
+        <div class="p-grid">
+
+            <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="custom-stepper">
+                    <ng-container *ngFor="let step of FinanceApprovalStatus; let i = index">
+                        <div class="step" [ngClass]="{ 
+                        active: currentStep >= i + 1, 
+                        approved: step.status === 'Approved', 
+                        rejected: step.status === 'Rejected' 
+                      }">
+                            <div class="step-circle"></div>
+                            <div class="step-label">{{ step.name }}</div>
+                            <div class="step-status" *ngIf="currentStep >= i + 1">{{ step.status }}</div>
+                        </div>
+                        <div class="step-line"></div>
+                    </ng-container>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <br>
+
+
+        <div class="p-grid">
+
+            <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <h6 style="color: #003366;">Transaction Approval Status</h6>
+            </div>
+
+        </div>
+
+        <div class="p-grid">
+
+            <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="custom-stepper">
+                    <ng-container *ngFor="let step of TransactionSteps; let i = index">
+                        <div class="step" [ngClass]="{ 
+                        active: currentStep >= i + 1, 
+                        approved: step.status === 'Approved', 
+                        rejected: step.status === 'Rejected' 
+                      }">
+                            <div class="step-circle"></div>
+                            <div class="step-label">{{ step.name }}</div>
+                            <div class="step-status" *ngIf="currentStep >= i + 1">{{ step.status }}</div>
+                        </div>
+                        <div class="step-line"></div>
+                    </ng-container>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton label="OK" icon="pi pi-check" (click)="this.showStatus = false"></button>
+        <button pButton label="Cancel" icon="pi pi-times" (click)="this.showStatus = false"
+            class="p-button-secondary "></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog [modal]="true" [(visible)]="showSaveMsg" [closable]="false" [style]="{width: '50vw'}">
+    <br>
+
+    <div class="p-grid" style="background-color: #d1e2f1;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+        background-color: #5c96d4;
+        color: white;
+        height: 4vh;
+        align-items: center;
+        display: flex;
+        padding-left: 8px;
+      ">
+                Save with Message
+            </h6>
+
+            <p-table [value]="TblSaveMsg" class="table-style">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 6rem;">Alerts Code</th>
+                        <th style="width: 6rem;">Alerts Name</th>
+                        <th style="width: 6rem;">Alerts Email</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td pEditableColumn>
+                            <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                                [(ngModel)]="rowData.alertsCode">
+                            <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                (click)="ShowPopUp('SaveMsgAlertCode',i)" class="custom-button"></button>
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.alertsName">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.alertsEmail">
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </div>
+    </div>
+
+    <br>
+    <div class="p-dialog-footer" style="padding: 0rem !important;">
+        <button pButton type="button" label="Send" class="custom-button" (click)="showRejectMsg = false"></button>
+        <button pButton type="button" label="Cancel" (click)="showRejectMsg = false" class="custom-button"></button>
+    </div>
+</p-dialog>
+
+<p-dialog [(visible)]="showConf" [modal]="true" [closable]="false" [header]="'Confirmation'" [style]="{width: '40vw'}">
+    <p>{{ headerConf.message }}</p>
+    <div class="p-dialog-footer">
+        <button pButton type="button" label="Yes" (click)="confirmConf()" class="p-button-primary"></button>
+        <button pButton type="button" label="Cancel" (click)="cancelConf()" class="p-button-secondary"></button>
+    </div>
+</p-dialog>
+
+<p-dialog [modal]="true" [(visible)]="taxAllocation" [closable]="true" [style]="{width: '70vw'}">
+    <br>
+
+    <div class="p-grid" style="background-color: #d1e2f1;font-size: 10px;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+        background-color: #5c96d4;
+        color: white;
+        height: 4vh;
+        align-items: center;
+        display: flex;
+        padding-left: 8px;
+      ">
+                Tax Allocation
+            </h6>
+            <br>
+
+
+
+            <div class="p-grid">
+
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">New Reference</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 65%; height: 2vh;">
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-4"></div>
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">On-Account</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 65%; height: 2vh;">
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+
+            <p-table [value]="TblAllocation" [rows]="5" [scrollable]="true" scrollHeight="270px" scrollWidth="100%"
+                [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true" class="table-style">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 6rem;">Reference</th>
+                        <th style="width: 6rem;">Due Date</th>
+                        <th style="width: 6rem;">Bill Amount</th>
+                        <th style="width: 6rem;">Amount Adjusted</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.reference">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.dueDate">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.billAmount">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.amountAdjusted">
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            <br>
+            <br>
+            <div class="p-grid">
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;">Amount to be Adjusted</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 50%; height: 2vh;">
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;">Amount Adjusted</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 50%; height: 2vh;">
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;">To be Adjusted</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 50%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+            <div class="p-field" style="display: flex; align-items: center; width: 100%; max-width: 40%;">
+                <button pButton label="Search"></button>
+                <input type="text" pInputText
+                    style="background-color: #ffffff; width: 80%; height: 2rem; border: 1px solid;">
+            </div>
+
+            <div
+                style="display: flex; justify-content: flex-end; width: 100%; max-width: 50%; flex-wrap: wrap; justify-content: flex-end;">
+                <button pButton label="Adjust On FIFO" icon="pi pi-objects-column"></button>
+                <button pButton label="Pick Amount"></button>
+                <button pButton label="OK" icon="pi pi-check" (click)="this.taxAllocation = false"></button>
+                <button pButton label="Cancel" icon="pi pi-times" (click)="this.taxAllocation = false"
+                    class="p-button-secondary "></button>
+            </div>
+        </div>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog [modal]="true" [(visible)]="invoiceAllocation" [closable]="true" [style]="{width: '70vw'}">
+    <br>
+
+    <div class="p-grid" style="background-color: #d1e2f1;font-size: 10px;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+        background-color: #5c96d4;
+        color: white;
+        height: 4vh;
+        align-items: center;
+        display: flex;
+        padding-left: 8px;
+      ">
+                Outstanding Bill Allocation
+            </h6>
+            <br>
+
+
+
+            <div class="p-grid">
+
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">New Reference</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 65%; height: 2vh;">
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-4"></div>
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">On-Account</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 65%; height: 2vh;">
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+
+            <p-table [value]="TblAllocation" [rows]="5" [scrollable]="true" scrollHeight="270px" scrollWidth="100%"
+                [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true" class="table-style">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 6rem;">Reference</th>
+                        <th style="width: 6rem;">Due Date</th>
+                        <th style="width: 6rem;">Bill Amount</th>
+                        <th style="width: 6rem;">Amount Adjusted</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.reference">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.dueDate">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.billAmount">
+                        </td>
+                        <td pEditableColumn>
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.amountAdjusted">
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            <br>
+            <br>
+            <div class="p-grid">
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;">Amount to be Adjusted</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 50%; height: 2vh;">
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;">Amount Adjusted</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 50%; height: 2vh;">
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;">To be Adjusted</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 50%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+            <div class="p-field" style="display: flex; align-items: center; width: 100%; max-width: 40%;">
+                <button pButton label="Search"></button>
+                <input type="text" pInputText
+                    style="background-color: #ffffff; width: 80%; height: 2rem; border: 1px solid;">
+            </div>
+
+            <div
+                style="display: flex; justify-content: flex-end; width: 100%; max-width: 50%; flex-wrap: wrap; justify-content: flex-end;">
+                <button pButton label="Adjust On FIFO" icon="pi pi-objects-column"></button>
+                <button pButton label="Pick Amount"></button>
+                <button pButton label="OK" icon="pi pi-check" (click)="this.invoiceAllocation = false"></button>
+                <button pButton label="Cancel" icon="pi pi-times" (click)="this.invoiceAllocation = false"
+                    class="p-button-secondary "></button>
+            </div>
+        </div>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog [modal]="true" [(visible)]="showPrint" [closable]="true" [style]="{width: '50vw'}">
+    <br>
+
+    <div class="p-grid" style="background-color: #d1e2f1;font-size: 10px;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+        background-color: #5c96d4;
+        color: white;
+        height: 4vh;
+        align-items: center;
+        display: flex;
+        padding-left: 8px;
+      ">
+                Print Formats
+            </h6>
+            <br>
+
+            <div class="p-grid">
+                <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 45%;">Use Spreadsheet Layout</label>
+                        <input type="checkbox">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 45%;">Print Layout</label>
+                        <select style="background-color: #ffffff; width: 55%; height: 3vh;
+                    border: 1px solid rgba(0, 0, 0, 0.38);
+transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
+border-radius: 4px;">
+                            <option value="" disabled selected>Select Print Format</option>
+                            <option value="salesInvoice">Sales Enquiry</option>
+                            <option value="salesInvoice">Sales Quotation</option>
+                            <option value="salesEnquiry">Sales Order</option>
+                            <option value="salesProduct">Delivery Note</option>
+                            <option value="directPurchase">Sales Invoice</option>
+                            <option value="directPurchase">Sales Return</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-6" style="padding: 0rem  0.5rem 0.5rem;text-align: center;">
+                    <button pButton label="Preview" class="header-btn" style="min-width: 100px;"></button>
+                </div>
+            </div>
+            <br>
+            <div class="p-grid">
+                <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 45%;">Print Without Headers</label>
+                        <input type="checkbox">
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-6" style="padding: 0rem  0.5rem 0.5rem;text-align: center;">
+                    <!-- <button pButton label="Modify" class="header-btn" style="min-width: 100px;"></button> -->
+                </div>
+            </div>
+            <br>
+            <div class="p-grid">
+                <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 45%;">Print Without Footers</label>
+                        <input type="checkbox">
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-6" style="padding: 0rem  0.5rem 0.5rem;text-align: center;">
+                    <!-- <button pButton label="Create" class="header-btn" style="min-width: 100px;"></button> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton label="Help" icon="pi pi-question-circle"></button>
+        <button pButton label="Print" icon="pi pi-print"></button>
+        <button pButton label="OK" icon="pi pi-check"></button>
+        <button pButton label="Cancel" icon="pi pi-times" (click)="this.showPrint = false"
+            class="p-button-secondary "></button>
+    </ng-template>
+
+</p-dialog>
+
+<p-dialog [modal]="true" [(visible)]="showLinking" [closable]="true" [style]="{width: '70vw'}">
+    <br>
+
+    <div class="p-grid"
+        style="border: 1px solid #003366; border-radius: 5px;background-color: #d1e2f1;font-size: 10px;">
+        <div class="p-col-12">
+            <h6 style="
+        background-color: #5c96d4;
+        color: white;
+        height: 4vh;
+        align-items: center;
+        display: flex;
+        padding-left: 8px;
+      ">
+                Linking Details
+            </h6>
+        </div>
+
+
+
+        <div class="input-panel p-d-flex p-flex-column p-px-3 p-mb-3">
+
+            <!-- <div class="p-inputgroup" style="width: 100%; max-width: 400px; margin-bottom: 10px;">
+        <span class="p-inputgroup-addon">
+            <i class="pi pi-search"></i>
+        </span>
+        <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText" (input)="filterTable()" 
+               style="width: 100%;" />
+    </div>  -->
+
+            <p-table #dt [value]="LinkingData" [(selection)]="selectedLinkingDataRows" dataKey="SysID"
+                [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]" class="list-table">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem; text-align: center;">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th style="width: 4rem;">SysID</th>
+                        <th>Serial No.</th>
+                        <th>Transaction No.</th>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData>
+                    <tr [pSelectableRow]="rowData">
+                        <td style="text-align: center;">
+                            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                        </td>
+                        <td style="text-align: center;">{{ rowData.SysID }}</td>
+                        <td>{{ rowData.serialNo }}</td>
+                        <td>{{ rowData.transactionNo }}</td>
+                        <td>{{ rowData.productCode }}</td>
+                        <td>{{ rowData.productName }}</td>
+                        <td>{{ rowData.quantity }}</td>
+
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                            No Data available. Please check back later.
+                        </td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton label="OK" (click)="updateLinkingSelectedRow()" icon="pi pi-check"></button>
+        <button pButton label="Cancel" icon="pi pi-times" (click)="this.showLinking = false"
+            class="p-button-secondary "></button>
+    </ng-template>
+
+</p-dialog>
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+<p-confirmDialog></p-confirmDialog>

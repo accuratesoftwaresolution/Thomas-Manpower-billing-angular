@@ -1,0 +1,320 @@
+
+
+th {
+  background-color: antiquewhite !important;
+  border: 1px solid #ffffff !important;
+  white-space: normal;
+  text-align: center;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
+  padding: 0rem 0rem 0rem 0.5rem !important;
+}
+
+.p-field {
+  margin-bottom: 1px !important
+}
+
+.custom-button {
+  background-color: antiquewhite !important;
+  /* Ensure it overrides default styles */
+  color: black !important;
+  /* Ensures the text color is black */
+  border: 1px solid #737373;
+  /* Custom border color */
+  box-shadow: none;
+  /* Remove any shadow if present */
+  padding: 2px 10px;
+}
+
+
+
+
+
+:host ::ng-deep .visible-dialog .p-dialog-header {
+  background-color: #BACFE0;
+  padding: 7px !important;
+}
+
+:host ::ng-deep .visible-dialog .p-dialog-content {
+  background-color: #E9F0F6;
+}
+
+:host ::ng-deep .visible-dialog .p-dialog-footer {
+  background-color: #a2c5e5;
+}
+
+.manual-column {
+  background-color: #c0d6e9;
+}
+
+
+
+// tab styles
+
+
+.custom-tabs {
+  width: 100%;
+  /* Set to your desired width */
+  border: 1px solid #ccc;
+  /* Outer border for the tab container */
+  /* Rounded corners for the entire tab container */
+  padding: 5px;
+  /* Padding for the tab container */
+  overflow: hidden;
+  /* Ensure content does not overflow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  background-color: #ffffff;
+}
+
+.tab-headers {
+  display: flex;
+  /* Horizontal layout */
+  overflow-x: auto;
+  /* Allow horizontal scrolling */
+  white-space: nowrap;
+  /* Prevent line breaks */
+  border-bottom: 1px solid #ccc;
+  /* Bottom border for tabs */
+
+}
+
+.tab-header {
+  position: relative;
+  /* Required for pseudo-element positioning */
+  padding: 5px 15px;
+  /* Compact padding */
+  cursor: pointer;
+  background-color: #d1e2f1;
+  /* Background for inactive tabs */
+  margin-right: 1px;
+  /* Space between tabs */
+  border-radius: 30px 0px 0px 0px;
+  /* Slight rounding of tabs */
+  transition: background-color 0.3s, box-shadow 0.3s;
+  /* Smooth transitions */
+}
+
+.tab-header::after {
+  content: '';
+  /* Creates the pseudo-element */
+  position: absolute;
+  right: -10px;
+  /* Adjust based on desired position */
+  top: 50%;
+  margin-top: -5px;
+  /* Centers vertically */
+  width: 0;
+  /* Width for the arrowhead */
+  height: 0;
+  /* Height for the arrowhead */
+  border-left: 10px solid #eaeaea;
+  /* Color of the tab */
+  border-top: 5px solid transparent;
+  /* Triangle shape */
+  border-bottom: 5px solid transparent;
+  /* Triangle shape */
+}
+
+.tab-header:hover {
+  background-color: #dcdcdc;
+  /* Darker background on hover */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* Shadow effect on hover */
+}
+
+.tab-header.active {
+  background-color: #5c96d4;
+  /* Active tab color */
+  color: white;
+  /* Active tab text color */
+
+}
+
+.tab-content {
+  padding: 5px;
+  border-top: none;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #b7dbff;
+  border-radius: 5px;
+  background-color: #d1e2f1;
+
+}
+
+:host ::ng-deep .p-dropdown .p-hidden-accessible .p-dropdown-label .p-inputtext .p-placeholder {
+  padding: 0 !important;
+}
+
+/////////////////
+
+
+:host ::ng-deep .table-style th {
+  text-align: center;
+}
+
+
+:host ::ng-deep .table-style td {
+  padding: 0.75rem 0.75rem !important;
+
+}
+
+
+:host ::ng-deep .tbl-tax-table{
+  width: 65% !important;
+  display: flex; 
+}
+
+
+:host ::ng-deep .tbl-lcdetails-table{
+  width: 100% !important;
+  display: flex; 
+}
+
+
+.tax-table {
+  display: flex;
+  background-color: #f0f8ff;
+}
+
+.journal-table {
+  display: flex;
+  background-color: #d1e2f1;
+}
+
+:host ::ng-deep .custom-dialog .p-dialog {
+  top: 600px !important;
+}
+
+/// custom stepper////////////////////////////
+
+
+.custom-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 600px;
+  font-family: Arial, sans-serif;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  position: relative;
+}
+
+.step-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: lightgray;
+  /* Default gray color */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+/* Active step (blue color) */
+.step.active .step-circle {
+  background-color: #007bff;
+  /* Blue color for active step */
+}
+
+/* Approved step (green color) */
+.step.approved .step-circle {
+  background-color: green;
+  /* Green color for approved step */
+}
+
+/* Rejected step (red color) */
+.step.rejected .step-circle {
+  background-color: red;
+  /* Red color for rejected step */
+}
+
+.step-label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.step-status {
+  font-size: 10px;
+  color: gray;
+  font-style: italic;
+}
+
+.step-line {
+  height: 2px;
+  background-color: #007bff;
+  ;
+  flex: 1;
+  margin: 0 5px;
+}
+
+/* Active line (blue color) */
+.step-line.active {
+  background-color: #007bff;
+  /* Blue color for active line */
+}
+
+////context menu //////
+/// 
+.custom-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  z-index: 1000;
+}
+
+.custom-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-menu-item {
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+}
+
+.custom-menu-item:hover {
+  background-color: #e3f2fd;
+  /* Light blue background */
+  font-weight: bold;
+  /* Bold text */
+  color: #1e88e5;
+}
+
+.menu-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Unique styles for the special menu item */
+.menu-item-unique {
+  background-color: #e3f2fd;
+  /* Light blue background */
+  font-weight: bold;
+  /* Bold text */
+  color: #1e88e5;
+  /* Blue text */
+}
+
+.menu-item-unique:hover {
+  background-color: #bbdefb;
+  /* Lighter blue on hover */
+}

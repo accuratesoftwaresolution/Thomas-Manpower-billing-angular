@@ -1,0 +1,109 @@
+<p-toast></p-toast>
+<div class="center" *ngIf="!keyInfo.brCode; else elseBlock">
+    <branch-selection [baseUrl]="API_URL" [keys]="keys" (returnValue)="keyInfo=$event;afterBranchSelection()"
+        [skipIntCheck]="true">
+    </branch-selection>
+</div>
+
+<ng-template #elseBlock>
+    <p-card header="" [style]="{'width': '100%', 'margin-bottom': '2em'}">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-2 p-lg-2">
+                <label for="Year">{{ 'year' | first}}</label><br>
+                <p-inputNumber [(ngModel)]="service.header.vrNo" [useGrouping]="false" [showButtons]="true"
+                    inputId="Year" maxlength="4" [style]="{'width': '100%'}">
+                </p-inputNumber>
+            </div>
+            <div class="p-col-12 p-md-2 p-lg-2">
+                <label for="integeronly">{{'totalBudget' | first}}</label><br>
+                <p-inputNumber inputId="integeronly" [(ngModel)]="service.header.acAmt" mode="decimal"
+                    [minFractionDigits]="3" [style]="{'width': '100%','text-align': 'right'}">
+                </p-inputNumber>
+            </div>
+            <div class="p-col-12 p-md-2 p-lg-2">
+                <label for="acCode">{{'acCode' | first}}</label>
+                <p-dropdown [options]="iac4LovData" [(ngModel)]="service.header.acCode" optionLabel="label"
+                    [showClear]="false" [style]="{'width': '100%'}" optionValue="value"
+                    (onChange)="acCodeValueChange()">
+                </p-dropdown>
+            </div>
+            <div class="p-col-12 p-md-3 p-lg-3">
+                <label for="acName">{{'AcName' | first}}</label>
+                <input id="acName" type="text" disabled pInputText [(ngModel)]="service.header.acName"
+                    [style]="{'width': '100%'}" />
+            </div>
+            <div class="p-col-12 p-md-1 p-lg-1">
+                <br>
+                <p-button label="Allocate" (click)="allocateBudget()"></p-button>
+            </div>
+            <div class="p-col-12 p-md-2 p-lg-2">
+                <!-- <label for="Year">Repeat Year/Filter</label><br>
+            <p-inputNumber [(ngModel)]="service.header.vrNo" [useGrouping]="false" [showButtons]="true" inputId="Year"
+                maxlength="4" [style]="{'width': '100%'}">
+            </p-inputNumber> -->
+            </div>
+        </div>
+    </p-card>
+
+    <p-table [value]="newBudgetRows" styleClass="p-datatable-gridlines" [lazy]="true" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 10em;">{{'vrDate' | first}}</th>
+                <th>{{'acAmt' | first}}</th>
+                <th style="width: 10em;">{{'drcr' | first}}</th>
+                <th>{{'remark' | first}}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-bdgetRow let-i="rowIndex">
+            <tr>
+                <td style="width: 10em;text-align: center;">{{getMonthLabel(i)}}</td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-inputNumber inputId="integeronly" [(ngModel)]="bdgetRow.acAmt" mode="decimal"
+                                [minFractionDigits]="3" [style]="{'width': '100%','text-align': 'right'}">
+                            </p-inputNumber>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <span style="float: right;">{{bdgetRow.acAmt | number : '1.3-3'}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td pEditableColumn style="width: 10em;">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-dropdown [options]="drCrList" [(ngModel)]="bdgetRow.signInt" [style]="{'width':'100%'}"
+                                optionLabel="label" optionValue="value" appendTo="body"></p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{getdrCrType(bdgetRow.signInt)}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="bdgetRow.remark" [style]="{'width': '100%'}">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{bdgetRow.remark}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <tr>
+                <th></th>
+                <th>
+                    <input type="text" disabled [value]="total | number : '1.3-3'"
+                        style="text-align: right;width: 100%;">
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </ng-template>
+    </p-table>
+</ng-template>

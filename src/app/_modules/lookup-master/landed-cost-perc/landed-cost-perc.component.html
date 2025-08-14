@@ -1,0 +1,316 @@
+<p-toast></p-toast>
+
+<div class="container" style="background-color: #d1e2f1 ; padding: 6px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Landed Cost Expense %</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Add" class="custom-button"></button>
+            <button pButton label="Save" (click)="savelandedcostexpense()" class="custom-button"></button>
+             <button pButton label="List" (click)="LandedCostExpenseList()" class="custom-button"></button>
+            <button pButton label="Delete" (click)="ConfirmDialog()" class="custom-button"></button>
+           
+           
+        </div>
+    </div>
+
+
+    <div
+        style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+        <h5 style="color: #003366;">Basic Details</h5>
+        <div class="p-grid">
+
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Landed Cost Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHLandCost.HLmCost_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Landed Cost Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHLandCost.HLmCost_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Landed Cost %</label>
+                    <input type="number" pInputText [(ngModel)]="TblHLandCost.HLmCost_Perce"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <h5 style="color: #003366;">Activation & Deactivation</h5>
+        
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="inline-checkbox">
+                        <label>Activation & Deactivation Y/N</label>
+                        <input type="checkbox" [ngModel]="TblHLandCost.HLmCost_AcDe_Yn === 'Y' ? true : false"
+                            (ngModelChange)="TblHLandCost.HLmCost_AcDe_Yn = $event ? 'Y' : 'N'">
+                    </div>
+                </div>
+            </div>
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                        Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHLandCost.HLmCost_AcDe_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h" class="popup-button"
+                        style="margin-left: 10px;"></button>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                        Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHLandCost.HLmCost_AcDe_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <h5 style="color: #003366;">Landed Cost Details</h5>
+        <p-table [value]="this.TblHLandCost.TblDLandCost" [style]="{'width' : '100%'}" [scrollable]="true" scrollHeight="270px"
+            scrollWidth="100%" [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 6rem;">SysID</th>
+                    <th style="width: 8rem;">Account SysID </th>
+                    <th style="width: 12rem;">Account Code</th>
+                    <th style="width: 12rem;">Account Name</th>
+                    <th style="width: 12rem;">Currency Code</th>
+                    <th style="width: 12rem;">Currency Name</th>
+                    <th style="width: 12rem;">Currency Rate</th>
+                    <th style="width: 12rem;">Landed Cost % </th>
+                    <th style="width: 12rem;">Cr Account Code</th>
+                    <th style="width: 12rem;">Cr Account Name</th>
+                    <th style="width: 12rem;">Narration Code</th>
+                    <th style="width: 12rem;">Narration Name</th>
+                    <th style="width: 4rem;"></th>
+                    <th style="width: 8rem;"></th>
+
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                <tr>
+                    <td pEditableColumn style="text-align: left;width: 6rem;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCost_SysID">
+                    </td>
+                    <td pEditableColumn style="text-align: center;width: 8rem;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCost_DrASysID">
+
+                    </td>
+                    <td pEditableColumn style="text-align: left;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCost_DrACode">
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('AccountFirstCode',i)" class="custom-button"></button>
+                    </td>
+                    <td pEditableColumn style="text-align: left;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCost_DrAName">
+                    </td>
+
+
+                    <td pEditableColumn style="text-align: left;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCurr_Code">
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('CurrencyCode',i)" class="custom-button"></button>
+                    </td>
+                    <td pEditableColumn style="text-align: center;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCurr_Name">
+                    </td>
+
+
+                    <td pEditableColumn style="text-align: left;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCurr_Rate">
+                    </td>
+                    <td pEditableColumn style="text-align: left;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCost_Perce">
+                    </td>
+
+
+                    <td pEditableColumn style="text-align: left;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCost_CrACode">
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('CustomerCode',i)" class="custom-button"></button>
+                    </td>
+                    <td pEditableColumn style="text-align: center;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCost_CrAName">
+                    </td>
+
+
+                    <td pEditableColumn style="text-align: left;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCost_NarraCode">
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('NarrationCode',i)" class="custom-button"></button>
+                    </td>
+                    <td pEditableColumn style="text-align: center;width: 12rem;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DLmCost_AccNarraName">
+                    </td>
+
+
+                    <td style="text-align: center;width: 4rem;">
+                        <button pButton style=" padding: 0;" icon="pi pi-trash" (click)="deleteRow('TblDLandCost',i)"
+                            class="custom-button"></button>
+                    </td>
+                    <td style="text-align: center;width: 8rem;">
+                        <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row" class="custom-button"
+                            (click)="addRow('TblDLandCost',i)"></button>
+                    </td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+        <h5 style="color: #003366;">Applicable Company Details</h5>
+
+        <p-table [value]="TblHLandCost.applicableCo" class="company-table" [style]="{'width' : '60%'}">
+            <ng-template pTemplate="header">
+                <tr style="background-color: #f0f0f0; text-align: left;">
+                    <th style="padding: 10px; font-size: 12px;">SysID</th>
+                    <th style="padding: 10px; font-size: 12px;">Applicable Company Code</th>
+                    <th style="padding: 10px; font-size: 12px;">Applicable Company Name</th>
+                    <th style="width: 4rem;"></th>
+                    <th style="width: 8rem;"></th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                <tr style="font-size: 12px; text-align: left;">
+                    <td style="padding: 8px;">{{ rowData.DcLandCost_SingleCo_SysID }}</td>
+                    <td style="padding: 8px;">{{ rowData.DcLandCost_SingleCo_Code}}
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('ApplicableCompanyCode',i)" class="custom-button"></button>
+                    </td>
+                    <td style="padding: 8px;">{{ rowData.DcLandCost_SingleCo_Name }}</td>
+                    <td style="text-align: center;">
+                        <button pButton style=" padding: 0;" icon="pi pi-trash" (click)="deleteRow('applicableCo',i)"
+                            class="custom-button"></button>
+                    </td>
+                    <td style="text-align: center;">
+                        <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row" class="custom-button"
+                            (click)="addRow('applicableCo',i)"></button>
+                    </td>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="3" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                        No data available. Please check back later.
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+        <div style="margin-top: 10px; display: flex; justify-content: flex-end; gap: 10px;">
+            <button pButton label="Save" class="custom-button"></button>
+            <button pButton label="Cancel" class="custom-button"></button>
+        </div>
+
+    </div>
+
+</div>
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+<p-confirmDialog></p-confirmDialog>
+
+
+<p-dialog [(visible)]="showlandedcostList" [modal]="true" [closable]="true" [style]="{ width: '60vw' }"
+    >
+
+    <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+        <div class="p-col-12 p-md-3">
+            <div class="p-inputgroup" style="max-width: 300px;">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-search"></i>
+                </span>
+                <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                    (input)="filterTable()" />
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-3">
+            <button pButton label="Back" (click)="Back()" class="custom-button"
+                [style]="{ 'background-color': 'antiquewhite', color: 'black' } ">
+            </button>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="p-grid" style="padding: 0 1rem;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+            background-color: #5c96d4;
+            color: antiquewhite;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">
+                Landed Cost Expense Details
+            </h6>
+
+            <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 6rem;"> Landed Cost SysID</th>
+                        <th style="width: 8rem;"> Landed Cost Code</th>
+                        <th style="width: 8rem;"> Landed Cost Name</th>
+                        <th style="width:8rem">Actions</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td>{{ rowData.HLmCost_SysID }}</td>
+                        <td>{{ rowData.HLmCost_Code }}</td>
+                        <td>{{ rowData.HLmCost_Name }}</td>
+                        <td>
+                            <span class="p-buttonset">
+                                <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                    class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                    (click)="editRow(rowData)" class="custom-button">
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                            No Data available. Please check back later.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+</p-dialog>

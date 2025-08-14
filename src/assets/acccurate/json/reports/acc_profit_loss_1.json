@@ -1,0 +1,20 @@
+{
+    "reportHeading": "Profit and Loss",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "code",
+    "detail": true,
+    "detailPropertyName": "detail",
+    "rptLanguage": "E",
+    "reportId": "acc_profit_loss_1",
+    "printColumnMetaData":{ 
+        "headerMetaData": [
+            {   "column": "code", "columnHeading": " ","size":"60em"},
+            {   "column": "name", "columnHeading": " "}
+        ],
+        "detailMetaData": [
+            {   "column": "iacatCode", "columnHeading": " "},
+            {   "column": "iacatName", "columnHeading": " "},
+            {   "column": "amount2", "columnHeading": " ","type":"amount"}
+        ]
+    }
+}

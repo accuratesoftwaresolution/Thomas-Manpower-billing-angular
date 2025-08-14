@@ -1,0 +1,13 @@
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="color: #003366;">{{ toolBarData?.title || 'Default Title' }} &nbsp; <a style="text-decoration: underline; color: blue;font-size: 12px;" (click)="Check(toolBarData.screen)">Check</a></h3>  
+    <div class="p-grid" style="display: flex; gap: 10px;">
+        <ng-container *ngFor="let button of toolBarData.buttons">
+            <button *ngIf="!button.isHide" pButton [label]="button.label" [class]="button.class || 'custom-button'"
+                [disabled]="button.isDisabled || false" (click)="handleButtonClick(button.functionName,toolBarData.screen)"></button>
+        </ng-container>
+    </div>
+</div>
+
+<!-- <div style="display: flex; justify-content: space-between;">
+    <h6><a style="text-decoration: underline; color: blue;" (click)="Check(toolBarData.screen)">Check</a></h6>
+</div> -->

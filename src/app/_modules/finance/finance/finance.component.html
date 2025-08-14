@@ -1,0 +1,37 @@
+<p-toast></p-toast>
+<print-popup [display]="displayPrint" [display1]="defaultTitle"></print-popup>
+
+<div class="center" *ngIf="!keyInfo.brCode; else elseBlock">
+    <branch-selection [baseUrl]="API_URL" [keys]="keys" (returnValue)="keyInfo=$event;afterBranchSelection()">
+    </branch-selection>
+</div>
+<ng-template #elseBlock>
+    <br />
+    <app-iheader [screen]="'fin'"> </app-iheader>
+
+    <p-tabView orientation="top" (onChange)="onTabChange($event)">
+        <p-tabPanel header="Accounts">
+            <app-iadetail></app-iadetail>
+        </p-tabPanel>
+    </p-tabView>
+
+    <p-dialog header="Summery / Detail" modal="modal" showEffect="fade" [closable]="false"
+        [(visible)]="showSummeryDetail" [style]="{width: '20vw'}" [baseZIndex]="10000">
+        <div class="p-col-12">
+            <div class="p-grid nested-grid">
+                <div class="p-col-12">
+                    <p-radioButton name="group2" value="S" label="Summery" [(ngModel)]="service.header.summeryDetail"
+                        inputId="preopt1"></p-radioButton>
+                </div>
+                <div class="p-col-12">
+                    <p-radioButton name="group2" value="D" label="Detail" [(ngModel)]="service.header.summeryDetail"
+                        inputId="preopt2"></p-radioButton>
+                </div>
+            </div>
+        </div>
+        <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="showSummeryDetail=false;save();"
+                label="Ok"></button>
+        </p-footer>
+    </p-dialog>
+</ng-template>

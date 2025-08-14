@@ -1,0 +1,85 @@
+<p-toast></p-toast>
+<p-progressBar *ngIf="service.loading" mode="indeterminate" [style]="{'height': '8px'}"></p-progressBar>
+
+<div class="p-col-12"></div>
+<div class="ui-g">
+    <div class="p-grid nested-grid" style="width:100%;">
+        <div class="p-col-12 p-md-12 p-lg-12">
+            <div class="p-grid">
+                <div class="p-col-12 p-md-12 p-lg-12" style="padding-top: 2rem; padding-left: 0rem;">
+                    <div class="card p-col-12 p-md-12 p-lg-12">
+                        <div class="p-col-12 p-md-12 p-lg-12">
+
+
+
+                            <!-- <div class="card flex justify-content-center" id="searchbutton">
+
+                                <p-inputNumber *ngIf="isTrueDp;" [(ngModel)]="value2" mode="decimal" (onBlur)="decSearch($event)"
+                                    inputId="withoutgrouping" [useGrouping]="false" placeholder="Search Voucher.No"> 
+                                </p-inputNumber>
+
+
+                                <p-button *ngIf="isTrueDp;" (click)="showDialog()" icon="pi pi-external-link"
+                                    label="Purchase Order"></p-button>
+                            </div> -->
+
+
+                            <p-dialog header="Purchase Order" [(visible)]="visible"
+                                [style]="{ width: 'auto' ,  height: 'auto'}">
+                                <div>
+                                    <div class="card">
+                                        <div id="searchbutton">
+                                            <td><input type="text" pInputText placeholder="Global Search"
+                                                    (input)="globalSearch($event.target.value)"
+                                                    style="width: 230px; text-align: center;" /></td>
+
+                                        </div><br>
+
+                                        <p-table [value]="products.data" [(selection)]="selectedProduct" dataKey="code"
+                                            [tableStyle]="{ 'width': '50rem' }">
+                                            <ng-template pTemplate="header">
+                                                <tr>
+                                                    <td><input type="text" pInputText placeholder="Vr.No"
+                                                            (input)="onChangeNo($event.target.value)" /></td>
+                                                    <td><input type="text" pInputText placeholder=" Vr.Date YY-MM-DD"
+                                                            (input)="onChangeDate($event.target.value)" /></td>
+
+                                                    <td><input type="text" pInputText placeholder=" Account"
+                                                            (input)="onChangeAcc($event.target.value)" /></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th>Vr.No</th>
+                                                    <th>Vr.Date</th>
+                                                    <th>Account</th>
+                                                </tr>
+                                            </ng-template>
+                                            <ng-template pTemplate="body" let-product>
+                                                <tr [pSelectableRow]="rowData" (click)="onRowClick(product)">
+                                                    <td>{{ product.vrNo }}</td>
+                                                    <td>{{ product.vrDate }}</td>
+                                                    <td>{{ product.acName }}</td>
+                                                </tr>
+                                            </ng-template>
+                                        </p-table>
+                                    </div>
+                                </div>
+                            </p-dialog>
+
+                            
+                            <form-aligner [columnMetaData]="contact" [selectedRow]="service.header">
+                            </form-aligner>
+                            
+                            <form-aligner [columnMetaData]="columnMetaData" [selectedRow]="service.header">
+                            </form-aligner>
+
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

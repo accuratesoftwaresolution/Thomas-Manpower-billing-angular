@@ -1,0 +1,56 @@
+<div class="p-col-12"></div>
+<p-toast></p-toast>
+<p-tabView orientation="bottom" (onChange)="onTabChange($event)">
+    <p-tabPanel header="User Detail">
+      <app-iuser [parentData]="isRac" [parentData1]="isDisable"></app-iuser>
+    </p-tabPanel>
+  
+    <p-tabPanel header="Branch Rights">
+      <app-iusercorights></app-iusercorights>
+    </p-tabPanel>
+  
+    <p-tabPanel header="Password History">
+      <app-iuserpwd></app-iuserpwd>
+    </p-tabPanel>
+  
+    <p-tabPanel header="Salesman Right">
+      <app-iuserotherrights-salesman [parentData]="salesmanRight">
+      </app-iuserotherrights-salesman>
+    </p-tabPanel>
+  
+    <p-tabPanel header="GRP1 Right" *ngIf="!isRac">
+    </p-tabPanel>
+  
+    <p-tabPanel header="GRP2 Right" *ngIf="!isRac">
+      <app-iuserotherrights-grp2 [parentData]="grp2Right"></app-iuserotherrights-grp2>
+    </p-tabPanel>
+  
+    <p-tabPanel header="GRP3 Right" *ngIf="!isRac">
+      <app-iuserotherrights-grp3 [parentData]="grp3Right"></app-iuserotherrights-grp3>
+  
+    </p-tabPanel>
+  
+    <p-tabPanel header="GRP4 Right" *ngIf="!isRac">
+      <app-iuserotherrights-grp4 [parentData]="grp4Right"></app-iuserotherrights-grp4>
+  
+    </p-tabPanel>
+  
+    <p-tabPanel header="GRP5 Right" *ngIf="!isRac">
+      <app-iuserotherrights-grp5 [parentData]="grp5Right"></app-iuserotherrights-grp5>
+  
+    </p-tabPanel>
+  
+    <p-tabPanel header="GRP6 Right" *ngIf="!isRac">
+      <app-iuserotherrights-grp6 [parentData]="grp6Right"></app-iuserotherrights-grp6>
+  
+    </p-tabPanel>
+  
+    <p-tabPanel header="GRP7 Right" *ngIf="!isRac">
+      <app-iuserotherrights-grp7 [parentData]="grp7Right"></app-iuserotherrights-grp7>
+  
+    </p-tabPanel>
+  
+    <p-tabPanel header="GRP8 Right" *ngIf="!isRac">
+      <app-iuserotherrights-grp8 [parentData]="grp8Right"></app-iuserotherrights-grp8>
+    </p-tabPanel>
+  </p-tabView>

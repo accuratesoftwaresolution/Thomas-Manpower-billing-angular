@@ -1,0 +1,18 @@
+{
+    "reportHeading": "Cash/Bank Book",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "",
+    "detail": false,
+    "detailPropertyName": "",
+    "rptLanguage": "E",
+    "reportId": "acc_cash_bank_book",
+    "printColumnMetaData": [
+        {   "column": "brcode", "columnHeading": "iBr"},
+        {   "column": "int_code", "columnHeading": "type"},
+        {   "column": "vrno", "columnHeading": "vrNumber"},
+        {   "column": "ac_code", "columnHeading": "account","size":"7em"  },
+        {   "column": "ac_name", "columnHeading": "acName" },
+        {   "column": "debit", "columnHeading": "debit", "type": "amount" ,"size":"10em"},
+        {   "column": "credit", "columnHeading": "credit", "type": "amount", "size":"10em" }
+    ]
+}

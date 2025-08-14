@@ -1,0 +1,337 @@
+.outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+    position: relative;
+}
+
+.container {
+  width: 60%;
+  padding: 20px;
+  background-color: #d1e2f1;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: flex-end;
+}
+
+h3 {
+  color: #003366;
+}
+
+/* Button Group (Top Buttons) */
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+/* Responsive Buttons (With Icons) */
+.responsive-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.responsive-button span {
+  display: inline;
+}
+
+/* ✅ Tablet: Hide labels, only show icons */
+@media (max-width: 1024px) {
+  .responsive-button span {
+    display: none;
+    margin-top:150px  !important;
+  }
+
+  .responsive-button {
+    min-width: 40px;
+    padding: 5px;
+  }
+}
+
+/* Mobile: Hide labels and center buttons */
+@media (max-width: 768px) {
+  .button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .responsive-button span {
+    display: none !important;
+  }
+
+  .responsive-button {
+    justify-content: center;
+  }
+
+
+  .responsive-button i {
+    font-size: 16px;
+  }
+}
+
+.form-container {
+  border: 1px solid #003366;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #d1e2f1;
+  font-size: 10px;
+}
+
+/* Form Rows & Groups */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+/* Inline Checkbox */
+.inline-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+
+.inline-checkbox label {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.input-with-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.input-with-button input {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+/* Popup Button */
+.popup-button {
+  flex-shrink: 0;
+  background-color: antiquewhite !important;
+  color: black !important;
+  border: 1px solid #737373;
+  box-shadow: none;
+  padding: 6px 10px;
+}
+
+/* Custom Buttons */
+.custom-button {
+  background-color: antiquewhite !important;
+  color: black !important;
+  border: 1px solid #737373;
+  box-shadow: none;
+  padding: 5px 10px;
+}
+
+/* Fixed Buttons (Save & Cancel) */
+.fixed-button-group {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-top: 10px;
+}
+
+.fixed-button-group button {
+  min-width: 100px;
+}
+
+/* Table Styles */
+.company-table {
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.company-table th {
+  background-color: antiquewhite;
+  font-size: 14px;
+  padding: 10px;
+  text-align: left;
+}
+
+.company-table td {
+  font-size: 12px;
+  padding: 8px;
+  text-align: right;
+}
+
+.button-group button {
+  min-width: 80px;
+}
+
+/* Responsive Table */
+.company-table .custom-button {
+  padding: 2px 8px;
+}
+
+/* Responsive Design for Tablets */
+@media (max-width: 1024px) {
+  .container {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+
+  .button-group button {
+    min-width: 0px;
+  }
+
+
+  .fixed-button-group {
+    justify-content: right;
+    flex-wrap: nowrap;
+  }
+
+  .fixed-button-group button {
+    min-width: 100px;
+  }
+
+  .form-row {
+    flex-wrap: wrap;
+  }
+
+  .form-group {
+    width: 48%;
+  }
+}
+
+/* Responsive Design for Mobile Devices */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .header {
+    justify-content: flex-end;
+  }
+
+  .button-group {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .fixed-button-group {
+    justify-content: right;
+    flex-wrap: nowrap;
+  }
+
+  .form-container {
+    padding: 10px;
+  }
+
+  .company-table th,
+  .company-table td {
+    font-size: 10px;
+    padding: 6px;
+  }
+
+  .input-with-button {
+    flex-wrap: nowrap;
+  }
+
+  .input-with-button input {
+    min-width: 60%;
+  }
+
+  .popup-button {
+    width: 36px;
+  }
+}
+
+.form-group.col-6 {
+  width: 30%;
+}
+
+.form-group.col-4 {
+  width: 36%;
+}
+
+@media (max-width: 1024px) {
+  .form-row {
+    flex-wrap: nowrap;
+  }
+
+  .form-group.col-6 {
+    width: 30%;
+  }
+
+}
+
+
+.content-wrapper {
+  container-type: inline-size;
+}
+
+@container (max-width: 1124px) {
+  .responsive-button span {
+    display: none !important;
+  }
+
+  .button-group button {
+    min-width: 0px;
+  }
+}
+
+
+
+::ng-deep .layout-wrapper .layout-main {
+  min-height: 140vh !important;
+}
+
+.button-group-inline {
+  display: flex;
+  gap: 6px;
+}

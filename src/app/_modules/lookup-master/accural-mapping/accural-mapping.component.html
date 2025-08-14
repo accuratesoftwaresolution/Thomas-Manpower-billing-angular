@@ -1,0 +1,337 @@
+<p-toast></p-toast>
+
+<div class="container" style="background-color: #d1e2f1 ; padding: 6px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Accrual Master</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Add" class="custom-button"></button>
+            <button pButton label="Save" (click)="saveAccrualMaster()" class="custom-button"></button>
+            <button pButton label="List" (click)="AccrualList()" class="custom-button"></button>
+            <button pButton label="Delete" class="custom-button"></button>
+            <!-- <button pButton label="Previous" class="custom-button"></button>
+            <button pButton label="Next" class="custom-button"></button> -->
+        </div>
+    </div>
+
+
+    <div
+        style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+        <h5 style="color: #003366;">Basic Details</h5>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Accural Master Sysid</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_SysID"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Accural Master Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Accural Master Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Accural Payment Method Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_PayCode"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Accural Payment Method Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_PayName"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Accural Payment No. of Months</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_No_Months"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Accural Narration SysId</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_Narra_SysID"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Accural Narration Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_Narra_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('NarrationCode')" icon="pi pi-ellipsis-h" class="popup-button"
+                        style="margin-left: 10px;"></button>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Accural Narration Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_Narra_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <h5 style="color: #003366;">Activation & Deactivation</h5>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Activation & Devactivation Y/n</label>
+                    <input type="checkbox" [(ngModel)]="TblHMastAccru.HAccru_AcDe_SysID">
+                </div>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                        Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_AcDe_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h" class="popup-button"
+                        style="margin-left: 10px;"></button>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                        Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHMastAccru.HAccru_AcDe_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <h5 style="color: #003366;">Accural Details</h5>
+        <p-table [value]="TblHMastAccru.TblHDetAccru" [style]="{'width' : '100%'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 4rem;">SysID</th>
+                    <th style="width: 4rem;">Account SysID </th>
+                    <th>Accural Account Code</th>
+                    <th>Accural Account Name</th>
+                    <th>Accural Expense Code</th>
+                    <th>Accural Expense Name</th>
+                    <th>Remarks Code</th>
+                    <th>Remarks Name</th>
+                    <th style="width: 4rem;"></th>
+                    <th style="width: 8rem;"></th>
+
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                <tr>
+                    <td pEditableColumn style="text-align: left;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DAccru_SysID">
+                    </td>
+                    <td pEditableColumn style="text-align: center;">
+                        <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                            [(ngModel)]="rowData.DAccru_AccSysID">
+
+                    </td>
+                    <td pEditableColumn style="text-align: left;">
+                        <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                            [(ngModel)]="rowData.DAccru_AccCode">
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('AccountFirstCode',i)" class="custom-button"></button>
+                    </td>
+                    <td pEditableColumn style="text-align: left;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DAccru_AccName">
+                    </td>
+                    <td pEditableColumn style="text-align: left;">
+                        <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                            [(ngModel)]="rowData.DAccru_ExpCode">
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('AccountFirstCode2',i)" class="custom-button"></button>
+                    </td>
+                    <td pEditableColumn style="text-align: center;">
+                        <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                            [(ngModel)]="rowData.DAccru_ExpName">
+
+                    </td>
+                    <td pEditableColumn style="text-align: left;">
+                        <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                            [(ngModel)]="rowData.DAccru_RemCode">
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('RemarksCode',i)" class="custom-button"></button>
+                    </td>
+                    <td pEditableColumn style="text-align: left;">
+                        <input pInputText type="text" style="padding: 0; width: 100%; background-color: transparent;"
+                            [(ngModel)]="rowData.DAccru_RemName">
+                    </td>
+
+
+                    <td style="text-align: center;">
+                        <button pButton style=" padding: 0;" icon="pi pi-trash" (click)="deleteRow('TblHDetAccru',i)"
+                            class="custom-button"></button>
+                    </td>
+                    <td style="text-align: center;">
+                        <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row" class="custom-button"
+                            (click)="addRow('TblHDetAccru',i)"></button>
+                    </td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+        
+        <h5 style="color: #003366;">Applicable Company Details</h5>
+
+        <p-table [value]="TblHMastAccru.applicableCo" class="company-table" [style]="{'width' : '60%'}">
+            <ng-template pTemplate="header">
+                <tr style="background-color: #f0f0f0; text-align: left;">
+                    <th style="padding: 10px; font-size: 12px;">SysID</th>
+                    <th style="padding: 10px; font-size: 12px;">Applicable Company Code</th>
+                    <th style="padding: 10px; font-size: 12px;">Applicable Company Name</th>
+                    <th style="width: 4rem;"></th>
+                    <th style="width: 8rem;"></th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                <tr style="font-size: 12px; text-align: left;">
+                    <td style="padding: 8px;">{{ rowData.DAccru_SingleCo_SysID }}</td>
+                    <td style="padding: 8px;">{{ rowData.DAccru_SingleCo_Code}}
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('ApplicableCompanyCode',i)" class="custom-button"></button>
+                    </td>
+                    <td style="padding: 8px;">{{ rowData.DAccru_SingleCo_Name }}</td>
+                    <td style="text-align: center;">
+                        <button pButton style=" padding: 0;" icon="pi pi-trash" (click)="deleteRow('applicableCo',i)"
+                            class="custom-button"></button>
+                    </td>
+                    <td style="text-align: center;">
+                        <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row" class="custom-button"
+                            (click)="addRow('applicableCo',i)"></button>
+                    </td>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="3" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                        No data available. Please check back later.
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+        <div style="margin-top: 10px; display: flex; justify-content: flex-end; gap: 10px;">
+            <button pButton label="Save" class="custom-button"></button>
+            <button pButton label="Cancel" class="custom-button"></button>
+        </div>
+
+    </div>
+
+</div>
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+
+<p-confirmDialog></p-confirmDialog>
+
+<p-dialog [(visible)]="showAccrualList" [modal]="true" [closable]="true" [style]="{ width: '60vw' }"
+    >
+
+    <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+        <div class="p-col-12 p-md-3">
+            <div class="p-inputgroup" style="max-width: 300px;">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-search"></i>
+                </span>
+                <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                    (input)="filterTable()" />
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-3">
+            <button pButton label="Back" (click)="Back()" class="custom-button"
+                [style]="{ 'background-color': 'antiquewhite', color: 'black' } ">
+            </button>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="p-grid" style="padding: 0 1rem;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+            background-color: #5c96d4;
+            color: antiquewhite;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">
+                Accrual Master Details
+            </h6>
+
+            <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 6rem;">Accrual Master SysID</th>
+                        <th style="width: 8rem;">Accrual Master Code</th>
+                        <th style="width: 8rem;">Accrual Master Name</th>
+                        <th style="width:8rem">Actions</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td>{{ rowData.HAccru_SysID }}</td>
+                        <td>{{ rowData.HAccru_Code }}</td>
+                        <td>{{ rowData.HAccru_Name }}</td>
+                        <td>
+                            <span class="p-buttonset">
+                                <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                    class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                    (click)="editRow(rowData)" class="custom-button">
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                            No Data available. Please check back later.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+</p-dialog>

@@ -1,0 +1,23 @@
+{
+    "reportHeading": "Ageing",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "",
+    "detail": false,
+    "detailPropertyName": "",
+    "rptLanguage": "E",
+    "reportId": "acc_ageing",
+    "printColumnMetaData": [
+        {   "column": "acCode", "columnHeading": "acCode" },
+        {   "column": "acName", "columnHeading": "acName" },
+        {   "column": "currency", "columnHeading": "ac4CurCode" },
+        {   "column": "crPeriod", "columnHeading": "crPrd"},
+        {   "column": "crlimit", "columnHeading": "crlimit", "type": "amount" },
+        {   "column": "month1Amt", "columnHeading": "month1Amt"},
+        {   "column": "month2Amt", "columnHeading": "month2Amt"},
+        {   "column": "month3Amt", "columnHeading": "month3Amt"},
+        {   "column": "month4Amt", "columnHeading": "month4Amt"},
+        {   "column": "month5Amt", "columnHeading": "month5Amt"},
+        {   "column": "month6Amt", "columnHeading": "month6Amt"},
+        {   "column": "total", "columnHeading": "total", "type": "amount"}
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "reportHeading": "Outstanding",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "acCode",
+    "detail": true,
+    "detailPropertyName": "detail",
+    "rptLanguage": "E",
+    "reportId": "outStanding",
+    "printColumnMetaData": {
+        "headerMetaData": [
+            {   "column": "acCode", "columnHeading": "account" },
+            {   "column": "ac4AcName", "columnHeading": "acName" }
+        ],
+        "detailMetaData": [
+            {   "column": "billNo", "columnHeading": "billNo" },
+            {   "column": "billDate", "columnHeading": "billDate","type": "date" },
+            {   "column": "refVrNo", "columnHeading": "refVrNo" },
+            {   "column": "debit", "columnHeading": "debit", "type": "amount" },
+            {   "column": "credit", "columnHeading": "credit", "type": "amount" },
+            {   "column": "balAmt", "columnHeading": "balance", "type": "amount" },
+            { "column": "days", "columnHeading": "days"}
+        ]
+    }
+}

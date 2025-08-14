@@ -1,0 +1,307 @@
+<div class="container" style="background-color: #d1e2f1 ; padding: 20px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Create Loan Category</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Add" class="custom-button"></button>
+            <button pButton label="Edit" class="custom-button"></button>
+            <button pButton label="Delete" class="custom-button"></button>
+            <button pButton label="Previous" class="custom-button"></button>
+            <button pButton label="Next" class="custom-button"></button>
+            <button pButton label="List" class="custom-button"></button>
+            <button pButton label="Print" class="custom-button"></button>
+            <button pButton label="Suspended" class="custom-button"></button>
+            <button pButton label="Authorize" class="custom-button"></button>
+            <button pButton label="Reject" class="custom-button"></button>
+
+        </div>
+    </div>
+
+    <div style=" padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;display: flex;">
+
+        <div class="p-col-4" style="border: 1px solid #003366;
+        border-radius: 5px;
+        min-height: 25vh;
+        padding: 9px;
+       ">
+
+            <h6 style="
+                background-color: #5c96d4;
+                color: white;
+                height: 4vh;
+                align-items: center;
+                display: flex;
+                padding-left: 8px;"></h6>
+
+            <div class="p-grid">
+                <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">Loan Code</label>
+                        <input type="text" pInputText style="width: 30%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">Loan Name</label>
+                        <input type="text" pInputText style="width: 60%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">Payment Method</label>
+                        <input type="text" pInputText style="width: 60%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">Total Number of Months Payment</label>
+                        <input type="text" pInputText style="width: 30%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div style=" padding: 5px; border-radius: 5px;display: flex;margin-left: 12px;font-size: 10px;margin-right: 12px">
+
+        <div class="p-col-12" style="border: 1px solid #003366;
+                         border-radius: 5px;
+                         min-height: 25vh;
+                         padding: 9px; ">
+
+            <h6 class="hide-when-print" style="
+       background-color: #5c96d4;
+       color: white;
+       height: 4vh;
+       align-items: center;
+       display: flex;
+       padding-left: 8px;"></h6>
+
+
+            <p-table [value]="LoanCategoryTable">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 4rem;">Category SysID</th>
+                        <th style="width: 6rem;">Loan Bank Account Code</th>
+                        <th style="width: 8rem;">Loan Bank Account Name</th>
+                        <th style="width: 6rem;">Loan Receipt Account Code</th>
+                        <th style="width: 8rem;">Loan Receipt Account</th>
+                        <th style="width: 6rem;">Loan Payment Account Code</th>
+                        <th style="width: 8rem;">Loan Payment Account Name</th>
+                        <th style="width: 6rem;">Loan Interest Account Code</th>
+                        <th style="width: 8rem;">Loan Interest Account Name</th>
+                        <th style="width: 6rem;">PDP Payment List</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData>
+                    <tr>
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.categorySysID">
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                                [(ngModel)]="rowData.loanBankAccountCode">
+                            <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                (click)="ShowPopUp('AccountCode')" class="custom-button"></button>
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.loanBankAccountName">
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.loanReceiptAccountCode">
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.loanReceiptAccount">
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                                [(ngModel)]="rowData.loanPaymentAccountCode">
+                            <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                (click)="ShowPopUp('AccountCode')" class="custom-button"></button>
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.loanPaymentAccountName">
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                                [(ngModel)]="rowData.loanInterestAccountCode">
+                            <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                (click)="ShowPopUp('AccountCode')" class="custom-button"></button>
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.loanInterestAccountName">
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.pdpPaymentList">
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+
+            <br>
+
+            <h5 style="color: #003366;">Applicable Companies</h5>
+
+            <p-table [value]="ApplicableCompaniesTable" [style]="{'width': '45%'}">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 2rem;">SysID</th>
+                        <th style="width: 6rem;">Company Code</th>
+                        <th style="width: 8rem;">Company Name</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData>
+                    <tr>
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.sysID" />
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text" style="padding: 0; width: 80%; background-color: transparent;"
+                                [(ngModel)]="rowData.companyCode" />
+                            <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                (click)="ShowPopUp('CompanyCode')" class="custom-button"></button>
+                        </td>
+
+                        <td pEditableColumn style="text-align: left;">
+                            <input pInputText type="text"
+                                style="padding: 0; width: 100%; background-color: transparent;"
+                                [(ngModel)]="rowData.companyName" />
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+
+
+            <br> <br>
+
+            <div class="p-grid">
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 50%;">Deactivate and use for Reports Only </label>
+                        <input type="checkbox">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">Active & Deactivate Code Code</label>
+                        <input type="text" pInputText style="width: 30%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 30%;">Active & Deactivate Code Name</label>
+                        <input type="text" pInputText style="width: 60%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<p-dialog [modal]="true" [(visible)]="ShowLookUp" [closable]="false" [style]="{width: '50vw'}">
+    <br>
+
+
+
+    <div class="p-grid">
+        <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 30%;">Search</label>
+                <input type="text" pInputText style="background-color: #ffffff; width: 70%; height: 2vh;">
+
+            </div>
+        </div>
+        <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+
+        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-grid" style="display: flex; gap: 10px;">
+                <button pButton label="Refresh" class="custom-button"></button>
+                <button pButton label="Ok" class="custom-button"></button>
+                <button pButton label="Cancel" (click)="ShowLookUp = false" class="custom-button"></button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="p-grid" style="background-color: #d1e2f1;">
+
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+
+
+            <h6 style="
+            background-color: #5c96d4;
+            color: white;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">{{PopUpData?.name}}</h6>
+
+
+            <p-table [value]="PopUpData.TableData">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th [ngStyle]="{ 'width' : col?.width }" *ngFor="let col of PopUpData.columns">{{ col.header }}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData>
+                    <tr (click)="chooseLookup(rowData)">
+                        <td *ngFor="let col of PopUpData.columns">{{ rowData[col.field] }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+        </div>
+    </div>
+</p-dialog>

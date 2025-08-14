@@ -1,0 +1,73 @@
+<p-toast></p-toast>
+<div class="p-grid">
+    <div class="p-col-12 p-md-4 p-lg-4">
+        <img src="assets/acccurate/images/contact.jpg" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="p-col-12 p-md-8 p-lg-8">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-12 p-lg-12">
+                <div class="card" style="background-color: white;">
+                    <div class="p-grid nested-grid gridClass">
+                        <div class="p-col-12 p-md-6 p-lg-6">
+                            <span class="md-inputfield">
+                                <label><strong>{{'name' | first}}</strong><span style="color: red;"> * </span></label>
+                                <br>
+                                <input id="username" pInputText type="text" autocomplete="off" [(ngModel)]="name"
+                                    style="width:100%;">
+                            </span>
+
+                        </div>
+                        <div class="p-col-12 p-md-6 p-lg-6">
+                            <label><strong>{{'userId' | first}}</strong><span style="color: red;"> * </span></label>
+                            <br>
+                            <input id="email" pInputText type="text" autocomplete="off" [(ngModel)]="mail"
+                                style="width:100%;" [disabled]="disableEmail">
+                        </div>
+                        <div class="p-col-12 p-md-12 p-lg-12">
+                            <label><strong>{{'subject' | first}}</strong><span style="color: red;"> * </span></label>
+                            <br>
+                            <input id="Summary" pInputText type="text" autocomplete="off" style="width: 100%;"
+                                [(ngModel)]="subject" maxlength="200">
+                        </div>
+                        <div class="p-col-12 p-md-12 p-lg-12">
+                            <div class="p-grid nested-grid">
+                                <div class="p-col-12 p-md-12 p-lg-12">
+                                    <label><strong>{{'description' | first}}</strong><span style="color: red;"> *
+                                        </span></label>
+                                    <br>
+                                    <textarea id="Description" pInputTextarea type="textarea" autocomplete="off"
+                                        style="width: 100%;height:150px" [(ngModel)]="description"
+                                        maxlength="2000"></textarea>
+                                </div>
+                                <div class="p-col-12 p-md-12 p-lg-12">
+                                    <button type="button" pButton icon="pi pi-check" label="Send"
+                                        class="p-button-raised p-button-rounded" style="float:right"
+                                        (click)="saveIssueDetails()" [disabled]="disableSend"></button>
+                                    <span *ngIf="isUpload">
+                                        <p-fileUpload mode="basic" chooseLabel="Upload Image" uploadLabel="upload"
+                                            multiple="false" method="post" name="file" [auto]="true"
+                                            [url]="basicUrl+ '/file-upload/issue-image'" [ngStyle]="{'float': 'left'}"
+                                            maxFileSize="1000000" (onUpload)="onBasicUpload($event)"
+                                            invalidFileSizeMessageSummary="{0} has wrong size, "
+                                            invalidFileSizeMessageDetail="it exceeds {0}.">
+                                        </p-fileUpload>
+                                    </span>
+                                    <span *ngIf="!isUpload">
+                                        <p-fileUpload mode="basic" chooseLabel="Reupload Image" uploadLabel="upload"
+                                            multiple="false" method="post" name="file" [auto]="true"
+                                            [url]="basicUrl+ '/file-upload/issue-image'" [ngStyle]="{'float': 'left'}"
+                                            maxFileSize="1000000" (onUpload)="onBasicUpload($event,detail)"
+                                            invalidFileSizeMessageSummary="{0} has wrong size, "
+                                            invalidFileSizeMessageDetail="it exceeds {0}.">
+                                        </p-fileUpload>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

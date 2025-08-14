@@ -1,0 +1,35 @@
+export class TblHGroupCoDto {
+  GroupCo_SysID :number;
+    GroupCo_Code : string;
+    GroupCo_Name : string;
+    GroupCo_Address_One :string;
+    GroupCo_Address_Two :string;
+    GroupCo_Address_Three :string;
+    GroupCo_Address_Four :string;
+    GroupCo_Area_SysID :number;
+    GroupCo_Area_Code :string;
+    GroupCo_Area_Name :string;
+    GroupCo_City_SysID :number;
+    GroupCo_City_Code :string;
+    GroupCo_City_Name :string;
+    GroupCo_Count_SysID :number;
+    GroupCo_Count_Code :string;
+    GroupCo_Count_Name :string;
+    GroupCo_Phone :string;
+    GroupCo_Fax :string;
+    GroupCo_Email_Address :string;
+    GroupCo_TINTRN :string;
+    GroupCo_Date : Date;
+    GroupCo_SecurityLvl :string;
+    GroupCo_SuperUserPswd :string;
+    GroupCo_HideUnautho :string;
+    GroupCo_Template :string;
+    GroupCo_Logo :string;
+    GroupCo_Creation_Date :Date;
+    GroupCo_AcDe_Yn :string = "N";
+    GroupCo_AcDe_SysID :number;
+    GroupCo_AcDe_Code :string;
+    GroupCo_AcDe_Name :string;
+    GroupCo_Refresh_Token :string;
+    GroupCo_Salt :string;
+}

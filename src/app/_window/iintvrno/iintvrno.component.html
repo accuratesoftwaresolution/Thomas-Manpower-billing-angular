@@ -1,0 +1,59 @@
+<p-table [value]="mainService.header.iintvrno" selectionMode="single" [paginator]="true" [rows]="10"
+    styleClass="p-datatable-products">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="coCode">{{'coCode'|first}}
+                <p-sortIcon field="coCode"></p-sortIcon>
+            </th>
+            <th pSortableColumn="intCode">{{'intCode'|first}}
+                <p-sortIcon field="intCode"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dvCode">{{'dvCode'|first}}
+                <p-sortIcon field="dvCode"></p-sortIcon>
+            </th>
+            <th pSortableColumn="brCode">{{'brCode'|first}}
+                <p-sortIcon field="brCode"></p-sortIcon>
+            </th>
+            <th pSortableColumn="vrNo">{{'vrNo'|first}}
+                <p-sortIcon field="vrNo"></p-sortIcon>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-ri="rowIndex">
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+            <td>
+                <span class="p-column-title">{{'coCode'|first}}</span>
+                {{rowData.coCode}}
+            </td>
+            <td>
+                <span class="p-column-title">{{'intCode'|first}}</span>
+                {{rowData.intCode}}
+            </td>
+            <td>
+                <span class="p-column-title">{{'dvCode'|first}}</span>
+                {{rowData.dvCode}}
+            </td>
+            <td>
+                <span class="p-column-title">{{'brCode'|first}}</span>
+                {{rowData.brCode}}
+            </td>
+            <!--
+                 Modified By    :Aswathy Prasad
+                 Modified For   :(13/12/2021) To Edit the voucher Number in row
+            -->
+
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-inputNumber [(ngModel)]="rowData.vrNo"> </p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.vrNo}}
+                    </ng-template>
+                </p-cellEditor>
+                <!-- <span class="p-column-title">{{'vrNo'|first}}</span> -->
+
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -1,0 +1,19 @@
+{
+    "reportHeading": "Stock summary report",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "",
+    "detail": false,
+    "detailPropertyName": "",
+    "rptLanguage": "E",
+    "reportId": "stock_summary",
+    "printColumnMetaData": [      
+            {   "column": "br_code", "columnHeading": "Branch Code" },
+            {   "column": "int_code", "columnHeading": "type" },
+            {   "column": "br_code", "columnHeading": "Branch Code" },
+            {   "column": "item_qty", "columnHeading": "Item Qty" },
+            {   "column": "item_rate", "columnHeading": "Item Rate"  },
+            {   "column": "cost_amount", "columnHeading": "costRate"}
+           
+        ]
+     
+} 

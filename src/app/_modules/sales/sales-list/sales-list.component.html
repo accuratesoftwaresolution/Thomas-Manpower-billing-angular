@@ -1,0 +1,66 @@
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="color: #003366;">Sales Transactions</h3>
+    <div class="p-grid" style="display: flex; gap: 10px;">
+        <!-- <button pButton label="List" (click)="routeTo('list')" class="header-btn"></button>
+        <button pButton label="Previous" class="header-btn"></button>
+        <button pButton label="Next" class="header-btn"></button> -->
+    </div>
+</div>
+
+
+<div class="input-panel p-d-flex p-flex-column p-px-3 p-mb-3">
+
+    <div class="p-inputgroup" style="width: 100%; max-width: 400px; margin-bottom: 10px;">
+        <span class="p-inputgroup-addon">
+            <i class="pi pi-search"></i>
+        </span>
+        <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText" (input)="filterTable()"
+            style="width: 100%;" />
+    </div>
+
+    <p-table #dt [value]="filteredfilteredSalesData" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]"
+        class="list-table">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 4rem;">SysID</th>
+                <th>Voucher No</th>
+                <th>Voucher Date</th>
+                <th>Customer Code </th>
+                <th>Customer Name </th>
+                <th>Net Amount</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <td style="text-align: center;">{{ rowData.Allh_SysID }}</td>
+                <td>{{ rowData.Allh_Vou_Number }}</td>
+                <td>{{ rowData.Allh_Vou_Date | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ rowData.Allh_Vend_Store_Code }}</td>
+                <td>{{ rowData.Allh_Vend_Store_Name }}</td>
+                <td>{{ rowData.Allh_Net_Amount }}</td>
+                <!-- net amount value is ALLH_NET_AMOUNT -->
+                <td style="text-align: center;">
+                    <span class="p-buttonset">
+                        <button pButton type="button" label="Edit" icon="pi pi-pencil" class="p-button-sm btn"
+                            pTooltip="Edit" tooltipPosition="left" (click)="editRow(rowData)">
+                        </button>
+                        <button pButton type="button" label="View" icon="pi pi-eye" class="p-button-sm btn"
+                            pTooltip="View" (click)="editRow(rowData)">
+                        </button>
+
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                    No Data available. Please check back later.
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

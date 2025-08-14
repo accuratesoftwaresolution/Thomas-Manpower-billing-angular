@@ -1,0 +1,88 @@
+<p-toast></p-toast>
+
+<div class="p-col-12">
+    <div class="card card-w-title">
+        <div class="p-col-12 form-group">
+            <div class="p-grid nested-grid">
+                <div class="p-col-2 p-md-2">
+                    <span class="md-inputfield">
+                        <label>{{'type' | first}}</label><br />
+                        <p-dropdown [options]="typeLovData" [(ngModel)]="service.header.intUser"
+                            [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'code' | first}}</label><br />
+                        <p-dropdown [options]="service.header.intUser == 'INT'?intCodeLovData: userLovData"
+                            [(ngModel)]="service.header.intCode" [style]="{'width':'100%'}" autoWidth="false"
+                            [disabled]="true">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <!-- <div class="p-col-2 p-md-2">
+                    <span class="md-inputfield">
+                        <label>{{'name' | first}}</label><br />
+                        <p-dropdown [options]="service.header.type == 'I'?intCodeLovData: userLovData"
+                            [(ngModel)]="service.header.intName" [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div> -->
+                <div class="p-col-2 p-md-2">
+                    <span class="md-inputfield">
+                        <label>{{'selection' | first}}</label><br />
+                        <p-dropdown [options]="selectLovData" [(ngModel)]="service.header.select"
+                            [style]="{'width':'100%'}" autoWidth="false" (onChange)="selectionChange()">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-2 p-md-2">
+                    <span class="md-inputfield">
+                        <label>{{'filterSet' | first}}</label><br />
+                        <p-dropdown [options]="filterSetLovData" [(ngModel)]="service.header.filterSet"
+                            [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-2 p-md-2">
+                    <span class="md-inputfield">
+                        <label>{{'view' | first}}</label><br />
+                        <p-dropdown [options]="viewLovData" [(ngModel)]="service.header.view" [style]="{'width':'100%'}"
+                            autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class=" p-grid nested-grid">
+            <div class="p-col-12 p-md-12">
+                <p-table #dt
+                    [value]="service.header.view=='F'?filteredAccounts :service.header.view=='N'?nonFiltered:accountList"
+                    selectionMode="multiple" dataKey="code" (onRowSelect)="onRowSelect($event.data)"
+                    (onRowUnselect)="onRowUnselect($event.data)" [(selection)]="selectedAccounts"
+                    responsiveLayout="scroll" [paginator]="true" [rows]="10"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" (onPage)="paginate($event)">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columnMetaData"> {{col.labelCode |first}}</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+                        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+                            <td *ngFor="let col of columnMetaData">
+                                {{rowData[col.columnName]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+
+        </div>
+        <!-- <form-aligner [columnMetaData]="columnMetaData" [selectedRow]="service.header">
+        </form-aligner> -->
+
+    </div>
+</div>

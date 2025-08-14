@@ -1,0 +1,40 @@
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/prismjs/themes/prism-coy.css";
+@import "../node_modules/@fullcalendar/core/main.min.css";
+@import "../node_modules/@fullcalendar/daygrid/main.min.css";
+@import "../node_modules/@fullcalendar/timegrid/main.min.css";
+@import "./appdemo.scss";
+
+
+@media print {
+    // body * {
+    //     visibility: hidden;
+    // }
+    #invoice-content * {
+        visibility: visible;
+    }
+    #invoice-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #invoice-content {
+        .card {
+            box-shadow: none;
+
+            &.invoice-table {
+                margin-bottom: 10px;
+                background-color: transparent;
+            }
+        }
+    }
+    html,
+    body {
+        height: 100vh;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+}

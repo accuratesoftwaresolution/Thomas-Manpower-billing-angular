@@ -1,0 +1,465 @@
+<div class="p-grid nested-grid">
+    <div class="p-col-4">
+        <button pButton icon="pi pi-backward" type="button" label="Back" (click)="closeReportViewButtonClick()"
+            style="width: inherit; text-align: left;" class="p-button-success p-mr-2"></button>
+    </div>
+    <div class="p-col-8">
+        <div class="p-grid" style="float: right;">
+            <!-- <div class="p-col-12"> -->
+            <button pButton icon="pi pi-file-pdf" type="button" label="Print" (click)="print()"
+                style="width: inherit; text-align: left;" class="p-button-warning p-mr-2"></button>
+        </div>
+    </div>
+
+    <div class="p-col-12">
+        <div id="invoice-content">
+            <div class="card invoice-wrapper" style="font-family: Tahoma; ">
+                <div class="invoice-header">
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <div *ngIf="rptLanguage =='E'">
+                                <div style="font-weight: 500;">{{company.coName}}</div>
+                                <p style="font-size: 9px; margin-bottom: 0;">
+                                    {{company.add1}},
+                                    {{company.add2}},
+                                    {{company.add3}},
+                                    {{company.add4}}
+                                    <br />
+                                    {{'tel'| first}}:&nbsp; {{company.tel}}
+                                    {{'fax'| first}}: &nbsp;{{company.fax}}
+                                    <br />
+                                    {{'email'| first}}: &nbsp; {{company.email}}
+                                    {{'website'| first}}:&nbsp; {{company.website}}
+                                    <br />
+                                    {{'taxIn'| first}}:{{company.taxTinNo}} &nbsp;
+                                    {{'crno'|first}}: {{company.crNo}} &nbsp;
+                                    {{'taxCardNo'|first}}:{{company.taxCardNo}}
+                                </p>
+                                <div class="title">{{reportHeading | first }}
+                                    <span *ngIf="fromDate && toDate"> {{'from'|first}} {{fromDate|date:'dd-MM-yyyy' }}
+                                        &nbsp;{{'to'|first}} {{toDate|date:'dd-MM-yyyy' }}</span>
+                                    <!-- <span *ngIf="fromDate && toDate"> </span> -->
+                                    <span *ngIf="!fromDate && toDate"> &nbsp;{{'asOn'|first}} {{toDate|date:'dd-MM-yyyy'
+                                        }}</span>
+                                    <span *ngIf="fromDate && !toDate"> &nbsp;{{'on'|first}} {{fromDate|date:'dd-MM-yyyy'
+                                        }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="p-col-4" class="padding">
+                            <img class="img2" src="assets/acccurate/images/login/accurate_logo_2.png"
+                                alt="ultima-layout" />
+                        </div> -->
+                        <div class="p-col-12" *ngIf="_lang.secondryLangauge && rptLanguage =='A'">
+                            <span style="float: right; font-size: 8px;">
+                                <div class="arTitle">
+                                    {{company.coNameSl}}</div>
+                                <br />
+                                <br />
+                                <div class="fontsize">
+                                    {{company.add1Sl}},
+                                    {{company.add2Sl}},
+                                    {{company.add3Sl}},
+                                    {{company.add4Sl}}
+                                </div>
+                                <br />
+                                <div class="fontsize">
+                                    {{'tel'| second}}:&nbsp; {{company.tel}}
+                                    {{'fax'| second}}: &nbsp;{{company.fax}}
+                                </div>
+                                <br />
+                                <div class="fontsize">
+                                    {{'email'| second}}: &nbsp; {{company.email}}
+                                    {{'website'| second}}:&nbsp; {{company.website}}
+                                </div>
+                                <br />
+                                <div class="fontsize">
+                                    {{'taxIn'| second}}:{{company.taxTinNo}} &nbsp;
+                                    {{'crno'|second}}: {{company.crno}} &nbsp;
+                                    {{'taxCardNo'|second}}:{{company.taxCardNo}}
+                                </div>
+                                <br />
+                                <br />
+                                <div class="arTitle">
+                                    {{reportHeading | second }}
+                                    <!-- <span *ngIf="fromDate"> {{'from'|second}} {{fromDate }}</span>
+                                    <span *ngIf="toDate"> &nbsp;{{'to'|second}} {{toDate}}</span> -->
+                                    <span *ngIf="fromDate && toDate"> {{'from'|second}} {{fromDate|date:'dd-MM-yyyy' }}
+                                        &nbsp;{{'to'|second}} {{toDate|date:'dd-MM-yyyy'}}</span>
+                                    <span *ngIf="!fromDate && toDate"> &nbsp;{{'asOn'|second}}
+                                        {{toDate|date:'dd-MM-yyyy'}}</span>
+                                    <span *ngIf="fromDate && !toDate"> &nbsp;{{'on'|second}}
+                                        {{fromDate|date:'dd-MM-yyyy'}}</span>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Balancesheet Report Template -->
+                <div *ngIf="reportId=='acc_balancesheet_1'" class="card invoice-table billto-table">
+                    <div class="p-grid">
+                        <!-- Liabilities -->
+                        <div class="p-col-6" style="float: left;width: 50%;">
+                            <table styleClass="p-datatable-gridlines" class="tableStyle">
+                                <tr style="vertical-align: top;">
+                                    <th style="font-size: 10px;width:75%;
+                                text-align: left;"> {{'liabilities'|first}} &nbsp;{{'asOn'|first}}
+                                        {{toDate|date:'dd-MM-yyyy'}} </th>
+                                    <th style="font-size: 10px;width: 100%;
+                                text-align: end;">{{'amount'|first}} </th>
+                                </tr>
+
+                                <tr style="vertical-align: top;">
+                                    <th *ngFor="let col of pdfColumns.headerMetaData" style="font-size: 10px;">
+                                        <div *ngIf="this.rptLanguage == 'E'">
+                                            <span *ngIf="!col.secondryFeild"
+                                                [ngStyle]=" _lang.primaryProperty.labelStyle">{{
+                                                col.columnHeading | first }}</span>
+                                        </div>
+                                        <div *ngIf="this.rptLanguage == 'A'">
+                                            <div *ngIf="!col.hasSecondryFeild ">
+                                                <span [ngStyle]=" _lang.secondryProperty.labelStyle"> {{
+                                                    col.columnHeading | second}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <th *ngFor="let col of pdfColumns.detailMetaData" style="font-size: 10px;">
+                                        <div *ngIf="!col.isExcel">
+                                            <div *ngIf="this.rptLanguage == 'E'">
+                                                <span *ngIf="!col.secondryFeild"
+                                                    [ngStyle]=" _lang.primaryProperty.labelStyle">{{
+                                                    col.columnHeading | first }}</span>
+                                            </div>
+
+                                            <div *ngIf="this.rptLanguage == 'A '">
+                                                <div *ngIf="!col.hasSecondryFeild ">
+                                                    <span [ngStyle]=" _lang.secondryProperty.labelStyle"> {{
+                                                        col.columnHeading | second}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+
+                                <ng-template ngFor let-key [ngForOf]="getGroups()" let-index="index">
+                                    <tr>
+                                        <!-- <td class="tdStyle"> {{ index+1 }}</td> -->
+                                        <td *ngFor=" let col of pdfColumns.headerMetaData; let i = index"
+                                            [style]="col.size ? ('width:'+ col.size) :'' " class="tdStyle bold">
+                                            <div *ngIf="orgData[key].header['type'].trim()=='L'">
+                                                {{orgData[key].header[col.column] }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let detailRow of orgData[key].detail">
+                                        <td *ngFor=" let col of pdfColumns.detailMetaData; let i = index"
+                                            [style]="col.size ? ('width:'+ col.size) :'' " class="tdStyle">
+                                            <div *ngIf=" col.type !='file' && !col.isExcel " class="div1">
+                                                <div *ngIf="detailRow['type'].trim()=='L'">
+                                                    <span *ngIf="!col.secondryFeild && !col.type ">
+                                                        {{ detailRow[col.column] }}</span>
+                                                    <span *ngIf="_lang.secondryLangauge && col.secondryFeild "
+                                                        [ngStyle]=" _lang.secondryProperty.labelStyle">
+                                                        {{ detailRow[col.column] }}</span>
+                                                    <span *ngIf="col.type =='num'" style="float: right;"> {{
+                                                        detailRow[col.column]| number:'1.0-0' }}</span>
+                                                    <span *ngIf="col.type =='amount'" style="float: right;"> {{
+                                                        detailRow[col.column] | number:coinDecFormat}}</span>
+                                                    <span *ngIf="col.type =='amountexp'" style="float: right;"> {{
+                                                        col.expression(detailRow) | number:coinDecFormat }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </table>
+                        </div>
+                        <!-- Assets -->
+                        <div class="p-col-6" style="float: right;width: 50%;">
+                            <table styleClass="p-datatable-gridlines" class="tableStyle">
+                                <tr style="vertical-align: top;">
+                                    <th style="font-size: 10px;width:75%;
+                                text-align: left;"> {{'assets'|first}} &nbsp;{{'asOn'|first}}
+                                        {{toDate|date:'dd-MM-yyyy'}} </th>
+                                    <th style="font-size: 10px;width: 100%;
+                                text-align: end;">{{'amount'|first}} </th>
+                                </tr>
+
+                                <tr style="vertical-align: top;">
+                                    <th *ngFor="let col of pdfColumns.headerMetaData" style="font-size: 10px;">
+                                        <div *ngIf="this.rptLanguage == 'E'">
+                                            <span *ngIf="!col.secondryFeild"
+                                                [ngStyle]=" _lang.primaryProperty.labelStyle">{{
+                                                col.columnHeading | first }}</span>
+                                        </div>
+                                        <div *ngIf="this.rptLanguage == 'A'">
+                                            <div *ngIf="!col.hasSecondryFeild ">
+                                                <span [ngStyle]=" _lang.secondryProperty.labelStyle"> {{
+                                                    col.columnHeading | second}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <th style="width: 10px;"></th>
+                                    <th *ngFor="let col of pdfColumns.detailMetaData" style="font-size: 10px;">
+                                        <div *ngIf="!col.isExcel">
+                                            <div *ngIf="this.rptLanguage == 'E'">
+                                                <span *ngIf="!col.secondryFeild"
+                                                    [ngStyle]=" _lang.primaryProperty.labelStyle">{{
+                                                    col.columnHeading | first }}</span>
+                                            </div>
+
+                                            <div *ngIf="this.rptLanguage == 'A '">
+                                                <div *ngIf="!col.hasSecondryFeild ">
+                                                    <span [ngStyle]=" _lang.secondryProperty.labelStyle"> {{
+                                                        col.columnHeading | second}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+
+                                <ng-template ngFor let-key [ngForOf]="getGroups()" let-index="index">
+                                    <tr>
+                                        <!-- <td class="tdStyle"> {{ index+1 }}</td> -->
+                                        <td *ngFor=" let col of pdfColumns.headerMetaData; let i = index"
+                                            [style]="col.size ? ('width:'+ col.size) :'' " class="tdStyle bold">
+                                            <div *ngIf="orgData[key].header['type'].trim()=='A'">
+                                                {{orgData[key].header[col.column] }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let detailRow of orgData[key].detail">
+                                        <td *ngFor=" let col of pdfColumns.detailMetaData; let i = index"
+                                            [style]="col.size ? ('width:'+ col.size) :'' " class="tdStyle">
+                                            <div *ngIf=" col.type !='file' && !col.isExcel " class="div1">
+                                                <div *ngIf="detailRow['type'].trim()=='A'">
+                                                    <span *ngIf="!col.secondryFeild && !col.type ">
+                                                        {{ detailRow[col.column] }}</span>
+                                                    <span *ngIf="_lang.secondryLangauge && col.secondryFeild "
+                                                        [ngStyle]=" _lang.secondryProperty.labelStyle">
+                                                        {{ detailRow[col.column] }}</span>
+                                                    <span *ngIf="col.type =='num'" style="float: right;"> {{
+                                                        detailRow[col.column]| number:'1.0-0' }}</span>
+                                                    <span *ngIf="col.type =='amount'" style="float: right;"> {{
+                                                        detailRow[col.column] | number:coinDecFormat}}</span>
+                                                    <span *ngIf="col.type =='amountexp'" style="float: right;"> {{
+                                                        col.expression(detailRow) | number:coinDecFormat }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profit and Loss Report Template -->
+                <div *ngIf="reportId=='acc_profit_loss_1'" class="card invoice-table billto-table">
+                    <div class="p-grid">
+
+                        <div class="p-col-12" style="float: left;">
+                            <table styleClass="p-datatable-gridlines" class="tableStyle">
+                                <tr style="vertical-align: top;">
+                                    <th style="font-size: 12px;width: 60%;
+                                text-align: left;"> {{'particulars'|first}} </th>
+                                    <th style="font-size: 10px;width: 20%;">{{'amount'|first}} </th>
+                                    <th style="font-size: 10px;width: 20%;">{{'total'|first}}</th>
+
+                                </tr>
+                                <tr style="vertical-align: top;">
+                                    <hr color="red" style="width:168%;color: black;">
+                                </tr>
+                            </table>
+
+                            <table styleClass="p-datatable-gridlines" class="tableStyle">
+                                <tr style="vertical-align: top;">
+                                    <th style="font-size: 12px;width:30%;
+                                text-align: left;"> <u>{{'tradingAccount'|first}} :</u></th>
+                                    <th style="font-size: 10px;width:30%;"> </th>
+                                    <th style="font-size: 10px;width: 20%;"></th>
+                                    <th style="font-size: 10px;width: 20%;"></th>
+                                </tr>
+
+                                <tr style="vertical-align: top;">
+                                    <th *ngFor="let col of pdfColumns.headerMetaData" style="font-size: 10px;">
+                                        <div *ngIf="this.rptLanguage == 'E'">
+                                            <span *ngIf="!col.secondryFeild"
+                                                [ngStyle]=" _lang.primaryProperty.labelStyle">{{
+                                                col.columnHeading | first }}</span>
+                                        </div>
+                                        <div *ngIf="this.rptLanguage == 'A'">
+                                            <div *ngIf="!col.hasSecondryFeild ">
+                                                <span [ngStyle]=" _lang.secondryProperty.labelStyle"> {{
+                                                    col.columnHeading | second}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <th *ngFor="let col of pdfColumns.detailMetaData" style="font-size: 10px;">
+                                        <div *ngIf="!col.isExcel">
+                                            <div *ngIf="this.rptLanguage == 'E'">
+                                                <span *ngIf="!col.secondryFeild"
+                                                    [ngStyle]=" _lang.primaryProperty.labelStyle">{{
+                                                    col.columnHeading | first }}</span>
+                                            </div>
+
+                                            <div *ngIf="this.rptLanguage == 'A '">
+                                                <div *ngIf="!col.hasSecondryFeild ">
+                                                    <span [ngStyle]=" _lang.secondryProperty.labelStyle"> {{
+                                                        col.columnHeading | second}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+
+                                <ng-template ngFor let-key [ngForOf]="getGroups()" let-index="index">
+                                    <tr>
+                                        <!-- <td class="tdStyle"> {{ index+1 }}</td> -->
+                                        <td *ngFor=" let col of pdfColumns.headerMetaData; let i = index"
+                                            [style]="col.size ? ('width:'+ col.size) :'' " class="tdStyle bold">
+                                            <div *ngIf="orgData[key].header['exptype'].trim()=='D'">
+                                                {{orgData[key].header[col.column] }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let detailRow of orgData[key].detail">
+                                        <td *ngFor=" let col of pdfColumns.detailMetaData; let i = index"
+                                            [style]="col.size ? ('width:'+ col.size) :'' " class="tdStyle">
+                                            <div *ngIf=" col.type !='file' && !col.isExcel " class="div1">
+                                                <div *ngIf="detailRow['exptype'].trim()=='D'">
+                                                    <span *ngIf="!col.secondryFeild && !col.type ">
+                                                        {{ detailRow[col.column] }}</span>
+                                                    <span *ngIf="_lang.secondryLangauge && col.secondryFeild "
+                                                        [ngStyle]=" _lang.secondryProperty.labelStyle">
+                                                        {{ detailRow[col.column] }}</span>
+                                                    <span *ngIf="col.type =='num'" style="float: right;"> {{
+                                                        detailRow[col.column]| number:'1.0-0' }}</span>
+                                                    <span *ngIf="col.type =='amount'" style="float: right;"> {{
+                                                        detailRow[col.column] | number:coinDecFormat}}</span>
+                                                    <span *ngIf="col.type =='amountexp'" style="float: right;"> {{
+                                                        col.expression(detailRow) | number:coinDecFormat }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </ng-template>
+                                <tr style="font-size: 11px;font-weight: bold;">
+                                    <td>
+                                        {{'gross'|first}}{{totalTrading>0? 'Profit':'Loss'}} </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="text-align: right;">{{totalTrading | number:coinDecFormat}} </td>
+                                </tr>
+                            </table>
+
+                            <table styleClass="p-datatable-gridlines" class="tableStyle">
+                                <tr style="vertical-align: top;">
+                                    <th style="font-size: 12px;width:30%;
+                                text-align: left;"><u>{{'incomeStatement'|first}} :</u> </th>
+                                    <th style="font-size: 10px;width:30%;"></th>
+                                    <th style="font-size: 10px;width: 20%;"></th>
+                                    <th style="font-size: 10px;width: 20%;"></th>
+                                </tr>
+
+                                <tr style="vertical-align: top;">
+                                    <th *ngFor="let col of pdfColumns.headerMetaData" style="font-size: 10px;">
+                                        <div *ngIf="this.rptLanguage == 'E'">
+                                            <span *ngIf="!col.secondryFeild"
+                                                [ngStyle]=" _lang.primaryProperty.labelStyle">{{
+                                                col.columnHeading | first }}</span>
+                                        </div>
+                                        <div *ngIf="this.rptLanguage == 'A'">
+                                            <div *ngIf="!col.hasSecondryFeild ">
+                                                <span [ngStyle]=" _lang.secondryProperty.labelStyle"> {{
+                                                    col.columnHeading | second}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <th *ngFor="let col of pdfColumns.detailMetaData" style="font-size: 10px;">
+                                        <div *ngIf="!col.isExcel">
+                                            <div *ngIf="this.rptLanguage == 'E'">
+                                                <span *ngIf="!col.secondryFeild"
+                                                    [ngStyle]=" _lang.primaryProperty.labelStyle">{{
+                                                    col.columnHeading | first }}</span>
+                                            </div>
+
+                                            <div *ngIf="this.rptLanguage == 'A '">
+                                                <div *ngIf="!col.hasSecondryFeild ">
+                                                    <span [ngStyle]=" _lang.secondryProperty.labelStyle"> {{
+                                                        col.columnHeading | second}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+
+                                <ng-template ngFor let-key [ngForOf]="getGroups()" let-index="index">
+                                    <tr>
+                                        <!-- <td class="tdStyle"> {{ index+1 }}</td> -->
+                                        <td *ngFor=" let col of pdfColumns.headerMetaData; let i = index"
+                                            [style]="col.size ? ('width:'+ col.size) :'' " class="tdStyle bold">
+                                            <div *ngIf="orgData[key].header['exptype'].trim()=='I'">
+                                                {{orgData[key].header[col.column] }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let detailRow of orgData[key].detail">
+                                        <td *ngFor=" let col of pdfColumns.detailMetaData; let i = index"
+                                            [style]="col.size ? ('width:'+ col.size) :'' " class="tdStyle">
+                                            <div *ngIf=" col.type !='file' && !col.isExcel " class="div1">
+                                                <div *ngIf="detailRow['exptype'].trim()=='I'">
+                                                    <span *ngIf="!col.secondryFeild && !col.type ">
+                                                        {{ detailRow[col.column] }}</span>
+                                                    <span *ngIf="_lang.secondryLangauge && col.secondryFeild "
+                                                        [ngStyle]=" _lang.secondryProperty.labelStyle">
+                                                        {{ detailRow[col.column] }}</span>
+                                                    <span *ngIf="col.type =='num'" style="float: right;"> {{
+                                                        detailRow[col.column]| number:'1.0-0' }}</span>
+                                                    <span *ngIf="col.type =='amount'" style="float: right;"> {{
+                                                        detailRow[col.column] | number:coinDecFormat}}</span>
+                                                    <span *ngIf="col.type =='amountexp'" style="float: right;"> {{
+                                                        col.expression(detailRow) | number:coinDecFormat }}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <tr style="font-size: 12px;font-weight: bold;">
+                                    <td>
+                                        {{'net'|first}}{{totalTrading>0? 'Profit':'Loss'}} </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="text-align: right;">{{totalIncome | number:coinDecFormat}} </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

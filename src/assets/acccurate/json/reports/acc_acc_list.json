@@ -1,0 +1,23 @@
+{
+    "reportHeading": "Account List",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "ac1Ac1Code",
+    "detail": true,
+    "detailPropertyName": "detail",
+    "rptLanguage": "E",
+    "reportId": "acc_acc_list",
+    "printColumnMetaData": {
+        "headerMetaData": [
+            {   "column": "ac1Ac1Code", "columnHeading": "account","size":"7em"  },
+            {   "column": "ac1Ac1Name", "columnHeading": "acName" }
+        ],
+        "detailMetaData": [
+            {   "column": "acCode", "columnHeading": "acCode" },
+            {   "column": "acName", "columnHeading": "acName" },
+            {   "column": "ac3Bill", "columnHeading": "bill" },
+            {   "column": "ac3Job", "columnHeading": "job" },
+            {   "column": "cat_name", "columnHeading": "ac_cat" },
+            {   "column": "ac3SlYn", "columnHeading": "sl_yn" }
+        ]
+    }
+}

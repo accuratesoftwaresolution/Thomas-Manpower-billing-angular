@@ -1,0 +1,15 @@
+<router-outlet></router-outlet>
+
+
+<!-- for ideal time out popup -->
+
+<p-dialog header="You Have Been Idle!" [modal]="true" [draggable]="false" [resizable]="false"
+  [(visible)]="displaySessionTimeOut" [style]="{width: '30vw'}" [baseZIndex]="10000">
+  {{idleState}}
+  <p-footer>
+    <button type="button" style="float: left;" pButton icon="pi pi-times" label="Logout" (click)="logout()"
+      class="btn btn-danger"></button>
+    <button type="button" style="float: right;" pButton icon="pi pi-check" label="Stay" (click)="stay()"
+      class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

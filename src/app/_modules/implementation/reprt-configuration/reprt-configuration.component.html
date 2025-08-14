@@ -1,0 +1,139 @@
+<p-toast></p-toast>
+
+<div class="ui-g">
+    <div class="p-grid nested-grid">
+        <div class="p-col-12 p-md-12 p-lg-12">
+            <div class="p-grid">
+                <div class="card p-col-12 p-md-12 p-lg-12">
+                    <!-- <p-toolbar styleClass="p-mb-4">
+                        <ng-template pTemplate="left">
+                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+                                (click)="addNew()"></button>
+                        </ng-template>
+
+                        <ng-template pTemplate="right">
+                            <p-dropdown [options]="menuIdList" [(ngModel)]="meuId" placeholder="Select a Menu Id"
+                                optionLabel="label" optionValue="value" (onChange)="updateResults()">
+                            </p-dropdown>
+                        </ng-template>
+                    </p-toolbar> -->
+                    <div class="card-title" style="font-weight: bold;">{{titleCode | first}} &nbsp;&nbsp;
+                        <accurate-help [helpCode]="helpCode" [multiLanguage]="true"></accurate-help>
+                    </div>
+
+                    <p-table #dt [value]="allConfigData" [rows]="6" [paginator]="true" [lazy]="false"
+                        (onLazyLoad)="updateResults($event)" (onPage)="paginateScrollUp($event)" [scrollable]="true"
+                        responsiveLayout="scroll" [globalFilterFields]="['menuId','optionName','optionLabel','optionValue','defaultValue',
+                        'optionTitle','visibility','optionType','criteria','optionId','reportFile']" [rowHover]="true"
+                        dataKey="id">
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-ai-center p-jc-between">
+                                <h5 class="p-m-0">
+                                    <button pButton pRipple label="New" icon="pi pi-plus"
+                                        class="p-button-success p-mr-2" (click)="addNew()"></button>
+                                    <p-dropdown [options]="menuIdList" [(ngModel)]="meuId"
+                                        placeholder="Select a Menu Id" optionLabel="label" optionValue="value"
+                                        (onChange)="updateResults()">
+                                    </p-dropdown>
+                                </h5>
+                                <span class="p-input-icon-left">
+                                    <!-- <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                        placeholder="Search..." /> -->
+                                </span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 10em;"></th>
+                                <th pSortableColumn="menuId" style="width: 10em;">{{'menuId' | first}} <p-sortIcon
+                                        field="menuId"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="optionName" style="width: 15em;">{{'optionName' | first}}
+                                    <p-sortIcon field="optionName"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="optionLabel" style="width: 10em;">{{'optionLabel' | first}}
+                                    <p-sortIcon field="optionLabel">
+                                    </p-sortIcon>
+                                </th>
+                                <th pSortableColumn="optionValue" style="width: 15em;">{{'optionValue' | first}}
+                                    <p-sortIcon field="optionValue">
+                                    </p-sortIcon>
+                                </th>
+                                <th pSortableColumn="defaultValue" style="width: 10em;">{{'defaultValue' | first}}
+                                    <p-sortIcon field="defaultValue">
+                                    </p-sortIcon>
+                                </th>
+                                <th pSortableColumn="optionTitle" style="width: 10em;">{{'optionTitle' | first}}
+                                    <p-sortIcon field="optionTitle">
+                                    </p-sortIcon>
+                                </th>
+                                <th pSortableColumn="visibility" style="width: 10em;">{{'visibility' | first}}
+                                    <p-sortIcon field="visibility"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="optionType" style="width: 10em;">{{'optionType' | first}}
+                                    <p-sortIcon field="optionType"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="criteria" style="width: 10em;">{{'criteria' | first}} <p-sortIcon
+                                        field="criteria"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="optionId" style="width: 10em;">{{'optionId' | first}} <p-sortIcon
+                                        field="optionId"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="reportFile" style="width: 20em;">{{'reportFile' | first}}
+                                    <p-sortIcon field="reportFile"></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-config>
+                            <tr>
+                                <td style="width: 10em;">
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-mr-2"
+                                    (click)="delete(config)"></button>
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-success"
+                                        (click)="editConfig(config)"></button>
+                                   
+                                </td>
+                                <td style="width: 10em;">{{config.menuId}}</td>
+                                <td style="width: 15em;">{{config.optionName}}</td>
+                                <td style="width: 10em;">{{config.optionLabel}}</td>
+                                <td style="width: 15em;">{{config.optionValue}}</td>
+                                <td style="width: 10em;">{{config.defaultValue}}</td>
+                                <td style="width: 10em;">{{config.optionTitle}}</td>
+                                <td style="width: 10em;">{{getTrueFalsebel(config.visibility)}}</td>
+                                <td style="width: 10em;">{{getTypLabel(config.optionType)}}</td>
+                                <td style="width: 10em;">{{config.criteria}}</td>
+                                <td style="width: 10em;">{{config.optionId}}</td>
+                                <td style="width: 20em;">{{config.reportFile | slice:0:25}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+
+<p-dialog [(visible)]="configDialog" [style]="{width: '600px'}" header="Report Configuration" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-col-12 p-md-12 p-lg-12">
+            <form-aligner [columnMetaData]="configMetaData" [selectedRow]="selectedReportConfig">
+            </form-aligner>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveConfig()">
+            <p-progressSpinner *ngIf="saveLoading" [style]="{width: '15px', height: '15px'}" styleClass="custom-spinner"
+                strokeWidth="8" fill="#EEEEEE">
+            </p-progressSpinner>
+        </button>
+    </ng-template>
+</p-dialog>

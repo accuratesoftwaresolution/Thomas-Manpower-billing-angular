@@ -1,0 +1,1178 @@
+<div class="container" style="background-color: #d1e2f1 ; padding: 6px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">User Creation</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+            <button pButton label="Add"  (click)="AddNew()" class="custom-button"></button>
+             <button pButton label="Save" (click)="saveUserData()"   class="custom-button"></button>
+             <button pButton label="List"   (click)="displayusercreationlist()" class="custom-button"> </button>
+            <button pButton label="Delete" (click)="confirmDelete()" class="custom-button"></button>
+        </div>
+    </div>
+
+    <div style="display: flex;gap: 2rem;">
+        <div class="left-menu" style="height: 100%;">
+            <div
+                style="display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px; min-height: 70vh; box-sizing: border-box;">
+
+                <h5 style="color: #003366;">Groups and Users</h5>
+
+                <div class="card"
+                    style="flex: 1 1 auto; max-height: 400px; overflow-y: auto; background: #fff; padding: 10px; border-radius: 5px;">
+                    <p-tree [style]="{'padding' : '0%'}" [value]="groupUserTree" selectionMode="single"
+                        [(selection)]="selectedNode">
+                    </p-tree>
+                </div>
+
+                <div class="tree-buttons"
+                    style="margin-top: 10px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                    <button pButton label="Create Group " class="custom-button"></button>
+                    <button pButton label="Create User" class="custom-button"></button>
+                    <button pButton label="Edit" class="custom-button"></button>
+                    <button pButton label="Delete" class="custom-button"></button>
+                    <button pButton label="Close" class="custom-button"></button>
+                    <button pButton label="History" class="custom-button"></button>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="custom-tabs">
+
+            <div class="tab-headers">
+                <div class="tab-header" *ngFor="let tab of scrollableTabs; let i = index"
+                    [class.active]="activeIndex === i" (click)="changeIndex(i)">
+                    {{ tab.title }}
+                </div>
+            </div>
+
+            <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+                <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 0">
+                    <div
+                        style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">User SysID</label>
+                                    <input type="number" pInputText [(ngModel)]="userData.HUser_SysID" readOnly
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">User Code</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Code"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">User Name</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Name"
+                                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">User Role SysID</label>
+                                    <input type="number" pInputText [(ngModel)]="userData.HUser_Role_SysID"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">User Role Code</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Role_Code"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('UsrRoleCode')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left:10px"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">User Role Name</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Role_Name"
+                                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">User Password</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Pasword_Enter"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Re enter User Password</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Pasword_ReEnter"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">User Designation</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Desig"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Email</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Email"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Mobile No</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_MbileNo"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Mobile Device ID</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_MobID"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Fax</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Fax"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Defaults</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Defaults"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Language SysID</label>
+                                    <input type="number" pInputText [(ngModel)]="userData.HUser_Lang_SysID"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Language Code</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Lang_Code"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('UsrLanguageCode')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left:10px"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Language Name</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Lang_Name"
+                                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Employee SysID</label>
+                                    <input type="number" pInputText [(ngModel)]="userData.HUser_EmpSysID"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Employee Code</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Emp_Code"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('UsrEmpCode')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left:10px"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Employee Name</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_Emp_Name"
+                                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                        Y/n</label>
+                                    <input type="checkbox" [(ngModel)]="userData.HUser_AcDe_Yn">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                        SysID</label>
+                                    <input type="number" pInputText [(ngModel)]="userData.HUser_AcDe_SysID"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                        Code</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_AcDe_Code"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left:10px"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                        Name</label>
+                                    <input type="text" pInputText [(ngModel)]="userData.HUser_AcDe_Name"
+                                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <h5 style="color: #003366;">Applicable Company Details</h5>
+                        <p-table [value]="this.userData.applicableCo" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>SysID</th>
+                                    <th>Applicable Company Code</th>
+                                    <th>Applicable Company Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td>{{ rowData.DcUser_SingleCo_SysID }}</td>
+                                    <td>
+                                        {{ rowData.DcUser_SingleCo_Code }}
+                                        <button pButton icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('ApplicableCompanyCode',i)"
+                                            class="custom-button"></button>
+                                    </td>
+                                    <td>{{ rowData.DcUser_SingleCo_Name }}</td>
+                                    <td>
+                                        <button pButton icon="pi pi-trash" (click)="deleteRow('applicableCo',i)"
+                                            class="custom-button"></button>
+                                        <button pButton icon="pi pi-plus" label="Add Row"
+                                            (click)="addRow('applicableCo',i)" class="custom-button"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+                    </div>
+
+
+                </ng-container>
+
+                <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 1">
+
+                    <div
+                        style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                        <h5 style="color: #003366;">Account</h5>
+                        <p-table [value]="this.userData.AccountSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DResAcc_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DResAcc_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('AccountCode',i)" class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DResAcc_Name">
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash" (click)="deleteRow('AccountSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('AccountSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+                        <h5 style="color: #003366;">Cost Center</h5>
+                        <p-table [value]="this.userData.costCenterSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DResCostCent_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DResCostCent_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('CostCenterCode',i)" class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DResCostCent_Name">
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash" (click)="deleteRow('costCenterSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('costCenterSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        <h5 style="color: #003366;">Profit Center</h5>
+                        <p-table [value]="this.userData.profitCenterSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DProfCent_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DProfCent_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('ProfitCenterCode',i)" class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DProfCent_Name">
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash"
+                                            (click)="deleteRow('profitCenterSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('profitCenterSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+                        <h5 style="color: #003366;">Division</h5>
+                        <p-table [value]="this.userData.divisionSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.Ddiv_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.Ddiv_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('DivisionCode',i)" class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.Ddiv_Name">
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash" (click)="deleteRow('divisionSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('divisionSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+                        <h5 style="color: #003366;">Department</h5>
+                        <p-table [value]="this.userData.departmentSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.Ddepart_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.Ddepart_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('DepartmentCode',i)" class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.Ddepart_Name">
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash" (click)="deleteRow('departmentSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('departmentSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        <h5 style="color: #003366;">Job</h5>
+                        <p-table [value]="this.userData.jobSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DJob_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DJob_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('JobCode',i)" class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DJob_Name">
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash" (click)="deleteRow('jobSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('jobSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        <h5 style="color: #003366;">Other Center</h5>
+                        <p-table [value]="this.userData.otherCenterSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DOtherCent_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DOtherCent_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('OtherCentreCode',i)" class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DOtherCent_Name">
+                                    </td>
+
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash" (click)="deleteRow('otherCenterSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('otherCenterSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        <h5 style="color: #003366;">Sales Organization</h5>
+                        <p-table [value]="this.userData.salesOrganizationSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DSalesOrg_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DSalesOrg_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('SalesOrganizationCode',i)"
+                                            class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DSalesOrg_Name">
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash"
+                                            (click)="deleteRow('salesOrganizationSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('salesOrganizationSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+                        <h5 style="color: #003366;">Distribution Channel</h5>
+                        <p-table [value]="this.userData.distributionChannelSelection" [style]="{'width' : '80%'}"
+                            class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DdisChanel_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DdisChanel_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('DistributionChannelCode',i)"
+                                            class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DdisChanel_Name">
+                                    </td>
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash"
+                                            (click)="deleteRow('distributionChannelSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('distributionChannelSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        <h5 style="color: #003366;">Sales Office</h5>
+                        <p-table [value]="this.userData.salesOfficeSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DSoffice_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DSoffice_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('SalesOfficeCode',i)" class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DSoffice_Name">
+                                    </td>
+
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash" (click)="deleteRow('salesOfficeSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('salesOfficeSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        <h5 style="color: #003366;">Sales Group</h5>
+                        <p-table [value]="this.userData.salesGroupSelection" [style]="{'width' : '80%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">SysID</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="number"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DSGroup_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DSGroup_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('selectionSalesGroupCode',i)"
+                                            class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.DSGroup_Name">
+                                    </td>
+
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash" (click)="deleteRow('salesGroupSelection',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('salesGroupSelection',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+
+
+
+                        <h5 style="color: #003366;">Voucher Type</h5>
+                        <p-table [value]="this.userData.VoucherTypeRestriction" [style]="{'width' : '100%'}" class="company-table">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 8rem;">Menu SysID</th>
+                                    <th> Menu Code</th>
+                                    <th>Menu Name</th>
+                                    <th>Voucher Code</th>
+                                    <th>Voucher Name</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.HVTypeRestr_SysID">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.HVTypeRestr_Menu_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('VoucherTypeMenuCode',i)"
+                                            class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.HVTypeRestr_Menu_Name">
+                                    </td>
+                                    <td pEditableColumn style="text-align: center;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 85%; background-color: transparent;"
+                                            [(ngModel)]="rowData.HVTypeRestr_Voucher_Code">
+                                        <button pButton style="width: 15%; padding: 0;" icon="pi pi-ellipsis-h"
+                                            (click)="ShowPopUp('VoucherTypeCode',i)"
+                                            class="custom-button"></button>
+                                    </td>
+                                    <td pEditableColumn style="text-align: left;">
+                                        <input pInputText type="text"
+                                            style="padding: 0; width: 100%; background-color: transparent;"
+                                            [(ngModel)]="rowData.HVTypeRestr_Voucher_Name">
+                                    </td>
+
+
+
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-trash"
+                                            (click)="deleteRow('VoucherTypeRestriction',i)"
+                                            class="custom-button"></button>
+
+                                        <button pButton icon="pi pi-plus" label="Add Row" class="custom-button"
+                                            (click)="addRow('VoucherTypeRestriction',i)"></button>
+                                    </td>
+
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 2">
+                    <div
+                        style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                        <h5 style="color: #003366;">Restriction</h5>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Can’t Add Before Number of
+                                        Days</label>
+                                    <input type="text" pInputText [(ngModel)]="this.userData.TblDRetstrict.DRestri_Add_Days"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Can’t Edit Before Number of
+                                        Days</label>
+                                    <input type="text" pInputText [(ngModel)]="this.userData.TblDRetstrict.DRestri_Edit_Days"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <h5 style="color: #003366;">Login Restriction</h5>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Start Date</label>
+                                    <input type="date" pInputText [(ngModel)]="this.userData.TblDLoginRetsri.DLog_Start_Date"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">End Date</label>
+                                    <input type="date" pInputText [(ngModel)]="this.userData.TblDLoginRetsri.DLog_End_Date"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Start Time</label>
+                                    <input type="text" pInputText [(ngModel)]="this.userData.TblDLoginRetsri.DLog_Start_Time"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">End Time</label>
+                                    <input type="text" pInputText [(ngModel)]="this.userData.TblDLoginRetsri.DLog_End_Time"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Password Expiry</label>
+                                    <input type="text" pInputText [(ngModel)]="this.userData.TblDLoginRetsri.DLog_Pass_Expire"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Password Expiry Date</label>
+                                    <input type="date" pInputText [(ngModel)]="this.userData.TblDLoginRetsri.DLog_PassExpire_Date"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Account Lock List Code</label>
+                                    <input type="text" pInputText [(ngModel)]="this.userData.TblDLoginRetsri.DLog_UserLock_Code"
+                                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Account Lock List Name</label>
+                                    <input type="text" pInputText [(ngModel)]="this.userData.TblDLoginRetsri.DLog_UserLock_Name"
+                                        style="background-color: #ffffff; width: 50%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Deactivate and use for Reports
+                                        Only </label>
+                                    <input type="checkbox" [(ngModel)]="this.userData.TblDLoginRetsri.DLog_Blocked_Report">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-sm-6 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 50%;">Password Change in Next Login
+                                        Y/N</label>
+                                    <input type="checkbox" [(ngModel)]="this.userData.TblDLoginRetsri.DLog_PassChange_NextLogin">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                </ng-container>
+
+                <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 3">
+                    <div
+                        style="display: flex; gap: 1rem; height: 400px; border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                        <div
+                            style="flex: 1; border-right: 1px solid #003366; padding-right: 10px;overflow-y: auto;max-height: 400px;">
+                            <h5 style="color: #003366;">Tree Menu</h5>
+                            <p-tree [value]="menuTreeData" selectionMode="single" [(selection)]="selectedNode"
+                                (onNodeSelect)="onMenuSelect($event.node)"></p-tree>
+                        </div>
+
+                        <div style="flex: 2; padding-left: 10px;">
+                            <h5 style="color: #003366;">User Access Rights</h5>
+
+                            <p-checkbox [style]="{ 'margin-bottom' : '10px'}" label="Select All"
+                                [(ngModel)]="selectAllRights" binary="true"
+                                (onChange)="toggleSelectAllRights()"></p-checkbox>
+
+                            <div class="p-grid p-formgrid">
+                                <ng-container *ngIf="selectedMenu">
+                                    <div class="p-col-6" *ngFor="let right of rightFields">
+                                        <p-checkbox [style]="{ 'margin-bottom' : '10px'}" [label]="right.label"
+                                            [(ngModel)]="TblDLoginRight[selectedMenu][right.prop]" binary="true"
+                                            (onChange)="onRightChange(right)">
+                                        </p-checkbox>
+                                    </div>
+                                </ng-container>
+                            </div>
+
+                        </div>
+                    </div>
+                </ng-container>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+
+
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>
+
+
+
+<p-dialog [(visible)]="showuserCreationList" [modal]="true" [closable]="true" [style]="{ width: '60vw' }">
+
+  <!-- Search & Back -->
+  <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+    <!-- Search Input -->
+    <div class="p-col-12 p-md-4">
+      <div class="p-inputgroup" style="max-width: 300px;">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-search"></i>
+        </span>
+        <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText" (input)="filterTable()" />
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="p-col-12 p-md-2">
+      <button
+        pButton
+        label="Back"
+        (click)="Back()"
+        class="custom-button"
+        [style]="{ 'background-color': 'antiquewhite', color: 'black' }"
+      ></button>
+    </div>
+  </div>
+
+  <!-- Table Section -->
+  <div class="p-grid" style="padding: 0 1rem;">
+    <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+      <!-- Header -->
+      <h6
+        style="
+          background-color: #5c96d4;
+          color: antiquewhite;
+          height: 4vh;
+          display: flex;
+          align-items: center;
+          padding-left: 8px;
+          margin: 0;
+        "
+      >
+       User Creation Details
+      </h6>
+
+      <!-- Table -->
+      <p-table
+        #dt
+        [value]="filteredfilteredlistData"
+        [paginator]="true"
+        [rows]="5"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [autoLayout]="true"
+        styleClass="p-datatable-sm"
+      >
+        <!-- Table Header -->
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 8rem;">User Creation SysID</th>
+            <th style="width: 10rem;">User Creation Code</th>
+            <th style="width: 14rem;">User Creation Name</th>
+            <th style="width: 8rem;">Actions</th>
+          </tr>
+        </ng-template>
+
+        <!-- Table Body -->
+        <ng-template pTemplate="body" let-rowData>
+          <tr *ngIf="rowData?.HUser_SysID || rowData?.HUser_Code || rowData?.HUser_Name">
+            <td>{{ rowData.HUser_SysID }}</td>
+            <td>{{ rowData.HUser_Code }}</td>
+            <td>{{ rowData.HUser_Name }}</td>
+            <td>
+              <button
+                pButton
+                type="button"
+                icon="pi pi-pencil"
+                class="p-button-sm p-button-text"
+                pTooltip="Edit"
+                tooltipPosition="top"
+                (click)="editRow(rowData)"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <!-- Empty Message -->
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+              No Data available. Please check back later.
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</p-dialog>

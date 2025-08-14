@@ -1,0 +1,10 @@
+:host ::ng-deep .p-tree .p-tree-container .p-treenode .p-treenode-content {
+    padding: 12px 0 25px 0;
+    font-size: smaller;
+    height: 30px;
+}
+
+:host ::ng-deep .p-panel.p-panel-toggleable .p-panel-header {
+    padding: 0.5rem 1rem;
+    background-color: #3f51b5de;
+}

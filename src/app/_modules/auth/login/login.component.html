@@ -1,0 +1,146 @@
+<p-toast></p-toast>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="pages-body login-page p-d-flex p-flex-column" style="background-color: #d1e2f1;">
+
+        <!-- Topbar Section -->
+        <div class="topbar p-p-3 p-d-flex p-jc-between p-flex-row p-ai-center" style="height: 3.5rem;">
+            <span
+                style="font-family: 'Nucleo', sans-serif; font-size: 1.5rem; font-weight: bold; color: aliceblue; padding-left: 1rem;">
+                EuroCloud ERP
+            </span>
+            
+            <div class="topbar-right p-mr-3 p-d-flex">
+            </div>
+        </div>
+
+        <div class="p-as-center p-mt-auto p-mb-auto">
+
+            <div *ngIf="chooseCompany" class="pages-panel card p-d-flex p-flex-column" style="max-width: 130vh;">
+
+                <div class="p-text-center p-mt-3" style="margin-bottom: 1rem;">
+                    <!-- <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;color: #003366; font-family: 'Nucleo', sans-serif;">Welcome to ERP</h2> -->
+                    <h3 style="color: #003366;">Welcome to EuroCloud ERP</h3>
+
+                    <div style="color: #555555; font-family: 'Nucleo', sans-serif; line-height: 1.5;">
+                        Please choose company from below to sign-in to EuroCloud ERP.
+                    </div>
+                </div>
+
+                <div *ngIf="chooseCompany" class="input-panel p-d-flex p-flex-column p-px-3 p-mb-3">
+                    <p-table [value]="companies" class="company-table" [scrollable]="true" 
+                    scrollHeight="300px">
+                        <ng-template pTemplate="header">
+                            <tr style="background-color: #f0f0f0; text-align: left;">
+                                <th style="padding: 10px; font-size: 12px;">SysID</th>
+                                <th style="padding: 10px; font-size: 12px;">Group Company Code</th>
+                                <th style="padding: 10px; font-size: 12px;">Group Company Name</th>
+                                <th style="padding: 10px; font-size: 12px;">Single Company Code</th>
+                                <th style="padding: 10px; font-size: 12px;">Single Company Name</th>
+                                <th style="padding: 10px; font-size: 12px; text-align: center;">Actions</th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                            <tr style="font-size: 12px; text-align: left;">
+                                <td style="padding: 8px;">{{ rowData.SingleCo_SysID }}</td>
+                                <td style="padding: 8px;">{{ rowData.SingleCo_Group_Code }}</td>
+                                <td style="padding: 8px;">{{ rowData.SingleCo_Group_Name }}</td>
+                                <td style="padding: 8px;">{{ rowData.SingleCo_Code }}</td>
+                                <td style="padding: 8px;">{{ rowData.SingleCo_Name }}</td>
+                                <td style="padding: 8px; text-align: center;">
+
+                                    <p-button class=" p-mb-6 p-px-3" (click)="nextPreCheck(rowData, i)" label="Sign In"
+                                        type="button" [disabled]="loading">
+                                    </p-button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="6"
+                                    style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                                    No companies available. Please check back later.
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+
+                <!-- <div *ngIf="!chooseCompany" class="input-panel p-d-flex p-flex-column p-px-3">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-envelope"></i>
+                        </span>
+                        <span class="p-float-label">
+                            <input type="text" id="email" pInputText autocomplete="off" formControlName="username" [(ngModel)]="user.username">
+                            <label for="email">User Name</label>
+                        </span>
+                    </div>
+
+                    <div class="p-inputgroup p-mt-3 p-mb-6">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-lock"></i>
+                        </span>
+                        <span class="p-float-label">
+                            <input type="password" id="password" pInputText autocomplete="off" formControlName="password" [(ngModel)]="user.password">
+                            <label for="password">Password</label>
+                        </span>
+                    </div>
+                </div> -->
+
+
+            </div>
+
+            <div *ngIf="!chooseCompany" class="pages-panel card p-d-flex p-flex-column">
+
+                <button type="button" class="close-button" (click)="closePanel()">
+                    <i class="pi pi-times"></i>
+                </button>
+
+                <h4 style="color: #003366;">Sign In</h4>
+                <div class="pages-detail p-mb-6 p-px-6">Please use the form to sign-in EuroCloud ERP</div>
+
+                <div class="input-panel p-d-flex p-flex-column p-px-3">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-envelope"></i>
+                        </span>
+                        <span class="p-float-label">
+                            <input type="text" id="email" pInputText autocomplete="off" formControlName="username"
+                                [(ngModel)]="user.username">
+                            <label for="email">User Name</label>
+                        </span>
+                    </div>
+                    <div class="p-inputgroup p-mt-3 p-mb-6">
+                        <span class="p-inputgroup-addon">
+                            <i class="pi pi-lock"></i>
+                        </span>
+                        <span class="p-float-label">
+                            <input type="password" id="password" pInputText autocomplete="off"
+                                formControlName="password" [(ngModel)]="user.password">
+                            <label for="password">Password</label>
+                        </span>
+                    </div>
+                </div>
+
+                <p-button *ngIf="!chooseCompany" class="login-button p-mb-6 p-px-3"
+                    [label]="btnLoading ? 'Signing In...' : 'Sign In'" [icon]="btnLoading ? 'pi pi-spinner pi-spin' : ''"
+                    type="submit" [disabled]="loading">
+                </p-button>
+
+                <!-- <p-button class="login-button p-mb-6 p-px-3"  label="Google Sign In" type="button" (click)="socialSignIn('G')" [disabled]="loading">
+                </p-button> -->
+            </div>
+
+            <!-- Error Message Display -->
+            <!-- <div *ngIf="error" style="padding-top: 0px;">
+                <p-messages severity="error">
+                    <ng-template pTemplate>
+                        <div>{{error}}</div>
+                    </ng-template>
+                </p-messages>
+            </div> -->
+        </div>
+    </div>
+</form>

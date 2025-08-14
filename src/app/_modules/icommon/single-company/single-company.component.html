@@ -1,0 +1,1111 @@
+<p-toast></p-toast>
+<p-progressBar *ngIf="isSaving" [value]="progressValue" [showValue]="true" class="custom-progressbar">
+</p-progressBar>
+
+<div class="container" style="background-color: #d1e2f1 ; padding: 6px; border-radius: 8px;">
+
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Single Company</h3>
+        <div class="p-grid button-group fixed-button-group" style="display: flex; gap: 10px;">
+            <button pButton label="Add" (click)="Add()" class="custom-button"></button>
+            <button pButton label="List" (click)="displaySingleCoList()" class="custom-button"></button>
+            <button pButton label="Delete" (click)="confirmDelete()" *ngIf="showDeleteButton"
+                class="custom-button"></button>
+            <button pButton label="Save" [disabled]="isSaving" (click)="SaveSingleCoCreation()"
+                class="custom-button"></button>
+        </div>
+
+    </div>
+
+
+    <div class="custom-tabs">
+
+        <div class="tab-headers">
+            <ng-container *ngFor="let tab of scrollableTabs; let i = index">
+                <div class="tab-header" [class.active]="activeIndex === i" *ngIf="tab.visible == true"
+                    (click)="changeIndex(i)">
+                    {{ tab.title }}
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 0">
+
+                <div
+                    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+                    <div class="p-grid" style="height: 90vh;">
+                        <div class="p-col-9" style="display: flex; flex-direction: column;">
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company SysID</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_SysID"
+                                            [disabled]="SingleCo_Code" (keydown.enter)="funcSearch()"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Code</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Code"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Name</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Name"
+                                            style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Other
+                                            Language</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_OthLang_Name"
+                                            [disabled]="SingleCo_Code" (keydown.enter)="funcSearch()"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Address
+                                            One</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_Address_One"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Address
+                                            Two</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_Address_Two"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Address
+                                            Three</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_Address_Three"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Address
+                                            Four</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_Address_Four"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Area
+                                            Code</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Area_Code"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                        <button pButton (click)="ShowPopUp('AreaCode')" icon="pi pi-ellipsis-h"
+                                            class="popup-button" style="margin-left:10px"></button>
+
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Area
+                                            Name</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Area_Name"
+                                            style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company City
+                                            Code</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_City_Code"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                        <button pButton (click)="ShowPopUp('CityCode')" icon="pi pi-ellipsis-h"
+                                            class="popup-button" style="margin-left:10px"></button>
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company City
+                                            Name</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_City_Name"
+                                            style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Country
+                                            Code</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Count_Code"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                        <button pButton (click)="ShowPopUp('CountryCode')" icon="pi pi-ellipsis-h"
+                                            class="popup-button" style="margin-left:10px"></button>
+
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Country
+                                            Name</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Count_Name"
+                                            style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Telephone
+                                            Number</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Phone"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Fax
+                                            Number</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Fax"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Email
+                                            Address</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_Email_Address"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company TIN/TRN</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_TIN_TRN"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Accounting
+                                            Date</label>
+                                        <input type="date" pInputText
+                                            [ngModel]="singleCoCreation.SingleCo_Date | date:'yyyy-MM-dd'"
+                                            (ngModelChange)="onDateChange('SingleCo_Date', $event)"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Security
+                                            Level</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_SecurityLvl"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Super User
+                                            Password</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_SuperUserPswd"
+                                            (ngModelChange)="onPasswordChange($event)"
+                                            [ngClass]="{ 'input-error': passwordInvalid }"
+                                            style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Master
+                                            SysID</label>
+                                        <input type="number" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_FirstMast_SysID"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Transaction
+                                            SysID</label>
+                                        <input type="number" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_FirstTrans_SysID"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Super User
+                                            Name</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_SuperUserName"
+                                            style="background-color: #ffffff; width: 45%; height: 2vh;">
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Hide
+                                            Unauthorised</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_HideUnautho"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company
+                                            Template</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Template"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Profit & Loss
+                                            Account
+                                            Code</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_PnLAcc_Code"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                        <button pButton (click)="ShowPopUp('ProfitandLossCode')" icon="pi pi-ellipsis-h"
+                                            class="popup-button" style="margin-left:10px"></button>
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Company Profit & Loss
+                                            Account
+                                            Name</label>
+                                        <input type="text" pInputText
+                                            [(ngModel)]="singleCoCreation.SingleCo_PnLAcc_Name"
+                                            style="background-color: #ffffff; width: 45%; height: 2vh;">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Group Company Code</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Group_Code"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                        <button pButton (click)="ShowPopUp('AccGroupCode')" icon="pi pi-ellipsis-h"
+                                            class="popup-button" style="margin-left:10px"></button>
+                                    </div>
+                                </div>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Group Company Name</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_Group_Name"
+                                            style="background-color: #ffffff; width: 45%; height: 2vh;">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="p-grid">
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Single Creation Date</label>
+                                        <input type="date" pInputText
+                                            [ngModel]="singleCoCreation.SingleCo_Creation_Date | date:'yyyy-MM-dd'"
+                                            (ngModelChange)="onDateChange('SingleCo_Creation_Date', $event)"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="inline-checkbox">
+                                        <label>Activation & Deactivation Y/N</label>
+                                        <input type="checkbox"
+                                            [ngModel]="singleCoCreation.SingleCo_AcDe_Yn === 'Y' ? true : false"
+                                            (ngModelChange)="singleCoCreation.SingleCo_AcDe_Yn = $event ? 'Y' : 'N'">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <br>
+                            <div class="p-grid">
+
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; width: 40%;">Activation & Devactivation
+                                            Code</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_AcDe_Code"
+                                            style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                        <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h"
+                                            class="popup-button" style="margin-left:10px"></button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+
+                                    <div class="p-field">
+
+                                        <label style="display: inline-block; width: 40%;">Activation & Devactivation
+                                            Name</label>
+                                        <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_AcDe_Name"
+                                            style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-col-2" style="padding: 1rem;">
+                            <p-card>
+                                <div class="p-grid p-dir-col p-align-center">
+
+                                    <div *ngIf="imageSrc" class="p-col" style="text-align: center;">
+                                        <img [src]="imageSrc" alt="Selected Logo"
+                                            style="width: 100px; height: 100px; object-fit: cover; border: 2px solid #ccc;" />
+                                    </div>
+
+                                    <!-- Label -->
+                                    <div class="p-col">
+                                        <label style="display: inline-block; width: 100%;">Single Company Logo</label>
+                                    </div>
+
+                                    <!-- File Input and Buttons -->
+                                    <div class="p-col">
+                                        <!-- Hidden File Input -->
+                                        <input #fileInput type="file" id="logoUpload" accept="image/*"
+                                            (change)="onFileSelected($event)" hidden />
+
+                                        <label for="logoUpload" class="p-button p-component"
+                                            style="width: 100%; text-align: center; cursor: pointer; background-color: antiquewhite; color: #000; border: 1px solid #ccc; margin-bottom: 0.5rem;">
+                                            <span class="p-button-label">Choose Image</span>
+                                        </label>
+
+                                        <button *ngIf="selectedFile" type="button" pButton label="Upload"
+                                            style="width: 100%; margin-bottom: 0.5rem; background-color: antiquewhite; color: #000; border: 1px solid #ccc;"
+                                            (click)="uploadLogo()">
+
+                                        </button>
+
+                                        <!-- Delete Button -->
+                                        <label *ngIf="imageSrc" (click)="removeImage()" class="p-button p-component"
+                                            style="width: 100%; text-align: center; cursor: pointer; background-color: antiquewhite; color: #000; border: 1px solid #ccc;">
+                                            <span class="p-button-label">Delete</span>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </p-card>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 1">
+                <app-master-document-atttach [dto]="this.singleCoCreation.TblmDocAttach"></app-master-document-atttach>
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 2">
+                <div
+                    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Credit Limit Check from Account Master
+
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Allow_Amt === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Allow_Amt = $event ? 'Y' : 'N'">
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Allowable
+                                    Credit Amount Check</label>
+
+                            </div>
+
+                        </div>
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Allow_AmtDays === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Allow_AmtDays = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Allowable
+                                    Credit Days Check </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Insu_Amt === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Insu_Amt = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Insurance
+                                    Credit Amount Check</label>
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Insu_AmtDays === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Insu_AmtDays = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Insurance
+                                    Credit Days Check </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Block_Amt === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Block_Amt = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width:80%;padding-left:30px;">Enable Block Credit
+                                    Amount Check</label>
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Block_AmtDays === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Block_AmtDays = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Block Credit
+                                    Days Check </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 100%; display: flex; align-items: center; gap: 10px;">
+                        Bill Allocation
+                    </h5>
+                    <br>
+
+                    <div style="display: flex; align-items: center; gap: 2rem; border: 1px solid #003366; width: 41%;
+     padding: 8px; border-radius: 5px;">
+
+                        <input type="radio" name="inventoryAction" [value]="'A'"
+                            [(ngModel)]="singleCoCreation.SingleCo_BillAllo_Method"
+                            (change)="onRadioChange('SingleCo_BillAllo_Method', 'MANUAL')" style="margin-right: 5px;" />
+                        <label style="display: flex; align-items: center;">Set Manually</label>
+
+                        <input type="radio" name="inventoryAction" [value]="'Batch'"
+                            [(ngModel)]="singleCoCreation.SingleCo_BillAllo_Method"
+                            (change)="onRadioChange('SingleCo_BillAllo_Method', 'NEW_REF')"
+                            style="margin-right: 5px;" />
+                        <label style="display: flex; align-items: center;">Always New Reference</label>
+
+                        <input type="radio" name="inventoryAction" [value]="'C'"
+                            [(ngModel)]="singleCoCreation.SingleCo_BillAllo_Method"
+                            (change)="onRadioChange('SingleCo_BillAllo_Method', 'AUTO_FIFO')"
+                            style="margin-right: 5px;" />
+                        <label style="display: flex; align-items: center;">Auto Adjusted FIFO</label>
+                    </div>
+
+                    <br>
+
+
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Post Dated Cheque
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Disp_LedgTrial === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Disp_LedgTrial = $event ? 'Y' : 'N'">
+
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Display PDC
+                                    in Ledger and Trial Balance</label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Payment Due Date Calculation
+
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Pay_DueDate === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Pay_DueDate = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Due Date from
+                                    Payment Terms </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Account Level Credit Limit Checking Formula
+
+                    </h5>
+                    <br>
+
+                    <div
+                        style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; border: 1px solid #003366; width: 80%; padding: 8px; border-radius: 5px;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="creditLimitMethod" [value]="'M'"
+                                [(ngModel)]="singleCoCreation.SingleCo_Accmast_CRrLimit" />
+                            Enable Net Ledger balance for Credit Limit
+                        </label>
+
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="creditLimitMethod" [value]="'N'"
+                                [(ngModel)]="singleCoCreation.SingleCo_Accmast_CRrLimit" />
+                            Enable Net Ledger Balance Plus Pending Order Value for Credit Check
+                        </label>
+
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="creditLimitMethod" [value]="'O'"
+                                [(ngModel)]="singleCoCreation.SingleCo_Accmast_CRrLimit" />
+                            Enable Net Ledger Balance Plus PDC in Hand for Credit Check
+                        </label>
+
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="creditLimitMethod" [value]="'P'"
+                                [(ngModel)]="singleCoCreation.SingleCo_Accmast_CRrLimit" />
+                            Enable Net Ledger Balance Plus Pending Order Value Plus PDC in Hand
+                        </label>
+
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="creditLimitMethod" [value]="'Q'"
+                                [(ngModel)]="singleCoCreation.SingleCo_Accmast_CRrLimit" />
+                            Enable Not Applicable
+                        </label>
+                    </div>
+
+
+                    <br>
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Negative Stock Checking
+
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_NegStock_Check === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_NegStock_Check = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Negative
+                                    stock Checking </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Negative Cash & Bank
+
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_NegCash_Check === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_NegCash_Check = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Negative Cash
+                                    & Bank Checking</label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Financial Inventory Posting Method
+
+                    </h5>
+                    <br>
+
+                    <div
+                        style="display: flex; align-items: center; gap: 2rem; border: 1px solid #003366; width: 41%; padding: 8px; border-radius: 5px;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="invenPostMethod" [value]="'U'"
+                                [(ngModel)]="singleCoCreation.SingleCo_Inven_PostMethod"
+                                (change)="onRadioChangeFinancial('SingleCo_Inven_PostMethod', 'IN')"
+                                style="margin-right: 5px;" />
+                            Purchase & Sales Method
+                        </label>
+
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="invenPostMethod" [value]="'V'"
+                                [(ngModel)]="singleCoCreation.SingleCo_Inven_PostMethod"
+                                (change)="onRadioChangeFinancial('SingleCo_Inven_PostMethod', 'OUT')"
+                                style="margin-right: 5px;" />
+                            COGS Method
+                        </label>
+                    </div>
+
+
+
+
+                    <br>
+
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Account Posting From Product Master
+
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_AccPosting_Inven === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_AccPosting_Inven = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Load Account
+                                    from Product Master</label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Stock Valuation
+
+                    </h5>
+                    <br>
+                    <div style="display: flex; align-items: center; gap: 2rem;border: 1px solid #003366;width:41%;
+                padding: 8px;
+                border-radius: 5px;">
+
+                        <input type="radio" name="inventoryAction" [value]="'X'"
+                            [(ngModel)]="singleCoCreation.SingleCo_Stock_Valuation"
+                            (change)="onRadioChange('SingleCo_Stock_Valuation', 'IN')" style="margin-right: 5px;" />
+
+                        <label style="display: flex; align-items: center;">
+                            Average Price
+                        </label>
+                        <input type="radio" name="inventoryAction" [value]="'Y'"
+                            [(ngModel)]="singleCoCreation.SingleCo_Stock_Valuation"
+                            (change)="onRadioChange('SingleCo_Stock_Valuation', 'OUT')" style="margin-right: 5px;" />
+
+                        <label style="display: flex; align-items: center;">
+                            Cost Weighted Average
+                        </label>
+
+
+
+
+
+                    </div>
+                    <br>
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 100%; display: flex; align-items: center; gap: 10px;">
+                        Stock Valuation Buying Rate Changes
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Stock_RateChange === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Stock_RateChange = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Recalculate
+                                    Weighted Average upon saving</label>
+
+                            </div>
+
+                        </div>
+
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Stock_ProdAlert === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Stock_ProdAlert = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Product wise
+                                    alert message upon saving </label>
+
+                            </div>
+
+
+                        </div>
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 25%;">Saving % </label>
+                                <input type="number" pInputText [(ngModel)]="singleCoCreation.SingleCo_Stock_RatePerce"
+                                    style="background-color: #ffffff; width: 40%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 20%;">Message </label>
+                                <input type="text" pInputText [(ngModel)]="singleCoCreation.SingleCo_BuyRate_ChaMes"
+                                    style="background-color: #ffffff; width: 40%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Batch Options
+
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_BatStock_Items === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_BatStock_Items = $event ? 'Y' : 'N'">
+
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Batch for
+                                    stock items</label>
+
+                            </div>
+
+                        </div>
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_BatService_Items === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_BatService_Items = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Batch for
+                                    Service Items </label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_BatDupl_Yn === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_BatDupl_Yn = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Do not Accept
+                                    Duplicate Batch</label>
+
+                            </div>
+
+                        </div>
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_BatExp_AllowYn === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_BatExp_AllowYn = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Allow Expiry
+                                    Batch to be selected</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_BatExpNotSell_Yn === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_BatExpNotSell_Yn = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable cannot sell
+                                    the products with batch would be expire with in N day’s </label>
+
+                            </div>
+
+                        </div>
+                        <div class="p-col-6">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 20%;">Expiry Duration(Days)</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="singleCoCreation.SingleCo_BatExpAllow_NoDays"
+                                    style="background-color: #ffffff; width: 40%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Product Multiple Selections
+
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+
+
+                                <input type="checkbox"
+                                    [ngModel]="singleCoCreation.SingleCo_Produ_MultiSele === 'Y' ? true : false"
+                                    (ngModelChange)="singleCoCreation.SingleCo_Produ_MultiSele = $event ? 'Y' : 'N'">
+
+                                <label style="display: inline-block; width: 80%;padding-left:30px;">Enable Product
+                                    Repeat Selection in Same Transaction Screen</label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div>
+            </ng-container>
+
+
+        </div>
+
+
+    </div>
+
+    <p-confirmDialog></p-confirmDialog>
+
+
+
+    <app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+
+
+    <p-dialog [(visible)]="showSingleCoList" [modal]="true" [closable]="true" [style]="{ width: '80vw' }">
+
+        <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+            <div class="p-col-12 p-md-3">
+                <div class="p-inputgroup" style="max-width: 300px;">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-search"></i>
+                    </span>
+                    <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                        (input)="filterTable()" />
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <button pButton label="Back" (click)="Back()" class="custom-button"
+                    [style]="{ 'background-color': 'antiquewhite', color: 'black' } ">
+                </button>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="p-grid" style="padding: 0 1rem;">
+            <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+                <h6 style="
+            background-color: #5c96d4;
+            color: antiquewhite;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">
+                    Single Company Details
+                </h6>
+
+                <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                    [rowsPerPageOptions]="[5, 10, 20]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">Single Company SysID</th>
+                            <th style="width: 8rem;">Single Company Code</th>
+                            <th style="width: 8rem;">Single Company Name</th>
+                            <th style="width:8rem">Actions</th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td>{{ rowData.SingleCo_SysID }}</td>
+                            <td>{{ rowData.SingleCo_Code }}</td>
+                            <td>{{ rowData.SingleCo_Name }}</td>
+                            <td>
+                                <span class="button-group-inline">
+                                    <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                        class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                        (click)="editRow(rowData)">
+                                    </button>
+
+                                    <button pButton type="button" label="Delete" icon="pi pi-trash"
+                                        class="custom-button p-button-sm" pTooltip="Delete" tooltipPosition="left"
+                                        (click)="deletelistRow(rowData)">
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                                No Data available. Please check back later.
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+    </p-dialog>

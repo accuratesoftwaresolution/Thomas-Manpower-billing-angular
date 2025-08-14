@@ -1,0 +1,46 @@
+<div class="p-col-12"></div>
+<p-toast></p-toast>
+<p-progressBar *ngIf="loading" mode="indeterminate" [style]="{'height': '8px'}"></p-progressBar>
+
+<div class="ui-g">
+    <div class="p-grid nested-grid" style="width: 100%;">
+        <div class="card p-col-12 p-md-12 p-lg-12" style="padding-top: 2rem; padding-left: 0rem;">
+            <div class="p-grid">
+
+                <div class="p-col-12 p-lg-8">
+                    <div class="card">
+                        <form-aligner [columnMetaData]="columnMetaData" [selectedRow]="service.header">
+                        </form-aligner>
+                    </div>
+
+                    <form-aligner [columnMetaData]="companyMetaData" [selectedRow]="service.header">
+                    </form-aligner>
+                    <form-aligner [columnMetaData]="jvMetaData" [selectedRow]="service.header">
+                    </form-aligner>
+
+                </div>
+
+                <div class="p-col-12 p-lg-4">
+                    <form-aligner [columnMetaData]="poMetaData" [selectedRow]="service.header">
+                    </form-aligner>
+                    <form-aligner [columnMetaData]="assetMetaData" [selectedRow]="service.header">
+                    </form-aligner>
+                    <form-aligner [columnMetaData]="jobMetaData" [selectedRow]="service.header">
+                    </form-aligner>
+                    <form-aligner [columnMetaData]="jobHeadMetaData" [selectedRow]="service.header">
+                    </form-aligner>
+                    <form-aligner [columnMetaData]="acMetaData" [selectedRow]="service.header">
+                    </form-aligner>
+
+                </div>
+                <div class="p-col-12 p-lg-12">
+                    <div class="card">
+                        <form-aligner [columnMetaData]="grpMetaData" [selectedRow]="service.header">
+                        </form-aligner>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

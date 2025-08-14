@@ -1,0 +1,1179 @@
+<p-toast></p-toast>
+
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="color: #003366;">Master Screen Validation</h3>
+    <div class="p-grid" style="display: flex; gap: 10px;">
+        <button pButton label="List" (click)="displaymasterconfig()" class="header-btn"></button>
+        <button pButton label="Save" class="header-btn" (click)="save()"></button>
+        <button pButton label="Delete" class="header-btn" (click)="confirmDelete()" *ngIf="showDeleteButton"></button>
+
+    </div>
+</div>
+
+
+
+<div style="border-radius: 8px; background-color: #d1e2f1; font-size: 10px;display: flex;">
+
+    <div class="custom-tabs">
+
+        <div class="tab-headers">
+            <div class="tab-header" *ngFor="let tab of scrollableTabs; let i = index" [class.active]="activeIndex === i"
+                (click)="changeIndex(i)">
+                {{ tab.title }}
+            </div>
+        </div>
+
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 0">
+                <div style="padding: 6px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5
+                        style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                        Middle Screen Master Document Configuration
+
+                    </h5>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;text-decoration: underline;">Validation
+                                    Screen SysID</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMastDocu_Midd_SysID"
+                                    (keydown.enter)="funcSearch()"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Validation Menu SysID </label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMastDocu_MiddValid_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Validation Menu Code </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMastDocu_MiddValid_Code"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('MidValidationMenuCode')" icon="pi pi-ellipsis-h"
+                                    class="custom-button" style="margin-left:10px"></button>
+
+                            </div>
+                        </div>
+
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;"> Validation Menu Name </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMastDocu_MiddValid_Name"
+                                    style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Transaction Menu SysID </label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMastDocu_TransMenu_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Transaction Menu Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMastDocu_TransMenu_Code"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('MidTransactionMenuCode')" icon="pi pi-ellipsis-h"
+                                    class="custom-button" style="margin-left:10px"></button>
+
+                            </div>
+                        </div>
+
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;"> Transaction Menu Name </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMastDocu_TransMenu_Name"
+                                    style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Masters Strating Number</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMastDocu_FirstMast_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 1">
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Header One</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectHeadOne_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Header Two</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectHeadTwo_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Header Three</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectHeadThree_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Header Four</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectHeadFour_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Header Five</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectHeadFive_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Detail One</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectDetailOne_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Detail Two</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectDetailTwo_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Detail Three</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectDetailThree_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Detail Four</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectDetailFour_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Select Master Detail Five</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectDetailFive_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Applicable Company Details </h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_SelectApplCom_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 2">
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Header One</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertHeadOne_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Header Two</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertHeadTwo_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Header Three</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertHeadThree_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Header Four</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertHeadFour_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Header Five</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertHeadFive_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Detail One</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertDetailOne_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Detail Two</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertDetailTwo_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Detail Three</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertDetailThree_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Detail Four</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertDetailFour_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Insert Master Detail Five</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_InsertDetailFive_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Applicable Company Details </h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCDocu_InsertApplCom_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 3">
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Header One</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateHeadOne_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Header Two</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateHeadTwo_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Header Three</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateHeadThree_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Header Four</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateHeadFour_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Header Five</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateHeadFive_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Detail One</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateDetailOne_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Detail Two</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateDetailTwo_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Detail Three</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateDetailThree_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Detail Four</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateDetailFour_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Update Master Detail Five</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateDetailFive_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Applicable Company Details </h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_UpdateApplCom_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 4">
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Header One</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteHeadOne_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Header Two</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteHeadTwo_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Header Three</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteHeadThree_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Header Four</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteHeadFour_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Header Five</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteHeadFive_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Detail One</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteDetailOne_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Detail Two</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteDetailTwo_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Detail Three</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteDetailThree_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Detail Four</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteDetailFour_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Delete Master Detail Five</h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteDetailFive_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 4px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Applicable Company Details </h5>
+
+                    <div class="p-grid">
+                        <div class="p-col-12" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <!-- <label style="display: inline-block; width: 15%;">Insert Statement</label> -->
+                                <textarea type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.HCMast_DeleteApplCom_State"
+                                    style="background-color: #ffffff; width: 80%; height: 10vh;max-width: 80%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 5">
+                <br>
+                <h5 style="color: #003366; margin: 0; min-width: 200px; display: flex; align-items: center; gap: 10px;">
+                    DigiLock Details
+                </h5>
+
+
+                <div style="padding: 6px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                    <br>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;text-decoration: underline;">Digi Lock
+                                    SysID</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Validation Menu SysID</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Menu_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Validation Menu Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Menu_Code"
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Validation Menu Name </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Menu_Name"
+                                    style="background-color: #ffffff; width: 50%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Transaction Menu SysID</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_MidScreen_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Transaction Menu Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_MidScreen_Code"
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Transaction Menu Name </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_MidScreen_Name"
+                                    style="background-color: #ffffff; width: 50%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Voucher Flag</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Flag"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Voucher Suspend Flag</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Flag_Suspend"
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Voucher Authorize Flag</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Flag_Authorize"
+                                    style="background-color: #ffffff; width: 50%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Voucher Reject Flag</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Flag_Reject"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Voucher Approve Flag</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Flag_Approve"
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Voucher Posting Flag </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Flag_Posting"
+                                    style="background-color: #ffffff; width: 50%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Masters Starting Number</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_FirstMast_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Masters Last Number</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_LastMast_LastNo"
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;"> Voucher Date </label>
+                                <input type="date" pInputText
+                                    [ngModel]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Vou_Date  | date:'yyyy-MM-dd'"
+                                    (ngModelChange)="onDateChange('vou', $event)"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Log Voucher Date</label>
+                                <input type="date" pInputText
+                                    [ngModel]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Log_Date | date:'yyyy-MM-dd'"
+                                    (ngModelChange)="onDateChange('log', $event)"
+                                    style="background-color: #ffffff !important; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Log Text</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Log_Text"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 44%;">Printed Y/N</label>
+                                <input type="checkbox"
+                                    (change)="updateCheckbox($event,this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Printed_Yn)"
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Printed_Yn">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 44%;">Re Printed Y/N</label>
+                                <input type="checkbox"
+                                    (change)="updateCheckbox($event,this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_RePrinted_Yn)"
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_RePrinted_Yn">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 44%;">Document Checked Y/N</label>
+                                <input type="checkbox"
+                                    (change)="updateCheckbox($event,this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Checked_Yn)"
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Checked_Yn">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 44%;">Document Reconciled Y/N</label>
+                                <input type="checkbox"
+                                    (change)="updateCheckbox($event,this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Recon_Yn)"
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Recon_Yn">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 44%;">Document Posted Y/N</label>
+                                <input type="checkbox"
+                                    (change)="updateCheckbox($event,this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Posted_Yn)"
+                                    [(ngModel)]="this.TblHConfMastDocu.TbldHMastDigiLock[0].DigiMast_Posted_Yn">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <h5 style="color: #003366;">DigiLock User Details</h5>
+
+                    <p-table [value]="TblHConfMastDocu.TblDMastDigiLock" [style]="{ 'width' : '60%'}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>User Code</th>
+                                <th>User Name</th>
+                                <th>User Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                            <tr>
+                                <td style="padding: 0rem 0rem 1rem 0.5rem !important;">{{ rowData.Digd_MasUser_Code }}
+                                </td>
+                                <td style="padding: 0rem 0rem 1rem 0.5rem !important;">{{ rowData.Digd_MasUser_Name }}
+                                </td>
+                                <td style="padding: 0rem 0rem 1rem 0.5rem !important;">{{ rowData.Digd_MasUser_Date |
+                                    date:
+                                    'shortDate' }}</td>
+                                <td style="padding: 0rem 0rem 1rem 0.5rem !important;">{{ rowData.Digd_MasUser_Action }}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+
+                </div>
+
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+<p-confirmDialog></p-confirmDialog>
+
+
+<p-dialog [(visible)]="showMasterConfigList" [modal]="true" [closable]="true" [style]="{ width: '60vw' }">
+
+    <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+        <div class="p-col-12 p-md-3">
+            <div class="p-inputgroup" style="max-width: 300px;">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-search"></i>
+                </span>
+                <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                    (input)="filterTable()" />
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-3">
+            <button pButton label="Back" (click)="Back()" class="custom-button"
+                [style]="{ 'background-color': 'antiquewhite', color: 'black' } ">
+            </button>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="p-grid" style="padding: 0 1rem;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+            background-color: #5c96d4;
+            color: antiquewhite;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">
+                Master Screen Details
+            </h6>
+
+            <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 6rem;"> Validation SysID</th>
+                        <th style="width: 8rem;"> Validation Code</th>
+                        <th style="width: 8rem;"> Validation Name</th>
+                        <th style="width:8rem">Actions</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td>{{ rowData.HCMastDocu_MiddValid_SysID }}</td>
+                        <td>{{ rowData.HCMastDocu_MiddValid_Code }}</td>
+                        <td>{{ rowData.HCMastDocu_MiddValid_Name }}</td>
+                        <td>
+                            <span class="button-group-inline">
+                                <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                    class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                    (click)="editRow(rowData)">
+                                </button>
+
+                                <button pButton type="button" label="Delete" icon="pi pi-trash"
+                                    class="custom-button p-button-sm" pTooltip="Delete" tooltipPosition="left"
+                                    (click)="deletelistRow(rowData)">
+                                </button>
+                            </span>
+
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                            No Data available. Please check back later.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+</p-dialog>

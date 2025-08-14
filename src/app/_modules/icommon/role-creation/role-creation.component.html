@@ -1,0 +1,26 @@
+<ng-container>
+    <div class="p-grid" *ngFor="let field of FormFields">
+        <div class="p-col-2"></div>
+        <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <label style="display: inline-block; width:100%;">{{field.fieldName}}</label>
+        </div>
+        <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.8rem;">
+            <div class="p-field">
+                <textarea rows="5" cols="30"  *ngIf="field.type=='textarea'"
+                    style="width: 85%;resize: none;" pInputTextarea >
+                </textarea>
+                <input type="text" pInputText *ngIf="field.type=='input'"
+                style="background-color: #ffffff!important; width: 80%; height: 2vh;">
+       
+                </div>
+        </div>
+        <div class="p-col-2"></div>
+
+    </div>
+    
+    <div class="p-grid">
+        <div class="p-col-4" style="text-align: center;"><button pButton label="Cancel" class="custom-button"></button></div>
+        <div class="p-col-4"></div>
+        <div class="p-col-4"  style="text-align: center;"><button pButton label="Login" class="custom-button"></button></div>
+    </div>
+</ng-container>

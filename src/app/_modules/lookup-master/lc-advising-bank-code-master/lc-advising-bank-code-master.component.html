@@ -1,0 +1,191 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+<div class="outer-container">
+    <div class="container">
+        <h3 style="text-align: left;">LC Advising Bank Code</h3>
+
+        <div class="header">
+
+            <!-- Top Button Group -->
+            <div class="button-group">
+                <button pButton icon="pi pi-plus" (click)="Refresh()" class="custom-button responsive-button">
+                    <span>Add</span>
+                </button>
+                <button pButton icon="pi pi-trash" *ngIf="showDeleteButton" (click)="confirmDelete()"
+                    class="custom-button responsive-button"><span>Delete</span></button>
+
+                <button pButton icon="pi pi-list" (click)="displayLCadvisingList()"
+                    class="custom-button responsive-button"><span>List</span></button>
+            </div>
+
+        </div>
+
+        <div class="form-container">
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label>LC Advising Bank Code Sysid</label>
+                    <input type="text" pInputText [(ngModel)]="this.TblHLCAdvBank.HLCAdvBank_SysID" [readOnly]="true">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label>LC Advising Bank Code Code</label>
+                    <input type="text" pInputText [(ngModel)]="this.TblHLCAdvBank.HLCAdvBank_Code">
+                </div>
+                <div class="form-group">
+                    <label>LC Advising Bank Code Name</label>
+                    <input type="text" pInputText [(ngModel)]="this.TblHLCAdvBank.HLCAdvBank_Name">
+                </div>
+            </div>
+
+            <h5 style="color: #003366;">Activation & Deactivation</h5>
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="inline-checkbox">
+                        <label>Activation & Deactivation Y/N</label>
+                        <input type="checkbox" [ngModel]="TblHLCAdvBank.HLCAdvBank_AcDe_Yn === 'Y' ? true : false"
+                            (ngModelChange)="TblHLCAdvBank.HLCAdvBank_AcDe_Yn = $event ? 'Y' : 'N'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group inline-group col-4">
+                    <label>Activation & Deactivation Code</label>
+                    <div class="input-with-button">
+                        <input type="text" pInputText [(ngModel)]="this.TblHLCAdvBank.HLCAdvBank_AcDe_Code">
+                        <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h"
+                            class="popup-button"></button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Activation & Deactivation Name</label>
+                    <input type="text" pInputText [(ngModel)]="this.TblHLCAdvBank.HLCAdvBank_AcDe_Name">
+                </div>
+            </div>
+
+
+            <h5 style="color: #003366;">Applicable Company Details</h5>
+            <p-table [value]="this.TblHLCAdvBank.TbldLCAdvBankCo" class="company-table">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>SysID</th>
+                        <th>Applicable Company Code</th>
+                        <th>Applicable Company Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td>{{ rowData.DcLCAdvBank_SingleCo_SysID }}</td>
+                        <td>
+                            {{ rowData.DcLCAdvBank_SingleCo_Code }}
+                            <button pButton icon="pi pi-ellipsis-h" (click)="ShowPopUp('ApplicableCompanyCode',i)"
+                                class="custom-button"></button>
+                        </td>
+                        <td>{{ rowData.DcLCAdvBank_SingleCo_Name }}</td>
+                        <td>
+                            <button pButton icon="pi pi-trash" (click)="deleteRow('TbldLCAdvBankCo',i,rowData)"
+                                class="custom-button"></button>
+                            <button pButton icon="pi pi-plus" label="Add Row" (click)="addRow('TbldLCAdvBankCo',i)"
+                                class="custom-button"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+            <p-progressBar *ngIf="isSaving" [value]="progressValue" [showValue]="true" class="custom-progressbar">
+            </p-progressBar>
+
+            <!-- Button group -->
+            <div class="button-group fixed-button-group">
+                <button pButton label="Save" (click)="save()" [disabled]="isSaving" class="custom-button"></button>
+                <button pButton label="Cancel" (click)="cancel()" [disabled]="isSaving" class="custom-button"></button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+
+<p-dialog [(visible)]="Showadvisinglist" [modal]="true" [closable]="true" [style]="{ width: '60vw' }">
+
+    <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+        <div class="p-col-12 p-md-3">
+            <div class="p-inputgroup" style="max-width: 300px;">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-search"></i>
+                </span>
+                <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                    (input)="filterTable()" />
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-3">
+            <button pButton label="Back" (click)="Back()" class="custom-button"
+                [style]="{ 'background-color': 'antiquewhite', color: 'black' } ">
+            </button>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="p-grid" style="padding: 0 1rem;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+            background-color: #5c96d4;
+            color: antiquewhite;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">
+                LC Advising Bank Code Details
+            </h6>
+
+            <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 8rem;">LC Advising Bank Code SysID</th>
+                        <th style="width: 8rem;">LC Advising Bank Code Code</th>
+                        <th style="width: 8rem;">LC Advising Bank Code Name</th>
+                        <th style="width:8rem">Actions</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td>{{rowData.HLCAdvBank_SysID}}</td>
+                        <td>{{rowData.HLCAdvBank_Code}}</td>
+                        <td>{{rowData.HLCAdvBank_Name}}</td>
+                        <td>
+                            <span class="button-group-inline">
+                                <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                    class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                    (click)="editRow(rowData)">
+                                </button>
+
+                                <button pButton type="button" label="Delete" icon="pi pi-trash"
+                                    class="custom-button p-button-sm" pTooltip="Delete" tooltipPosition="left"
+                                    (click)="deletelistRow(rowData)">
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                            No Data available. Please check back later.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+</p-dialog>

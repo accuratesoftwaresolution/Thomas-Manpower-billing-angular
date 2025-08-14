@@ -1,0 +1,26 @@
+{
+    "reportHeading": "Unallocated Bills",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "acCode",
+    "detail": true,
+    "detailPropertyName": "detail",
+    "rptLanguage": "E",
+    "reportId": "acc_unallocated_bills",
+    "printColumnMetaData": {
+       "headerMetaData": [
+            {   "column": "acCode", "columnHeading": "account" },
+            {   "column": "ac4AcName", "columnHeading": "" }
+          
+        ],
+        "detailMetaData": [
+            {   "column": "billNo", "columnHeading": "billNo" },
+            {   "column": "billDate", "columnHeading": "billDate" },
+            {   "column": "dueDate", "columnHeading": "dueDate" },
+            {   "column": "refVrNo", "columnHeading": "refVrNo", "type": "amountexp", 
+                "expressionArray": { "type": "row", "exp": ["refCo","-","refDv","-","refBr","-","refInt","-","refVrNo"] } },            
+            {   "column": "balance", "columnHeading": "balance", "type": "amountexp", 
+                     "expressionArray": { "type": "row", "exp": ["acamt_dr","-","acamt_cr"] }
+          }
+        ]
+    }
+}

@@ -1,0 +1,82 @@
+<p-dialog [(visible)]="display" [modal]="true" showEffect="fade" [closable]="false" [style]="{width: '70vw'}">
+  <p-table #dt [columns]="chequeCols" [value]="service.header.iadetail" selectionMode="single"
+    [(selection)]="selectedCheque" [paginator]="true" [rows]=service.header.iadetail.length [responsive]="true"
+    paginatorPosition="bottom" dataKey="acCode" [metaKeySelection]="true"  [scrollable]="true">
+    <!-- <p-table [value]="service.header.iadetail" selectionMode="single" [(selection)]="selectedCheque" [paginator]="true"
+    [rows]="5"> -->
+
+    <ng-template pTemplate="caption">
+
+      <tr>
+        <!-- <td> <button pButton type="button" label="Insert" (click)="handleInsert($event)"></button> </td>
+        <td> <button pButton type="button" label="Save" (click)="handleSave($event)"></button> </td>
+        <td> <button pButton type="button" label="Delete" (click)="handleDelete($event)"></button> </td> -->
+        <td> <button pButton type="button" label="Close" (click)="handleClose($event)"></button> </td>
+      </tr>
+
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngStyle]="col.style">
+          {{col.header}}<a *ngIf="col.editable" style="color: red;"> *</a>
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-idx="rowIndex" let-columns="columns">
+      <tr [pSelectableRow]="rowData">
+        <td pEditableColumn *ngFor="let col of columns" [style]="col.style"
+          [ngClass]="rowData==selectedCheque&&col.editable? 'editable' : null">
+
+          <div *ngIf='!col.editable && col.exp && !col.pip'>
+            {{rowData[col.field]===col.exp.val ? col.exp.then : col.exp.els }}
+          </div>
+
+          <div *ngIf='!col.editable && col.exp && col.pip'>
+            {{ rowData[col.field]===col.exp.val ? col.exp.then : col.exp.els }}
+          </div>
+
+          <div *ngIf='!col.editable && !col.exp && !col.pip'>
+            {{rowData[col.field]}}
+          </div>
+
+          <div *ngIf='!col.editable && !col.exp && col.pip'>
+            {{rowData[col.field] | date: 'dd/MM/yyyy' }}<i class="pi pi-calendar"></i>
+          </div>
+
+          <p-cellEditor *ngIf='col.editable'>
+            <ng-template pTemplate="input" *ngIf='!col.type'>
+              <input style="width: 100%;" pInputText type="text" [maxlength]="col.maxlength"
+                [(ngModel)]="rowData[col.field]" (change)="itemClick($event,col,idx)">
+            </ng-template>
+
+            <ng-template pTemplate="input" *ngIf="col.type=='date'">
+              <input style="width: 100%;" pInputText type="date" value="dd/MM/yyyy" [(ngModel)]="rowData[col.field]"
+                (change)="itemClick($event,col,idx)">
+
+            </ng-template>
+
+            <ng-template pTemplate="output" *ngIf='col.exp'>
+              {{rowData[col.field]===col.exp.val ? col.exp.then : col.exp.els }}
+            </ng-template>
+
+            <ng-template pTemplate="output" *ngIf='!col.exp && !col.pip'>
+              {{rowData[col.field]}}
+            </ng-template>
+
+            <ng-template pTemplate="output" *ngIf='!col.exp && col.pip'>
+              {{rowData[col.field] | date: 'dd/MM/yyyy'}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ">
+      <button type="button" pButton icon="fa fa-files-o" (click)="chequeCopyToAll()" label="Copy"></button>
+      <button type="button" pButton icon="pi pi-check" (click)="handleClose($event)" label="Ok"></button>
+    </div>
+  </p-footer>
+</p-dialog>

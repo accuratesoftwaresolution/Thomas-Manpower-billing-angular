@@ -1,0 +1,114 @@
+<!-- this component is not completed  -->
+
+<div class="container" style="background-color: #d1e2f1 ; padding: 20px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">{{title}}</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Add" class="custom-button"></button>
+            <button pButton label="Edit" class="custom-button"></button>
+            <button pButton label="Delete" class="custom-button"></button>
+            <button pButton label="Previous" class="custom-button"></button>
+            <button pButton label="Next" class="custom-button"></button>
+            <button pButton label="List" class="custom-button"></button>
+            <button pButton label="Print" class="custom-button"></button>
+            <button pButton label="Suspended" class="custom-button"></button>
+            <button pButton label="Authorize" class="custom-button"></button>
+            <button pButton label="Reject" class="custom-button"></button>
+
+        </div>
+    </div>
+
+    <!-- header part starts -->
+
+    <div style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;display: flex;">
+
+        <div class="p-col-8">
+
+            <div class="p-grid">
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;" *ngFor="let field of fieldConfigs">
+                    <div class="p-field">
+                        <ng-container *ngIf="!field.emptyField">
+                            <label style="display: inline-block; width: 30%;">{{ field?.label }}</label>
+
+                            <input type="text" [(ngModel)]="this[field?.bindingName]" pInputText
+                                [style.width]="field?.width" style="background-color: #ffffff; height: 2vh;">
+
+                            <button *ngIf="field.hasButton" pButton (click)="ShowPopUp(field.popupName)"
+                                icon="pi pi-ellipsis-h" class="custom-button" style="margin-left:10px">
+                            </button>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-4">
+
+            <div class="p-grid">
+                <div class="p-col-1" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+
+                <div class="p-col-11" style="border: 1px solid #003366; border-radius: 5px;">
+
+
+                    <h6 style="
+                background-color: #5c96d4;
+                color: white;
+                height: 4vh;
+                align-items: center;
+                display: flex;
+                padding-left: 8px;">Customer Details</h6>
+
+
+                    <div class="p-col-12" style="padding: 0.5rem 0rem 0rem 0.5rem;">
+                        <label style="display: inline-block; width: 30%;">Customer Code</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    </div>
+                    <div class="p-col-12" style="padding: 0.5rem 0rem 0rem 0.5rem;">
+
+                        <label style="display: inline-block; width: 30%;">Customer Name</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 65%; height: 2vh;">
+
+                    </div>
+                    <div class="p-col-12" style="padding: 0.5rem 0rem 0rem 0.5rem;">
+
+                        <label style="display: inline-block; width: 30%;">Address</label>
+                        <textarea rows="2" style="background-color: #ffffff;min-width: 65%;max-width: 65%;"> </textarea>
+
+                    </div>
+                    <div class="p-col-12" style="padding: 0.5rem 0rem 0rem 0.5rem;">
+
+                        <label style="display: inline-block; width: 30%;">Telephone</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                    </div>
+                    <div class="p-col-12" style="padding: 0.5rem 0rem 0rem 0.5rem;">
+
+                        <label style="display: inline-block; width: 30%;">Fax</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                    </div>
+                    <div class="p-col-12" style="padding: 0.5rem 0rem 0rem 0.5rem;">
+
+                        <label style="display: inline-block; width: 30%;">Email</label>
+                        <input type="text" pInputText style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+     <!-- header part ends -->
+
+     <!-- tab part starts -->
+
+
+
+
+</div>

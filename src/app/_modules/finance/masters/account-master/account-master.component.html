@@ -1,0 +1,414 @@
+<p-toast></p-toast>
+<div class="p-col-12"></div>
+<div class="card card-w-title">
+    <div class="p-grid nested-grid">
+        <div class="p-col-4 p-md-4">
+            <p-tree [value]="accountsData" selectionMode="single" [virtualNodeHeight]="20" [(selection)]="selectedFile"
+                (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"
+                (onNodeExpand)="nodeExpand($event)" [style]="{'height':'455px','width':'100%','overflow':'auto'}">
+            </p-tree>
+        </div>
+        <div class="p-col-8 p-md-8" style="height:max-content">
+
+            <p-panel header="Level I" [toggleable]="true" *ngIf="selectedFile && selectedFile.data.level >0">
+                <div class="p-grid nested-grid form-group">
+                    <div class="p-col-2 p-md-2">
+                        <span class="p-inputfield">
+                            <label>{{'code' | first}}<a style="color: red;"> *</a></label><br />
+                            <input type="text" pInputText [disabled]="isDisabled" [(ngModel)]="level1.ac1Code"
+                                maxlength="1">
+                        </span>
+                    </div>
+                    <div class="p-col-2 p-md-2"></div>
+                    <div class="p-col-6 p-md-6">
+                        <span class="p-inputfield">
+                            <label>{{'name' | first}}<a style="color: red;"> *</a></label><br />
+                            <input type="text" style="text-transform: uppercase;" pInputText
+                                [(ngModel)]="level1.ac1Name" maxlength="25">
+                        </span>
+                    </div>
+                </div>
+            </p-panel>
+
+            <p-panel header="Level II" [toggleable]="true" [style]="{'margin-bottom':'20px'}"
+                *ngIf="selectedFile && selectedFile.data.level >1">
+                <div class="p-grid nested-grid form-group">
+                    <div class="p-col-2 p-md-2">
+                        <span class="p-inputfield">
+                            <label>{{'code' | first}}<a style="color: red;"> *</a></label><br />
+                            <input type="text" pInputText placeholder="" [disabled]="isDisabled2"
+                                [(ngModel)]="level2.ac2Code" maxlength="2">
+                        </span>
+                    </div>
+                    <div class="p-col-2 p-md-2"></div>
+                    <div class="p-col-6 p-md-6">
+                        <span class="p-inputfield">
+                            <label>{{'name' | first}}<a style="color: red;"> *</a></label><br />
+                            <input type="text" style="text-transform: uppercase;" pInputText
+                                [(ngModel)]="level2.ac2Name" maxlength="25">
+                        </span>
+                    </div>
+                </div>
+            </p-panel>
+            <p-panel header="Level III" [toggleable]="true" [style]="{'margin-bottom':'20px'}"
+                *ngIf="selectedFile && selectedFile.data.level >2">
+                <div class="p-grid nested-grid form-group">
+                    <div class="p-col-12">
+                        <div class="p-grid nested-grid">
+                            <div class="p-col-4 p-md-4">
+                                <span class="p-inputfield">
+                                    <label>{{'code' | first}}<a style="color: red;"> *</a></label><br />
+                                    <input type="text" pInputText placeholder="" [disabled]="isDisabled3"
+                                        [(ngModel)]="level3.ac3Code" maxlength="4">
+                                </span>
+                            </div>
+                            <div class="p-col-4 p-md-4">
+                                <span class="p-inputfield">
+                                    <label>{{'name' | first}}<a style="color: red;"> *</a></label><br />
+                                    <input type="text" style="text-transform: uppercase;" pInputText
+                                        [(ngModel)]="level3.ac3Name" maxlength="25">
+                                </span>
+                            </div>
+                            <div class="p-col-4 p-md-4">
+                                <span class="p-inputfield">
+                                    <label>{{'a/cCategory' | first}}</label><br />
+                                    <input type="text" pInputText placeholder=" " [(ngModel)]="level3.acCat"
+                                        (click)="onCategoryLov('level3')" [disabled]="isDisabled4">
+                                </span>
+                            </div>
+
+                            <div class="p-col-4 p-md-4">
+                                <span class="p-inputfield">
+                                    <label>{{'subLedger' | first}}</label><br />
+                                    <p-dropdown [disabled]="isDisabled3" [options]="subLedgerLovDate"
+                                        [(ngModel)]="level3.slYn" [style]="{'width':'100%'}"></p-dropdown>
+                                </span>
+                            </div>
+                            <div class="p-col-4 p-md-4">
+                                <span class="p-inputfield">
+                                    <label>{{'alphabet' | first}}</label><br />
+                                    <p-dropdown [disabled]="isDisabled3" [options]="yesNoLovData"
+                                        [(ngModel)]="level3.alphabet" [style]="{'width':'100%'}"></p-dropdown>
+                                </span>
+                            </div>
+                            <div class="p-col-4 p-md-4">
+                                <span class="p-inputfield">
+                                    <label>{{'bill' | first}}</label><br />
+                                    <p-dropdown [disabled]="isDisabled3" [options]="yesNoLovData"
+                                        [(ngModel)]="level3.bill" [style]="{'width':'100%'}">
+                                    </p-dropdown>
+
+                                </span>
+                            </div>
+                            <div class="p-col-2 p-md-2" *ngIf="!isRac">
+                                <span class="p-inputfield">
+                                    <label>{{'job' | first}}</label><br />
+                                    <p-dropdown [disabled]="isDisabled3" [options]="yesNoLovData"
+                                        [(ngModel)]="level3.job" [style]="{'width':'100%'}">
+                                    </p-dropdown>
+
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+            <p-panel header="Level IV" [toggleable]="true" [style]="{'margin-bottom':'20px'}"
+                *ngIf="selectedFile && selectedFile.data.level > 3">
+                <div class="p-col-12">
+                    <div class="p-grid nested-grid">
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'acCode' | first}}<a style="color: red;"> *</a></label><br />
+                                <input type="text" pInputText placeholder="" [disabled]="isDisabled4"
+                                    [(ngModel)]="level4.acCode" maxlength="9">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'name' | first}}<a style="color: red;"> *</a></label><br />
+                                <input style="text-transform: uppercase;" type="text" pInputText
+                                    [(ngModel)]="level4.acName" maxlength="50">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'currency' | first}}<a style="color: red;"> *</a></label><br />
+                                <p-dropdown [style]="{'width':'100%'}" [options]="currencyLovData"
+                                    [(ngModel)]="level4.curCode" filter="true">
+                                </p-dropdown>
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'status' | first}}</label><br />
+                                <p-dropdown [style]="{'width':'100%'}" [options]="statusLovData"
+                                    [(ngModel)]="level4.status" [disabled]="true">
+                                </p-dropdown>
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'category' | first}}<a style="color: red;"> *</a></label><br />
+                                <input type="text" pInputText placeholder=" " [(ngModel)]="level4.acCat"
+                                    (click)="onCategoryLov('level4')">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'alphabet' | first}}</label><br />
+                                <p-dropdown [options]="alphabetLovData" [style]="{'width':'100%'}"
+                                    [(ngModel)]="level4.alphabet" filter="true">
+                                </p-dropdown>
+                            </span>
+                        </div>
+
+
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'statusRemarks' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.statusRemarks" disabled
+                                    maxlength="50">
+                            </span>
+                        </div>
+                        <div class="p-col-8 p-md-8">
+                            <span class="p-inputfield">
+                                <label> {{'remarks' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.remarks"
+                                    maxlength="25">
+                            </span>
+                        </div>
+                        <!-- <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'bill' | first}}<a style="color: red;"> *</a></label><br />
+                                <p-dropdown [options]="yesNoLovData" [(ngModel)]="level4.billDetail" [style]="{'width':'100%'}">
+                                </p-dropdown>
+
+                            </span>
+                        </div> -->
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <p-checkbox id="sysAc" name="sysAc" (onChange)="sysAcCheck($event)"
+                                    [(ngModel)]="level4.sysAc" binary="true" label="System A/C">
+                                </p-checkbox>
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <p-checkbox id="acCatFromAc3" name="acCatFromAc3" (onChange)="acCatFromAc3Check($event)"
+                                    [(ngModel)]="level4.acCatFromAc3" binary="true" label="Replace from Level3">
+                                </p-checkbox>
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4" *ngIf="!isRac">
+                            <span class="p-inputfield">
+                                <label>{{'jobHead' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.jobHead"
+                                    (click)="onJobCodeLov()">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4" *ngIf="!isRac">
+                            <span class="p-inputfield">
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.jobHdName">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <p-panel header="Address" [toggleable]="true" [style]="{'margin-bottom':'20px'}"
+                    *ngIf="isDebitorCreditor()">
+                    <div class="p-grid nested-grid form-group" style="padding-top: 5mm;">
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'add1' | first}}</label><br />
+                                <input type="text" pInputText placeholder="Address1" [(ngModel)]="level4.add1"
+                                    maxlength="30">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'add2' | first}}</label><br />
+                                <input type="text" pInputText placeholder="Address2" [(ngModel)]="level4.add2"
+                                    maxlength="30">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'add3' | first}}</label><br />
+                                <input type="text" pInputText placeholder="Address3" [(ngModel)]="level4.add3"
+                                    maxlength="30">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'add4' | first}}</label><br />
+                                <input type="text" pInputText placeholder="Address4" [(ngModel)]="level4.add4"
+                                    maxlength="30">
+                            </span>
+                        </div>
+
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'area' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.areaName"
+                                    (click)="onAreaLov()">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'territory/Emirates' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.territoryName"
+                                    (click)="onTerritoryLov()">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'telephone' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.tel" maxlength="20">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'fax' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.fax" maxlength="20">
+                            </span>
+                        </div>
+
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'salesman' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.salesmanName"
+                                    (click)="onSalesmanLov()">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'country' | first}}<a style="color: red;"> *</a></label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.countryName"
+                                    (click)="onCountryLov()">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'companyType' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.cityName"
+                                    (click)="onCityCodeLov()">
+                            </span>
+                        </div>
+                    </div>
+                </p-panel>
+
+                <p-panel header="Contact Person" [toggleable]="true" [style]="{'margin-bottom':'20px'}"
+                    *ngIf="isDebitorCreditor()">
+                    <div class="p-grid nested-grid form-group" style="padding-top: 5mm;">
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label> {{'contactPerson' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.contact1"
+                                    maxlength="40">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'name' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.contact2"
+                                    maxlength="40">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label> {{'GSM1' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.contact1Gsm"
+                                    maxlength="20">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label> {{'GSM2' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.contact2Gsm"
+                                    maxlength="20">
+                            </span>
+                        </div>
+
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'email' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.email" maxlength="50">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>website</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.website"
+                                    maxlength="50">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'creditLimit' | first}}</label><br />
+                                <input type="number" pInputText placeholder="" [(ngModel)]="level4.crLimit">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'creditPeriod' | first}}</label><br />
+                                <input type="number" pInputText placeholder="" [(ngModel)]="level4.crPeriod"
+                                    maxlength="4">
+                            </span>
+                        </div>
+                    </div>
+                </p-panel>
+
+                <p-panel header="CR Details" [toggleable]="true" [style]="{'margin-bottom':'20px'}"
+                    *ngIf="isDebitorCreditor()">
+                    <div class="p-grid nested-grid form-group" style="padding-top: 5mm;">
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label> {{'no' | first}} </label><br>
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.crNo" maxlength="50">
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label> {{'date' | first}}</label><br />
+                                <p-calendar dateFormat="dd/MM/yy" placeholder="dd/MM/yy" [(ngModel)]="level4.crDate">
+                                </p-calendar>
+                            </span>
+                        </div>
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label> {{'applNo' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.crApplNo"
+                                    maxlength="50">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-grid nested-grid form-group">
+                        <div class="p-col-4 p-md-4">
+                            <span class="p-inputfield">
+                                <label>{{'debtCollector' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.debtCollectorName"
+                                    (click)="onDebtCollectorLov()">
+                            </span>
+                        </div>
+                        <div class="p-col-3 p-md-3" *ngIf="!isRac">
+                            <span class="p-inputfield">
+                                <label>{{'department' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.deptName"
+                                    (click)="onDepartmentLov()" disabled>
+                            </span>
+                        </div>
+                        <div class="p-col-3 p-md-3" *ngIf="!isRac">
+                            <span class="p-inputfield">
+                                <label>{{'saleRate' | first}}</label><br />
+                                <input type="text" pInputText placeholder="" [(ngModel)]="level4.saleRate" disabled>
+                            </span>
+                        </div>
+                    </div>
+                </p-panel>
+            </p-panel>
+        </div>
+    </div>
+</div>

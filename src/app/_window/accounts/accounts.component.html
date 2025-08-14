@@ -1,0 +1,39 @@
+<div class="ui-fluid">
+    <div class="card card-w-title">
+        <p-table #dt [value]="accountsList" [responsive]="true" [(selection)]="selectedAccount" scrollHeight="225px"
+            [columns]="accountsCols" selectionMode="single" dataKey="acCode" [scrollable]="true"
+            (onRowSelect)="onRowSelect($event)">
+
+            <ng-template pTemplate="caption">
+                <div style="text-align: right">
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="50" placeholder="Global Filter"
+                        (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field" [style.width]="col.width">
+                        {{col.header}} <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>
+                </tr>
+
+                <tr>
+                    <th *ngFor="let col of columns" [style.width]="col.width">
+                        <input pInputText type="text"
+                            (input)="dt.filter($event.target.value, col.field, col.field.filterMatchMode)">
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-account>
+                <tr [pSelectableRow]="account">
+                    <td style="width:10em">{{account.acCode}}</td>
+                    <td style="width:10em">{{account.acName}}</td>
+                    <td style="width:10em">{{account.acCat}}</td>
+                    <td style="width:7em">{{account.curCode}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

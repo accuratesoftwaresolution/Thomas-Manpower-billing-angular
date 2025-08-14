@@ -1,0 +1,153 @@
+<p-table #dt [columns]="columns" [value]="service.header.iiposupexp" selectionMode="single" [metaKeySelection]="true"
+    [(selection)]="service.selectedDetailRow" [scrollable]="true" scrollHeight="160px" scrollWidth="100%"
+    [resizableColumns]="true" [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true" dataKey="srNo">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:50em" [pSortableColumn]>Particulars</th>
+            <th style="width:10em" [pSortableColumn]="">Amount</th>
+            <th style="width:6em" [pSortableColumn]="">VAT InOut</th>
+            <th style="width:7em" [pSortableColumn]="">VAT Category</th>
+            <th style="width:5em" [pSortableColumn]="">VAT Type</th>
+            <th style="width:5em" [pSortableColumn]="">VAT %</th>
+            <th style="width:5em" [pSortableColumn]="">VAT Amt</th>
+            <th style="width:7em" [pSortableColumn]="">VAT Ac</th>
+            <th style="width:5em" [pSortableColumn]="">#</th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-ri="rowIndex">
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+            <td pEditableColumn style="width:50em" [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input type="text" pInputText style="width: 100%;" placeholder=" " (click)="onParticulars(ri)">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.particulars}}
+                    </ng-template>
+                </p-cellEditor>
+
+            </td>
+            <td pEditableColumn style="text-align:center;width:10em;"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-inputNumber [(ngModel)]="rowData.amt" [minFractionDigits]="service.amtDecPts"
+                            [maxFractionDigits]="service.amtDecPts" [maxlength]="18 " mode="decimal"> </p-inputNumber>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.amt | number: actionService.ictAmount}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="text-align:center;width:6em;"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText pKeyFilter="num" (click)="vatInoutSelection(ri)" type="text"
+                            [(ngModel)]="rowData.vatInout">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.vatInout}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn style="text-align:center;width:7em;"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText pKeyFilter="num" (click)="vatCatSelection(ri)" type="text"
+                            [(ngModel)]="rowData.vatCat">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.vatCat}}
+                    </ng-template>
+                </p-cellEditor>
+
+            </td>
+            <td pEditableColumn style="text-align:center;width:5em;"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown [options]="vatTypeLovData" [(ngModel)]="rowData.vatType" appendTo="body">
+                        </p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.vatType==='R'?'Refund':rowData.vatType==='C'?'Cost':'No VAT'}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn style="text-align:center;width:5em;"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input type="number" pInputText placeholder="rowData.vatPer" [(ngModel)]="rowData.vatPer"
+                            disabled=true>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.vatPer}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn style="text-align:center;width:5em;"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input type="number" pInputText placeholder="rowData.vatAmt" [(ngModel)]="rowData.vatAmt"
+                            disabled=true>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.vatAmt}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn style="text-align:center;width:7em;"
+                [ngClass]="rowData==service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText placeholder="rowData.vatAc" [(ngModel)]="rowData.vatAc" disabled=true>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.vatAc}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="width:5em" [ngClass]="rowData==this.service.selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown [options]="drCrLovData" [(ngModel)]="rowData.signInt" appendTo="body"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.signInt==1?'Dr':'Cr'}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <tr>
+            <th style="width:50em"> </th>
+            <th style="width:10em">
+                <input type="text" disabled value='{{getTotSupExpAmount() | number: actionService.ictAmount}}'
+                    style="width: 100%;">
+            </th>
+            <th style="width:6em"></th>
+            <th style="width:7em"></th>
+            <th style="width:5em"></th>
+            <th style="width:5em"></th>
+            <th style="width:5em"></th>
+            <th style="width:7em"></th>
+            <th style="width:5em"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+            <td [attr.colspan]="columns.length">
+                No records found
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

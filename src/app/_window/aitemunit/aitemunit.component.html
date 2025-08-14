@@ -1,0 +1,100 @@
+<!-- <p-toolbar styleClass="p-mb-4">
+    <ng-template pTemplate="left">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+            (click)="openNew();"></button>
+    </ng-template>
+
+</p-toolbar>
+
+<p-table #dt [value]="_mainService.unitDetails" [rows]="10" [paginator]="true" responsiveLayout="scroll"
+    [rowHover]="true" dataKey="intCode" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="unitCode">{{'unitCode'|first}}
+                <p-sortIcon field="unitCode"></p-sortIcon>
+            </th>
+            <th pSortableColumn="cFactor">{{'cFactor'|first}}
+                <p-sortIcon field="cFactor"></p-sortIcon>
+            </th>
+            <th pSortableColumn="saleRate1">{{'saleRate1'|first}}
+                <p-sortIcon field="saleRate1"></p-sortIcon>
+            </th>
+            <th pSortableColumn="saleRate2">{{'saleRate2'|first}}
+                <p-sortIcon field="saleRate2"></p-sortIcon>
+            </th>
+            <th pSortableColumn="saleRate3">{{'saleRate3'|first}}
+                <p-sortIcon field="saleRate3"></p-sortIcon>
+            </th>
+            <th pSortableColumn="saleRate4">{{'saleRate4'|first}}
+                <p-sortIcon field="saleRate4"></p-sortIcon>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-ri="rowIndex">
+        <tr>
+            <td>{{product.unitCode}}</td>
+            <td>{{product.cFactor}}</td>
+            <td>{{product.saleRate1}}</td>
+            <td>{{product.saleRate2}}</td>
+            <td>{{product.saleRate3}}</td>
+            <td>{{product.saleRate4}}</td>
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                    (click)="editProduct(product)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                    (click)="deleteProduct(product,ri)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Account Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label>{{'unitCode' | first}}</label>
+            <p-dropdown [options]="unitLovData" [(ngModel)]="service.selectedDetailRow.unitCode" optionLabel="label"
+                optionValue='value'>
+            </p-dropdown>
+        </div>
+        <div class="p-field">
+            <label>{{'cFactor' | first}}</label>
+            <input type="text" maxlength="30" pInputText placeholder="" [(ngModel)]="service.selectedDetailRow.cFactor" [ngStyle]="{'width':'100%'}">
+          
+        </div>
+        <div class="p-field">
+            <label>{{'saleRate1' | first}}</label>
+            <input type="text" maxlength="30" pInputText placeholder="" [(ngModel)]="service.selectedDetailRow.saleRate1" [ngStyle]="{'width':'100%'}">
+
+        </div>
+        <div class="p-field">
+            <label>{{'saleRate2' | first}}</label>
+            <input type="text" maxlength="30" pInputText placeholder="" [(ngModel)]="service.selectedDetailRow.saleRate2" [ngStyle]="{'width':'100%'}">
+           
+        </div>
+        <div class="p-field">
+            <label>{{'saleRate3' | first}}</label>
+            <input type="text" maxlength="30" pInputText placeholder="" [(ngModel)]="service.selectedDetailRow.saleRate3" [ngStyle]="{'width':'100%'}">
+
+          
+        </div>
+        <div class="p-field">
+            <label>{{'saleRate4' | first}}</label>
+            <input type="text" maxlength="30" pInputText placeholder="" [(ngModel)]="service.selectedDetailRow.saleRate4" [ngStyle]="{'width':'100%'}">
+
+          
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+            (click)="saveDetail(service.selectedDetailRow)"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+ -->

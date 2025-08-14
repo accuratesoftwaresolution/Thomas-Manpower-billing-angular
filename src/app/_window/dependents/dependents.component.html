@@ -1,0 +1,248 @@
+<p-panel header="Dependents" [toggleable]="false" [style]="{'margin-bottom':'20px'}" >
+   
+    
+<p-toast></p-toast>
+<div class="card">
+
+    <div class="card-title" style="font-weight: bold;">{{titleCode | first}} &nbsp;&nbsp;
+        <accurate-help [helpCode]="helpCode" [multiLanguage]="true"></accurate-help>
+    </div>
+    
+    <p-table #dt [value]="allempDep" dataKey="id" [rowHover]="true" [showCurrentPageReport]="true"
+         [filterDelay]="0" [scrollable]="true" responsiveLayout="scroll"
+        [globalFilterFields]="['empCode','docCode','docNo','dvCode','brCode','issueDate','expiryDate','dependentCode']"
+        styleClass="p-datatable-sm">
+
+
+    <ng-template pTemplate="caption">
+        <div class="p-grid">
+            <div class="p-col-6 p-md-6 p-lg-6">
+                <button pButton pRipple type="button" label="Add" icon="pi pi-plus" (click)="createNew()"
+                    class="p-mr-2"></button>
+
+             
+                <button type="button" pButton icon="pi pi-file-pdf" pTooltip="PDF" tooltipPosition="top"
+                    iconPos="left" (click)="exportPdf()" class="p-button-warning p-mr-2"></button> 
+
+            </div>
+            <div class="p-col-6 p-md-6 p-lg-6">
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Global Filter" [style]="{'float': 'right'}" />
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 10em;">
+                <input pInputText type="text" (input)="dt.filter($event.target.value, 'empCode', 'contains')"
+                    class="p-column-filter" style="width: 100%;">
+            </th>
+            <th style="width: 20em;">
+                <input pInputText type="numeric" (input)="dt.filter($event.target.value, 'docCode', 'contains')"
+                    class="p-column-filter" style="width: 100%;">
+            </th>
+            <th style="width: 20em;">
+                <input pInputText type="text" (input)="dt.filter($event.target.value, 'docNo', 'contains')"
+                    class="p-column-filter" style="width: 100%;">
+            </th>
+            <th style="width: 25em;">
+                <input pInputText type="text" (input)="dt.filter($event.target.value, 'dvCode', 'contains')"
+                    class="p-column-filter" style="width: 100%;">
+            </th>
+            <th style="width: 20em;">
+                <input pInputText type="text" (input)="dt.filter($event.target.value, 'brCode', 'contains')"
+                    class="p-column-filter" style="width: 100%;">
+            </th>
+            <th style="width: 20em;">
+                <input pInputText type="date" (input)="dt.filter($event.target.value, 'issueDate', 'contains')"
+                    class="p-column-filter" style="width: 100%;">
+            </th>
+            <th style="width: 20em;">
+                <input pInputText type="date" (input)="dt.filter($event.target.value, 'expiryDate', 'contains')"
+                    class="p-column-filter" style="width: 100%;">
+            </th>
+            <th style="width: 20em;">
+                <input pInputText type="text" (input)="dt.filter($event.target.value, 'dependentCode', 'contains')"
+                    class="p-column-filter" style="width: 100%;">
+            </th>
+            <th></th>
+        </tr>
+
+        <tr>
+            <th pSortableColumn="empCode" style="width: 10em;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <label style="float: left;">empCode<p-sortIcon field="empCode"></p-sortIcon></label>
+                    <p-columnFilter type="numeric" field="empCode" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="docCode" style="width: 10em;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <label style="float: left;">docCOde<p-sortIcon field="docCode"></p-sortIcon>
+                    </label>
+                    <p-columnFilter type="numeric" field="docCode" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="docNo" style="width: 20em;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <label style="float: left;">docNo<p-sortIcon field="docNo"></p-sortIcon>
+                    </label>
+                    <p-columnFilter type="text" field="docNo" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="dvCode" style="width: 25em;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <label style="float: left;">dvCode<p-sortIcon field="dvCode"></p-sortIcon></label>
+                    <p-columnFilter type="text" field="dvCode" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="brCode" style="width: 20em;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <label style="float: left;">brCode<p-sortIcon field="brCode"></p-sortIcon></label>
+                    <p-columnFilter type="numeric" field="brCode" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="issueDate" style="width: 20em;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <label style="float: left;">issueDate<p-sortIcon field="issueDate"></p-sortIcon>
+                    </label>
+                    <p-columnFilter type="date" field="issueDate" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="expiryDate" style="width: 20em;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <label style="float: left;">Expiry date<p-sortIcon field="expiryDate"></p-sortIcon>
+                    </label>
+                    <p-columnFilter type="date" field="expiryDate" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="dependentCode" style="width: 20em;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    <label style="float: left;">dependent code<p-sortIcon field="dependentCode"></p-sortIcon></label>
+                    <p-columnFilter type="text" field="dependentCode" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th></th>
+        </tr>
+
+    </ng-template>
+
+    <ng-template pTemplate="body" let-empDoc>
+        <tr>
+            <td style="width: 10em;">{{empDoc.empCode}}</td>
+            <td style="width: 20em;">{{empDoc.docCode}}</td>
+            <td style="width: 20em;">{{empDoc.docNo}}</td>
+            <td style="width: 25em;">{{empDoc.dvCode}}</td>
+            <td style="width: 20em;">{{empDoc.brCode}}</td>
+            <td style="width: 20em;">{{empDoc.issueDate}}</td>
+            <td style="width: 20em;">{{empDoc.expiryDate}}</td>
+            <td style="width: 20em;">{{empDoc.dependentCode}}</td>
+            <td style="text-align: center;padding-left: 0%;padding-right: 1%;width: 10em;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-success p-mr-2 p-button-rounded"
+                    (click)="edit(empDoc)"></button>
+                <button pButton type="button" (click)="delete(empDoc)" icon="pi pi-trash"
+                    class="p-button-danger p-button-rounded"></button>
+            </td>
+        </tr>
+    </ng-template>
+
+
+</p-table>
+
+<p-paginator [rows]="5" [totalRecords]="totalRecords"
+       (onPageChange)="onPageChange($event)" [rowsPerPageOptions]="ROWS_PER_PAGE_OPTIONS"
+      
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [showCurrentPageReport]="true" ></p-paginator>
+</div>
+
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+<p-dialog [(visible)]="empDependentloading" [style]="{width: '450px'}" header="Employee Documents" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-6 p-lg-6 p-field">
+                <label for="empCode">{{'empCode' | first}}<span style="color: red;">*</span></label>
+                <input type="text" pInputText id="empCode" [(ngModel)]="selectedempDoc.empCode" [disabled]="isEditable"/>
+            </div>
+          
+
+            <div class="p-col-12 p-md-6 p-lg-6 p-field">
+                <label for="docCode">{{'docCode' | first}}<span style="color: red;">*</span></label>
+               
+                    <input type="text" pInputText id="docCode" pKeyFilter="int" [(ngModel)]="selectedempDoc.docCode" [disabled]="isEditable"
+                    maxlength="9" />
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-6 p-field">
+                <label for="docNo">{{'docNo' | first}}<span style="color: red;">*</span></label>
+                <input type="text" pInputText id="docNo" pKeyFilter="int" [(ngModel)]="selectedempDoc.docNo"
+                    maxlength="9" />
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-6 p-field">
+                <label for="dvCode">{{'dvCode' | first}}<span style="color: red;">*</span></label>
+                <input type="text" pInputText id="dvCode" pKeyFilter="int" [(ngModel)]="selectedempDoc.dvCode" [disabled]="isEditable"
+                    maxlength="9" />
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-6 p-field">
+                <label for="brCode">{{'brCode' | first}}<span style="color: red;">*</span></label>
+                <p-dropdown [options]="brList" [(ngModel)]="selectedempDoc.brCode" optionLabel="label"
+                optionValue='value' [showClear]="true" (onChange)="branchChange($event)" [disabled]="isEditable"></p-dropdown>
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-6 p-field">
+                <label for="issueDate">{{'issueDate' | first}}</label>
+                <input type="date" pInputText id="issueDate" [(ngModel)]="selectedempDoc.issueDate" />
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-6 p-field">
+                <label for="expiryDate">{{'expiryDate' | first}}</label>
+                <input type="date" pInputText id="expiryDate" [(ngModel)]="selectedempDoc.expiryDate"/>
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-6 p-field">
+                <label for="dependentCode">{{'dependentCode' | first}}</label>
+                <input type="text" pInputText id="dependentCode" [(ngModel)]="selectedempDoc.dependentCode" />
+            </div>
+          
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUser()">
+            <p-progressSpinner *ngIf="saveLoading" [style]="{width: '15px', height: '15px'}" styleClass="custom-spinner"
+                strokeWidth="8" fill="#EEEEEE">
+            </p-progressSpinner>
+        </button>
+    </ng-template>
+</p-dialog>
+
+<!-- 
+
+<div class="your-block">
+    <div id="invoice-content">
+        <div class="card invoice-wrapper">
+            <div class="ui-g invoice-header">
+                <div class="ui-g-6" class="headerSty">
+                    <h1 class="title">{{ titleCode | first }}</h1>
+                </div>
+               
+                <div class="card invoice-table billto-table">
+                    <table styleClass="p-datatable-gridlines" style="width: 100%;">
+                        <tr>
+                            <th *ngFor="let column  of columnMetaData">
+                                <div *ngIf="column.type !='file' &&column.type !='excel'">
+                                    <span>{{column.headerCode | first }}</span>
+                                </div>
+                            </th>
+                        </tr>
+
+                        <tr *ngFor="let data of allempDep">
+                            <td *ngFor="let col of columnMetaData">
+                                <span>{{data[col.field]}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div> -->
+</p-panel>

@@ -1,0 +1,60 @@
+:host ::ng-deep .ui-tabview .ui-tabview-panel{
+    height: 28em;
+}
+
+:host ::ng-deep .ui-table-scrollable-body{
+    height: 173px;
+}
+:host ::ng-deep .ui-dropdown{
+    position: absolute;
+}
+:host ::ng-deep .ui-dropdown .ui-dropdown-panel{
+    min-width: inherit;
+}
+
+.buttonStyle{
+    height: 25px;
+    width: 95px;
+    margin-left: 5px;
+    margin-right: 5px;    
+    line-height: 1.75em;
+}
+
+
+.width{
+    width: 120px;
+}
+.fieldWidth{
+    width: 180px;
+}
+
+.center {
+    padding: 14.8% 0;
+    // border: 3px solid green;
+    // text-align: center;
+  }
+
+  :host ::ng-deep .md-inputfield > label{
+    color: #3F51B5;
+    height: 43px;
+}
+:host ::ng-deep .p-button{
+    height: 25px;
+  }
+  :host ::ng-deep{
+    .p-datatable .p-datatable-tbody > tr > td{
+        padding: 0.25rem 0.25rem;
+    }
+    .p-datatable .p-datatable-thead > tr > th{
+        padding: 0.25rem 0.25rem;
+  }
+
+   .p-datatable-scrollable-body>table>.p-datatable-tbody>tr:first-child>td{
+        padding: 1px 1px;
+  }
+
+  
+    .p-input-filled .p-inputtext{
+        padding: 4px;
+    }
+}

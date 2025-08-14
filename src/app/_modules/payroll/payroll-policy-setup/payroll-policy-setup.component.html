@@ -1,0 +1,531 @@
+<div class="container" style="background-color: #d1e2f1 ; padding: 6px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">
+            Payroll Policy Setup
+        </h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Add" class="custom-button"></button>
+            <button pButton label="Edit" class="custom-button"></button>
+            <button pButton label="Delete" (click)="ConfirmDialog()" class="custom-button"></button>
+         
+            <button pButton label="List" (click)="displaypolicysetupList()" class="custom-button"></button>
+        </div>
+    </div>
+    <div class="custom-tabs">
+
+        <div class="tab-headers">
+            <ng-container *ngFor="let tab of scrollableTabs; let i = index">
+                <div class="tab-header" [class.active]="activeIndex === i" *ngIf="tab.visible == true"
+                    (click)="changeIndex(i)">
+                    {{ tab.title }}
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+            <!-- Payroll Policy Setup -->
+            <ng-container
+                *ngIf="scrollableTabs[activeIndex] && activeIndex == 0 && scrollableTabs[activeIndex].visible == true">
+                <div
+                    style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+
+                    <br>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 45%;">Payroll SysID
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="TblHPaySetup.HPayroll_SysID"
+                                    style="background-color: #ffffff !important; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 45%;">Payroll Code
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="TblHPaySetup.HPayroll_Code"
+                                    style="background-color: #ffffff !important; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 45%;">Payroll Name
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="TblHPaySetup.HPayroll_Name"
+                                    style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 45%;">Payroll Designation Group Code
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="TblHPaySetup.HPayroll_DesGroup_Code"
+                                    style="background-color: #ffffff !important; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('PayrollDesignationCode')" icon="pi pi-ellipsis-h"
+                                    class="custom-button" style="margin-left: 10px;"></button>
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 45%;">Payroll Designation Droup Name
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="TblHPaySetup.HPayroll_DesGroup_Name"
+                                    style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 45%;">Narration Code
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="TblHPaySetup.HPayroll_Narra_Code"
+                                    style="background-color: #ffffff !important; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 45%;">Payroll Name
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="TblHPaySetup.HPayroll_Narra_Name"
+                                    style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 style="color: #003366;">Salary Component</h5>
+
+                <div style="background-color: #ffffff ; border-radius: 4px;margin-bottom: 4px;">
+
+
+                    <p-table [value]="this.TblHPaySetup.payrollsetupdetail" [scrollable]="true" scrollHeight="270px"
+                        scrollWidth="100%" [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 3rem;">
+                                    <input type="checkbox" [checked]="isAllSelected('payrollsetupdetail')"
+                                        (change)="toggleSelectAll($event,'payrollsetupdetail')" />
+                                </th>
+
+                                <ng-container *ngFor="let col of TableData">
+                                    <th>
+                                    <th *ngIf="!col.hide && !col.routeTo"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                    <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+
+                                </ng-container>
+
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 8rem;"></th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <tr (click)="onRowClick(product, i)" (contextmenu)="onRightClick($event, product, i)">
+
+                                <td style="width: 3rem;">
+                                    <input type="checkbox" [(ngModel)]="product.selected" />
+                                </td>
+
+                                <ng-container *ngFor="let col of TableData">
+                                    <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                        [ngStyle]="{'width':col.width , 'text-align ': col.align}">
+
+                                        <ng-container *ngIf="!col.PopUpData">
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [readonly]="col.readOnly" [required]="col.mandatory"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                                [(ngModel)]="product[col.bind]"
+                                                (ngModelChange)="onInputChange(product, col.bind)"
+                                                (click)="toggle(0)" />
+                                        </ng-container>
+
+                                        <!-- Editable Input with Pop-Up -->
+                                        <ng-container *ngIf="!col.readOnly && col.PopUpData">
+
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                                [(ngModel)]="product[col.bind]" [readonly]="col.readOnly"
+                                                [required]="col.mandatory"
+                                                (ngModelChange)="onInputChange(product, col.bind)"
+                                                (click)="toggle(0)" />
+
+                                            <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                                class="custom-button" style="position: absolute; padding: 0;"
+                                                (click)="ShowPopUp(col.PopUpData, i)"></button>
+
+                                        </ng-container>
+
+                                        <!-- Read-Only Fields -->
+                                        <ng-container *ngIf="col.readOnly">
+                                            <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                        </ng-container>
+                                    </td>
+                                </ng-container>
+
+
+                                <td style="width: 4rem;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow1('payrollsetupdetail',i)" class="custom-button"></button>
+                                </td>
+                                <td style="width: 6rem;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button" (click)="addRow1('payrollsetupdetail',i)"></button>
+                                </td>
+
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+                </div>
+
+            </ng-container>
+            <!-- Leave Salary Policy -->
+            <ng-container
+                *ngIf="scrollableTabs[activeIndex] && activeIndex == 1 && scrollableTabs[activeIndex].visible == true">
+                <div
+                    style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                    <h5 style="color: #003366;">Leave Salary Calculation Method </h5>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 55%;">Leave Salary as 11+1 Month Salary Y /
+                                    N </label>
+
+                                <input type="checkbox"
+                                    [(ngModel)]="TblHPaySetup.leavesalary[0].DLCalMethod_FullMonth_Yn">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 56%;">Leave Salary as 11+1 Month Salary
+
+                                </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="TblHPaySetup.leavesalary[0].DLCalMethod_NoDays_Yn"
+                                    style="background-color: #ffffff !important; width: 35%; height: 2vh;">
+                                    
+
+                            </div>
+                        </div>
+
+
+                        
+                    </div>
+
+                    <br>
+                </div>
+
+                <div style="background-color: #ffffff ; border-radius: 4px;margin-bottom: 4px;">
+
+
+                    <p-table [value]="this.TblHPaySetup.leavesalary[0].leavepolicydetail" [scrollable]="true" scrollHeight="270px"
+                        scrollWidth="100%" [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <!-- <th style="width: 3rem;">
+                                     (change)="toggleSelectAll($event,'gratuitypolicydetail')" />
+                                        <input type="checkbox" [checked]="isAllSelected('leavepolicydetail')"
+                                            (change)="toggleSelectAll($event,'leavepolicydetail')" />
+                                    </th> -->
+                                <th style="width: 3rem;">
+                                    <input type="checkbox" [checked]="isAllSelected('leavepolicydetail')"
+                                        (change)="toggleSelectAll($event,'leavepolicydetail')" />
+                                </th>
+
+                                <ng-container *ngFor="let col of TableData1">
+                                    <th *ngIf="!col.hide && !col.routeTo"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal' , 'text-align ': col.align}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                    <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+
+                                </ng-container>
+
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 8rem;"></th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <tr (click)="onRowClick(product, i)" (contextmenu)="onRightClick($event, product, i)">
+
+                                <td style="width: 3rem;">
+                                    <input type="checkbox" [(ngModel)]="product.selected" />
+                                </td>
+
+                                <ng-container *ngFor="let col of TableData1">
+                                    <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                        [ngStyle]="{'width':col.width , 'text-align ': col.align}">
+
+                                        <ng-container *ngIf="!col.PopUpData && !col.checkbox">
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [readonly]="col.readOnly" [required]="col.mandatory"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                                [(ngModel)]="product[col.bind]"
+                                                (ngModelChange)="onInputChange(product, col.bind)"
+                                                (click)="toggle(0)" />
+                                        </ng-container>
+
+                                        <!-- Editable Input with Pop-Up -->
+                                        <ng-container *ngIf="!col.readOnly && col.PopUpData && !col.checkbox">
+
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                                [(ngModel)]="product[col.bind]" [readonly]="col.readOnly"
+                                                [required]="col.mandatory"
+                                                (ngModelChange)="onInputChange(product, col.bind)"
+                                                (click)="toggle(0)" />
+
+                                            <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                                class="custom-button" style="position: absolute; padding: 0;"
+                                                (click)="ShowPopUp(col.PopUpData, i)"></button>
+
+                                        </ng-container>
+
+                                        <!-- Read-Only Fields -->
+                                        <ng-container *ngIf="col.readOnly">
+                                            <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="col?.checkbox && col?.type === 'checkbox'">
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" [(ngModel)]="product[col?.bind]" />
+                                            </div>
+                                        </ng-container>
+
+                                    </td>
+                                </ng-container>
+
+
+                                <td style="width: 4rem;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow2('leavepolicydetail',i)" class="custom-button"></button>
+                                </td>
+                                <td style="width: 6rem;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button" (click)="addRow2('leavepolicydetail',i)"></button>
+                                </td>
+
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+                </div>
+            </ng-container>
+            <!-- Gratuity -->
+            <ng-container
+                *ngIf="scrollableTabs[activeIndex] && activeIndex == 2 && scrollableTabs[activeIndex].visible == true">
+
+                <div style="background-color: #ffffff ; border-radius: 4px;margin-bottom: 4px;">
+
+
+                    <p-table [value]="this.TblHPaySetup.gratuitypolicydetail" [scrollable]="true" scrollHeight="270px"
+                        scrollWidth="100%" [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 3rem;">
+                                    <input type="checkbox" [checked]="isAllSelected('gratuitypolicydetail')"
+                                        (change)="toggleSelectAll($event,'gratuitypolicydetail')" />
+                                </th>
+
+                                <ng-container *ngFor="let col of TableData2">
+                                    <th *ngIf="!col.hide && !col.routeTo"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal' , 'text-align ': col.align}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                    <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                        [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+
+                                </ng-container>
+
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 8rem;"></th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <tr (click)="onRowClick(product, i)" (contextmenu)="onRightClick($event, product, i)">
+
+                                <td style="width: 3rem;">
+                                    <input type="checkbox" [(ngModel)]="product.selected" />
+                                </td>
+
+                                <ng-container *ngFor="let col of TableData2">
+                                    <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                        [ngStyle]="{'width':col.width , 'text-align ': col.align}">
+
+                                        <ng-container *ngIf="!col.PopUpData && !col.checkbox">
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [readonly]="col.readOnly" [required]="col.mandatory"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                                [(ngModel)]="product[col.bind]"
+                                                (ngModelChange)="onInputChange(product, col.bind)"
+                                                (click)="toggle(0)" />
+                                        </ng-container>
+
+                                        <!-- Editable Input with Pop-Up -->
+                                        <ng-container *ngIf="!col.readOnly && col.PopUpData && !col.checkbox">
+
+                                            <input pInputText [type]="col.type" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                                [(ngModel)]="product[col.bind]" [readonly]="col.readOnly"
+                                                [required]="col.mandatory"
+                                                (ngModelChange)="onInputChange(product, col.bind)"
+                                                (click)="toggle(0)" />
+
+                                            <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                                class="custom-button" style="position: absolute; padding: 0;"
+                                                (click)="ShowPopUp(col.PopUpData, i)"></button>
+
+                                        </ng-container>
+
+                                        <!-- Read-Only Fields -->
+                                        <ng-container *ngIf="col.readOnly">
+                                            <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="col?.checkbox && col?.type === 'checkbox'">
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" [(ngModel)]="product[col?.bind]" />
+                                            </div>
+                                        </ng-container>
+
+                                    </td>
+                                </ng-container>
+
+
+                                <td style="width: 4rem;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow3('gratuitypolicydetail',i)" class="custom-button"></button>
+                                </td>
+                                <td style="width: 6rem;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button" (click)="addRow3('gratuitypolicydetail',i)"></button>
+                                </td>
+
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+                </div>
+            </ng-container>
+
+        </div>
+
+    </div>
+
+    <app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+    <p-confirmDialog></p-confirmDialog>
+
+
+    <p-dialog [(visible)]="showpolicysetupList" [modal]="true" [closable]="true" [style]="{ width: '60vw' }"
+    >
+
+    <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+        <div class="p-col-12 p-md-3">
+            <div class="p-inputgroup" style="max-width: 300px;">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-search"></i>
+                </span>
+                <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                    (input)="filterTable()" />
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-3">
+            <button pButton label="Back" (click)="Back()" class="custom-button"
+                [style]="{ 'background-color': 'antiquewhite', color: 'black' } ">
+            </button>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="p-grid" style="padding: 0 1rem;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+            background-color: #5c96d4;
+            color: antiquewhite;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">
+                Policy Set up Details
+            </h6>
+
+            <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 6rem;">Policy SysID</th>
+                        <th style="width: 8rem;">Policy Code</th>
+                        <th style="width: 8rem;">Policy Name</th>
+                        <th style="width:8rem">Actions</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td>{{ rowData.HPayroll_SysID }}</td>
+                        <td>{{ rowData.HPayroll_Code }}</td>
+                        <td>{{ rowData.HPayroll_Name }}</td>
+                        <td>
+                            <span class="p-buttonset">
+                                <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                    class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                    (click)="editRow(rowData)" class="custom-button">
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                            No Data available. Please check back later.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+</p-dialog>

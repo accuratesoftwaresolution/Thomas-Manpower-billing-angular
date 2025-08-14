@@ -1,0 +1,395 @@
+<div class="p-col-12">
+    <div class="card card-w-title">
+        <div class="p-col-12 form-group">
+            <div class="p-grid nested-grid">
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'userId' | first}}<a style="color: red;"> *</a></label><br />
+                        <input type="text" style="text-transform: uppercase;" pInputText placeholder="User Id"
+                            [(ngModel)]="service.header.userId" [disabled]="actionService.searchVrNo" [ngStyle]="{'width':'100%'}" maxlength="12">
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'userName' | first}}<a style="color: red;"> *</a></label><br />
+                        <input type="text" maxlength="30" pInputText placeholder="" [(ngModel)]="service.header.userName" [ngStyle]="{'width':'100%'}">
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'password' | first}}<a style="color: red;"> *</a></label><br />
+                        <input type="password" maxlength="20" pInputText placeholder="Password" [(ngModel)]="service.header.password" [ngStyle]="{'width':'100%'}">
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'confirmPassword' | first}}<a style="color: red;"> *</a></label><br />
+                        <input type="password" pInputText placeholder="Password" maxlength="20"
+                            [(ngModel)]="service.header.confirmPass" [ngStyle]="{'width':'100%'}">
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'passwordExpiryDays' | first}}</label><br />
+                        <input type="number" min="0"  pInputText [(ngModel)]="service.header.pwdExpDays" [ngStyle]="{'width':'100%'}">
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'designation' | first}}</label><br />
+                        <input type="text" pInputText placeholder="Designation"
+                            [(ngModel)]="service.header.designation" [ngStyle]="{'width':'100%'}" maxlength="30">
+                    </span>
+                </div>
+                
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'userGroupYN' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" (click)="isDisabled(service.header.userGroupYn)"
+                            [(ngModel)]="service.header.userGroupYn" [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'userGroup' | first}}</label><br />
+                        <input type="text" pInputText placeholder="" [disabled]="disableLov" (click)="onUserGroupLov()"
+                            [(ngModel)]="service.header.userGroup" [ngStyle]="{'width':'100%'}"> 
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <p-fieldset>
+            <div class="p-grid nested-grid form-group">
+                <div class="p-col-3 p-md-3">
+                </div>
+            </div>
+            <div class="p-grid nested-grid form-group">
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'crLimit' | first}}</label><br />
+                        <input type="text" pInputText placeholder="Cr Limit" maxlength="1" [(ngModel)]="service.header.crLimit" [ngStyle]="{'width':'100%'}">
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'verifiedVrEdit' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.verifiedVrEdit"  [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'cancelledVrEdit' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.canVrEdit"[style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'vrDateEdit' | first}}</label><br />
+                        <p-dropdown [options]="DatedEditLovData" [(ngModel)]="service.header.vrDtAllowed" [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'accountsFilterApplicable' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.acFilter" [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'accountsRights' | first}}</label><br />
+                        <p-dropdown [options]="accountRightsLovData" [(ngModel)]="service.header.acRight" [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'allBranchRights' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.allBrRight"[style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'allCompanyRights' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.allCoRight"[style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-grid nested-grid form-group">
+                <div class="p-col-3 p-md-3">
+                </div>
+            </div>
+
+            <div class="p-grid nested-grid form-group">
+                <div class="p-col-3 p-md-3" *ngIf="!isRac">
+                    <span class="md-inputfield">
+                        <label>{{'duplicateItem' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.duplicateItem">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'userMode' | first}}</label><br />
+                        <p-dropdown [options]="userModeLovData" [(ngModel)]="service.header.userMode"[style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'viewSalaryDetails' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.salVisible" [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'MSGCloseDelayTime' | first}}</label><br />
+                        <input type="text" min="0" pInputText [(ngModel)]="service.header.msgCloseDelay" [ngStyle]="{'width':'100%'}">
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'otherPrivilages' | first}}</label><br />
+                        <input type="text" placeholder=" "  maxlength="3" pInputText [(ngModel)]="service.header.otherPrivilages" [ngStyle]="{'width':'100%'}">
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-grid nested-grid form-group">
+                <div class="p-col-3 p-md-3">
+                </div>
+            </div>
+
+            <div class="p-grid nested-grid form-group">
+
+                <div class="p-col-3 p-md-3">
+                    <span class="md-inputfield">
+                        <label>{{'allSalesman' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.allSalesman"[style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3" *ngIf="!isRac">
+                    <span class="md-inputfield">
+                        <label>{{'showCostRate' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.showCost"[style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3" *ngIf="!isRac">
+                    <span class="md-inputfield">
+                        <label>{{'saleRate' | first}}</label><br />
+                        <p-dropdown [options]="saleRateLovData" [(ngModel)]="service.header.saleRate"[style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3" *ngIf="!isRac">
+                    <span class="md-inputfield">
+                        <label>{{'negativeIssue' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.negativeIssue">
+                        </p-dropdown>
+                    </span>
+                </div>
+                <div class="p-col-3 p-md-3" *ngIf="!isRac">
+                    <span class="md-inputfield">
+                        <label>{{'belowCostIssue' | first}}</label><br />
+                        <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.belowCost" [style]="{'width':'100%'}" autoWidth="false">
+                        </p-dropdown>
+                    </span>
+                </div>
+            </div>
+        </p-fieldset>
+
+        <div class="p-grid nested-grid form-group">
+            <div class="p-col-12">
+                <p-accordion [multiple]="true">
+                    <p-accordionTab header="Correction Resctriction">
+                        <div class="p-grid nested-grid">
+                            <div class="p-col-12">
+                                <div class="p-grid nested-grid">
+                                    <!-- <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                            
+                                        </span>
+                                    </div> -->
+                                    <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                            <label>{{'restrictedYN' | first}}</label><br/>
+                                            <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.corRestYn">
+                                            </p-dropdown>
+                                        </span>
+                                    </div>
+                                    <!-- <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                           
+                                        </span>
+                                    </div> -->
+                                    <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                            <label>{{'correctionDate' | first}}</label><br/>
+                                            <input type="number" pInputText [(ngModel)]="service.header.corDay">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p-accordionTab>
+                    <p-accordionTab header="Back Dated Entry">
+                        <div class="p-grid nested-grid">
+                            <div class="p-col-12">
+                                <div class="p-grid nested-grid">
+                                    <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                            <label>{{'restrictedYN' | first}}</label><br/>
+                                            <p-dropdown [options]="yesNoLovData"
+                                                [(ngModel)]="service.header.backEntRestYn">
+                                            </p-dropdown>
+                                        </span>
+                                    </div>
+                                    <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                            <label>{{'noofDays' | first}}</label><br/>
+                                            <input type="number" min="0" pInputText [(ngModel)]="service.header.backEntDay">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p-accordionTab>
+                    <p-accordionTab header="Report Selection Rights">
+                        <div class="p-grid nested-grid">
+                            <div class="p-col-12">
+                                <div class="p-grid nested-grid">
+                                    <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                            <label>{{'approvingUserId' | first}}</label><br />
+                                            <input type="text" pInputText placeholder="User Id" (click)="onUserIdLov()"
+                                                [(ngModel)]="service.header.approvingUserid" maxlength="12">
+                                        </span>
+                                    </div>
+                                    <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                            <label>{{'messageOnQuit' | first}}</label><br />
+                                            <p-dropdown [options]="yesNoLovData"
+                                                [(ngModel)]="service.header.messageOnQuit">
+                                            </p-dropdown>
+                                        </span>
+                                    </div>
+                                    <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                            <label>{{'finalizationYn' | first}}</label><br />
+                                            <p-dropdown [options]="yesNoLovData"
+                                                [(ngModel)]="service.header.finalizationYn">
+                                            </p-dropdown>
+                                        </span>
+                                    </div>
+                                    <div class="p-col-3 p-md-3">
+                                        <span class="md-inputfield">
+                                            <label>{{'secuLevel' | first}}</label><br />
+                                            <p-dropdown [options]="yesNoLovData" [(ngModel)]="service.header.secuLevel">
+                                            </p-dropdown>
+                                        </span>
+                                    </div>
+                                    <div class="p-col-10 p-md-10">
+                                        <span class="md-inputfield">
+                                            <button type="text" pButton label="Report Selection Rights"
+                                                (click)="op2.toggle($event)"></button>
+                                        </span>
+                                        <p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false"
+                                            appendTo="body">
+                                            <br />
+                                            <p-fieldset>
+                                                <div class="p-grid nested-grid form-group">
+                                                    <div class="p-col-3 p-md-3">
+                                                        <span class="md-inputfield">
+                                                            <label>{{'allGrp1' | first}}</label><br />
+                                                            <p-dropdown [options]="yesNoLovData"
+                                                                [(ngModel)]="service.header.allGrp1">
+                                                            </p-dropdown>
+                                                        </span>
+                                                    </div>
+                                                    <div class="p-col-3 p-md-3">
+                                                        <span class="md-inputfield">
+                                                            <label>{{'allGrpp2' | first}}</label><br />
+                                                            <p-dropdown [options]="yesNoLovData"
+                                                                [(ngModel)]="service.header.allGrp2">
+                                                            </p-dropdown>
+                                                        </span>
+                                                    </div>
+                                                    <div class="p-col-3 p-md-3">
+                                                        <span class="md-inputfield">
+                                                            <label>{{'allGrp3' | first}}</label><br/>
+                                                            <p-dropdown [options]="yesNoLovData"
+                                                            [(ngModel)]="service.header.allGrp3">
+                                                        </p-dropdown>
+                                                        </span>
+                                                    </div>
+                                                    <div class="p-col-3 p-md-3">
+                                                        <span class="md-inputfield">
+                                                            <label>{{'allGrp4' | first}}</label><br/>
+                                                            <p-dropdown [options]="yesNoLovData"
+                                                                    [(ngModel)]="service.header.allGrp4">
+                                                                </p-dropdown>
+                                                        </span>
+                                                    </div>
+                                                    <div class="p-col-3 p-md-3">
+                                                        <span class="md-inputfield">
+                                                            <label>{{'allGrp5' | first}}</label><br/>
+                                                            <p-dropdown [options]="yesNoLovData"
+                                                                    [(ngModel)]="service.header.allGrp5">
+                                                                </p-dropdown>
+                                                                
+                                                        </span>
+                                                    </div>
+                                                    <div class="p-col-3 p-md-3">
+                                                        <span class="md-inputfield">
+                                                            <label>{{'allGrp6' | first}}</label><br/>
+                                                            <p-dropdown [options]="yesNoLovData"
+                                                                    [(ngModel)]="service.header.allGrp6">
+                                                                </p-dropdown>
+                                                                
+                                                        </span>
+                                                    </div>
+                                                    <div class="p-col-3 p-md-3">
+                                                        <span class="md-inputfield">
+                                                            <label>{{'allGrp7' | first}}</label><br/>
+                                                            <p-dropdown [options]="yesNoLovData"
+                                                                    [(ngModel)]="service.header.allGrp7">
+                                                                </p-dropdown>
+                                                        </span>
+                                                    </div>
+                                                    <div class="p-col-3 p-md-3">
+                                                        <span class="md-inputfield">
+                                                            <label>{{'allGrp8' | first}}</label><br/>
+                                                            <p-dropdown [options]="yesNoLovData"
+                                                                    [(ngModel)]="service.header.allGrp8">
+                                                                </p-dropdown>
+                                                        </span>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </p-fieldset>
+                                        </p-overlayPanel>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
+    </div>
+</div>

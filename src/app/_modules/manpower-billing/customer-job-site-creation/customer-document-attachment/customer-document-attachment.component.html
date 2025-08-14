@@ -1,0 +1,206 @@
+<p-table [value]="dto" [scrollable]="true" scrollHeight="270px" scrollWidth="100%" [resizableColumns]="true"
+    [responsive]="true" [reorderableColumns]="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngIf="!fieldSettings['HDoc_SysID']?.hidden" [ngStyle]="{'width':'6rem', 'white-space': 'normal'}">
+                Sysid
+            </th>
+            <th *ngIf="!fieldSettings['HDoc_Code']?.hidden" [ngStyle]="{'width':'8rem', 'white-space': 'normal'}">
+                Document Code</th>
+            <th *ngIf="!fieldSettings['HDoc_Name']?.hidden" [ngStyle]="{'width':'8rem', 'white-space': 'normal'}">
+                Documnet Name</th>
+            <th *ngIf="!fieldSettings['HDoc_Start_Date']?.hidden"
+                [ngStyle]="{'width':'6rem', 'white-space': 'normal'}">
+                Start Date</th>
+            <th *ngIf="!fieldSettings['HDoc_Stop_Date']?.hidden" [ngStyle]="{'width':'6rem', 'white-space': 'normal'}">
+                Stop Date</th>
+            <th *ngIf="!fieldSettings['HDoc_Expiry_Date']?.hidden"
+                [ngStyle]="{'width':'6rem', 'white-space': 'normal'}"    >Expiry Date</th>
+            <th *ngIf="!fieldSettings['HDoc_Alert_Date']?.hidden"
+                [ngStyle]="{'width':'6rem', 'white-space': 'normal'}">
+                Alert Date</th>         
+            <th *ngIf="!fieldSettings['HDoc_Emp_Code']?.hidden" [ngStyle]="{'width':'8rem', 'white-space': 'normal'}">
+                Employee Code</th>
+            <th *ngIf="!fieldSettings['HDoc_Emp_Name']?.hidden" [ngStyle]="{'width':'8rem', 'white-space': 'normal'}">
+                Employee Name</th>
+            <th *ngIf="!fieldSettings['HDoc_Emp_Email']?.hidden" [ngStyle]="{'width':'8rem', 'white-space': 'normal'}">
+                Email Address</th>
+            <th *ngIf="!fieldSettings['HDoc_Alert_Code']?.hidden"
+                [ngStyle]="{'width':'8rem', 'white-space': 'normal'}">
+                Alert Code</th>
+            <th *ngIf="!fieldSettings['HDoc_Alert_Name']?.hidden"
+                [ngStyle]="{'width':'12rem', 'white-space': 'normal'}">
+                Alert Name</th>
+            <th *ngIf="!fieldSettings['HDoc_Alert_Stop_Hrs']?.hidden"
+                [ngStyle]="{'width':'6rem', 'white-space': 'normal'}">Alert Stop Hours</th>
+            <th *ngIf="!fieldSettings['HDoc_Alert_Stop_Yn']?.hidden"
+                [ngStyle]="{'width':'6rem', 'white-space': 'normal'}">Alert Stop</th>
+
+            <th *ngIf="!fieldSettings['HDoc_AlertRep_Hrs']?.hidden"
+                [ngStyle]="{'width':'8rem', 'white-space': 'normal'}">Alert Rep Hours</th>
+
+            <th *ngIf="!fieldSettings['HDoc_Path']?.hidden" [ngStyle]="{'width':'15rem', 'white-space': 'normal'}">
+                Documnet Attachment Path</th>
+            <th [ngStyle]="{'width':'15rem', 'white-space': 'normal'}">Upload File</th>
+            <th style="width: 120px;">Actions</th>
+
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+        <tr>
+            <td [ngStyle]="{'width':'6rem'}" *ngIf="!fieldSettings['HDoc_SysID']?.hidden" style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_SysID']?.disabled"
+                    [required]="fieldSettings['HDoc_SysID']?.mandatory" [(ngModel)]="rowData.HDoc_SysID"
+                    style="width: 100%; padding: 0;" />
+            </td>
+
+            <td [ngStyle]="{'width':'8rem'}" *ngIf="!fieldSettings['HDoc_Code']?.hidden" style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_Code']?.disabled"
+                    [required]="fieldSettings['HDoc_Code']?.mandatory" [(ngModel)]="rowData.HDoc_Code"
+                    style="width: 80%; padding: 0;" />
+                <button pButton *ngIf="!fieldSettings['HDoc_Code']?.disabled" style="width: 20%; padding: 0;"
+                    icon="pi pi-ellipsis-h" (click)="ShowPopUp('DocDocumnetCode',i)" class="custom-button"></button>
+            </td>
+            <td [ngStyle]="{'width':'8rem'}" *ngIf="!fieldSettings['HDoc_Name']?.hidden" style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_Name']?.disabled"
+                    [required]="fieldSettings['HDoc_Name']?.mandatory" [(ngModel)]="rowData.HDoc_Name"
+                    style="width: 100%; padding: 0;" />
+            </td>
+
+            <td [ngStyle]="{'width':'6rem'}" *ngIf="!fieldSettings['HDoc_Start_Date']?.hidden"
+                style="text-align: left;">
+                <input type="date" pInputText [readonly]="fieldSettings['HDoc_Start_Date']?.disabled"
+                    [required]="fieldSettings['HDoc_Start_Date']?.mandatory" [(ngModel)]="rowData.HDoc_Start_Date"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'6rem'}" *ngIf="!fieldSettings['HDoc_Stop_Date']?.hidden"
+                style="text-align: left;">
+                <input type="date" pInputText [readonly]="fieldSettings['HDoc_Stop_Date']?.disabled"
+                    [required]="fieldSettings['HDoc_Stop_Date']?.mandatory" [(ngModel)]="rowData.HDoc_Stop_Date"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'6rem'}" *ngIf="!fieldSettings['HDoc_Expiry_Date']?.hidden"
+                style="text-align: left;">
+                <input type="date" pInputText [readonly]="fieldSettings['HDoc_Expiry_Date']?.disabled"
+                    [required]="fieldSettings['HDoc_Expiry_Date']?.mandatory" [(ngModel)]="rowData.HDoc_Expiry_Date"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'6rem'}" *ngIf="!fieldSettings['HDoc_Alert_Date']?.hidden"
+                style="text-align: left;">
+                <input type="date" pInputText [readonly]="fieldSettings['HDoc_Alert_Date']?.disabled"
+                    [required]="fieldSettings['HDoc_Alert_Date']?.mandatory" [(ngModel)]="rowData.HDoc_Alert_Date"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'8rem'}" *ngIf="!fieldSettings['HDoc_Emp_Code']?.hidden" style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_Emp_Code']?.disabled"
+                    [required]="fieldSettings['HDoc_Emp_Code']?.mandatory" [(ngModel)]="rowData.HDoc_Emp_Code"
+                    style="width: 80%; padding: 0;" />
+                <button pButton *ngIf="!fieldSettings['HDoc_Emp_Code']?.disabled" style="width: 20%; padding: 0;"
+                    icon="pi pi-ellipsis-h" (click)="ShowPopUp('DocEmployeeCode',i)" class="custom-button"></button>
+            </td>
+            <td [ngStyle]="{'width':'8rem'}" *ngIf="!fieldSettings['HDoc_Emp_Name']?.hidden" style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_Emp_Name']?.disabled"
+                    [required]="fieldSettings['HDoc_Emp_Name']?.mandatory" [(ngModel)]="rowData.HDoc_Emp_Name"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'8rem'}" *ngIf="!fieldSettings['HDoc_Emp_Email']?.hidden"
+                style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_Emp_Email']?.disabled"
+                    [required]="fieldSettings['HDoc_Emp_Email']?.mandatory" [(ngModel)]="rowData.HDoc_Emp_Email"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'8rem'}" *ngIf="!fieldSettings['HDoc_Alert_Code']?.hidden"
+                style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_Alert_Code']?.disabled"
+                    [required]="fieldSettings['HDoc_Alert_Code']?.mandatory" [(ngModel)]="rowData.HDoc_Alert_Code"
+                    style="width: 75%; padding: 0;" />
+                <button pButton *ngIf="!fieldSettings['HDoc_Alert_Code']?.disabled" style="width: 25%; padding: 0;"
+                    icon="pi pi-ellipsis-h" (click)="ShowPopUp('DocAlertCode',i)" class="custom-button"></button>
+            </td>
+            <td [ngStyle]="{'width':'12rem'}" *ngIf="!fieldSettings['HDoc_Alert_Name']?.hidden"
+                style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_Alert_Name']?.disabled"
+                    [required]="fieldSettings['HDoc_Alert_Name']?.mandatory" [(ngModel)]="rowData.HDoc_Alert_Name"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'6rem'}" *ngIf="!fieldSettings['HDoc_Alert_Stop_Hrs']?.hidden"
+                style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_Alert_Stop_Hrs']?.disabled"
+                    [required]="fieldSettings['HDoc_Alert_Stop_Hrs']?.mandatory"
+                    [(ngModel)]="rowData.HDoc_Alert_Stop_Hrs" style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'6rem'}" *ngIf="!fieldSettings['HDoc_Alert_Stop_Yn']?.hidden"
+                style="text-align: left;">
+                <input type="checkbox" [(ngModel)]="rowData.HDoc_Alert_Stop_Yn" style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'8rem'}" *ngIf="!fieldSettings['HDoc_AlertRep_Hrs']?.hidden"
+                style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_AlertRep_Hrs']?.disabled"
+                    [required]="fieldSettings['HDoc_AlertRep_Hrs']?.mandatory" [(ngModel)]="rowData.HDoc_AlertRep_Hrs"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td [ngStyle]="{'width':'15rem'}" *ngIf="!fieldSettings['HDoc_Path']?.hidden" style="text-align: left;">
+                <input type="text" pInputText [readonly]="fieldSettings['HDoc_Path']?.disabled"
+                    [required]="fieldSettings['HDoc_Path']?.mandatory" [(ngModel)]="rowData.HDoc_Path"
+                    style="width: 100%; padding: 0;" />
+            </td>
+
+            <td [ngStyle]="{ 'width': '15rem' }">
+
+                <p-toast></p-toast>
+
+                <div class="upload-container" style="display: flex; align-items: center; gap: 10px;">
+
+                    <input type="file" (change)="onFileSelect($event, rowData, i)"
+                        accept=".pdf, .xls, .xlsx, .doc, .docx, image/*" style="display: none;" #fileInput />
+
+                    <!-- CHOOSE BUTTON -->
+                    <p-button *ngIf="!rowData.HDoc_Path" label="Choose"
+                        icon="pi pi-folder-open" (onClick)="fileInput.click()" styleClass="custom-white-btn"
+                        [style]="{ width: '75px', height: '30px' }">
+                    </p-button>
+
+                    <!-- UPLOAD BUTTON -->
+                    <p-button *ngIf="rowData.fileSelected && !rowData.isUploaded" label="Upload" icon="pi pi-upload"
+                        (click)="uploadManually(i, rowData)" styleClass="custom-white-btn"
+                        [style]="{ width: '75px', height: '30px' }">
+                    </p-button>
+
+
+                    <!-- VIEW BUTTON -->
+                    <p-button *ngIf="rowData.HDoc_Path || (rowData.isUploaded)" label="View" icon="pi pi-eye"
+                        (onClick)="viewFileFromApi(this.gridNo, rowData.HDoc_Path)" styleClass="custom-white-btn"
+                        pTooltip="View File" tooltipPosition="top" [style]="{ width: '75px', height: '36px' }">
+                    </p-button>
+
+                    <!-- DELETE BUTTON -->
+                    <p-button *ngIf="rowData.HDoc_Path || (rowData.isUploaded)" label="Delete" icon="pi pi-trash"
+                        (onClick)="deleteFile(this.gridNo, rowData)" styleClass="custom-white-btn p-button-danger"
+                        pTooltip="Delete File" tooltipPosition="top" [style]="{ width: '75px', height: '36px' }">
+                    </p-button>
+
+                </div>
+
+            </td>
+            <td style="width: 120px;">
+                <button pButton icon="pi pi-trash" (click)="deleteRow('dto',i,rowData)"
+                    class="custom-button"></button>
+                <button pButton icon="pi pi-plus" label="Add Row" (click)="addRow('dto',i)"
+                    class="custom-button"></button>
+            </td>
+
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <tr>
+            <td colspan="12" style="text-align: right;">Total Documents: {{
+                this._salesService.headerData.tblDocAttach.length }}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- <p-confirmDialog></p-confirmDialog> -->
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>

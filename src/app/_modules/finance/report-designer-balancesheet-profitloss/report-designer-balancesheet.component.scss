@@ -1,0 +1,83 @@
+.your-block {
+    //     /* visibility: hidden; */
+        width: 100%;
+    //     // visibility: collapse;
+    //     /* counter-reset: Serial;         */
+    float: left;
+}
+
+.headerSty {
+    width: 332px;
+    float: left;
+}
+.custHeaderSty {
+    width: 550px;
+}
+.compDet {
+    padding-top: 1em;
+    width: 252px;
+    float: right;
+}
+.img2 {
+    width: 72px;
+}
+.tdStyle {
+    word-break: break-word;
+    vertical-align: top;
+    font-size: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.div1 {
+    font-size: 9px;
+}
+
+.tableStyle {
+    width: 100%;
+}
+.padding {
+    padding: 0 0 0 100px;
+}
+
+.div2 {
+    padding: 8px 0 0 0;
+    float: right;
+}
+.title {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0 0 0 0;
+}
+
+.rptTitle {
+    font-size: 7px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0px 0px 0px 19px;
+}
+.cardStyle {
+    font-family: Tahoma;
+}
+.button {
+    width: inherit;
+    text-align: left;
+}
+.fontsize {
+    // font-size: 9px;
+    float: right;
+}
+.arTitle {
+    font-weight: 500;
+    font-size: 16px;
+    float: right;
+}
+.css-serial {
+    counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
+.css-serial td:first-child:before {
+    counter-increment: serial-number;  /* Increment the serial number counter */
+    content: counter(serial-number);  /* Display the counter */
+}

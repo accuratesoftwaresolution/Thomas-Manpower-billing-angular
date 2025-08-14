@@ -1,0 +1,8 @@
+<div class="p-grid nested-grid">
+    <div class="p-col-12 p-md-12">
+        <p-tree [value]="menuTreeData" selectionMode="single" [virtualNodeHeight]="10" [(selection)]="selectedTreeMenu"
+            (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"
+            (onNodeExpand)="nodeExpand($event)" [style]="{'height':'410px','width':'100%','overflow':'auto'}">
+        </p-tree>
+    </div>
+</div>

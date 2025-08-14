@@ -1,0 +1,68 @@
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="color: #003366;">Payroll Deduction List</h3>
+    <div class="p-grid" style="display: flex; gap: 10px;">
+       
+    </div>
+</div>
+
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div  class="input-panel p-d-flex p-flex-column p-px-3 p-mb-3">
+ <div class="p-grid p-ai-center">
+        <div class="p-col-12 p-md-3">
+            <div class="p-inputgroup" style="max-width: 300px;">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-search"></i>
+                </span>
+                <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText" (input)="filterTable()" />
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-3">
+            <div class="button-group">
+                <button pButton label="Back" (click)="Back()" class="back-button"></button>
+            </div>
+        </div>
+    </div>
+
+    <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]"
+        class="list-table">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 4rem;">SysID</th>
+                <th style="width: 8rem;">Payroll Deduction Code</th>
+                <th style="width: 8rem;">Payroll Deduction Name</th>
+                <th style="width:8rem">Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+            <tr>
+                <td style="width :4rem">{{ rowData.HPayroll_Dedu_SysID }}</td>
+                <td style="width: 8rem;">{{ rowData.HPayroll_Dedu_Code }}</td>
+                <td style="width: 8rem;">{{ rowData.HPayroll_Dedu_Name }}</td>
+                
+                <td style="width:8rem">
+                    <span class="p-buttonset">
+                        <button pButton type="button" label="Edit" icon="pi pi-pencil"  class="p-button-sm btn"
+                            pTooltip="Edit" tooltipPosition="left" (click)="editRow(rowData)"> 
+                        </button>
+                        <button pButton type="button" label="Delete" icon="pi pi-trash" class="p-button-sm btn"
+                            pTooltip="Delete" (click)="deleteRow(rowData ,i)">
+                        </button>
+                        
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                    No Data available. Please check back later.
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

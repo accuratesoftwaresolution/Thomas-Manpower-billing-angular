@@ -1,0 +1,1005 @@
+<div class="container" style="background-color: #d1e2f1 ; padding: 20px; border-radius: 8px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Company Wise Preference</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+            <!-- <button pButton label="Back" class="custom-button"></button> -->
+        </div>
+    </div>
+
+
+
+    <div class="custom-tabs">
+        <div class="tab-headers">
+            <div class="tab-header" *ngFor="let tab of MainTabs; let i = index" [class.active]="activeIndex === i"
+                (click)="changeIndex(i)">
+                {{ tab.title }}
+            </div>
+        </div>
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 0">
+
+
+                <div
+                    style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                    <!-- <div class="p-grid" style=" font-weight: bold; text-align: center;">
+                                <div class="p-col-4"
+                                    style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                                    <label style="display: block; width: 100%;">Code</label>
+                                </div>
+                                <div class="p-col-4"
+                                    style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                                    <label style="display: block; width: 100%;">Name</label>
+                                </div>
+                            </div> -->
+
+                    <br>
+
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Company System ID</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Company Menu Code</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff!important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Company Code</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Group Company Code</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 3">
+
+                <div
+                    style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Company UEN</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">GST No.</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff!important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Taxable Person (Eng)</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Taxable Person (Arabic)</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">TRN No.</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Tax Agent Code</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Tax Agent Name</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Tax Agent Vat No.</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">TAAN No.</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 4">
+
+                <div
+                    style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                    <div class="p-grid">
+                        <div class="p-col-6">
+                            <div class="p-grid" style=" font-weight: bold; text-align: center;">
+                                <div class="p-col-3"
+                                    style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                                    <label style="display: block; width: 100%;">Account Details</label>
+                                </div>
+                                <div class="p-col-3"
+                                    style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                                    <label style="display: block; width: 100%;">Account Code</label>
+                                </div>
+                                <div class="p-col-3"
+                                    style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                                    <label style="display: block; width: 100%;">Account Name</label>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="p-grid" *ngFor="let field of accountFields">
+                                <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block; ">{{field.label}}</label>
+                                    </div>
+                                </div>
+                                <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                    <div class="p-field">
+                                        <input type="text" pInputText
+                                            style="background-color: #ffffff !important; width: 100%; height: 2vh;">
+                                    </div>
+                                </div>
+                                <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                    <div class="p-field">
+                                        <input type="text" pInputText
+                                            style="background-color: #ffffff !important; width: 100%; height: 2vh;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-col-6">
+
+                            <div class="p-grid" style=" font-weight: bold; text-align: center;">
+                                <div class="p-col-3"
+                                    style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                                    <label style="display: block; width: 100%;">Division Details</label>
+                                </div>
+                                <div class="p-col-3"
+                                    style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                                    <label style="display: block; width: 100%;">Account Code</label>
+                                </div>
+                                <div class="p-col-3"
+                                    style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                                    <label style="display: block; width: 100%;">Account Name</label>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="p-grid" *ngFor="let field of divisionFields">
+                                <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                    <div class="p-field">
+                                        <label style="display: inline-block;">{{field.label}}</label>
+                                    </div>
+                                </div>
+                                <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                    <div class="p-field">
+                                        <input type="text" pInputText
+                                            style="background-color: #ffffff !important; width: 100%; height: 2vh;">
+                                    </div>
+                                </div>
+                                <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                    <div class="p-field">
+                                        <input type="text" pInputText
+                                            style="background-color: #ffffff !important; width: 100%; height: 2vh;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </ng-container>
+
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 8">
+                <div
+                    style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+                    <div class="p-grid" style="gap: 1rem;">
+                        <div class="p-col-5"
+                            style="border: 1px solid rgb(45, 45, 45); padding: 0.5rem;border-radius: 4px;">
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Update Accounts From Chart Of
+                                        Account</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Update Accounts From Chart Of
+                                        Account
+                                        And Product</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-col-5"  style="border: 1px solid rgb(45, 45, 45); padding: 0.5rem;border-radius: 4px;">
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Check Credit Limit Entry</label>
+                                    <input type="radio" value="Allow"> Warn And Allow Entry
+                                    <input type="radio" value="Stop"> Stop Entry
+                                    <input type="radio" value="Suspended"> Suspended
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Check Credit Limit Days</label>
+                                    <input type="radio" value="Allow"> Warn And Allow Entry
+                                    <input type="radio" value="Stop"> Stop Entry
+                                    <input type="radio" value="Suspended"> Suspended
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Code</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 20%; height: 2vh;">
+                                </div>
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Name</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 50%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="p-grid" style="gap: 1rem;">
+                        <div class="p-col-5"
+                            style="border: 1px solid rgb(45, 45, 45); padding: 0.5rem;border-radius: 4px;">
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Check Negative Cash Balance</label>
+                                    <input type="radio" value="Allow"> Warn And Allow Entry
+                                    <input type="radio" value="Stop"> Stop Entry
+                                    <input type="radio" value="Suspended"> Suspended
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Bill Wise Accounting</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="p-col-5"></div>
+                    </div>
+                    <br>
+                    <div class="p-grid" style="gap: 1rem;">
+                        <div class="p-col-5"
+                            style="border: 1px solid rgb(45, 45, 45); padding: 0.5rem;border-radius: 4px;">
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Check Insurance Credit Limit
+                                        Entry</label>
+                                    <input type="radio" value="Allow"> Warn And Allow Entry
+                                    <input type="radio" value="Stop"> Stop Entry
+                                    <input type="radio" value="Suspended"> Suspended
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Code</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 20%; height: 2vh;">
+                                </div>
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Name</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 50%; height: 2vh;">
+                                </div>
+                            </div>
+
+
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Check Insurance Credit Days
+                                        Entry</label>
+                                    <input type="radio" value="Allow"> Warn And Allow Entry
+                                    <input type="radio" value="Stop"> Stop Entry
+                                    <input type="radio" value="Suspended"> Suspended
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Code</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 20%; height: 2vh;">
+                                </div>
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Name</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 50%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-col-5"
+                            style="border: 1px solid rgb(45, 45, 45); padding: 0.5rem;border-radius: 4px;">
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                 <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Check Credit Block Limit</label>
+                                <input type="radio" value="Allow"> Warn And Allow Entry
+                                <input type="radio" value="Stop"> Stop Entry
+                                <input type="radio" value="Suspended"> Suspended
+                            </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Code</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 20%; height: 2vh;">
+                                </div>
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Name</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 50%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Check Credit Block Days</label>
+                                    <input type="radio" value="Allow"> Warn And Allow Entry
+                                    <input type="radio" value="Stop"> Stop Entry
+                                    <input type="radio" value="Suspended"> Suspended
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Code</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 20%; height: 2vh;">
+                                </div>
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Name</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 50%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="p-grid">
+                        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+                        </div>
+
+                        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Batch Enable</label>
+                                <input type="radio" value="Yes"> Yes
+                                <input type="radio" value="No"> No
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="p-grid">
+                        <div class="p-col-6"></div>
+                        <div class="p-col-6" style="text-align: right;"><button pButton class="custom-button"
+                                type="button" label="Create Digilocker Number"></button></div>
+                    </div>
+
+                </div>
+
+
+
+            </ng-container>
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 9">
+                <div
+                    style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                    <div class="p-grid">
+                        <div class="p-col-6"
+                            style="border: 1px solid rgb(45, 45, 45); padding: 0.5rem;border-radius: 4px;">
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Auto PO Batch</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+
+                            <div class="p-col-12">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Auto MRV Batch</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="p-col-6"></div>
+
+                    </div>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-6"
+                            style="border: 1px solid rgb(45, 45, 45); padding: 0.5rem;border-radius: 4px;">
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Negative Stock Allow</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-6"
+                            style="border: 1px solid rgb(45, 45, 45); padding: 0.5rem;border-radius: 4px;">
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">PO Batch</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">PO Production Date</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">PO Batch Expiry Date</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">MRV Batch</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">MRV Batch Production Date</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">MRV Batch Expiry Date</label>
+                                    <input type="radio" value="Yes"> Yes
+                                    <input type="radio" value="No"> No
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="p-col-6"></div>
+
+                    </div>
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-6"
+                            style="border: 1px solid rgb(45, 45, 45); padding: 0.5rem;border-radius: 4px;">
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Inventory Costing Method</label>
+                                    <input type="radio" value="FIFO"> FIFO
+                                    <input type="radio" value="LIFO"> LIFO
+                                    <input type="radio" value=""> Simple Average Cost
+                                    <input type="radio" value=""> Weighted Average Cost
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Variation in Landed Cost and Saving
+                                        Data</label>
+                                    <input type="radio" value="Allow"> Warn And Allow Entry
+                                    <input type="radio" value="Stop"> Stop Entry
+                                    <input type="radio" value="Suspended"> Suspended
+                                </div>
+                            </div>
+                            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Code</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 20%; height: 2vh;">
+                                </div>
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Message Name</label>
+                                    <input type="text" pInputText
+                                        style="background-color: #ffffff !important; width: 50%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-col-6"></div>
+                    </div>
+                    <br>
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 10">
+                <div style="margin-top: 20px; min-height: 40vh;">
+                    <h4>Currency Details</h4>
+                        <p-table [value]="CurrencyData" [style]="{'width': '80%'}" [responsive]="true" [reorderableColumns]="true">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <ng-container *ngFor="let col of CurrencyTable">
+                                        <th *ngIf="!col.hide" [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                            <span>{{col.header}}</span>
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-product>
+                                <tr>
+                                    <ng-container *ngFor="let col of CurrencyTable">
+                                        <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                            [ngStyle]="{'width':col.width}">
+
+                                            <input pInputText type="text" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width':'100%'}"
+                                                [(ngModel)]="col.data" (click)="toggle(0)">
+
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+
+                        </p-table>
+
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 13">
+
+                <div
+                    style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                    <div class="p-grid" style=" font-weight: bold; text-align: center;">
+                        <div class="p-col-3"
+                            style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                            <label style="display: block; width: 100%;">Master Name</label>
+                        </div>
+                        <div class="p-col-3"
+                            style="padding: 0.5rem; border: 1px solid #ccc;background-color: antiquewhite;">
+                            <label style="display: block; width: 100%;">Lookup Configuration</label>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="p-grid" *ngFor="let config of MasterDataLookupConfiguration">
+                        <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">{{ config.masterName }}</label>
+                            </div>
+                        </div>
+                        <div class="p-col-3" style="padding: 0rem 0rem 0rem 0.5rem;text-align: center;">
+                            <div class="p-field">
+                                <button pButton class="custom-button" type="button"
+                                    label="{{ config.lookupConfiguration }}" (click)="showLookupDialog()"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <p-dialog [(visible)]="displayLookupDialog" header="Display Lookup Field Configuration" [modal]="true"
+                    width="600" height="400">
+                    <div class="p-grid">
+                        <div class="p-col-12">
+                            <table class="config-table">
+                                <thead>
+                                    <tr>
+                                        <th>Master Code</th>
+                                        <th>Master Descriptions</th>
+                                        <th>Field Name</th>
+                                        <th>Display Width</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let config of lookupConfigurations">
+                                        <td>{{config.masterCode }}</td>
+                                        <td>{{config.description }}</td>
+                                        <td>{{config.fieldName }}</td>
+                                        <td>{{config.width }}</td>
+                                        <td><input type="checkbox"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </p-dialog>
+
+            </ng-container>
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 1">
+                <p-table [value]="documentTableData" class="document-table" [style]="{'width': '90%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 9rem;">Document Code</th>
+                            <th>Document Name</th>
+                            <th>Path</th>
+                            <th style="width: 7rem;">Expiry Date</th>
+                            <th style="width: 7rem;">Document Next Renewal Date</th>
+                            <th style="width: 7rem;">Alert Date</th>
+                            <th>Document Alert by Mail</th>
+                            <th style="width: 6rem;">Alert Code</th>
+                            <th>Alert Name</th>
+                            <th style="width: 6rem;">Alert Stop</th>
+                            <th style="width: 8rem;">Upload File</th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData>
+                        <tr>
+                            <td style="text-align: left;">
+                                <input type="text" pInputText [(ngModel)]="rowData.documentCode"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <input type="text" pInputText [(ngModel)]="rowData.documentName"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <input type="text" pInputText [(ngModel)]="rowData.path"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <input type="date" pInputText [(ngModel)]="rowData.expiryDate"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <input type="date" pInputText [(ngModel)]="rowData.nextRenewalDate"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <input type="date" pInputText [(ngModel)]="rowData.alertDate"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <input type="text" pInputText [(ngModel)]="rowData.documentAlertByMail"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <input type="text" pInputText [(ngModel)]="rowData.alertCode"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <input type="text" pInputText [(ngModel)]="rowData.alertName"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <input type="checkbox" [(ngModel)]="rowData.alertStop"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td style="text-align: left;">
+                                <button class="custom-button" type="button" (click)="uploadFile(fileInput)">Upload
+                                    File</button>
+                                <input type="file" (change)="onFileChange($event, rowData)" #fileInput
+                                    style="display: none;" />
+                            </td>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="footer">
+                        <tr>
+                            <td colspan="10" style="text-align: right;">Total Documents: {{
+                                documentTableData.length }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </ng-container>
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 17">
+                <div style="margin-top: 20px; min-height: 40vh;">
+                    <h4>Allocations Details</h4>
+                        <p-table [value]="CurrencyData" [style]="{'width': '100%'}" [responsive]="true" [reorderableColumns]="true">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <ng-container *ngFor="let col of AllocationTable">
+                                        <th *ngIf="!col.hide" [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                            <span>{{col.header}}</span>
+                                        </th>
+                                    </ng-container>
+                                    <th style="width: 6px;">
+                                    </th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-product>
+                                <tr>
+                                    <ng-container *ngFor="let col of AllocationTable">
+                                        <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                            [ngStyle]="{'width':col.width}">
+
+                                            <input pInputText type="text" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width':'100%'}"
+                                                [(ngModel)]="col.data" (click)="toggle(0)">
+
+                                        </td>
+                                    </ng-container>
+                                    <td style="width: 6px;">
+                                        <input type="checkbox" >
+                                    </td>
+                                </tr>
+                            </ng-template>
+
+                        </p-table>
+
+                </div>
+            </ng-container>
+
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 18">
+                <div style="margin-top: 20px; min-height: 40vh;">
+                    <h4>Applicable Company</h4>
+                        <p-table [value]="CurrencyData" [style]="{'width': '30%'}" [responsive]="true" [reorderableColumns]="true">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <ng-container *ngFor="let col of ApplicableCompanyTable">
+                                        <th *ngIf="!col.hide" [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                            <span>{{col.header}}</span>
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-product>
+                                <tr>
+                                    <ng-container *ngFor="let col of ApplicableCompanyTable">
+                                        <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                            [ngStyle]="{'width':col.width}">
+
+                                            <input pInputText type="text" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width':'100%'}"
+                                                [(ngModel)]="col.data" (click)="toggle(0)">
+
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+
+                        </p-table>
+
+                </div>
+            </ng-container>
+
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 19">
+                <div style="margin-top: 20px; min-height: 40vh;">
+
+                    <h4>Link Creation</h4>
+                    <p-table [value]="[1]" [style]="{'width': '100%'}" [responsive]="true" [reorderableColumns]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <ng-container *ngFor="let col of LinkCreationTable">
+                                    <th *ngIf="!col.hide" [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                        <span>{{col.header}}</span>
+                                    </th>
+                                </ng-container>
+                                <th style="width: 5rem;">
+                                    Link Open/Closed
+                                </th>
+
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" >
+                            <tr>
+                                <ng-container *ngFor="let col of LinkCreationTableData">
+                                    <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                        [ngStyle]="{'width':col.width}">
+
+                                        <input pInputText type="text" style="padding: 0;"
+                                            [ngClass]="{'manual-column': col.manual}" [style]="{'width':'100%'}"
+                                            [(ngModel)]="col.data" (click)="toggle(0)">
+
+                                    </td>
+                                </ng-container>
+                               <td style="text-align: center;">
+                                <input type="checkbox">
+                               </td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+
+                    <div class="row" style="text-align: right;margin-top:10px">
+                        <button pButton class="custom-button"
+                                type="button" label="Create Link"></button>
+                    </div>
+
+                    
+                    <h4>Linked List</h4>
+                        <p-table [value]="CurrencyData" [style]="{'width': '100%'}" [responsive]="true" [reorderableColumns]="true">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <ng-container *ngFor="let col of LinkCreationTable">
+                                        <th *ngIf="!col.hide" [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                            <span>{{col.header}}</span>
+                                        </th>
+                                    </ng-container>
+                                    <th style="width: 6px;">
+                                    </th>
+
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-product>
+                                <tr>
+                                    <ng-container *ngFor="let col of LinkCreationTable">
+                                        <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                            [ngStyle]="{'width':col.width}">
+
+                                            <input pInputText type="text" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width':'100%'}"
+                                                [(ngModel)]="col.data" (click)="toggle(0)">
+
+                                        </td>
+                                    </ng-container>
+                                    <td style="width: 6px;">
+                                        <input type="checkbox" >
+                                    </td>
+                                </tr>
+                            </ng-template>
+
+                        </p-table>
+
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="MainTabs[activeIndex] && activeIndex == 20">
+                <div style="margin-top: 20px; min-height: 40vh;">
+
+                    
+
+                    
+                    <h4>Master Forms</h4>
+                        <p-table [value]="CurrencyData" [style]="{'width': '100%'}" [responsive]="true" [reorderableColumns]="true">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <ng-container *ngFor="let col of MasterFormTable">
+                                        <th *ngIf="!col.hide" [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                            <span>{{col.header}}</span>
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-product>
+                                <tr>
+                                    <ng-container *ngFor="let col of MasterFormTable">
+                                        <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                            [ngStyle]="{'width':col.width}">
+
+                                            <input pInputText type="text" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width':'100%'}"
+                                                [(ngModel)]="col.data" (click)="toggle(0)">
+
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+
+                        </p-table>
+
+                        <h4>Details Formula</h4>
+                        <p-table [value]="CurrencyData" [style]="{'width': '100%'}" [responsive]="true" [reorderableColumns]="true">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <ng-container *ngFor="let col of DetailFormulaTable">
+                                        <th *ngIf="!col.hide" [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                            <span>{{col.header}}</span>
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+
+                            <ng-template pTemplate="body" let-product>
+                                <tr>
+                                    <ng-container *ngFor="let col of MasterFormTable">
+                                        <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                            [ngStyle]="{'width':col.width}">
+
+                                            <input pInputText type="text" style="padding: 0;"
+                                                [ngClass]="{'manual-column': col.manual}" [style]="{'width':'100%'}"
+                                                [(ngModel)]="col.data" (click)="toggle(0)">
+
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </ng-template>
+
+                        </p-table>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+
+
+</div>

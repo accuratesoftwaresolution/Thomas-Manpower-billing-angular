@@ -1,0 +1,158 @@
+<div class="container" style="background-color: #d1e2f1 ;border-radius: 8px;">
+
+    <div class="custom-tabs">
+        <div class="tab-headers">
+            <div class="tab-header" *ngFor="let tab of WhManagementTab; let i = index"
+                [class.active]="activeIndex === i" (click)="changeIndex(i)">
+                {{ tab.title }}
+            </div>
+        </div>
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+
+            <ng-container *ngIf="WhManagementTab[activeIndex] && activeIndex == 0">
+                <p-table [value]="this.dto.headerData.tblWhM" class="document-table" [style]="{'width': '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th *ngIf="!fieldSettings['Whs_SysID']?.hidden" style="width: 4rem;">SysId</th>
+                            <th *ngIf="!fieldSettings['Whs_Prod_Code']?.hidden" style="width: 10rem;">Product Code</th>
+                            <th *ngIf="!fieldSettings['Whs_Prod_Name']?.hidden" style="width: 10rem;">Product Name</th>
+                            <th *ngIf="!fieldSettings['Whs_Prod_LName']?.hidden" style="width: 10rem;">Product Long Name
+                            </th>
+                            <th *ngIf="!fieldSettings['Whs_Unit']?.hidden" style="width: 6rem;">Unit</th>
+                            <th *ngIf="!fieldSettings['Whs_Qty']?.hidden" style="width: 6rem;">qty</th>
+                            <th style="width: 6rem;">Warehousing Details</th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td *ngIf="!fieldSettings['Whs_SysID']?.hidden" style="text-align: left;">
+                                <input type="text" pInputText [readonly]="fieldSettings['Whs_SysID']?.disabled"
+                                    [required]="fieldSettings['Whs_SysID']?.mandatory" [(ngModel)]="rowData.Whs_SysID"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td *ngIf="!fieldSettings['Whs_Prod_Code']?.hidden" style="text-align: left;">
+                                <input type="text" pInputText [readonly]="fieldSettings['Whs_Prod_Code']?.disabled"
+                                    [required]="fieldSettings['Whs_Prod_Code']?.mandatory"
+                                    [(ngModel)]="rowData.Whs_Prod_Code" style="width: 100%; padding: 0;" />
+                            </td>
+                            <td *ngIf="!fieldSettings['Whs_Prod_Name']?.hidden" style="text-align: left;">
+                                <input type="text" pInputText [readonly]="fieldSettings['Whs_Prod_Name']?.disabled"
+                                    [required]="fieldSettings['Whs_Prod_Name']?.mandatory"
+                                    [(ngModel)]="rowData.Whs_Prod_Name" style="width: 100%; padding: 0;" />
+                            </td>
+                            <td *ngIf="!fieldSettings['Whs_Prod_LName']?.hidden" style="text-align: left;">
+                                <input type="text" pInputText [readonly]="fieldSettings['Whs_Prod_LName']?.disabled"
+                                    [required]="fieldSettings['Whs_Prod_LName']?.mandatory"
+                                    [(ngModel)]="rowData.Whs_Prod_LName" style="width: 100%; padding: 0;" />
+                            </td>
+                            <td *ngIf="!fieldSettings['Whs_Unit']?.hidden" style="text-align: left;">
+                                <input type="text" pInputText [readonly]="fieldSettings['Whs_Unit']?.disabled"
+                                    [required]="fieldSettings['Whs_Unit']?.mandatory" [(ngModel)]="rowData.Whs_Unit"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+                            <td *ngIf="!fieldSettings['Whs_Qty']?.hidden" style="text-align: left;">
+                                <input type="text" pInputText [readonly]="fieldSettings['Whs_Qty']?.disabled"
+                                    [required]="fieldSettings['Whs_Qty']?.mandatory" [(ngModel)]="rowData.Whs_Qty"
+                                    style="width: 100%; padding: 0;" />
+                            </td>
+
+                            <td style="text-align: center;">
+                                <button style=" background-color: antiquewhite;
+                                    color: black;
+                                    border: 1px solid #737373;
+                                    padding: 5px 16px;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                    font-size: 10px;
+                                    font-weight: bold;
+                                    transition: background-color 0.3s ease;
+                                " type="button" (click)="loadData(rowData , i)">Load
+                                </button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+
+                </p-table>
+                <br>
+                <p-table [value]="this.dto.headerData.tblWhMDetail" [scrollable]="true" scrollHeight="270px"
+                    scrollWidth="100%" [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true"
+                    class="ProductInfoTable">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <ng-container *ngFor="let col of TableData">
+                                <th *ngIf="!col.hide && !col.routeTo"
+                                    [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                    <span>{{col.header}}</span>
+                                </th>
+                                <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                    [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                    <span>{{col.header}}</span>
+                                </th>
+                            </ng-container>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 6rem;"></th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-product let-i="rowIndex">
+                        <tr>
+                            <ng-container *ngFor="let col of TableData">
+                                <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                    [ngStyle]="{'width':col.width}">
+
+                                    <ng-container *ngIf="!col.readOnly && !col.PopUpData">
+                                        <input pInputText [type]="col.type" style="padding: 0;"
+                                            [ngClass]="{'manual-column': col.manual}" [style]="{'width': '100%'}"
+                                            [(ngModel)]="product[col.bind]" (click)="toggle(0)" />
+                                    </ng-container>
+
+                                    <!-- Editable Input with Pop-Up -->
+                                    <ng-container *ngIf="!col.readOnly && col.PopUpData">
+                                        <input pInputText [type]="col.type" style="padding: 0;"
+                                            [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                            [(ngModel)]="product[col.bind]" (click)="toggle(0)" />
+                                        <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h"
+                                            class="custom-button" style="position: absolute; padding: 0;"
+                                            (click)="ShowPopUp(col.PopUpData, i)"></button>
+                                    </ng-container>
+
+                                    <!-- Read-Only Fields -->
+                                    <ng-container *ngIf="col.readOnly">
+                                        <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                    </ng-container>
+
+
+
+
+                                </td>
+                            </ng-container>
+
+                            <td style="width: 4rem;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow('tblWhMDetail',i ,product)" class="custom-button"></button>
+                                </td>
+                                <td style="width: 6rem;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button"
+                                        (click)="addRow('tblWhMDetail',i)"></button>
+                                </td>
+                        </tr>
+                    </ng-template>
+
+                </p-table>
+
+            </ng-container>
+
+            <ng-container *ngIf="WhManagementTab[activeIndex] && activeIndex == 1">
+                <app-document-attachment [dto]="this.dto.headerData.tblWhDocAttach" [gridNo]="4000"
+                    [apiUrl]="this.transactionApiUrl"></app-document-attachment>
+
+            </ng-container>
+
+        </div>
+    </div>
+    <p-confirmDialog></p-confirmDialog>
+
+</div>

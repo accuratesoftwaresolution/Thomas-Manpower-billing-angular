@@ -1,0 +1,57 @@
+.center {
+    padding-top: 9em;
+
+}
+
+:host ::ng-deep .p-table {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+}
+
+:host ::ng-deep .p-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+
+}
+
+:host ::ng-deep .p-table td {
+    padding: 0.3rem 0.3rem;
+}
+
+th {
+
+    background-color: antiquewhite !important;
+    border: 1px solid #ffffff !important;
+}
+
+
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
+    padding: 0rem 0rem 0rem 0.5rem !important;
+}
+
+
+.custom-button {
+    background-color: antiquewhite !important;
+    /* Ensure it overrides default styles */
+    color: black !important;
+    /* Ensures the text color is black */
+    border: 1px solid #737373;
+    /* Custom border color */
+    box-shadow: none;
+    /* Remove any shadow if present */
+    padding: 5px 10px;
+}
+
+::ng-deep .custom-white-btn .p-button,
+::ng-deep .custom-white-btn.p-button {
+  background-color:antiquewhite !important;
+  color: black !important;
+  border: 1px solid #ccc !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .custom-white-btn .p-button:hover,
+::ng-deep .custom-white-btn.p-button:hover {
+  background-color: #f2f2f2 !important;
+}
+

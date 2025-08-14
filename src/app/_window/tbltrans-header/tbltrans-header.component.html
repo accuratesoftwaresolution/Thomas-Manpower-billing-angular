@@ -1,0 +1,265 @@
+<!-- <div
+    style="border: 1px solid #003366; padding: 3px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;display: flex;">
+
+
+    <div class="p-col-12">
+
+        <div class="p-grid">
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%; ">Voucher Number</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Vou_Number" pInputText
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;text-decoration: underline;"
+                        (click)="routeTo('/common/voucher-type')">Voucher
+                        Type</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Vou_Type" pInputText
+                        style="background-color: #ffffff; width: 25%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('VocherType')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Date</label>
+                    <input type="date" [(ngModel)]="salesservice.headerData.Allh_Vou_Date" pInputText
+                        style="background-color: #ffffff; width: 25%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;text-decoration: underline;"
+                        (click)="routeTo('/common/account-master')">Sales Account Code</label>
+                    <input type="text" pInputText [(ngModel)]="salesservice.headerData.Allh_AccSecond_Code"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('SalesAccount')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Sales Account Name</label>
+                    <input type="text" pInputText [(ngModel)]="salesservice.headerData.Allh_AccSecond_Name"
+                        style="background-color: #ffffff; width: 65%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%; text-decoration: underline;">Currency Code</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Curr_Code" pInputText
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('CurrencyCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;text-decoration: underline;">Customer Code</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_CusVen_Code" pInputText
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('CustomerCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button> &nbsp;
+                    <button pButton label="Link" class="custom-button"></button>
+
+
+                </div>
+
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Customer Name</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_CusVen_Name" pInputText
+                        style="background-color: #ffffff; width: 65%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Currency Name</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Curr_Name" pInputText
+                        style="background-color: #ffffff; width: 65%; height: 2vh;">
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="p-grid">
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;text-decoration: underline;"
+                        (click)="routeTo('/common/shipped-to')">Shipped To Code</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Shipto_Code" pInputText
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('ShippedTo')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Shipped To Name</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Shipto_Name" pInputText
+                        style="background-color: #ffffff; width: 65%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Conversion Rate</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Curr_Rate" pInputText
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="p-grid">
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;text-decoration: underline;"
+                        (click)="routeTo('/common/billed-to')">Billed To Code</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Billto_Code" pInputText
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('BilledTo')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Billed To Name</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Billto_Name" pInputText
+                        style="background-color: #ffffff; width: 65%; height: 2vh;">
+                </div>
+            </div>
+
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;text-decoration: underline;">Product Module
+                        Code</label>
+                    <input type="text" pInputText [(ngModel)]="salesservice.headerData.Allh_AllModule_Code"
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('ProductModuleCode')" icon="pi pi-ellipsis-h"
+                        class="custom-button" style="margin-left:10px"></button>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="p-grid">
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;text-decoration: underline;"
+                        (click)="routeTo('/common/narration-master')">Narration Code</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Narra_Code" pInputText
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('NarrationCode')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Narration Name</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Narra_Name" pInputText
+                        style="background-color: #ffffff; width: 65%; height: 2vh;">
+                </div>
+            </div>
+
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Product Module Name</label>
+                    <input type="text" pInputText [(ngModel)]="salesservice.headerData.Allh_AllModule_Name"
+                        style="background-color: #ffffff; width: 65%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;text-decoration: underline;">Sales Agreement
+                        Code</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_SaleAgree_Code" pInputText
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('SalesAgreementCode')" icon="pi pi-ellipsis-h"
+                        class="custom-button" style="margin-left:10px"></button>
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Sales Agreement Name</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_SaleAgree_Name" pInputText
+                        style="background-color: #ffffff; width: 65%; height: 2vh;">
+                </div>
+            </div>
+
+            <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;text-decoration: underline;">Copy Doc From Template
+                        Code</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_DocTemp_Code" pInputText
+                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('CopyDocFromTemplateCode')" icon="pi pi-ellipsis-h"
+                        class="custom-button" style="margin-left:10px"></button>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="p-grid">
+            <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Text</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_Text" pInputText
+                        style="background-color: #ffffff; width: 70%; height: 2vh;">
+
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 20%;">Applicable Dates</label>
+
+                    <button pButton (click)="routeTo('ApplicableDates')" icon="pi pi-ellipsis-h" class="custom-button"
+                        style="margin-left:10px"></button>
+
+                </div>
+            </div>
+            <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Copy Doc From Template Name</label>
+                    <input type="text" [(ngModel)]="salesservice.headerData.Allh_DocTemp_Name" pInputText
+                        style="background-color: #ffffff; width: 65%; height: 2vh;">
+                </div>
+            </div>
+
+        </div>
+
+    </div> -->

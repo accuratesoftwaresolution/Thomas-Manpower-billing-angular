@@ -1,0 +1,175 @@
+<p-dialog [(visible)]="display" modal="modal" showEffect="fade" [closable]="false"
+  (onShow)="popUpEvent($event);billDt.reset()" [style]="{width: '70vw'}">
+
+  <!-- <p-table #billDt [columns]="billCols" [value]="billTable" selectionMode="single" [(selection)]="selectedBill"
+    [paginator]="true" [rows]="5" [responsive]="true" paginatorPosition="bottom" [scrollable]="true" scrollWidth="100%"
+    [resizableColumns]="true" [metaKeySelection]="true"> -->
+
+  <p-table #billDt [columns]="billCols" [value]="billTable" [(selection)]="selectedBill" [scrollable]="true"
+    [lazy]=lazyLoadEnable (onLazyLoad)="loadDataLazy($event)">
+
+    <ng-template pTemplate="caption">
+
+      <tr>
+        <td style="padding-right: 5px;"> <button pButton type="button" label="Insert" (click)="handleInsert($event)"
+            style="width: 70%;"></button> </td>
+        <td style="padding-right: 5px;"> <button pButton type="button" label="Save" (click)="handleSave($event)"
+            style="width: 50%;"></button> </td>
+        <td style="padding-right: 5px;"> <button pButton type="button" label="Delete" (click)="handleDelete($event)"
+            style="width: 70%;"></button> </td>
+        <td style="padding-right: 5px;"> <button pButton type="button" label="All" (click)="handleAll($event)"
+            style="width: 50%;"></button> </td>
+        <td style="padding-right: 5px;"> <button pButton type="button" label="Close" (click)="handleClose($event)"
+            style="width: 70%;"></button> </td>
+      </tr>
+
+    </ng-template>
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <!-- <th style="width:3em"> # </th> -->
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngStyle]="col.style">
+          {{col.header | first}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-idx="rowIndex" let-columns="columns">
+      <tr [pSelectableRow]="rowData" (click)="rowSelection(rowData)">
+
+        <td pEditableColumn *ngFor="let col of columns" [ngStyle]="col.style"
+          [ngClass]="rowData==selectedRowData&&col.editable? 'editable' : null">
+
+          <div *ngIf='!col.editable && col.exp && !col.pip'>
+            {{rowData[col.field]===col.exp.val ? col.exp.then : col.exp.els }}
+          </div>
+
+          <div *ngIf='!col.editable && col.exp && col.pip'>
+            {{ rowData[col.field]===col.exp.val ? col.exp.then : col.exp.els }}
+          </div>
+
+          <div *ngIf='!col.editable && !col.exp && !col.pip'>
+            <div *ngIf="col.type && col.type=='amount'"> {{rowData[col.field] | number: actionService.ictAmount}} </div>
+            <div *ngIf="col.type && col.type=='curRate'"> {{rowData[col.field] | number: actionService.ictCurrencyRate}}
+            </div>
+            <div *ngIf="!col.type || (col.type!='amount' && col.type!='curRate')"> {{rowData[col.field]}} </div>
+            <!-- {{rowData[col.field]}} -->
+          </div>
+
+          <div *ngIf='!col.editable && !col.exp && col.pip'>
+            {{rowData[col.field] | date: 'dd/MM/yyyy' }}
+          </div>
+
+          <p-cellEditor *ngIf='col.editable'>
+            <ng-template pTemplate="input" *ngIf="!col.type">
+              <input [style]="{width: '100%','padding': '4px'}" pInputText type="text" [maxlength]="col.maxlength"
+                [(ngModel)]="rowData[col.field]" (change)="itemClick($event,col,idx)">
+            </ng-template>
+
+            <ng-template pTemplate="input" *ngIf="col.type=='amount'">
+              <!-- <input [style]="{width: '100%'}" [maxlength]="col.maxlength" pInputText type="number"
+                style="text-align: right;" [(ngModel)]="rowData[col.field]" (change)="itemClick($event,col,idx)"> -->
+
+              <p-inputNumber [(ngModel)]="rowData[col.field]" [minFractionDigits]="service.amtDecPts"
+                [maxFractionDigits]="service.amtDecPts" [maxlength]="18 " mode="decimal"
+                (ngModelChange)="itemClick($event,col,idx)" (onFocus)="$event.target.select()"
+                [inputStyle]="{'text-align': 'right','width':'100%'}">
+              </p-inputNumber>
+            </ng-template>
+
+            <ng-template pTemplate="input" *ngIf="col.type=='date'">
+              <input [inputStyle]="{width: '100%'}" pInputText type="date" [(ngModel)]="rowData[col.field]"
+                (change)="itemClick($event,col,idx)">
+            </ng-template>
+
+            <ng-template pTemplate="output" *ngIf='col.exp'>
+              {{rowData[col.field]===col.exp.val ? col.exp.then : col.exp.els }}
+            </ng-template>
+
+            <!-- <ng-template pTemplate="output" *ngIf='!col.exp'>
+              {{rowData[col.field]}}
+            </ng-template> -->
+            <ng-template pTemplate="output" *ngIf='!col.exp && !col.pip'>
+              <div *ngIf="col.type && col.type=='amount'"> {{rowData[col.field] | number: actionService.ictAmount}}
+              </div>
+              <div *ngIf="!col.type || col.type!='amount'"> {{rowData[col.field]}} </div>
+            </ng-template>
+
+            <ng-template pTemplate="output" *ngIf='!col.exp && col.pip'>
+              {{rowData[col.field] | date: 'dd/MM/yyyy'}}
+            </ng-template>
+
+          </p-cellEditor>
+
+        </td>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <tr>
+        <td>
+          <div class="p-col-12">
+            <div class="p-grid nested-grid">
+              <div class="p-col-12 p-md-5"> {{'toAllocate' | first}} </div>
+              <div class="p-col-12 p-md-1"> {{getIadetailSignInt()==1?'Dr':'Cr'}} </div>
+              <div class="p-col-12 p-md-4"> <input type="text" style="width: 100%;text-align: right;" disabled
+                  value='{{getIadetailAmount() | number: actionService.ictAmount }}'>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="p-col-12">
+            <div class="p-grid nested-grid">
+              <div class="p-col-12 p-md-5"> {{'allocated' | first}} </div>
+              <div class="p-col-12 p-md-5"> <input type="text" style="width: 100%;text-align: right;" disabled
+                  value='{{getTotalAllocated() | number: actionService.ictAmount }}'>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="p-col-12">
+            <div class="p-grid nested-grid">
+              <div class="p-col-12 p-md-5"> {{'balance' | first}} </div>
+              <div class="p-col-12 p-md-5"> <input type="text" style="width: 100%;text-align: right;" disabled
+                  value='{{getIadetailAmount() - getTotalAllocated() | number: actionService.ictAmount }}'> </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="p-col-12">
+            <div class="p-grid nested-grid">
+              <div class="p-col-12 p-md-5"> {{'toFAllocate' | first}} </div>
+              <div class="p-col-12 p-md-1"> {{getIadetailSignInt()==1?'Dr':'Cr'}} </div>
+              <div class="p-col-12 p-md-4"> <input type="text" style="width: 100%;text-align: right;" disabled
+                  value='{{getIadetailFAmount() | number: actionService.ictAmount}}'>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="p-col-12">
+            <div class="p-grid nested-grid">
+              <div class="p-col-12 p-md-5"> {{'fAllocated' | first}}</div>
+              <div class="p-col-12 p-md-5"> <input type="text" style="width: 100%;text-align: right;"
+                  value='{{getTotalFAllocated() | number: actionService.ictAmount}}'>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="p-col-12">
+            <div class="p-grid nested-grid">
+              <div class="p-col-12 p-md-5"> {{'fBalance' | first}} </div>
+              <div class="p-col-12 p-md-5"> <input type="text" style="width: 100%;text-align: right;" disabled
+                  value='{{getIadetailFAmount() - getTotalFAllocated() | number: actionService.ictAmount}}'> </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-dialog>

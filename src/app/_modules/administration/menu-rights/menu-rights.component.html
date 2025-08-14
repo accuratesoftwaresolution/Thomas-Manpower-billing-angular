@@ -1,0 +1,157 @@
+<p-toast></p-toast>
+<div class="p-col-12">
+    <div class="card card-w-title">
+        <div class="p-col-12">
+            <div class="p-grid nested-grid">
+                <div class="p-col-12 p-md-12">
+                    <div class="p-grid nested-grid form-group">
+                        <div class="p-col-6 p-md-6">
+                            <span class="md-inputfield">
+                                <label>{{'selectOneUser' | first}}</label><br/>
+                                <p-dropdown [options]="userListLov" [(ngModel)]="userId" [style]="{'width':'100%'}"
+                                    filter="true" (onChange)="userChange($event)">
+                                    <ng-template let-item pTemplate="selectedItem">
+                                        <span style="vertical-align:middle; margin-left: .5em">{{item.label}}</span>
+                                    </ng-template>
+                                    <ng-template let-user pTemplate="item">
+                                        <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                            <div style="font-size:14px;margin-top:4px">{{user.label}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </span>
+                        </div>
+                        <div class="p-col-6 p-md-6">
+                            <!-- <button pButton type="button" label="Set All Menu Rights"
+                                (click)="setAllMenuRights()"></button> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-5 up-md-5">
+                    <p-tree [value]="menuTreeData" selectionMode="single" [(selection)]="selectedTreeMenu"
+                        (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)"
+                        (onNodeExpand)="nodeExpand($event)"
+                        [style]="{'height':'410px','width':'90%','overflow':'auto'}">
+                    </p-tree>
+                </div>
+                <div class="p-col-7 up-md-7">
+                    <p-panel [header]="'Menu Rights : '+ (selectedTreeMenu?.data?.description || '')"
+                        [style]="{'margin-bottom':'20px'}">
+
+                        <div class="ui-fluid">
+                            <div class="card card-w-title">
+                                <div class="p-grid nested-grid form-group">
+                                    <div class="p-col-6 p-md-6">
+                                        <span class="md-inputfield">
+                                            <div class="p-grid nested-grid" style="width:250px;margin-bottom:10px">
+                                                <p-fieldset>
+                                                    <p-header>{{'accessRights' | first}} - &nbsp;
+                                                        <p-checkbox name="group1All" value="true" 
+                                                             [(ngModel)]="accessRightsAll"
+                                                            (onChange)="selectAllAccessRights($event)" [binary]="true">
+                                                        </p-checkbox>
+                                                    </p-header>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group1" value="C" label="Create"
+                                                            [(ngModel)]="selectedRights" inputId="chk_create">
+                                                        </p-checkbox>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group1" value="E" label="Excecute"
+                                                            [(ngModel)]="selectedRights" inputId="chk_execute">
+                                                        </p-checkbox>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group1" value="M" label="Modify"
+                                                            [(ngModel)]="selectedRights" inputId="chk_modify">
+                                                        </p-checkbox>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group1" value="D" label="Delete Voucher"
+                                                            [(ngModel)]="selectedRights" inputId="chk_delete">
+                                                        </p-checkbox>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group1" value="R" label="Delete Row"
+                                                            [(ngModel)]="selectedRights" inputId="chk_delete_row">
+                                                        </p-checkbox>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group1" value="P" label="Print"
+                                                            [(ngModel)]="selectedRights" inputId="chk_print">
+                                                        </p-checkbox>
+                                                    </div>
+                                                </p-fieldset>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="p-col-6 p-md-6">
+                                        <span class="md-inputfield">
+                                            <div class="p-grid nested-grid" style="width:250px;margin-bottom:10px">
+                                                <p-fieldset>
+                                                    <p-header>{{'otherRights'| first}} - &nbsp;
+                                                        <p-checkbox name="group2All" value="true" label="All"
+                                                            [(ngModel)]="otherRightsAll" inputId="group2All"
+                                                            (onChange)="selectAllOtherRights($event)" [binary]="true">
+                                                        </p-checkbox>
+                                                    </p-header>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group2" value="Q" label="Query"
+                                                            [(ngModel)]="selectedRights" inputId="chk_create">
+                                                        </p-checkbox>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group2" value="I" label="Import"
+                                                            [(ngModel)]="selectedRights" inputId="chk_execute">
+                                                        </p-checkbox>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group2" value="L" label="List"
+                                                            [(ngModel)]="selectedRights" inputId="chk_modify">
+                                                        </p-checkbox>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group2" value="V" label="Verify"
+                                                            [(ngModel)]="selectedRights" inputId="chk_delete">
+                                                        </p-checkbox>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <p-checkbox name="group2" value="O" label="Void"
+                                                            [(ngModel)]="selectedRights" inputId="chk_delete_row">
+                                                        </p-checkbox>
+                                                    </div>
+                                                </p-fieldset>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="p-grid nested-grid form-group">
+                                    <div class="p-col-8 p-md-8">
+                                        <div class="p-grid nested-grid">
+                                            <div class="p-col-6 p-md-6">
+                                                <span class="md-inputfield">
+                                                    <button pButton type="button" label="Set Rights"
+                                                        (click)="setRights()"></button>
+                                                </span>
+                                            </div>
+                                            <div class="p-col-6 p-md-6">
+                                                <button pButton type="button" label="Set All Menu Rights"
+                                                (click)="setAllMenuRights()"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-col-4 p-md-4">
+                                        <span class="md-inputfield">
+                                            <button pButton type="button" label="Close" (click)="onClose()"></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

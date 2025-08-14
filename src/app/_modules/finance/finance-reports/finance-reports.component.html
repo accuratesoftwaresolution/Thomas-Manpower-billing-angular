@@ -1,0 +1,855 @@
+<div class="p-grid" *ngIf="!display">
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <p-card>
+            <p-fieldset>
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6 p-lg-2">
+                        <span class="md-inputfield" *ngIf="dateGroup.date1.visible">
+                            <label for="date1">{{dateGroup.date1.data.label}}</label>
+                            <p-calendar [showIcon]="true" inputId="date1"
+                                [(ngModel)]="reportParams[dateGroup.date1.name]" dateFormat="dd/mm/yy"
+                                [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange">
+                            </p-calendar>
+                        </span>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-2">
+                        <span class="md-inputfield" *ngIf="dateGroup.date2.visible">
+                            <label for="date2">{{dateGroup.date2.data.label}} </label>
+                            <p-calendar inputId="date2" [(ngModel)]="reportParams[dateGroup.date2.name]"
+                                dateFormat="dd/mm/yy" [showIcon]="true" [monthNavigator]="true" [yearNavigator]="true"
+                                [yearRange]="yearRange">
+                            </p-calendar>
+                        </span>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-2">
+                        <span class="md-inputfield" *ngIf="inputGroup.input1.visible">
+                            <label for="input1">Report Title : </label>
+                            <input type="text" inputId="input1" pInputText placeholder="Report Title"
+                                [(ngModel)]="reportParams[inputGroup.input1.name]">
+                        </span>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-1">
+                        <span class="md-inputfield" *ngIf="checkGroup.check11.visible">
+                            <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                                label="{{data.label}}" (click)="valueChange($event,data)"></p-checkbox>
+                        </span>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-1">
+                        <span class="md-inputfield" *ngIf="checkGroup.check12.visible">
+                            <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                                label="{{data.label}}" (click)="valueChange($event,data)"></p-checkbox>
+                        </span>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-2">
+                        <span class="md-inputfield">
+                            <label for="dropdown1">Output As</label>
+                            <p-dropdown inputId="dropdown1" [options]="outputTypeData" [(ngModel)]="REPORT_TYPE"
+                                [style]="{'width':'100%'}">
+                            </p-dropdown>
+                        </span>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-2">
+                        <span class="md-inputfield">
+                            <label for="dropdown2">Destination</label>
+                            <p-dropdown inputId="dropdown2" [options]="destinationData" [(ngModel)]="REPORT_DESTINTION"
+                                [style]="{'width':'100%'}">
+                            </p-dropdown>
+                        </span>
+                    </div>
+
+                </div>
+            </p-fieldset>
+
+        </p-card>
+    </div>
+    <div *ngIf="radioGroup.group1.visible">
+        <!--class="p-col-12 p-md-12 p-lg-3" -->
+        <p-card [ngStyle]="radioGroup.group1.style">
+            <p-fieldset>
+                <p-header>{{radioGroup.group1.title}}</p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group1.data">
+                        <p-radioButton name="group1" value="{{data.value}}" label="{{data.label}}"
+                            [(ngModel)]="reportParams[radioGroup.group1.name]" inputId="{{data.value}}"
+                            (click)="valueChange($event,data)" class="max-content"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+    <div *ngIf="checkGroup.check1.visible">
+        <!-- class="p-col-12 p-md-12 p-lg-3" -->
+        <p-card [ngStyle]="checkGroup.check1.style">
+            <p-fieldset>
+                <p-header>{{checkGroup.check1.title}}</p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check1.data">
+                        <p-checkbox [disabled]="data.disabled" [(ngModel)]="reportParams[data.name]" binary="true"
+                            value="{{data.value}}" class="max-content" label="{{data.label}}"
+                            (click)="valueChange($event,data)">
+                        </p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+    <div *ngIf="radioGroup.group2.visible">
+        <!--  class="p-col-12 p-md-12 p-lg-3"  -->
+        <p-card [ngStyle]="radioGroup.group2.style">
+            <p-fieldset>
+                <p-header>{{radioGroup.group2.title}}</p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group2.data">
+                        <p-radioButton name="group2" value="{{data.value}}" label="{{data.label}}"
+                            [(ngModel)]="reportParams[radioGroup.group2.name]" inputId="{{data.value}}"
+                            (click)="valueChange($event,data)" class="max-content"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+
+    <div *ngIf="checkGroup.check2.visible">
+        <!-- class="p-col-12 p-md-12 p-lg-3"   -->
+        <p-card [ngStyle]="checkGroup.check2.style">
+            <p-fieldset>
+                <p-header>{{checkGroup.check2.title}}</p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check2.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" class="max-content" (click)="valueChange($event,data)">
+                        </p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+
+    <div *ngIf="radioGroup.group3.visible">
+        <!--  class="p-col-12 p-md-12 p-lg-3"  -->
+        <p-card [ngStyle]="radioGroup.group3.style">
+            <p-fieldset>
+                <p-header>{{radioGroup.group3.title}}</p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group3.data">
+                        <p-radioButton name="group3" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group3.name]"
+                            inputId="{{data.value}}" class="max-content"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+    <div *ngIf="checkGroup.check3.visible">
+        <!-- class="p-col-12 p-md-12 p-lg-3"   -->
+        <p-card [ngStyle]="checkGroup.check3.style">
+            <p-fieldset>
+                <p-header>{{checkGroup.check3.title}}</p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check3.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" class="max-content" (click)="valueChange($event,data)">
+                        </p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+
+    <div *ngIf="radioGroup.group4.visible">
+        <!--  class="p-col-12 p-md-12 p-lg-3"   -->
+        <p-card [ngStyle]="radioGroup.group4.style">
+            <p-fieldset>
+                <p-header>{{radioGroup.group4.title}}</p-header>
+                <div class="ui-g" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group4.data">
+                        <p-radioButton name="group4" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group4.name]"
+                            inputId="{{data.value}}" class="max-content"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+    <div *ngIf="checkGroup.check4.visible">
+        <!--  class="p-col-12 p-md-12 p-lg-3"  -->
+        <p-card [ngStyle]="checkGroup.check4.style">
+            <p-fieldset>
+                <p-header>{{checkGroup.check4.title}}</p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check4.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" (click)="valueChange($event,data)" class="max-content">
+                        </p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+
+    <div *ngIf="radioGroup.group5.visible">
+        <!--  class="p-col-12 p-md-12 p-lg-3"  -->
+        <p-card [ngStyle]="radioGroup.group5.style">
+            <p-fieldset>
+                <p-header>{{radioGroup.group5.title}} </p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group5.data">
+                        <p-radioButton name="group5" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group5.name]"
+                            inputId="{{data.value}}" class="max-content"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+    <div *ngIf="checkGroup.check5.visible">
+        <!-- class="p-col-12 p-md-12 p-lg-3"   -->
+        <p-card [ngStyle]="checkGroup.check5.style">
+            <p-fieldset>
+                <p-header>{{checkGroup.check5.title}}</p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check5.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" class="max-content" (click)="valueChange($event,data)">
+                        </p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+
+    <div *ngIf="radioGroup.group6.visible">
+        <!--  class="p-col-12 p-md-12 p-lg-3"  -->
+        <p-card [ngStyle]="radioGroup.group6.style">
+            <p-fieldset>
+                <p-header>{{radioGroup.group6.title}} </p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group6.data">
+                        <p-radioButton name="group6" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group6.name]"
+                            inputId="{{data.value}}" class="max-content"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+    <div *ngIf="checkGroup.check6.visible">
+        <!-- class="p-col-12 p-md-12 p-lg-3" -->
+        <p-card [ngStyle]="checkGroup.check6.style">
+            <p-fieldset>
+                <p-header>{{checkGroup.check6.title}}</p-header>
+                <div class="ui-g">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check6.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" class="max-content" (click)="valueChange($event,data)">
+                        </p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-3" *ngIf="ageGroup.agefield1.visible">
+        <!--  -->
+        <p-card>
+            <p-fieldset>
+                <p-header>{{ageGroup.agefield1.title}}</p-header>
+                <div class="ui-g" style="width: 100px;">
+                    <div *ngFor="let data of ageGroup.agefield1.data;let idx=index">
+                        <div class="ui-g-12" *ngIf="(idx+1)%2!=0">
+                            <div class="ui-g-6 ui-md-2 width">
+                                <span class="md-inputfield">
+                                    <label>{{data.label}}</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-5 width">
+                                <span class="md-inputfield">
+                                    <input type="text" [disabled]="data.disabled" pInputText placeholder=""
+                                        [(ngModel)]="reportParams[data.name]">
+                                </span>
+                            </div>
+
+                            <div class="ui-g-6 ui-md-2 width" *ngIf="ageGroup.agefield1.data[idx+1]">
+                                <span class="md-inputfield">
+                                    <label>{{ageGroup.agefield1.data[idx+1].label}}</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-5 width" *ngIf="ageGroup.agefield1.data[idx+1]">
+                                <span class="md-inputfield">
+                                    <input type="text" [disabled]="ageGroup.agefield1.data[idx+1].disabled" pInputText
+                                        placeholder="" [(ngModel)]="reportParams[ageGroup.agefield1.data[idx+1].name]">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+
+    <div *ngIf="radioGroup.group7.visible">
+        <!--  class="p-col-12 p-md-12 p-lg-3" -->
+        <p-card [ngStyle]="radioGroup.group7.style">
+            <p-fieldset>
+                <p-header>{{radioGroup.group7.title}} </p-header>
+                <div class="ui-g" *ngIf="radioGroup.group7.visible">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group7.data">
+                        <p-radioButton name="group7" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group7.name]"
+                            inputId="{{data.value}}" class="max-content"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+        </p-card>
+    </div>
+</div>
+
+<div class="p-grid" *ngIf="!display">
+    <div class="p-col-12 p-md-12 p-lg-12">
+        <p-card>
+            <p-tabView orientation="top">
+                <p-tabPanel header="{{tabGroup.tab1.title|| 'Company' }}" *ngIf="tabGroup.tab1.visible"
+                    [selected]="tabGroup.tab1.selected">
+                    <p-pickList [source]="tabGroup.tab1.data.value" [target]="reportParams[tabGroup.tab1.name]"
+                        sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="coName"
+                        dragdrop="true" sourceFilterPlaceholder="Search by Company"
+                        targetFilterPlaceholder="Search by Company" [sourceStyle]="{'height':'200px'}"
+                        [targetStyle]="{'height':'200px'}">
+                        <ng-template let-data pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.coCode}} -
+                                    {{data.coName}}
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </p-tabPanel>
+                <p-tabPanel header="{{tabGroup.tab2.title|| 'Division' }}" *ngIf="tabGroup.tab2.visible"
+                    [selected]="tabGroup.tab2.selected">
+                    <p-pickList [source]="tabGroup.tab2.data.value" [target]="reportParams[tabGroup.tab2.name]"
+                        sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="dvName"
+                        dragdrop="true" sourceFilterPlaceholder="Search by Division"
+                        targetFilterPlaceholder="Search by Division" [sourceStyle]="{'height':'200px'}"
+                        [targetStyle]="{'height':'200px'}">
+                        <ng-template let-data pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.dvCode}} -
+                                    {{data.dvName}}
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </p-tabPanel>
+
+                <p-tabPanel header="{{tabGroup.tab3.title|| 'Branch' }}" *ngIf="tabGroup.tab3.visible"
+                    [selected]="tabGroup.tab3.selected">
+                    <p-pickList [source]="tabGroup.tab3.data.value" [target]="reportParams[tabGroup.tab3.name]"
+                        sourceHeader="Available" targetHeader="Selected" dragdrop="true" [responsive]="true"
+                        [sourceStyle]="{ height: '300px' }" [targetStyle]="{ height: '300px' }" filterBy="brName"
+                        sourceFilterPlaceholder="Search by Branch" targetFilterPlaceholder="Search by Branch">
+                        <ng-template let-product pTemplate="item">
+                            <div class="product-item">
+                                <div class="product-list-detail">
+                                    <i class="pi pi-tag product-category-icon"></i>
+                                    <span class="product-category">{{ product.brCode }}</span> -
+                                    <span class="product-category">{{ product.brName }}</span>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </p-tabPanel>
+
+                <p-tabPanel header="{{tabGroup.tab4.title|| 'Accounts' }}" *ngIf="tabGroup.tab4.visible"
+                    [selected]="tabGroup.tab4.selected">
+                    <p-pickList [source]="tabGroup.tab4.data.value" [target]="reportParams[tabGroup.tab4.name]"
+                        sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="acName"
+                        dragdrop="true" sourceFilterPlaceholder="Search by Accounts"
+                        targetFilterPlaceholder="Search by Accounts" [sourceStyle]="{'height':'200px'}"
+                        [targetStyle]="{'height':'200px'}">
+                        <ng-template let-data pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.acCode}} -
+                                    {{data.acName}}
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </p-tabPanel>
+                <p-tabPanel header="{{tabGroup.tab5.title|| 'Level' }}" *ngIf="tabGroup.tab5.visible"
+                    [selected]="tabGroup.tab5.selected">
+
+                    <div class="ui-g" style="width:250px;margin-bottom:10px">
+                        <p-radioButton name="groupLevelNo" value="1" label="Level 1"
+                            [(ngModel)]='reportParams["LEVEL_NO"]' (onClick)="levelChange()" inputId="groupLevelNo1">
+                        </p-radioButton> &nbsp;&nbsp;
+                        <p-radioButton name="groupLevelNo" value="2" label="Level 2"
+                            [(ngModel)]='reportParams["LEVEL_NO"]' (onClick)="levelChange()" inputId="groupLevelNo2">
+                        </p-radioButton> &nbsp;&nbsp;
+                        <p-radioButton name="groupLevelNo" value="3" label="Level 3"
+                            [(ngModel)]='reportParams["LEVEL_NO"]' (onClick)="levelChange()" inputId="groupLevelNo3">
+                        </p-radioButton> &nbsp;&nbsp;
+                    </div>
+
+                    <p-pickList [source]="tabGroup.tab5.data.value" [target]="reportParams[tabGroup.tab5.name]"
+                        sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="acName"
+                        dragdrop="true" sourceFilterPlaceholder="Search by Level"
+                        targetFilterPlaceholder="Search by Level" [sourceStyle]="{'height':'200px'}"
+                        [targetStyle]="{'height':'200px'}">
+                        <ng-template let-data pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                <div style="font-size:10px;float: left;margin:2px 2px 0 0">
+                                    {{data["ac"+ reportParams["LEVEL_NO"] +"Code"]}} -
+                                    {{data["ac"+ reportParams["LEVEL_NO"] +"Name"]}} </div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </p-tabPanel>
+
+                <p-tabPanel header="{{tabGroup.tab6.title|| 'Area' }}" *ngIf="tabGroup.tab6.visible"
+                    [selected]="tabGroup.tab6.selected">
+                    <p-pickList [source]="tabGroup.tab6.data.value" [target]="reportParams[tabGroup.tab6.name]"
+                        sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="name"
+                        dragdrop="true" sourceFilterPlaceholder="Search by Area"
+                        targetFilterPlaceholder="Search by Area" [sourceStyle]="{'height':'200px'}"
+                        [targetStyle]="{'height':'200px'}">
+                        <ng-template let-data pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.code}} -
+                                    {{data.name}}
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </p-tabPanel>
+
+                <p-tabPanel header="{{tabGroup.tab7.title|| 'Salesman' }}" *ngIf="tabGroup.tab7.visible"
+                    [selected]="tabGroup.tab7.selected">
+                    <p-pickList [source]="tabGroup.tab7.data.value" [target]="reportParams[tabGroup.tab7.name]"
+                        sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="name"
+                        dragdrop="true" sourceFilterPlaceholder="Search by Salesman"
+                        targetFilterPlaceholder="Search by Salesman" [sourceStyle]="{'height':'200px'}"
+                        [targetStyle]="{'height':'200px'}">
+                        <ng-template let-data pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.code}} -
+                                    {{data.name}}
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </p-tabPanel>
+
+                <p-tabPanel header="{{tabGroup.tab8.title|| 'Debt Collector' }}" *ngIf="tabGroup.tab8.visible"
+                    [selected]="tabGroup.tab8.selected">
+                    <p-pickList [source]="tabGroup.tab8.data.value" [target]="reportParams[tabGroup.tab8.name]"
+                        sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="name"
+                        dragdrop="true" sourceFilterPlaceholder="Search by Debt Collector"
+                        targetFilterPlaceholder="Search by Debt Collector" [sourceStyle]="{'height':'200px'}"
+                        [targetStyle]="{'height':'200px'}">
+                        <ng-template let-data pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.code}} -
+                                    {{data.name}}
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </p-tabPanel>
+
+            </p-tabView>
+        </p-card>
+    </div>
+</div>
+
+<div class="p-fluid p-formgrid" *ngIf="display&& reportId !='acc_balancesheet_1'&& reportId !='acc_profit_loss_1'">
+
+    <div class="p-grid">
+        <!-- <div class="p-field p-col-2 p-md-2">
+            <button pButton type="button" label="Go To Report Generation" (click)="display=false"></button>
+        </div>
+        <div class="p-field p-col-10 p-md-10"> </div> -->
+        <div class="p-field p-col-12 p-md-12">
+            <!-- <p-dialog header="Long Content" [(visible)]="display" [style]="{height: '90%'}" [baseZIndex]="10000" modal=true> -->
+            <report-designer [reportHeading]="reportHeading" [printColumnMetaData]="printColumnMetaData"
+                [data]="detail?allData :data" [orgData]="data" [detail]="detail" [groupBy]="groupDataBy"
+                [detailPropertyName]="detailPropertyName" [detailPrintColumnMetaData]="detailPrintColumnMetaData"
+                [rptLanguage]="rptLanguage" [reportId]="reportId" [company]="company"
+                [fromDate]="reportParams[dateGroup.date1.name]" [toDate]="reportParams[dateGroup.date2.name]"
+                (closeReportView)="display=false">
+            </report-designer>
+            <!-- </p-dialog> -->
+        </div>
+    </div>
+</div>
+
+<div class="p-fluid p-formgrid" *ngIf="display && (reportId=='acc_balancesheet_1'||reportId =='acc_profit_loss_1')">
+    <div class="p-grid">
+
+        <div class="p-field p-col-12 p-md-12">
+            <report-designer-balancesheet [reportHeading]="reportHeading" [printColumnMetaData]="printColumnMetaData"
+                [data]="detail?allData :data" [orgData]="data" [detail]="detail" [groupBy]="groupDataBy"
+                [detailPropertyName]="detailPropertyName" [detailPrintColumnMetaData]="detailPrintColumnMetaData"
+                [rptLanguage]="rptLanguage" [reportId]="reportId" [company]="company"
+                [fromDate]="reportParams[dateGroup.date1.name]" [toDate]="reportParams[dateGroup.date2.name]"
+                (closeReportView)="display=false">
+            </report-designer-balancesheet>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="ui-fluid">
+    <div class="card card-w-title">
+        <p-fieldset>
+
+            <div class="ui-g form-group">
+                <div class="ui-g" style="width:150px;margin-bottom:0px" *ngIf="dateGroup.date1.visible">
+                    <div class="ui-g-6 ui-md-7 width">
+                        <span class="md-inputfield">
+                            <p-calendar [(ngModel)]="reportParams[dateGroup.date1.name]" dateFormat="dd/mm/yy">
+                            </p-calendar>
+                            <label>{{dateGroup.date1.data.label}} </label>
+                        </span>
+                    </div>
+                </div>
+                <div class="ui-g" style="width:150px;margin-bottom:0px" *ngIf="dateGroup.date2.visible">
+                    <div class="ui-g-6 ui-md-7 width">
+                        <span class="md-inputfield">
+                            <p-calendar [(ngModel)]="reportParams[dateGroup.date2.name]" dateFormat="dd/mm/yy">
+                            </p-calendar>
+                            <label>{{dateGroup.date2.data.label}} </label>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="ui-g" style="width:150px;margin-bottom:0px" *ngIf="!dateGroup.date1.visible"></div>
+                <div class="ui-g" style="width:150px;margin-bottom:0px" *ngIf="!dateGroup.date2.visible"></div>
+
+                <div class="ui-g-6 ui-md-2 width" *ngIf="inputGroup.input1.visible">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText placeholder="Report Title"
+                            [(ngModel)]="reportParams[inputGroup.input1.name]">
+                        <label>Report Title : </label>
+                    </span>
+                </div>
+
+                <div class="ui-g-6 ui-md-2 width" *ngIf="checkGroup.check11.visible">
+                    <span class="md-inputfield" *ngFor="let data of checkGroup.check11.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" (click)="valueChange($event,data)"></p-checkbox>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-2 width" *ngIf="!checkGroup.check11.visible"></div>
+
+
+                <div class="ui-g-6 ui-md-2 width" *ngIf="checkGroup.check12.visible">
+                    <span class="md-inputfield" *ngFor="let data of checkGroup.check12.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" (click)="valueChange($event,data)"></p-checkbox>
+                    </span>
+                </div>
+                <div class="ui-g-6 ui-md-2 width" *ngIf="!checkGroup.check12.visible"></div>
+
+                <div class="ui-g-6 ui-md-1 width">
+                    <span class="md-inputfield">
+                        <p-dropdown [options]="outputTypeData" [(ngModel)]="REPORT_TYPE" [style]="{'width':'100%'}">
+                        </p-dropdown>
+                        <label>Output As</label>
+                    </span>
+                </div>
+
+                <div class="ui-g-6 ui-md-1 width">
+                    <span class="md-inputfield">
+                        <p-dropdown [options]="destinationData" [(ngModel)]="REPORT_DESTINTION"
+                            [style]="{'width':'100%'}">
+                        </p-dropdown>
+                        <label>Destination</label>
+                    </span>
+                </div>
+            </div>
+        </p-fieldset>
+
+        <div class="ui-g form-group">
+
+            <p-fieldset *ngIf="radioGroup.group1.visible">
+                <p-header>{{radioGroup.group1.title}}</p-header>
+                <div class="ui-g" [ngStyle]="radioGroup.group1.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group1.data">
+                        <p-radioButton name="group1" value="{{data.value}}" label="{{data.label}}"
+                            [(ngModel)]="reportParams[radioGroup.group1.name]" inputId="{{data.value}}"
+                            (click)="valueChange($event,data)"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="checkGroup.check1.visible">
+                <p-header>{{checkGroup.check1.title}}</p-header>
+                <div class="ui-g" [ngStyle]="checkGroup.check1.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check1.data">
+                        <p-checkbox [disabled]="data.disabled" [(ngModel)]="reportParams[data.name]" binary="true"
+                            value="{{data.value}}" label="{{data.label}}" (click)="valueChange($event,data)">
+                        </p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="radioGroup.group2.visible">
+                <p-header>{{radioGroup.group2.title}}</p-header>
+                <div class="ui-g" [ngStyle]="radioGroup.group2.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group2.data">
+                        <p-radioButton name="group2" value="{{data.value}}" label="{{data.label}}"
+                            [(ngModel)]="reportParams[radioGroup.group2.name]" inputId="{{data.value}}"
+                            (click)="valueChange($event,data)"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+            <p-fieldset *ngIf="checkGroup.check2.visible">
+                <p-header>{{checkGroup.check2.title}}</p-header>
+                <div class="ui-g" [ngStyle]="checkGroup.check2.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check2.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" (click)="valueChange($event,data)"></p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="radioGroup.group3.visible">
+                <p-header>{{radioGroup.group3.title}}</p-header>
+                <div class="ui-g" [ngStyle]="radioGroup.group3.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group3.data">
+                        <p-radioButton name="group3" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group3.name]"
+                            inputId="{{data.value}}"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="checkGroup.check3.visible">
+                <p-header>{{checkGroup.check3.title}}</p-header>
+                <div class="ui-g" [ngStyle]="checkGroup.check3.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check3.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" (click)="valueChange($event,data)"></p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="radioGroup.group4.visible">
+                <p-header>{{radioGroup.group4.title}}</p-header>
+                <div class="ui-g" [ngStyle]="radioGroup.group4.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group4.data">
+                        <p-radioButton name="group4" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group4.name]"
+                            inputId="{{data.value}}"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="checkGroup.check4.visible">
+                <p-header>{{checkGroup.check4.title}}</p-header>
+                <div class="ui-g" [ngStyle]="checkGroup.check4.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check4.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" (click)="valueChange($event,data)"></p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="radioGroup.group5.visible">
+                <p-header>{{radioGroup.group5.title}}
+                </p-header>
+                <div class="ui-g" [ngStyle]="radioGroup.group5.style" style="margin-bottom:0px">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group5.data">
+                        <p-radioButton name="group5" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group5.name]"
+                            inputId="{{data.value}}"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+            <p-fieldset *ngIf="checkGroup.check5.visible">
+                <p-header>{{checkGroup.check4.title}}</p-header>
+                <div class="ui-g" [ngStyle]="checkGroup.check5.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check4.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" (click)="valueChange($event,data)"></p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="radioGroup.group6.visible">
+                <p-header>{{radioGroup.group6.title}}
+                </p-header>
+                <div class="ui-g" [ngStyle]="radioGroup.group6.style" style="margin-bottom:0px">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group6.data">
+                        <p-radioButton name="group6" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group6.name]"
+                            inputId="{{data.value}}"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+            <p-fieldset *ngIf="checkGroup.check6.visible">
+                <p-header>{{checkGroup.check4.title}}</p-header>
+                <div class="ui-g" [ngStyle]="checkGroup.check6.style" style="margin-bottom:10px">
+                    <div class="ui-g-12" *ngFor="let data of checkGroup.check6.data">
+                        <p-checkbox [(ngModel)]="reportParams[data.name]" binary="true" value="{{data.value}}"
+                            label="{{data.label}}" (click)="valueChange($event,data)"></p-checkbox>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="ageGroup.agefield1.visible">
+                <p-header>{{ageGroup.agefield1.title}}</p-header>
+                <div class="ui-g" style="width: 100px;">
+                    <div *ngFor="let data of ageGroup.agefield1.data;let idx=index">
+                        <div class="ui-g-12" *ngIf="(idx+1)%2!=0">
+                            <div class="ui-g-6 ui-md-2 width">
+                                <span class="md-inputfield">
+                                    <label>{{data.label}}</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-5 width">
+                                <span class="md-inputfield">
+                                    <input type="text" [disabled]="data.disabled" pInputText placeholder=""
+                                        [(ngModel)]="reportParams[data.name]">
+                                </span>
+                            </div>
+
+                            <div class="ui-g-6 ui-md-2 width" *ngIf="ageGroup.agefield1.data[idx+1]">
+                                <span class="md-inputfield">
+                                    <label>{{ageGroup.agefield1.data[idx+1].label}}</label>
+                                </span>
+                            </div>
+                            <div class="ui-g-6 ui-md-5 width" *ngIf="ageGroup.agefield1.data[idx+1]">
+                                <span class="md-inputfield">
+                                    <input type="text" [disabled]="ageGroup.agefield1.data[idx+1].disabled" pInputText
+                                        placeholder="" [(ngModel)]="reportParams[ageGroup.agefield1.data[idx+1].name]">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-fieldset>
+
+            <p-fieldset *ngIf="radioGroup.group7.visible">
+                <p-header>{{radioGroup.group7.title}}
+                </p-header>
+                <div class="ui-g" [ngStyle]="radioGroup.group7.style" style="margin-bottom:0px"
+                    *ngIf="radioGroup.group7.visible">
+                    <div class="ui-g-12" *ngFor="let data of radioGroup.group7.data">
+                        <p-radioButton name="group7" value="{{data.value}}" label="{{data.label}}"
+                            (click)="valueChange($event,data)" [(ngModel)]="reportParams[radioGroup.group7.name]"
+                            inputId="{{data.value}}"> </p-radioButton>
+                    </div>
+                </div>
+            </p-fieldset>
+        </div>
+    </div> 
+
+    <div class="card card-w-title">
+     <p-tabView orientation="top">
+            <p-tabPanel header="{{tabGroup.tab1.title|| 'Company' }}" *ngIf="tabGroup.tab1.visible" [selected]="tabGroup.tab1.selected">
+                <p-pickList [source]="tabGroup.tab1.data.value" [target]="reportParams[tabGroup.tab1.name]"
+                    sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="coName"
+                    dragdrop="true" sourceFilterPlaceholder="Search by Company"
+                    targetFilterPlaceholder="Search by Company" [sourceStyle]="{'height':'200px'}"
+                    [targetStyle]="{'height':'200px'}">
+                    <ng-template let-data pTemplate="item">
+                        <div class="ui-helper-clearfix">
+                            <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.coCode}} - {{data.coName}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-pickList>
+            </p-tabPanel>
+
+            <p-tabPanel header="{{tabGroup.tab2.title|| 'Division' }}" *ngIf="tabGroup.tab2.visible" [selected]="tabGroup.tab2.selected">
+                <p-pickList [source]="tabGroup.tab2.data.value" [target]="reportParams[tabGroup.tab2.name]"
+                    sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="dvName"
+                    dragdrop="true" sourceFilterPlaceholder="Search by Division"
+                    targetFilterPlaceholder="Search by Division" [sourceStyle]="{'height':'200px'}"
+                    [targetStyle]="{'height':'200px'}">
+                    <ng-template let-data pTemplate="item">
+                        <div class="ui-helper-clearfix">
+                            <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.dvCode}} - {{data.dvName}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-pickList>
+            </p-tabPanel>
+
+            <p-tabPanel header="{{tabGroup.tab3.title|| 'Branch' }}" *ngIf="tabGroup.tab3.visible" [selected]="tabGroup.tab3.selected">
+                <p-pickList [source]="tabGroup.tab3.data.value" [target]="reportParams[tabGroup.tab3.name]"
+                    sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="brName"
+                    dragdrop="true" sourceFilterPlaceholder="Search by Branch"
+                    targetFilterPlaceholder="Search by Branch" [sourceStyle]="{'height':'200px'}"
+                    [targetStyle]="{'height':'200px'}">
+                    <ng-template let-data pTemplate="item">
+                        <div class="ui-helper-clearfix">
+                            <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.brCode}} - {{data.brName}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-pickList>
+            </p-tabPanel>
+
+            <p-tabPanel header="{{tabGroup.tab4.title|| 'Accounts' }}" *ngIf="tabGroup.tab4.visible" [selected]="tabGroup.tab4.selected">
+                <p-pickList [source]="tabGroup.tab4.data.value" [target]="reportParams[tabGroup.tab4.name]"
+                    sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="acName"
+                    dragdrop="true" sourceFilterPlaceholder="Search by Accounts"
+                    targetFilterPlaceholder="Search by Accounts" [sourceStyle]="{'height':'200px'}"
+                    [targetStyle]="{'height':'200px'}">
+                    <ng-template let-data pTemplate="item">
+                        <div class="ui-helper-clearfix">
+                            <div style="font-size:10px;float: left;margin:2px 2px 0 0">{{data.acCode}} - {{data.acName}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-pickList>
+            </p-tabPanel>
+                        <p-tabPanel header="{{tabGroup.tab5.title|| 'Level' }}" *ngIf="tabGroup.tab5.visible" [selected]="tabGroup.tab5.selected">
+
+                <div class="ui-g" style="width:250px;margin-bottom:10px">
+                    <p-radioButton name="groupLevelNo" value="1" label="Level 1" [(ngModel)]='reportParams["LEVEL_NO"]'
+                        (click)="levelChange()" inputId="groupLevelNo1"></p-radioButton> &nbsp;&nbsp;
+                    <p-radioButton name="groupLevelNo" value="2" label="Level 2" [(ngModel)]='reportParams["LEVEL_NO"]'
+                        (click)="levelChange()" inputId="groupLevelNo2"></p-radioButton> &nbsp;&nbsp;
+                    <p-radioButton name="groupLevelNo" value="3" label="Level 3" [(ngModel)]='reportParams["LEVEL_NO"]'
+                        (click)="levelChange()" inputId="groupLevelNo3"></p-radioButton> &nbsp;&nbsp;
+                </div>
+
+                <p-pickList [source]="tabGroup.tab5.data.value" [target]="reportParams[tabGroup.tab5.name]"
+                    sourceHeader="Available" targetHeader="Selected" [responsive]="true" filterBy="acName"
+                    dragdrop="true" sourceFilterPlaceholder="Search by Level" targetFilterPlaceholder="Search by Level"
+                    [sourceStyle]="{'height':'200px'}" [targetStyle]="{'height':'200px'}">
+                    <ng-template let-data pTemplate="item">
+                        <div class="ui-helper-clearfix">
+                            <div style="font-size:10px;float: left;margin:2px 2px 0 0">
+                                {{data["ac"+ reportParams["LEVEL_NO"] +"Code"]}} -
+                                {{data["ac"+ reportParams["LEVEL_NO"] +"Name"]}} </div>
+                        </div>
+                    </ng-template>
+                </p-pickList>
+            </p-tabPanel>
+
+        </p-tabView>
+    </div>
+</div>
+-->

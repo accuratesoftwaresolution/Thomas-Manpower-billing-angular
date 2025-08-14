@@ -1,0 +1,36 @@
+:host ::ng-deep th, 
+:host ::ng-deep td {
+    border: 1px solid #e0e0e0 !important;         /* visible light gray border */
+    padding: 6px 8px !important;                /* consistent padding */
+    box-sizing: border-box;                     /* include padding in width */
+    white-space: normal;                        /* allow wrapping */
+    text-align: center !important;                         /* center align text for both */
+}
+
+:host ::ng-deep th {
+    background-color: antiquewhite !important; /* header background */
+}
+
+
+
+
+:host ::ng-deep .custom-dialog .p-dialog {
+    top: 600px !important;
+}
+
+.custom-button {
+    background-color: antiquewhite !important;
+    color: black !important;
+    border: 1px solid #737373;
+    box-shadow: none;
+    padding: 5px 10px;
+}
+
+@media print {
+    .hide-when-print {
+        display: none !important;
+    }
+}
+
+
+.col-width-10rem { width: 10rem; }

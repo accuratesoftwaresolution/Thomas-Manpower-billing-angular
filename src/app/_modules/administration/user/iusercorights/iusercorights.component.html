@@ -1,0 +1,113 @@
+<p-table #dt [columns]="columns" [value]="service.header.iusercorights" selectionMode="single" [metaKeySelection]="true"
+    [(selection)]="selectedDetailRow" [scrollable]="true" scrollHeight="350px" scrollWidth="100%"
+    [resizableColumns]="true" [responsive]="true" [resizableColumns]="true" [reorderableColumns]="true"
+    dataKey="brCode">
+
+    <ng-template pTemplate="caption">
+        <tr>
+            <td>
+                <button pButton type="button" (click)="createInsertRow()" iconPos="left" label="New"
+                    icon="fa fa-plus-square" style="margin-left:.25em"></button>
+            </td>
+            <td>
+                <button pButton type="button" iconPos="left" label="Delete" icon="fa fa-trash-o" (click)="deleteRow()"
+                    style="margin-left:.25em"></button>
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:5em" [pSortableColumn]="">{{'userId' | first}}</th>
+            <th style="width:3em" [pSortableColumn]="">{{'dv' | first}}</th>
+            <th style="width:3em" [pSortableColumn]="">{{'br' | first}}</th>
+            <th style="width:5em" [pSortableColumn]="">{{'brName' | first}}</th>
+            <th style="width:5em" [pSortableColumn]="">{{'inventoryRightsOnly' | first}}</th>
+        </tr>
+        <tr>
+            <th style="width:5em"> <input pInputText type="text"
+                    (input)="dt.filter($event.target.value, 'userId','userId'.filterMatchMode)"> </th>
+            <th style="width:3em">
+                <input pInputText pKeyFilter="int" type="text"
+                    (input)="dt.filter($event.target.value, 'dvCode','dvCode'.filterMatchMode)"></th>
+            <th style="width:3em">
+                <input pInputText pKeyFilter="int" type="text"
+                    (input)="dt.filter($event.target.value, 'brCode','brCode'.filterMatchMode)"></th>
+            <th style="width:5em">
+                <input pInputText pKeyFilter="int" type="text" 
+                    (input)="dt.filter($event.target.value, 'brName','brName'.filterMatchMode)"></th>
+            <th style="width:5em">
+                <input pInputText pKeyFilter="int" type="text"
+                    (input)="dt.filter($event.target.value, 'inventoryRightsOnly','inventoryRightsOnly'.filterMatchMode)">
+            </th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-ri="rowIndex">
+        <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex">
+            <td pEditableColumn style="width:5em;"
+                [ngClass]="rowData==selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.userId">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.userId}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="text-align:center;width:3em;"
+                [ngClass]="rowData==selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText (click)="onDvCode(ri)" type="text" [(ngModel)]="rowData.dvCode">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.dvCode}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="text-align:center;width:3em;"
+                [ngClass]="rowData==selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+
+                        <input pInputText (click)="onDvCode(ri)" type="text" [(ngModel)]="rowData.brCode">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.brCode}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="width:5em;"
+                [ngClass]="rowData==selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="rowData.brName" disabled>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.brName}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn style="text-align:center;width:5em;"
+                [ngClass]="rowData==selectedDetailRow?'editable':null">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown [options]="drCrLovData" [(ngModel)]="rowData.inventoryRightsOnly"
+                            [style]="{'width':'100%'}" appendTo="body">
+                        </p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.inventoryRightsOnly==='Y'?'Yes':'No'}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+        </tr>
+    </ng-template>
+</p-table>

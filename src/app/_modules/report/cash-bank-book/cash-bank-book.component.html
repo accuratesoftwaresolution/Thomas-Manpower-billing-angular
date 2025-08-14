@@ -1,0 +1,305 @@
+<div class="container" style="border: 1px solid #003366; padding: 20px; border-radius: 8px;">
+
+
+    <div class="p-grid">
+        <div class="p-col-12" style="padding: 0rem 0rem 0rem 0rem;text-align: center;">
+            <label style="display: inline-block;  font-weight: bold;">
+                <h3 style="color: #003366;">Cash & Bank Book</h3>
+            </label>
+        </div>
+    </div>
+
+    <div style=" padding: 5px; border-radius: 5px;display: flex;margin-left: 12px;margin-right: 12px">
+
+        <div class="p-col-9" style="border: 1px solid #003366;
+        border-radius: 5px;
+        min-height: 25vh;
+        padding: 9px;
+       ">
+
+            <h6 class="hide-when-print" style="
+                background-color: #5c96d4;
+                color: white;
+                height: 4vh;
+                align-items: center;
+                display: flex;
+                padding-left: 8px;"></h6>
+
+            <div class="p-grid">
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+                </div>
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Company Name</label>
+                        <input type="text" [(ngModel)]="companyName" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+                </div>
+            </div>
+            <div class="p-grid">
+
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Company Address</label>
+                        <input type="text" [(ngModel)]="companyAddress1" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Company Address 2</label>
+                        <input type="text" [(ngModel)]="companyAddress2" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Company Address 3</label>
+                        <input type="text" [(ngModel)]="companyAddress3" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="p-grid">
+
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Company Address 4</label>
+                        <input type="text" [(ngModel)]="companyAddress4" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Phone</label>
+                        <input type="text" [(ngModel)]="phone" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Fax</label>
+                        <input type="text" [(ngModel)]="fax" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;">Account</label>
+                        <input type="text" pInputText style="width: 55%;  height: 2vh;">
+
+                    </div>
+                </div>
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;">From Date</label>
+                        <input type="text" pInputText style="width: 55%; height: 2vh;">
+                    </div>
+                </div>
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;">To Date</label>
+                        <input type="text" pInputText style="width: 55%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+                </div>
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+                </div>
+                <div class="p-col-4" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <button pButton label="Filter Options" (click)="this.showFilterOption = true"
+                        class="custom-button hide-when-print"></button>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="p-col-1"></div>
+
+        <div class="p-col-2" style="border: 1px solid #003366;
+         border-radius: 5px;
+         min-height: 25vh;
+         align-items: center;
+         max-height: 25vh;
+         display: flex;
+         justify-content: center;">
+
+            <h6 style="height: 4vh;">Company Logo</h6>
+
+        </div>
+
+    </div>
+
+
+    <div style=" padding: 5px; border-radius: 5px;display: flex;margin-left: 12px;margin-right: 12px">
+
+        <div class="p-col-12" style="border: 1px solid #003366;
+                         border-radius: 5px;
+                         min-height: 25vh;
+                         padding: 9px; ">
+
+            <h6 class="hide-when-print" style="
+       background-color: #5c96d4;
+       color: white;
+       height: 4vh;
+       align-items: center;
+       display: flex;
+       padding-left: 8px;"></h6>
+
+            <p-table [value]="cashBankBookTable">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 2rem;">Sl No.</th>
+                        <th style="width: 6rem;">Date</th>
+                        <th style="width: 6rem;">Document Type</th>
+                        <th style="width: 6rem;">Voucher</th>
+                        <th style="width: 6rem;">Code</th>
+                        <th style="width: 8rem;">Name</th>
+                        <th style="width: 8rem;">Narration Name</th>
+                        <th style="width: 6rem;">Cheque No</th>
+                        <th style="width: 6rem;">Debit</th>
+                        <th style="width: 6rem;">Credit</th>
+                        <th style="width: 6rem;">Balance</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData>
+                    <tr>
+                        <td>{{ rowData.slNo }}</td>
+                        <td>{{ rowData.date }}</td>
+                        <td>{{ rowData.documentType }}</td>
+                        <td>{{ rowData.voucher }}</td>
+                        <td>{{ rowData.code }}</td>
+                        <td>{{ rowData.name }}</td>
+                        <td>{{ rowData.narrationName }}</td>
+                        <td>{{ rowData.chequeNo }}</td>
+                        <td style="text-align: right;">{{ rowData.debit | number: '1.2-2' }}</td>
+                        <td style="text-align: right;">{{ rowData.credit | number: '1.2-2' }}</td>
+                        <td style="text-align: right;">{{ rowData.balance | number: '1.2-2' }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<p-dialog [modal]="true" header="Filter Options" [(visible)]="showFilterOption" [style]="{width: '50vw'}">
+
+    <div style=" padding: 3px; border-radius: 5px;display: flex;margin-left: 12px;margin-right: 12px">
+
+        <div class="p-col-12" style="border: 1px solid #003366;
+        border-radius: 5px;
+        padding: 9px;
+       ">
+
+            <h6 style="
+                background-color: #5c96d4;
+                color: white;
+                height: 4vh;
+                align-items: center;
+                display: flex;
+                padding-left: 8px;"></h6>
+
+            <div class="p-grid">
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;">Account</label>
+                        <input type="text" pInputText style="width: 60%;  height: 2vh;">
+
+                    </div>
+                </div>
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;color: #003366;">Date
+                            Range</label>
+                    </div>
+                </div>
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;">From Date</label>
+                        <input type="date" pInputText style="width: 60%; height: 2vh;">
+                    </div>
+                </div>
+
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;">To Date</label>
+                        <input type="date" pInputText style="width: 60%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;color: #003366;">Output
+                            Options</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="p-grid">
+                <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <input type="radio" value="Screen"> Screen
+                        <input type="radio" value="Print"> Print
+                        <input type="radio" value="Export/Email"> Export/Email
+                        <input type="radio" value="HTML Page"> HTML Page
+                        <input type="radio" value="Excel"> Excel
+                        <input type="radio" value="PDF"> PDF
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <div class="p-grid">
+                <div class="p-col-12" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <button pButton label="Apply Filters" (click)="this.showFilterOption = false"
+                        class="custom-button"></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</p-dialog>

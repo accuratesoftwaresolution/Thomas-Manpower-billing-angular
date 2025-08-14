@@ -1,0 +1,210 @@
+<div class="container" style="background-color: #d1e2f1 ; padding: 20px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Booking Agent Master</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Add" class="custom-button"></button>
+            <button pButton label="Edit" class="custom-button"></button>
+            <button pButton label="Delete" class="custom-button"></button>
+            <button pButton label="Previous" class="custom-button"></button>
+            <button pButton label="Next" class="custom-button"></button>
+            <button pButton label="List" class="custom-button"></button>
+            <button pButton label="Print" class="custom-button"></button>
+            <button pButton label="Suspended" class="custom-button"></button>
+            <button pButton label="Authorize" class="custom-button"></button>
+            <button pButton label="Reject" class="custom-button"></button>
+        </div>
+    </div>
+
+    <div class="custom-tabs">
+
+        <div class="tab-headers">
+            <div class="tab-header" *ngFor="let tab of scrollableTabs; let i = index" [class.active]="activeIndex === i"
+                (click)="changeIndex(i)">
+                {{ tab.title }}
+            </div>
+        </div>
+
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 0">
+                <div
+                    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Booking Agent
+                                    SysID</label>
+                                <input type="text" [(ngModel)]="bookingAgent.bookingAgentSysId" pInputText
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Booking Agent
+                                    Code</label>
+                                <input type="text" [(ngModel)]="bookingAgent.bookingAgentCode" pInputText
+                                    (keydown.enter)="funcSearch()"
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Booking Agent
+                                    Name</label>
+                                <input type="text" pInputText [(ngModel)]="bookingAgent.bookingAgentName"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Applicable
+                                    Company SysID</label>
+                                <input type="text" pInputText
+                                    style="background-color:#ffffff; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Applicable
+                                    Company Code</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('ApplicableCompanyCode')" icon="pi pi-ellipsis-h"
+                                    class="custom-button" style="margin-left:10px"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Applicable
+                                    Company Name</label>
+                                <input type="text" pInputText
+                                    style="background-color:#ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 60%;">Deactivate and use
+                                    for Reports Only</label>
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;"></div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 60%;">Active & Deactive
+                                    Code</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff; width: 26%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h"
+                                    class="custom-button" style="margin-left:10px"></button>
+
+                            </div>
+                        </div>
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;"></div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 60%;">Active & Deactive
+                                    Name</label>
+                                <input type="text" pInputText
+                                    style="background-color: #ffffff; width: 40%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;"></div>
+                    </div>
+
+                    <div style="margin-top: 10px; ">
+                        <div class="p-grid">
+                            <div class="p-col-10" style="text-align:right">
+                                <button pButton label="Save" class="custom-button" (click)="save()"></button>
+                            </div>
+                            <div class="p-col-2">
+                                <button pButton label="Cancel" class="custom-button"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex ==1">
+
+                <h5 style="margin-bottom: 20px;">Screen Level Validations</h5>
+                <div class="p-grid" *ngFor="let field of DigiLockerFields">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">{{field?.fieldName}}</label>
+                            <input type="text" pInputText
+                                style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 60%;">Active & Deactive Name</label>
+                            <input type="text" pInputText style="background-color: #ffffff; width: 40%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;"></div>
+                </div>
+            </ng-container>
+        </div>
+
+    </div>
+</div>
+
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+
+
+
+
+
+
+<p-dialog [modal]="true" [(visible)]="display" [style]="{width: '50vw'}">
+    <p-table [value]="rights" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Rights</th>
+                <th>Rights Details</th>
+                <!-- <th>Action</th> -->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-right>
+            <tr>
+                <td>
+                    <input type="checkbox" [(ngModel)]="right.hasRight" />
+                </td>
+                <td>{{ right.detail }}</td>
+                <!-- <td>
+                    <input type="checkbox" [(ngModel)]="right.hasAction" />
+                </td> -->
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>

@@ -1,0 +1,40 @@
+:host ::ng-deep .p-dropdown {
+    width: 100%;
+}
+
+div.highlight:hover{
+    font-size : 1.1rem;
+    // background-color: var(--primary-color);
+    position: absolute;
+    width: 50%;
+    color: var(--primary-color);
+  }
+
+@media screen and (max-width: 1366px) {
+    :host ::ng-deep .p-component{
+        font-size : .9rem;
+    }
+
+    :host ::ng-deep .p-col-1, .p-col-2, .p-col-3, .p-col-4, .p-col-5, .p-col-6, .p-col-7, .p-col-8, .p-col-9, .p-col-10, .p-col-11, .p-col-12{
+        padding: 0.4rem;
+    }
+
+    div.highlight:hover{
+        font-size : 1rem;
+        // background-color: var(--primary-color);
+        color: var(--primary-color);
+        position: absolute;
+        width: 50%;
+      }
+  }
+
+  @media screen and (max-width: 768px) {
+    div.highlight:hover{
+        width: 100%;
+        position: relative;
+        font-size : 1rem;
+        color: var(--primary-color);
+    }
+  }
+
+

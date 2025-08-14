@@ -1,0 +1,413 @@
+<div class="p-col-12" *ngIf="screen=='fin'; else showInventory">
+  <div class="card card-w-title">
+    <div class="p-grid nested-grid form-group">
+      <div class="p-col-2 p-md-2">
+        <span class="md-inputfield">
+          <label>{{'voucher'| first}}<a style="color: red;"> *</a></label><br />
+          <input type="text" [disabled]="branchSelection.vrNoEnable" pInputText pKeyFilter="num" style="width: 70px;"
+            [(ngModel)]="service.header.vrNo" [ngStyle]="{'width':'100%','padding': '4px'}" maxlength="9">
+        </span>
+      </div>
+      <div class="p-col-3 p-md-3">
+        <span class="md-inputfield">
+          <label>{{'vrDate'| first}}</label><br />
+          <p-calendar [showIcon]="true" dateFormat="dd/mm/yy" placeholder="dd/MM/yyyy" [(ngModel)]="service.header.vrDate">
+          </p-calendar>
+        </span>
+      </div>
+      <div class="p-col-3 p-md-3" *ngIf="!actionService.currentComponent.isJv() && !isOin() ">
+        <span class="md-inputfield">
+          <label>{{'bank'| first}}<a
+              *ngIf="branchSelection.isetupValues[key].length>0 && (branchSelection.isetupValues[key].trim() != 'Y' || branchSelection.isetupValues[key].trim() != 'AC_CODE')"
+              style="color: red;"> *</a> </label><br />
+          <input type="text" pInputText placeholder="" [(ngModel)]="service.header.bankCode" (click)="onBankcodeLov()"
+            [ngStyle]="{'width':'100%','padding': '4px'}">
+        </span>
+      </div>
+      <div class="p-col-1 p-md-1" *ngIf="!actionService.currentComponent.isJv()">
+        <span class="md-inputfield">
+          <label>{{'refNo.'| first}}</label><br />
+          <input maxlength="20" type="text" pInputText placeholder="" [(ngModel)]="service.header.refNo"
+            [ngStyle]="{'width':'100%','padding': '4px'}">
+        </span>
+      </div>
+      <div class="p-col-3 p-md-3" *ngIf="!actionService.currentComponent.isJv()">
+        <span class="md-inputfield">
+          <label> {{'refDate'| first}}</label><br />
+          <p-calendar [showIcon]="true" dateFormat="dd/mm/yy" placeholder="dd/MM/yyyy" [(ngModel)]="service.header.refDate"
+            [style]="{'width':'100%','padding': '4px'}">
+          </p-calendar >
+        </span>
+      </div>
+      <div class="p-col-3 p-md-3" *ngIf="actionService.currentComponent.isJv()">
+        <span class="md-inputfield">
+          <label>{{'salesman'| first}}</label><br />
+          <input type="text" pInputText placeholder="" [(ngModel)]="service.header.salesman" (click)="onSalesmanLov()"
+            [ngStyle]="{'width':'100%','padding': '4px'}">
+        </span>
+      </div>
+      <div class="p-col-3 p-md-3" *ngIf=" isOin() ">
+        <span class="md-inputfield">
+          <label>{{'salesman'| first}}</label><br />
+          <input type="text" pInputText placeholder="" [(ngModel)]="service.header.salesman" (click)="onSalesmanLov()"
+            [ngStyle]="{'width':'100%','padding': '4px'}">
+        </span>
+      </div>
+
+      <div class="p-col-4 p-md-4" *ngIf="actionService.currentComponent.isJv()">
+        <span class="md-inputfield">
+          <label>{{'narration'| first}}</label><br />
+          <input type="text" pInputText placeholder="" [(ngModel)]="service.header.narration"
+            [ngStyle]="{'width':'100%','padding': '4px'}" maxlength="3000">
+        </span>
+      </div>
+    </div>
+
+    <div class="p-grid nested-grid form-group" *ngIf="!actionService.currentComponent.isJv()">
+      <div class="p-col-3 p-md-3">
+        <span class="md-inputfield">
+          <label>{{'account'| first}}<a style="color: red;"> *</a></label><br />
+          <input type="text" pInputText (click)="op1.toggle($event)" style="width: 125px;" placeholder="Account "
+            [(ngModel)]="service.header.acCode" [ngStyle]="{'width':'100%','padding': '4px'}">
+        </span>
+        <p-overlayPanel #op1 appendTo="body" [showCloseIcon]="true" [dismissable]="true" style="
+            z-index: 1004;top: 110px;left: 27px;transform: translateY(0px);opacity: 1;position: absolute;">
+          <div>
+            <p-table #acLov [columns]="iac4LovCols" [value]="iac4LovData" dataKey="acCode"
+              [style]="{'width':'500px','height':'250'}" selectionMode="single" [(selection)]="iac4LovSelected"
+              (onRowSelect)="onRowSelectIac4($event)" [scrollable]="true" [rows]="10" scrollHeight="250px">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                </tr>
+                <tr>
+                  <th>
+                    <input pInputText type="text"
+                      (input)="acLov.filter($event.target.value, 'acCode','acCode'.filterMatchMode)"
+                      [ngStyle]="{'width':'100%','padding': '4px'}">
+                  </th>
+                  <th>
+                    <input pInputText type="text"
+                      (input)="acLov.filter($event.target.value, 'acName','acName'.filterMatchMode)"
+                      [ngStyle]="{'width':'100%','padding': '4px'}">
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </p-overlayPanel>
+      </div>
+      <div class="p-col-4 p-md-4">
+        <span class="md-inputfield">
+          <label>{{'accountName'| first}}</label><br />
+          <input type="text" pInputText placeholder="" [(ngModel)]="service.header.acName"
+            [ngStyle]="{'width':'100%','padding': '4px'}" maxlength="255">
+        </span>
+      </div>
+      <div class="p-col-2 p-md-2">
+        <span class="md-inputfield">
+          <label>{{'currency'| first}}</label><br />
+          <input type="text" pInputText placeholder="" disabled [(ngModel)]="service.header.curCode"
+            [ngStyle]="{'width':'100%','padding': '4px'}" (change)="onCurCodeChange()">
+        </span>
+      </div>
+
+      <!-- Modified by Ajith A Pradeep
+      Modified for Adding pKeyFilter (16/12/2021) -->
+      <div class="p-col-3 p-md-3">
+        <span class="md-inputfield">
+          <label>{{'curRate'| first}}</label><br />
+          <input type="text" pKeyFilter="int" pInputText placeholder="" [(ngModel)]="service.header.curRate"
+            [ngStyle]="{'width':'100%','padding': '4px','text-align':'right'}" [disabled]="isDisable()">
+        </span>
+      </div>
+      <div class="p-col-3 p-md-3">
+        <span class="md-inputfield">
+          <label>{{'amount'| first}}</label><br />
+          <input type="text"  pKeyFilter="int" pInputText disabled placeholder="" [(ngModel)]="service.header.fAcAmt"
+            [ngStyle]="{'width':'100%','padding': '4px','text-align':'right'}" [disabled]="isDisable()" (onFocus)="$event.target.select()">
+        </span>
+      </div>
+      <div class="p-col-4 p-md-4 ">
+        <span class="md-inputfield">
+          <label>{{'narration'| first}}</label><br />
+          <input type="text" pInputText placeholder="" [(ngModel)]="service.header.narration"
+            [ngStyle]="{'width':'100%','padding': '4px'}" maxlength="3000">
+        </span>
+      </div>
+    </div>
+
+    <div class="p-grid nested-grid form-group" *ngIf="isOin()">
+      <div class="p-col-2 p-md-2">
+        <span class="md-inputfield">
+          <label>{{'billNo'| first}}</label><br />
+          <input type="text" pInputText placeholder="" [(ngModel)]="service.header.billNo"
+            [ngStyle]="{'width':'100%','padding': '4px'}">
+        </span>
+      </div>
+      <div class="p-col-2 p-md-2">
+        <span class="md-inputfield">
+          <label>{{'billDate'| first}}</label><br />
+          <p-calendar [showIcon]="true" dateFormat="dd/mm/yy" placeholder="dd/MM/yyyy" [(ngModel)]="service.header.billDate">
+          </p-calendar >
+        </span>
+      </div>
+      <div class="p-col-2 p-md-2">
+        <span class="md-inputfield">
+          <label>{{'LPONo.'| first}}</label><br />
+          <input type="text" pInputText placeholder="" [(ngModel)]="service.header.lpoNo"
+            [ngStyle]="{'width':'100%','padding': '4px'}">
+        </span>
+      </div>
+      <div class="p-col-2 p-md-2">
+        <span class="md-inputfield">
+          <label>{{'LPODate'| first}}</label><br />
+          <p-calendar dateFormat="dd/mm/yy" placeholder="dd/MM/yyyy" [(ngModel)]="service.header.lpoDate" [showIcon]="true">
+          </p-calendar >
+        </span>
+      </div>
+      <div class="p-col-2 p-md-2">
+        <span class="md-inputfield">
+          <label>{{'creditPeriod'| first}}</label><br />
+          <input type="text" pInputText placeholder="" [(ngModel)]="service.header.crPeriod"
+            [ngStyle]="{'width':'100%','padding': '4px'}">
+        </span>
+      </div>
+      <div class="p-col-1 p-md-1" *ngIf="service.header.intCode =='OPUR'">
+        <button pButton type="button" label="Link Doc. " class="ui-button-rounded ui-button-success"></button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- /****************************** Inventory Block ****************************************/ -->
+
+
+
+
+
+<ng-template #showInventory>
+  <div class="ui-fluid">
+    <div class="card card-w-title">
+      <div class="ui-g form-group">
+        <div class="ui-g-10 ui-md-2 width">
+          <span class="md-inputfield">
+            <input type="text" [disabled]="branchSelection.vrNoEnable" pInputText pKeyFilter="num" style="width: 70px;"
+              [(ngModel)]="service.header.vrNo">
+            <label>{{'voucher'| first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 width">
+          <span class="md-inputfield">
+            <p-calendar dateFormat="dd/mm/yy" [(ngModel)]="service.header.vrDate"></p-calendar>
+            <label>{{'vrDate'| first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 ui-md-offset-2 width">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" [(ngModel)]="service.header.lpoNo">
+            <label>{{'LPONo.'| first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 width">
+          <span class="md-inputfield">
+            <p-calendar dateFormat="dd/mm/yy" placeholder="dd/MM/yyyy" [(ngModel)]="service.header.lpoDate">
+            </p-calendar>
+            <label> {{'LPODate'| first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 width" *ngIf="!isTri() && !isTro()">
+          <span class="md-inputfield">
+            <button pButton type="button" label="Purchase Order" class="ui-button-rounded ui-button-success"></button>
+            <!-- <label>Disc Amt</label> -->
+          </span>
+        </div>
+      </div>
+
+      <div class="ui-g form-group" *ngIf="!isTro() && !isTri()">
+        <div class="ui-g-6 ui-md-2 width">
+          <span class="md-inputfield">
+            <input type="text" pInputText (click)="op1.toggle($event)" style="width: 125px;" placeholder="Account "
+              [(ngModel)]="service.header.acCode">
+            <label>{{'account'| first}}</label>
+          </span>
+          <p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+            <p-table #acLov [columns]="iac4LovCols" [value]="iac4LovData" dataKey="acCode"
+              [style]="{'width':'500px','height':'250'}" selectionMode="single" [(selection)]="iac4LovSelected"
+              (onRowSelect)="onRowSelectIac4($event)" [scrollable]="true" [rows]="10" scrollHeight="250px">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                </tr>
+                <tr>
+                  <th>
+                    <input pInputText type="text"
+                      (input)="acLov.filter($event.target.value, 'acCode','acCode'.filterMatchMode)">
+                  </th>
+                  <th>
+                    <input pInputText type="text"
+                      (input)="acLov.filter($event.target.value, 'acName','acName'.filterMatchMode)">
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                  <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </p-overlayPanel>
+        </div>
+        <div class="ui-g-12 ui-md-4 fieldWidth">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" [(ngModel)]="service.header.acName">
+            <label>{{'accountName'| first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-1 ui-md-offset-1 width">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" disabled [(ngModel)]="service.header.curCode"
+              (change)="onCurCodeChange()">
+            <label>{{'currency'| first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 width">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" [(ictCurrencyRate)]="service.header.curRate">
+            <label>{{'curRate'| first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" [ngModel]="service.header.crPeriod">
+            <label>{{'crPeriod' | first}}</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="ui-g form-group" *ngIf="!isTro() && !isTri() ">
+        <div class="ui-g-12 ui-md-2 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" [(ngModel)]="service.header.billNo">
+            <label>{{'billNo'| first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 width">
+          <span class="md-inputfield">
+            <p-calendar dateFormat="dd/mm/yy" placeholder="dd/MM/yyyy" [(ngModel)]="service.header.billDate">
+            </p-calendar>
+            <label>{{'billDate'| first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 ui-md-offset-2 width">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" (change)="onHeaderDiscount('P')"
+              [(ictAmount)]="service.header.discPer" (onFocus)="$event.target.select()">
+            <label>{{'disc%' | first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 width">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" (change)="onHeaderDiscount('A')"
+              [(ictAmount)]="service.header.discAmt" (onFocus)="$event.target.select()">
+            <label>{{'discAmt' | first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText disabled placeholder="" [(ictAmount)]="service.header.acAmt" (onFocus)="$event.target.select()">
+            <label>{{'amount'| first}}</label>
+          </span>
+        </div>
+      </div>
+
+      <div class="ui-g form-group" *ngIf="isTro() || isTri()  ">
+        <div class="ui-g-12 ui-md-2 " *ngIf="isTro()">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" [(ngModel)]="service.header.transferBr"
+              (click)="onBranchLov()">
+            <label>{{'toBranch' | first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2 " *ngIf="isTri()">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" [(ngModel)]="service.header.transferBr"
+              (click)="onBranchLov()">
+            <label>{{'fromBranch' | first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-4 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText disabled placeholder="" [(ngModel)]="service.header.transferBrShtName">
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-4 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText disabled placeholder="" [(ngModel)]="service.header.transferBrName">
+          </span>
+        </div>
+      </div>
+
+      <div class="ui-g form-group" *ngIf="isTri()">
+        <div class="ui-g-12 ui-md-2 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="">
+            <label>{{'trOutNo' | first}}</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-1 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText disabled placeholder="" [(ngModel)]="service.header.coCode">
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-1 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText disabled placeholder="" [(ngModel)]="service.header.dvCode">
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-1 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText disabled placeholder="" [(ngModel)]="service.header.brCode">
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-2  width ">
+          <span class="md-inputfield">
+            <button pButton type="button" label="TRO. " class="ui-button-rounded ui-button-success"></button>
+          </span>
+        </div>
+      </div>
+
+      <div class="ui-g form-group">
+        <div class="ui-g-12 ui-md-10 ">
+          <span class="md-inputfield">
+            <input type="text" pInputText placeholder="" [(ngModel)]="service.header.narration">
+            <label>{{'narration'| first}}</label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

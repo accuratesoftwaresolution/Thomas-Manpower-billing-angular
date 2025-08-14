@@ -1,0 +1,175 @@
+.center {
+  padding-top: 9em;
+  
+}
+
+:host ::ng-deep .p-table {
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+}
+
+:host ::ng-deep .p-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+ 
+}
+
+:host ::ng-deep .p-table td {
+  padding: 0.3rem 0.3rem;
+  
+}
+
+th{
+ 
+  background-color: antiquewhite !important;
+  border: 1px solid #ffffff !important;
+}
+
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+padding: 0rem 0rem 0rem 0.5rem !important;
+}
+
+:host ::ng-deep .visible-dialog .p-dialog-header{
+  background-color: #BACFE0;
+  padding: 7px !important;
+}
+:host ::ng-deep .visible-dialog .p-dialog-content{
+  background-color: #E9F0F6;
+}
+:host ::ng-deep .visible-dialog .p-dialog-footer{
+  background-color: #a2c5e5;
+}
+
+
+.popup-button {
+  background-color: antiquewhite !important;
+  color: black !important;
+  border: 1px solid #737373;
+  box-shadow: none;
+  padding: 2px 10px;
+}
+
+.custom-button {
+  background-color: antiquewhite !important; /* Ensure it overrides default styles */
+  color: black !important; /* Ensures the text color is black */
+  border: 1px solid #737373; /* Custom border color */
+  box-shadow: none; /* Remove any shadow if present */
+  padding: 5px 10px;
+}
+
+
+:host ::ng-deep .p-dropdown .p-hidden-accessible .p-dropdown-label .p-inputtext .p-placeholder {
+  padding: 0 !important;
+}
+
+.p-field {
+  margin-bottom: 1px !important
+}
+
+
+
+th{
+white-space: normal;
+}
+
+
+:host ::ng-deep .custom-dialog .p-dialog {
+top: 600px !important;
+}
+
+
+
+.company-table {
+  border: 1px solid #dcdcdc; border-radius: 8px; overflow: hidden;
+}
+
+
+.company-table th {
+  background-color: antiquewhite; /* Light gray header */
+  color: #333; /* Dark text */
+  font-size: 14px;
+  padding: 10px;
+  text-align: left;
+}
+
+.company-table td {
+  font-size: 12px; /* Smaller font size */
+  padding: 8px;
+  text-align: left;
+}
+
+.company-table .actions-cell {
+  text-align: center;
+}
+
+
+
+ // tab styles
+ .custom-tabs {
+  width: 100%;
+  /* Set to your desired width */
+  border: 1px solid #ccc;
+  /* Outer border for the tab container */
+  /* Rounded corners for the entire tab container */
+  padding: 5px;
+  /* Padding for the tab container */
+  overflow: hidden;
+  /* Ensure content does not overflow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+
+.tab-headers {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 1px solid #ccc;
+
+}
+
+.tab-header {
+  position: relative;
+  padding: 5px 15px;
+  cursor: pointer;
+  background-color: #d1e2f1;
+  margin-right: 1px;
+  border-radius: 30px 0px 0px 0px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.tab-header::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  margin-top: -5px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #eaeaea;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.tab-header:hover {
+  background-color: #dcdcdc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tab-header.active {
+  background-color: #5c96d4;
+  color: white;
+}
+
+.tab-content {
+  padding: 5px;
+  border-top: none;
+  font-size: 14px;
+  color: #333;
+  border: 1px solid #b7dbff;
+  border-radius: 5px;
+  background-color: #d1e2f1;
+
+}

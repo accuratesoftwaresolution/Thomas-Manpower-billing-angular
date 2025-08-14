@@ -1,0 +1,17 @@
+{
+    "reportHeading": "Employee Payslip",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "",
+    "detail": false,
+    "detailPropertyName": "",
+    "rptLanguage": "E",
+    "reportId": "employee-Payslip",
+    "printColumnMetaData": [
+        {   "column": "empCode", "columnHeading": "Employee Code", "size":"7em" },
+        {   "column": "mainEmpName", "columnHeading": "Employee Name", "size":"7em" },
+        {   "column": "empDept", "columnHeading": "Employee Department" },
+        {   "column": "mainDesigCode", "columnHeading": "Employee Designation " },
+        {   "column": "mainEmpStatus", "columnHeading": "Employee Status "}
+
+    ]
+}

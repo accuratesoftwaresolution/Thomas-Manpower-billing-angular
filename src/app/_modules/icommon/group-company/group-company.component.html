@@ -1,0 +1,398 @@
+<!-- <p-dropdown [options]="menus" optionLabel="name" optionValue="name" [showClear]="true" 
+                placeholder="Select a Menu" [(ngModel)]="popupHeader" (onChange)="display=!display"></p-dropdown> -->
+
+
+<p-toast></p-toast>
+
+
+<div class="container" style="background-color: #d1e2f1 ; padding: 6px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Group Company</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Save" (click)="SavegroupCompanyData()" class="custom-button"></button>
+            <button pButton label="Delete" (click)="confirmDelete()"  class="custom-button"></button>
+            <button pButton label="list" class="custom-button" (click)="showgroupcolist()"></button>
+            <button pButton label="Refresh" (click)="AddgroupCompanyData()" class="custom-button"></button>
+        </div>
+    </div>
+
+
+
+    <div
+        style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+        <div class="p-grid" style="height: 70vh;">
+            <div class="p-col-9" style="display: flex; flex-direction: column;">
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company SysID</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_SysID"
+                                (keydown.enter)="funcSearch()"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Code</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Code"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Name</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Name"
+                                style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Address One</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Address_One"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Address Two</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Address_Two"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Address Three</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Address_Three"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Address Four</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Address_Four"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Area Code</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Area_Code"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                            <button pButton (click)="ShowPopUp('AreaCode')" icon="pi pi-ellipsis-h" class="popup-button"
+                                style="margin-left:10px"></button>
+
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Area Name</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Area_Name"
+                                style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company City Code</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_City_Code"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                            <button pButton (click)="ShowPopUp('CityCode')" icon="pi pi-ellipsis-h" class="popup-button"
+                                style="margin-left:10px"></button>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company City Name</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_City_Name"
+                                style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Country Code</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Count_Code"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                            <button pButton (click)="ShowPopUp('CountryCode')" icon="pi pi-ellipsis-h"
+                                class="popup-button" style="margin-left:10px"></button>
+
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Country Name</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Count_Name"
+                                style="background-color: #ffffff; width: 45%; height: 2vh;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Telephone
+                                Number</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Phone"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Fax Number</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Fax"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Email Address</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Email_Address"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company TIN/TRN</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_TINTRN"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Accounting Date</label>
+                            <input type="date" pInputText [ngModel]="groupCompanyData.GroupCo_Date | date:'yyyy-MM-dd'"
+                                (ngModelChange)="onDateChange('GroupCo_Date', $event)"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Security Level</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_SecurityLvl"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Super User
+                                Password</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_SuperUserPswd"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Hide
+                                Unauthorised</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_HideUnautho"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="p-grid">
+
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Template</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Template"
+                                style="background-color: #ffffff; width: 45%; height: 2vh;">
+                        </div>
+                    </div>
+
+
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Group Company Creation Date</label>
+                            <input type="date" pInputText
+                                [ngModel]="groupCompanyData.GroupCo_Creation_Date | date:'yyyy-MM-dd'"
+                                (ngModelChange)="onDateChange('GroupCo_Creation_Date', $event)"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+                        </div>
+                    </div>
+                    <!-- <div class="p-col-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 44%;">Group Company Logo</label>
+                                <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_Logo"
+                                    style="background-color: #ffffff; width: 40%; height: 2vh;">
+
+                            </div>
+                        </div> -->
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <div class="inline-checkbox">
+                                <label>Activation & Deactivation Y/N</label>
+                                <input type="checkbox"
+                                    [ngModel]="groupCompanyData.GroupCo_AcDe_Yn === 'Y' ? true : false"
+                                    (ngModelChange)="groupCompanyData.GroupCo_AcDe_Yn = $event ? 'Y' : 'N'">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Activation & Devactivation
+                                Code</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_AcDe_Code"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                            <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h"
+                                class="popup-button" style="margin-left:10px"></button>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-6" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                        <div class="p-field">
+                            <label style="display: inline-block; width: 40%;">Activation & Devactivation
+                                Name</label>
+                            <input type="text" pInputText [(ngModel)]="groupCompanyData.GroupCo_AcDe_Name"
+                                style="background-color: #ffffff; width: 30%; height: 2vh;">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- <div class="p-col-2" style="padding: 1rem;">
+
+                <p-card>
+                    <div class="p-grid p-dir-col p-align-center">
+
+                        <div class="p-col" style="text-align: center;">
+                            <img alt="Selected Logo"
+                                style="width: 100px; height: 100px; object-fit: cover; border: 2px solid #ccc;" />
+                        </div>
+                    </div>
+                </p-card>
+
+            </div> -->
+        </div>
+
+    </div>
+
+    <p-confirmDialog></p-confirmDialog>
+
+    <app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+
+    <!-- <app-groupcompany-list *ngIf="showGroupList"> </app-groupcompany-list> -->
+
+    <p-toast></p-toast>
+
+
+    <!-- Group company list Section -->
+    <p-dialog [(visible)]="showGroupList" [modal]="true" [closable]="true" [style]="{ width: '80vw' }">
+
+        <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+            <div class="p-col-12 p-md-3">
+                <div class="p-inputgroup" style="max-width: 300px;">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-search"></i>
+                    </span>
+                    <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                        (input)="filterTable()" />
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <button pButton label="Back" (click)="Back()" class="custom-button"
+                    [style]="{ 'background-color': 'antiquewhite', color: 'black' } ">
+                </button>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="p-grid" style="padding: 0 1rem;">
+            <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+                <h6 style="
+            background-color: #5c96d4;
+            color: antiquewhite;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">
+                    Group Company Details
+                </h6>
+
+                <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                    [rowsPerPageOptions]="[5, 10, 20]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">Group Company SysID</th>
+                            <th style="width: 8rem;">Group Company Code</th>
+                            <th style="width: 8rem;">Group Company Name</th>
+                            <th style="width:8rem">Actions</th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td>{{ rowData.GroupCo_SysID }}</td>
+                            <td>{{ rowData.GroupCo_Code }}</td>
+                            <td>{{ rowData.GroupCo_Name }}</td>
+                            <td>
+                                <span class="p-buttonset">
+                                    <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                        class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                        (click)="editRow(rowData)" class="custom-button">
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                                No Data available. Please check back later.
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+    </p-dialog>

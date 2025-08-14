@@ -1,0 +1,353 @@
+<p-toast></p-toast>
+<div class="p-toolbar">
+    <div style="float: right;">
+        <button pButton pRipple type="button" icon="pi pi-save" (click)="save()" class="p-mr-2"></button>
+    </div>
+</div>
+<div class="p-col-12"></div>
+<div class="p-col-12"></div>
+<div class="card p-col-12 p-md-12 p-lg-12">
+
+
+    <div class="card-title" style="font-weight: bold;">{{titleCode | first}} &nbsp;&nbsp;
+        <accurate-help [helpCode]="helpCode" [multiLanguage]="true"></accurate-help>
+    </div>
+
+    <p-table #dt [value]="statusChangeData" dataKey="acCode" [scrollable]="true" responsiveLayout="scroll"
+        editMode="row" [paginator]="true" [rows]="take" [lazy]="true" (onLazyLoad)="updateResults($event)"
+        [totalRecords]="totalRecords" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        (onPage)="paginateScrollUp($event)">
+
+
+
+        <ng-template pTemplate="caption">
+            <div class="p-grid">
+                <div class="p-col-6 p-md-6 p-lg-6">
+
+                    <button type="button" pButton pRipple icon="pi pi-file-o" (click)="exportCSV()" class="p-mr-2"
+                        pTooltip="{{ _masterdesignService.csvToolTipLabelCode | first }}"
+                        tooltipPosition="top"></button>
+
+
+                    <button type="button" pButton icon="pi pi-file-excel" pTooltip="Excel" tooltipPosition="top"
+                        iconPos="left" (click)="exportExcel()" style="margin-right: 0.5em;"
+                        class="p-button-success p-mr-2"></button>
+
+                    <button type="button" pButton icon="pi pi-file-pdf" pTooltip="PDF" tooltipPosition="top"
+                        iconPos="left" (click)="exportPdf()" class="p-button-warning p-mr-2"></button>
+
+                </div>
+
+                <div class="p-col-6 p-md-3 p-lg-3">
+                    <p-dropdown [options]="searchColumnsList" [(ngModel)]="selecetedColumnForSearch"
+                        (onChange)="clearSearch()" placeholder="Select For Search" optionValue="value"
+                        optionLabel="label" [style]="{'width':'150px', 'text-align': 'left', 'float': 'right'}">
+                    </p-dropdown>
+                </div>
+
+                <div class="p-col-6 p-md-3 p-lg-3">
+                    <input pInputText type="text" [(ngModel)]="searchValue" placeholder="Search Here"
+                        (keyup)="searchTimeOut()" [style]="{'float': 'left'}" />
+                </div>
+            </div>
+        </ng-template>
+
+
+
+        <ng-template pTemplate="header">
+            <!-- <tr>
+                <th style="width: 10em;">
+                    <input pInputText type="numeric" (input)="dt.filter($event.target.value, 'acCode', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th style="width: 25em;">
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'acName', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th style="width: 20em;">
+                    <input pInputText type="numeric" (input)="dt.filter($event.target.value, 'acCat', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th style="width: 10em;">
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'acCatFromAc3', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th style="width: 15em;">
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'status', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th style="width: 20em;">
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'statusRemarks', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th style="width: 20em;">
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'remarks', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th style="width: 15em;">
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'vatRegNo', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th style="width: 15em;">
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'countryCode', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th style="width: 15em;">
+                    <input pInputText type="text" (input)="dt.filter($event.target.value, 'territoryCode', 'contains')"
+                        class="p-column-filter" style="width: 100%;">
+                </th>
+                <th></th>
+            </tr> -->
+
+            <tr>
+                <th pSortableColumn="acCode" style="width: 10em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'ac/Code' | first }}<p-sortIcon field="acCode"></p-sortIcon>
+                        </label>
+                        <p-columnFilter type="numeric" field="acCode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="acName" style="width: 25em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'ac/Name' | first}}<p-sortIcon field="acName"></p-sortIcon>
+                        </label>
+                        <p-columnFilter type="numeric" field="acName" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="acCat" style="width: 20em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'ac/Cat' | first}}<p-sortIcon field="acCat"></p-sortIcon></label>
+                        <p-columnFilter type="numeric" field="acCat" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="acCatFromAc3" style="width: 10em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'replaceCatFromL3' | first}}<p-sortIcon field="acCatFromAc3">
+                            </p-sortIcon>
+                        </label>
+                        <p-columnFilter type="numeric" field="acCatFromAc3" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="status" style="width: 15em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'status' | first}}<p-sortIcon field="status"></p-sortIcon>
+                        </label>
+                        <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="statusRemarks" style="width: 20em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'statusRemarks' | first}}<p-sortIcon field="statusRemarks">
+                            </p-sortIcon>
+                        </label>
+                        <p-columnFilter type="text" field="statusRemarks" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="remarks" style="width: 20em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'remarks' | first}}<p-sortIcon field="remarks"></p-sortIcon>
+                        </label>
+                        <p-columnFilter type="numeric" field="remarks" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="vatRegNo" style="width: 15em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'vatRegNo' | first}}<p-sortIcon field="vatRegNo"></p-sortIcon>
+                        </label>
+                        <p-columnFilter type="text" field="vatRegNo" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="countryCode" style="width: 15em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'countryCode' | first}}<p-sortIcon field="countryCode">
+                            </p-sortIcon>
+                        </label>
+                        <p-columnFilter type="text" field="countryCode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="territoryCode" style="width: 15em;">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        <label style="float: left;">{{'territoryCode' | first}}<p-sortIcon field="territoryCode">
+                            </p-sortIcon>
+                        </label>
+                        <p-columnFilter type="text" field="territoryCode" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th></th>
+            </tr>
+
+            <!-- <tr>
+                <th style="width:200px">{{'ac/Code' | first }}</th>
+                <th style="width:200px">{{'ac/Name' | first}}</th>
+                <th style="width:200px">{{'ac/Cat' | first}}</th>
+                <th style="width:150px">{{'replaceCatFromL3' | first}}</th>
+                <th style="width:200px">{{'status' | first}}</th>
+                <th style="width:200px">{{'statusRemarks' | first}}</th>
+                <th style="width:200px">{{'remarks' | first}}</th>
+                <th style="width:200px">{{'vatRegNo' | first}}</th>
+                <th style="width:200px">{{'countryCode' | first}}</th>
+                <th style="width:200px">{{'territoryCode' | first}}</th>
+                <th style="width:200px"></th>
+            </tr> -->
+
+        </ng-template>
+        <ng-template pTemplate="body" let-statusChange let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="statusChange">
+                <td style="width:10em">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="statusChange.acCode" maxlength="9">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{statusChange.acCode}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="width:25em">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="statusChange.acName" required maxlength="50">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{statusChange.acName}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="width:20em">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <!-- <input pInputText [(ngModel)]="statusChange.acCat" maxlength="20"> -->
+                            <p-dropdown [options]="acCategory" [(ngModel)]="statusChange.acCat"
+                                [style]="{'width':'100%'}" optionLabel="label" optionValue="value" appendTo="body">
+                            </p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{getacCatLabel(statusChange.acCat)}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="width:10em">
+                    <!-- <p-cellEditor>
+                        <ng-template pTemplate="input"> -->
+                    <p-checkbox [ngModel]="statusChange.acCatFromAc3 == 'Y'? true : false" inputId="binary"
+                        binary="true" (onChange)="replaceCatFromL3($event)" [disabled]="disabled"></p-checkbox>
+                    <!-- </ng-template>
+                        <ng-template pTemplate="output">
+                            {{getYesNoLabel(statusChange.acCatFromAc3)}}
+                        </ng-template>
+                    </p-cellEditor> -->
+                </td>
+                <td style="width:15em">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-dropdown [options]="status" [(ngModel)]="statusChange.status" [style]="{'width':'100%'}"
+                                optionLabel="label" optionValue="value"></p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{getStatusLabel(statusChange.status)}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="width:20em">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText [(ngModel)]="statusChange.statusRemarks" maxlength="50">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{statusChange.statusRemarks}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="width:20em">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText [(ngModel)]="statusChange.remarks" maxlength="255">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{statusChange.remarks}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="width:15em">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText [(ngModel)]="statusChange.vatRegNo" maxlength="50">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{statusChange.vatRegNo}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="width:15em">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <!-- <input pInputText [(ngModel)]="statusChange.countryCode" maxlength="5"> -->
+                            <p-dropdown [options]="countryList" [(ngModel)]="statusChange.countryCode"
+                                [style]="{'width':'100%'}" optionLabel="label" optionValue="value" appendTo="body">
+                            </p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{statusChange.countryCode}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="width:15em">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <!-- <input pInputText [(ngModel)]="statusChange.territoryCode" maxlength="5"> -->
+                            <p-dropdown [options]="territoryList" [(ngModel)]="statusChange.territoryCode"
+                                [style]="{'width':'100%'}" optionLabel="label" optionValue="value" appendTo="body">
+                            </p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{statusChange.territoryCode}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+
+
+                <td style="text-align:center;width:200px">
+                    <button pButton pRipple *ngIf="!editing" pInitEditableRow icon="pi pi-pencil"
+                        class="p-button-success p-button-rounded p-mr-2" (click)="onRowEditInit(statusChange)"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                        (click)="onRowEditSave(statusChange)" class="p-button-rounded p-button-success p-mr-2"></button>
+                    <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                        (click)="onRowEditCancel(statusChange,ri)" class="p-button-rounded p-button-danger"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+<div class="your-block">
+    <div id="invoice-content">
+        <div class="card invoice-wrapper">
+            <div class="ui-g invoice-header">
+                <div class="ui-g-6" class="headerSty">
+                    <h1 class="title">{{ titleCode | first }}</h1>
+                </div>
+                <div class="img1">
+                    <!-- <img class="img2" src="assets/acccurate/images/login/accurate_logo_2.png" /> -->
+                </div>
+                <div class="card invoice-table billto-table">
+                    <table styleClass="p-datatable-gridlines" style="width: 100%;">
+                        <tr>
+                            <th *ngFor="let column  of columnMetaData">
+                                <div *ngIf="column.type !='file' &&column.type !='excel'">
+                                    <span>{{column.headerCode | first }}</span>
+                                </div>
+                            </th>
+                        </tr>
+
+                        <tr *ngFor="let data of statusChangeData">
+                            <td *ngFor="let col of columnMetaData">
+                                <span>{{data[col.field]}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,30 @@
+<p-toast></p-toast>
+<p-progressBar *ngIf="loading" mode="indeterminate" [style]="{'height': '8px'}"></p-progressBar>
+
+<div class="p-grid" style="width: 100%;">
+    <div class="p-col-12 p-lg-9">
+        <!-- <div class="card"> -->
+        <h5></h5>
+        <p-tabView (onChange)="onTabChange($event)">
+            <p-tabPanel header="General">
+                <app-iint [service]="service" [parentData]="isManager"></app-iint>
+            </p-tabPanel>
+            <p-tabPanel header="Others">
+                <app-iint-others [service]="service"></app-iint-others>
+            </p-tabPanel>
+            <p-tabPanel header="Voucher No">
+                <app-iintvrno [service]="service"></app-iintvrno>
+            </p-tabPanel>
+            <p-tabPanel header="Report Details">
+                <app-iintrpttitle [service]="service"></app-iintrpttitle>
+            </p-tabPanel>
+            <p-tabPanel header="Default Account">
+                <app-iintacconfig></app-iintacconfig>
+            </p-tabPanel>
+        </p-tabView>
+        <!-- </div> -->
+    </div>
+    <div class="p-col-12 p-lg-3">
+        <app-igenmenu></app-igenmenu>
+    </div>
+</div>

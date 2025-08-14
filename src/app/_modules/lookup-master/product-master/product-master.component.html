@@ -1,0 +1,1247 @@
+<p-toast></p-toast>
+
+
+<div class="container" style="background-color: #d1e2f1 ; padding: 6px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Product Master</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+            <button pButton label="Add" icon="pi pi-plus" iconPos="right" (click)="AddNew()" class="custom-button"></button>
+            <button pButton label="Save" icon="pi pi-save" iconPos="right" (click)="saveproductmaster()"
+                class="custom-button"></button>
+            <button pButton label="List" icon="pi pi-list" iconPos="right" (click)="displayProductList()"
+                class="custom-button"></button>
+            <button *ngIf="showDeleteButton" pButton label="Delete" icon="pi pi-trash" iconPos="right" (click)="confirmDelete()"
+                class="custom-button"></button>
+        </div>
+
+    </div>
+
+    <div class="custom-tabs">
+
+        <div class="tab-headers">
+            <div class="tab-header" *ngFor="let tab of scrollableTabs; let i = index" [class.active]="activeIndex === i"
+                (click)="changeIndex(i)">
+                {{ tab.title }}
+            </div>
+        </div>
+
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 0">
+                <div
+                    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h5 style="color: #003366;">Product Group Details</h5>
+                        <div class="p-grid" style="display: flex; gap: 10px;">
+
+
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Master Sysid</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_SysID"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;" readonly>
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                 <label style="display: inline-block; width: 30%;">Product Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Short Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Short_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Long Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Long_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <h6 style="color: #003366;">Reporting Group</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group One</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Group1"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Two</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Group2"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group
+                                    Three</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Group3"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Four</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Group4"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Five</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Group5"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Six</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Group6"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group
+                                    Seven</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Group7"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group
+                                    Eight</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Group8"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Nine</label>
+                                <input type="number" pInputText [(ngModel)]="TblHProdGroup.HProdGroup_Group9"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <h6 style="color: #003366;">Activation & Deactivation</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation Y/n</label>
+                                <input type="checkbox" [(ngModel)]="TblHProdGroup.HAccGroup_AcDe_Yn">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                    Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHProdGroup.HAccGroup_AcDe_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                    Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHProdGroup.HAccGroup_AcDe_Name"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div> -->
+
+
+
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 1">
+                <div
+                    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h5 style="color: #003366;">Product Company Wise Details</h5>
+
+                    </div>
+                    <br>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Short
+                                    Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Short_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Long Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Long_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Menu Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Menu_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Menu Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Menu_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Group Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('ProductGroupCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Group Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Module Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Module_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('ProductModuleCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Module Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Module_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h6 style="color: #003366;">Product & Others</h6>
+
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Costing Method Code</label>
+                                <p-dropdown [options]="costingMethodOptions" [(ngModel)]="selectedCostingMethod"
+                                    placeholder="Select an option" (onChange)="onCostingMethodChange($event.value)"
+                                    [filter]="true" [ngStyle]="{ 'width': '250px' }">
+
+                                    <ng-template let-option pTemplate="item">
+                                        {{ option.label }}
+                                    </ng-template>
+
+                                    <ng-template let-selectedOption pTemplate="selectedItem">
+                                        {{ selectedOption?.value?.code }}
+                                    </ng-template>
+
+                                </p-dropdown>
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Costing Method Name</label>
+                                <input type="text" pInputText [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_CostMeth_Name"
+                                    [ngStyle]="{ 'background-color': '#ffffff', 'width': '250px', 'height': '2vh' }"
+                                    readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Type Code</label>
+                                <p-dropdown [options]="ProductionMethodOptions" [(ngModel)]="selectedProductionMethod"
+                                    placeholder="Select an option" (onChange)="onProductionMethodChange($event.value)"
+                                    [filter]="true" [ngStyle]="{ 'width': '250px' }">
+
+                                    <ng-template let-option pTemplate="item">
+                                        {{ option.label }}
+                                    </ng-template>
+
+                                    <ng-template let-selectedOption pTemplate="selectedItem">
+                                        {{ selectedOption?.value?.code }}
+                                    </ng-template>
+
+                                </p-dropdown>
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Type Name</label>
+                                <input type="text" pInputText [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Type_Name"
+                                    [ngStyle]="{ 'background-color': '#ffffff', 'width': '250px', 'height': '2vh' }"
+                                    readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">BOM Product Module Code</label>
+                                <p-dropdown [options]="BOMProductionMethodOptions"
+                                    [(ngModel)]="selectedBOMProductionMethod" placeholder="Select an option"
+                                    (onChange)="onBOMProductionMethodChange($event.value)" [filter]="true"
+                                    [ngStyle]="{ 'width': '250px' }">
+
+                                    <ng-template let-option pTemplate="item">
+                                        {{ option.label }}
+                                    </ng-template>
+
+                                    <ng-template let-selectedOption pTemplate="selectedItem">
+                                        {{ selectedOption?.value?.code }}
+                                    </ng-template>
+
+                                </p-dropdown>
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">BOM Product Module Name</label>
+                                <input type="text" pInputText [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_BOMModu_Name"
+                                    [ngStyle]="{ 'background-color': '#ffffff', 'width': '250px', 'height': '2vh' }"
+                                    readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Classification Code</label>
+                                <p-dropdown [options]="classificationOptions" [(ngModel)]="selectedclassification"
+                                    placeholder="Select an option"
+                                    (onChange)="onClassificationMethodChange($event.value)" [filter]="true"
+                                    [ngStyle]="{ 'width': '250px' }">
+
+                                    <ng-template let-option pTemplate="item">
+                                        {{ option.label }}
+                                    </ng-template>
+
+                                    <ng-template let-selectedOption pTemplate="selectedItem">
+                                        {{ selectedOption?.value?.code }}
+                                    </ng-template>
+
+                                </p-dropdown>
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Classification Name</label>
+                                <input type="text" pInputText [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_SuplClass_Name"
+                                    [ngStyle]="{ 'background-color': '#ffffff', 'width': '250px', 'height': '2vh' }"
+                                    readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Classification Code</label>
+                                <p-dropdown [options]="productGradeValueOptions" [(ngModel)]="selectedproductGradeValue"
+                                    placeholder="Select an option"
+                                    (onChange)="onproductGradeValueMethodChange($event.value)" [filter]="true"
+                                    [ngStyle]="{ 'width': '250px' }">
+
+                                    <ng-template let-option pTemplate="item">
+                                        {{ option.label }}
+                                    </ng-template>
+
+                                    <ng-template let-selectedOption pTemplate="selectedItem">
+                                        {{ selectedOption?.value?.code }}
+                                    </ng-template>
+
+                                </p-dropdown>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Classification Name</label>
+                                <input type="text" pInputText [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_ValueWise_Name"
+                                    [ngStyle]="{ 'background-color': '#ffffff', 'width': '250px', 'height': '2vh' }"
+                                    readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Category Code</label>
+                                <p-dropdown [options]="productCategroyOptions" [(ngModel)]="selectedproductCategory"
+                                    placeholder="Select an option"
+                                    (onChange)="onproductCategoryMethodChange($event.value)" [filter]="true"
+                                    [ngStyle]="{ 'width': '250px' }">
+
+                                    <ng-template let-option pTemplate="item">
+                                        {{ option.label }}
+                                    </ng-template>
+
+                                    <ng-template let-selectedOption pTemplate="selectedItem">
+                                        {{ selectedOption?.value?.code }}
+                                    </ng-template>
+
+                                </p-dropdown>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Category Name</label>
+                                <input type="text" pInputText [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_ProdCate_Name"
+                                    [ngStyle]="{ 'background-color': '#ffffff', 'width': '250px', 'height': '2vh' }"
+                                    readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Gross Weight</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Gross_Weight"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Net Weight
+                                </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Net_Weight"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Creation Date</label>
+                                <input type="date" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Creation_Date"
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <h6 style="color: #003366;">Stock Level</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Safety Stock</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_SafetyStk_Level"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Reorder Quantity
+                                </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_ReOrd_Qty"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Minimum Level
+                                </label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Min_Qty"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Maximum Level</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Max_Qty"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Lead Time</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Lead_Time"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <h6 style="color: #003366;">Account Details</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Inventory Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_InvAcc_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('InventoryAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Inventory Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_InvAcc_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Cost of Sales Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_CogsAcc_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CostOfSalesAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Cost of Sales Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_CogsAcc_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Sales Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_SalAcc_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('SalesAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Sales Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_SalAcc_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Purchase Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_PurAcc_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('PurcahseAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Purchase Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_PurAcc_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Input Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_TaxInPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('VatInputAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Input Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_TaxInPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Output Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_TaxOutPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('VatOutputAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Output Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_TaxOutPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Advance Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_TaxAdvPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('VatAdvAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Advance Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_TaxAdvPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Other Tax Input Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_OtaxInPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('OtherTaxInputAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Other Tax Input Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_OtaxInPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Other Tax Output Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_OtaxOutPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('OtherTaxOutputAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Other Tax Output Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_OtaxOutPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Reporting Group</h6>
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group One</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group1"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Two</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group2"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group
+                                    Three</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group3"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Four</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group4"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Five</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group5"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Six</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group6"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group
+                                    Seven</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group7"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group
+                                    Eight</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group8"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Product Reporting Group Nine</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_Group9"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Activation & Deactivation</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation Y/n</label>
+                                <input type="checkbox"
+                                    [ngModel]="this.TblHProdGroup.TblHProdMaster[0].HProd_AcDe_Yn === 'Y' ? true : false"
+                                    (ngModelChange)="this.TblHProdGroup.TblHProdMaster[0].HProd_AcDe_Yn = $event ? 'Y' : 'N'">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                    Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_AcDe_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                    Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHProdGroup.TblHProdMaster[0].HProd_AcDe_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 style="color: #003366;">Product Unit Details</h5>
+                    <p-table [value]="this.TblHProdGroup.TblHProdMaster[0].TblHProdUnit" [style]="{'width' : '60%'}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 4rem;">SysID</th>
+                                <th>Product Unit</th>
+                                <th>Product Unit Fraction</th>
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 8rem;"></th>
+
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                            <tr>
+                                <td pEditableColumn >
+                                    <input pInputText type="number"
+                                        style="padding: 0; width: 100%; background-color: transparent;"
+                                        [(ngModel)]="rowData.HProd_Unit_SysID">
+                                </td>
+
+                                <td pEditableColumn >
+                                    <input pInputText type="text"
+                                        style="padding: 0; width: 80%; background-color: transparent;"
+                                        [(ngModel)]="rowData.HProd_Base_Unit">
+                                    <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                        (click)="ShowPopUp('ProductUnit',i)" class="custom-button-button"></button>
+                                </td>
+                                <td pEditableColumn >
+                                    <input pInputText type="text"
+                                        style="padding: 0; width: 100%; background-color: transparent;"
+                                        [(ngModel)]="rowData.HProd_Unit_Frac">
+                                </td>
+
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow('TblHProdUnit',i,rowData)" class="custom-button"></button>
+                                </td>
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button" (click)="addRow('TblHProdUnit',i)"></button>
+                                </td>
+
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                    <h5 style="color: #003366;">Product Sub Unit Details</h5>
+                    <p-table [value]="this.TblHProdGroup.TblHProdMaster[0].TblDProdUnit" [style]="{'width' : '60%'}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 4rem;">SysID</th>
+                                <th>Product Unit</th>
+                                <th>Product Unit Fraction</th>
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 8rem;"></th>
+
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                            <tr>
+                                <td pEditableColumn >
+                                    <input pInputText type="number"
+                                        style="padding: 0; width: 100%; background-color: transparent;"
+                                        [(ngModel)]="rowData.DProd_Unit_SysID">
+                                </td>
+
+                                <td pEditableColumn >
+                                    <input pInputText type="text"
+                                        style="padding: 0; width: 80%; background-color: transparent;"
+                                        [(ngModel)]="rowData.DProd_Base_Unit">
+                                    <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                        (click)="ShowPopUp('ProductUnit2',i)" class="custom-button-button"></button>
+                                </td>
+                                <td pEditableColumn >
+                                    <input pInputText type="text"
+                                        style="padding: 0; width: 100%; background-color: transparent;"
+                                        [(ngModel)]="rowData.DProd_Unit_Frac">
+                                </td>
+
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow('TblDProdUnit',i,rowData)" class="custom-button"></button>
+                                </td>
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button" (click)="addRow('TblDProdUnit',i)"></button>
+                                </td>
+
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                    
+
+                    <h5 style="color: #003366;">Applicable Suppliers</h5>
+                    <p-table [value]="this.TblHProdGroup.TblHProdMaster[0].applicableSupplierAndCust" [style]="{'width' : '60%'}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 4rem;">SysID</th>
+                                <th>Applicable Customer & Suppliers Code</th>
+                                <th>Applicable Customer & Suppliers Name</th>
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 8rem;"></th>
+
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                            <tr>
+                                <td pEditableColumn >
+                                    <input pInputText type="number"
+                                        style="padding: 0; width: 100%; background-color: transparent;"
+                                        [(ngModel)]="rowData.HProd_CommTbl_SysID">
+                                </td>
+
+                                <td pEditableColumn >
+                                    <input pInputText type="text"
+                                        style="padding: 0; width: 80%; background-color: transparent;"
+                                        [(ngModel)]="rowData.HProd_CommTbl_Code">
+                                    <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                        (click)="ShowPopUp('SupplierCode',i)" class="custom-button-button"></button>
+                                </td>
+                                <td pEditableColumn >
+                                    <input pInputText type="text"
+                                        style="padding: 0; width: 100%; background-color: transparent;"
+                                        [(ngModel)]="rowData.HProd_CommTbl_Name">
+                                </td>
+
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow('applicableSupplierAndCust',i,rowData)"
+                                        class="custom-button"></button>
+                                </td>
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button" (click)="addRow('applicableSupplierAndCust',i)"></button>
+                                </td>
+
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                    <h5 style="color: #003366;">Applicable Customers</h5>
+
+                    <p-table [value]="this.TblHProdGroup.TblHProdMaster[0].applicableCustomers" [style]="{'width' : '60%'}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 4rem;">SysID</th>
+                                <th>Applicable Customer & Suppliers Code</th>
+                                <th>Applicable Customer & Suppliers Name</th>
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 8rem;"></th>
+
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                            <tr>
+                                <td pEditableColumn style="text-align: left;">
+                                    <input pInputText type="number"
+                                        style="padding: 0; width: 100%; background-color: transparent;"
+                                        [(ngModel)]="rowData.HProd_CommTbl_SysID">
+                                </td>
+
+                                <td pEditableColumn style="text-align: left;">
+                                    <input pInputText type="text"
+                                        style="padding: 0; width: 80%; background-color: transparent;"
+                                        [(ngModel)]="rowData.HProd_CommTbl_Code">
+                                    <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                        (click)="ShowPopUp('CustomerCode',i)" class="custom-button-button"></button>
+                                </td>
+                                <td pEditableColumn style="text-align: left;">
+                                    <input pInputText type="text"
+                                        style="padding: 0; width: 100%; background-color: transparent;"
+                                        [(ngModel)]="rowData.HProd_CommTbl_Name">
+                                </td>
+
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow('applicableCustomers',i,rowData)" class="custom-button"></button>
+                                </td>
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button" (click)="addRow('applicableCustomers',i)"></button>
+                                </td>
+
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                    <h5 style="color: #003366;">Applicable Company Details</h5>
+
+                    <p-table [value]="this.TblHProdGroup.TblHProdMaster[0].applicableCo" class="company-table"
+                        [style]="{'width' : '60%'}">
+                        <ng-template pTemplate="header">
+                            <tr style="background-color: #f0f0f0; text-align: left;">
+                                <th style="padding: 10px; font-size: 12px;width: 4rem;">SysID</th>
+                                <th style="padding: 10px; font-size: 12px;">Applicable Company Code</th>
+                                <th style="padding: 10px; font-size: 12px;">Applicable Company Name</th>
+                                <th style="width: 4rem;"></th>
+                                <th style="width: 8rem;"></th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                            <tr style="font-size: 12px; text-align: left;">
+                                <td style="padding: 8px;">{{ rowData.DcProd_SingleCo_SysID}}</td>
+                                <td style="padding: 8px;">{{ rowData.DcProd_SingleCo_Code}}
+                                    <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                        (click)="ShowPopUp('ApplicableCompanyCode',i)" class="custom-button"></button>
+                                </td>
+                                <td style="padding: 8px;">{{ rowData.DcProd_SingleCo_Name }}</td>
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                        (click)="deleteRow('applicableCo',i,rowData)" class="custom-button"></button>
+                                </td>
+                                <td style="text-align: center;">
+                                    <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                        class="custom-button" (click)="addRow('applicableCo',i)"></button>
+                                </td>
+
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="3"
+                                    style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                                    No data available. Please check back later.
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 2">
+                <app-product-document-attachment
+                    [dto]="this.TblHProdGroup.documentTableData"></app-product-document-attachment>
+            </ng-container>
+        </div>
+
+
+    </div>
+</div>
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+
+
+<p-dialog [modal]="true" [(visible)]="display" [style]="{width: '50vw'}">
+    <p-table [value]="rights" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Rights</th>
+                <th>Rights Details</th>
+                <!-- <th>Action</th> -->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-right>
+            <tr>
+                <td>
+                    <input type="checkbox" [(ngModel)]="right.hasRight" />
+                </td>
+                <td>{{ right.detail }}</td>
+                <!-- <td>
+                    <input type="checkbox" [(ngModel)]="right.hasAction" />
+                </td> -->
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog><p-confirmDialog></p-confirmDialog>
+
+
+<p-dialog [(visible)]="showProductMasterList" [modal]="true" [closable]="true" [style]="{ width: '80vw' }">
+
+    <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+        <div class="p-col-12 p-md-3">
+            <div class="p-inputgroup" style="max-width: 300px;">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-search"></i>
+                </span>
+                <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                    (input)="filterTable()" />
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-3">
+            <button pButton label="Back" (click)="Back()" class="custom-button"
+                [style]="{ 'background-color': 'antiquewhite', color: 'black' }">
+            </button>
+        </div>
+    </div>
+
+    <div class="p-grid" style="padding: 0 1rem;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6
+                style="background-color: #5c96d4; color: antiquewhite; height: 4vh; align-items: center; display: flex; padding-left: 8px;">
+                Product Master Details
+            </h6>
+
+            <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                [rowsPerPageOptions]="[5, 10, 20]">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 4rem;">Product SysID</th>
+                        <th style="width: 8rem;">Product Code</th>
+                        <th style="width: 8rem;">Product Short Name</th>
+                        <th style="width: 8rem;">Product Long Name</th>
+                        <th style="width: 8rem;">Actions</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr
+                        *ngIf="rowData?.HProd_Code || rowData?.HProd_Short_Name || rowData?.HProd_Long_Name || rowData?.HProd_SysID">
+                        <td>{{ rowData.HProd_SysID }}</td>
+                        <td>{{ rowData.HProd_Code }}</td>
+                        <td>{{ rowData.HProd_Short_Name }}</td>
+                        <td>{{ rowData.HProd_Long_Name }}</td>
+                        <td>
+                            <span class="p-buttonset">
+                                <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                    class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                    (click)="editRow(rowData)">
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                            No Data available. Please check back later.
+                        </td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </div>
+    </div>
+</p-dialog>

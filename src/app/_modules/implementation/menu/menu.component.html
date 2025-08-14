@@ -1,0 +1,152 @@
+<!-- <div class="p-col-12"></div> -->
+<p-toast></p-toast>
+<div class="p-col-12">
+    <div class="card card-w-title">
+        <div class="p-col-12">
+            <div class="p-grid nested-grid">
+                <div class="p-col-4 p-md-4">
+                    <p-tree [value]="menuTreeData" selectionMode="single" [virtualNodeHeight]="10"
+                        [(selection)]="selectedTreeMenu" (onNodeSelect)="nodeSelect($event)"
+                        (onNodeUnselect)="nodeUnselect($event)" (onNodeExpand)="nodeExpand($event)"
+                        [style]="{'height':'410px','width':'90%','overflow':'auto'}">
+                    </p-tree>
+                </div>
+
+                <div class="p-col-8 p-md-8">
+                    <p-panel header="Menu Status : " [style]="{'margin-bottom':'20px'}" *ngIf="selectedTreeMenu">
+                        <div class="ui-fluid">
+                            <div class="card card-w-title">
+                                <div class="p-grid nested-grid">
+                                    <div class="p-col-12 form-group">
+                                        <div class="p-grid nested-grid">
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label><b>{{'menuId' | first}}</b>
+                                                        <a style="color: red;"> *</a></label>
+                                                    <br />
+                                                    <input type="text" pInputText [disabled]="isDisabled"
+                                                        [(ngModel)]="service.header.menuId">
+                                                </span>
+                                            </div>
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label><b>{{'description' | first}}</b>
+                                                        <a style="color: red;"> *</a></label><br />
+                                                    <input type="text" pInputText
+                                                        [(ngModel)]="service.header.description">
+                                                </span>
+                                            </div>
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label><b>{{'icon'  | first}}</b></label><br />
+                                                    <input type="text" pInputText
+                                                        [(ngModel)]="service.header.icon">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-col-12 form-group">
+                                        <div class="p-grid nested-grid">
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label>{{'basedonInterface' | first}}</label><br />
+                                                    <p-dropdown [options]="yesNoLov"
+                                                        [(ngModel)]="service.header.interfaceYn">
+                                                    </p-dropdown>
+                                                </span>
+                                            </div>
+                                            <div class="p-col-3 p-md-3">
+                                                <span class="md-inputfield">
+                                                    <label>{{'displayOrder' | first}}</label><br />
+                                                    <input type="text" pInputText style="text-align: right;"
+                                                        [(ngModel)]="service.header.displaySeq">
+                                                </span>
+                                            </div>
+                                            <div class="p-col-1 p-md-1"></div>
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label>{{'menuType' | first}}</label><br />
+                                                    <p-dropdown [options]="menuTypeLov"
+                                                        [(ngModel)]="service.header.menuType">
+                                                    </p-dropdown>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-col-12 form-group">
+                                        <div class="p-grid nested-grid">
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label>{{'openInMultipleTab' | first}}</label><br />
+                                                    <p-dropdown [options]="yesNoLov"
+                                                        [(ngModel)]="service.header.openMultipleTab">
+                                                    </p-dropdown>
+                                                </span>
+                                            </div>
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label>{{'parentMenuID' | first}}</label><br />
+                                                    <p-dropdown [options]="parentMenuListLov"
+                                                        [(ngModel)]="service.header.parentMenuId" filter="true">
+                                                        <ng-template let-item pTemplate="selectedItem">
+                                                            <span
+                                                                style="vertical-align:middle; margin-left: .5em">{{item.label}}</span>
+                                                        </ng-template>
+                                                        <ng-template let-car pTemplate="item">
+                                                            <div class="ui-helper-clearfix"
+                                                                style="position: relative;height: 25px;">
+                                                                <div style="font-size:14px;margin-top:4px">{{car.label}}
+                                                                </div>
+                                                            </div>
+                                                        </ng-template>
+                                                    </p-dropdown>
+                                                </span>
+                                            </div>
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label>{{'menuEnabled' | first}}</label><br />
+                                                    <p-dropdown [options]="yesNoLov"
+                                                        [(ngModel)]="service.header.menuEnabled">
+                                                    </p-dropdown>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-col-12 form-group">
+                                        <div class="p-grid nested-grid">
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label>{{'taskFlow' | first}}</label><br />
+                                                    <input type="text" pInputText
+                                                        [(ngModel)]="service.header.definition"
+                                                        [disabled]="selectedTreeMenu.data.menuType==1">
+                                                </span>
+                                            </div>
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label>{{'tableName' | first}}</label><br />
+                                                    <input type="text" pInputText
+                                                        [(ngModel)]="service.header.tableName">
+                                                </span>
+                                            </div>
+                                            <div class="p-col-4 p-md-4">
+                                                <span class="md-inputfield">
+                                                    <label>{{'tableDescription' | first}}</label><br />
+                                                    <input type="text" pInputText
+                                                        [(ngModel)]="service.header.tableDesc">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

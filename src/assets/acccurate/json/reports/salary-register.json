@@ -1,0 +1,32 @@
+{
+    "reportHeading": "Salary register report",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "",
+    "detail": false,
+    "detailPropertyName": "",
+    "rptLanguage": "E",
+    "reportId": "salary-register",
+    "printColumnMetaData": [
+            {   "column": "empCode", "columnHeading": "Employee Code","size":"7em"  },
+            {   "column": "mainEmpName", "columnHeading": "Employee Name" },
+            {   "column": "brCode", "columnHeading": "Branch Code","size":"3em"  },
+            {   "column": "empCat", "columnHeading": "Employee Category" },
+            {   "column": "mainDesigCode", "columnHeading": "Employee designation" },
+            {   "column": "empDept", "columnHeading": "Employee department" },
+            {   "column": "a1", "columnHeading": "Basic salary"},
+            {   "column": "a2", "columnHeading": "House rent Allowance"},
+            {   "column": "a3", "columnHeading": "Food Allowance"},
+            {   "column": "a4", "columnHeading": "Travel Allowance"},
+            {   "column": "a5", "columnHeading": "Telephone Allowance"},
+            {   "column": "a6", "columnHeading": "Miscellaneous Allowance"},
+            {   "column": "a7", "columnHeading": "Other Additional Allowance"},
+            {   "column": "d1", "columnHeading": "Provident Fund"},
+            {   "column": "d2", "columnHeading": "Employee State Insurance"},
+            {   "column": "d3", "columnHeading": "Professional Tax"},
+            {   "column": "d4", "columnHeading": "Income Tax"},
+            {   "column": "d5", "columnHeading": "Gratuity Fund"},
+            {   "column": "d6", "columnHeading": "Voluntary Deductions"},
+            {   "column": "d7", "columnHeading": "Other Deductions"}
+    
+    ]
+} 

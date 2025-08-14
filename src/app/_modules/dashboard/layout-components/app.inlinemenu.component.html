@@ -1,0 +1,58 @@
+<!-- <div [ngClass]="{'layout-inline-menu': true, 'layout-inline-menu-active':appMain.inlineMenuActive[key]}" [ngStyle]="style" [class]="styleClass"> -->
+<div [ngClass]="{'layout-inline-menu': true, 'layout-inline-menu-active':appMain.inlineMenuActive[key]}" [ngClass]="style" [class]="styleClass">
+    <a class="layout-inline-menu-action p-d-flex p-dir-row p-ai-center" [ngClass]="appMain.isHorizontal() ? 'p-p-3 p-p-lg-1 p-py-3' : 'p-p-3'" (click)="onClick($event)"
+        pTooltip="Amy Elsner" [tooltipDisabled]="isTooltipDisabled">
+        <img src="assets/acccurate/images/UserThomas.png" alt="avatar" style="width: 32px; height: 32px;border-radius: 50%;object-fit: fill; border: 2px solid #fff;" >
+        <span class="p-d-flex p-flex-column" [ngClass]="{'p-ml-2': !app.isRTL, 'p-mr-2': app.isRTL}">
+            <span class="p-text-bold">{{userInfo.userName}}</span>
+            <!-- <small>Webmaster</small> -->
+        </span>
+        <i class="layout-inline-menu-icon pi pi-angle-down" [ngClass]="{'p-ml-auto': !app.isRTL, 'p-mr-auto': app.isRTL}"></i>
+    </a>
+
+    <ul class="layout-inline-menu-action-panel" [@menu]="appMain.inlineMenuActive[key] ? isHorizontalActive() ? 'visible' : 'visibleAnimated' : isHorizontalActive() ? 'hidden' : 'hiddenAnimated'">
+        <li class="layout-inline-menu-action-item" pTooltip="Settings" [tooltipDisabled]="isTooltipDisabled" *ngIf="app.dashboardVisible">
+            <a class="p-d-flex p-flex-row p-ai-center" [attr.tabindex]="tabIndex">
+                <i class="pi pi-cog pi-fw"></i>
+                <span>Settings</span>
+            </a>
+        </li>
+        <li class="layout-inline-menu-action-item" pTooltip="Terms of Usage" [tooltipDisabled]="isTooltipDisabled" *ngIf="app.dashboardVisible">
+            <a class="p-d-flex p-flex-row p-ai-center" [attr.tabindex]="tabIndex">
+                <i class="pi pi-file-o pi-fw"></i>
+                <span>Terms of Usage</span>
+            </a>
+        </li>
+        <li class="layout-inline-menu-action-item" pTooltip="Support" [tooltipDisabled]="isTooltipDisabled" *ngIf="app.dashboardVisible">
+            <a class="p-d-flex p-flex-row p-ai-center" [attr.tabindex]="tabIndex">
+                <i class="pi pi-compass pi-fw"></i>
+                <span>Support</span>
+            </a>
+        </li>
+
+        <li class="layout-inline-menu-action-item" pTooltip="Create User" [tooltipDisabled]="isTooltipDisabled">
+            <a class="p-d-flex p-flex-row p-ai-center" [attr.tabindex]="tabIndex" (click)="createUser()">
+                <i class="pi pi-user pi-fw"></i>
+                <span>Create User</span>
+            </a>
+        </li>
+        <li class="layout-inline-menu-action-item" pTooltip="Change Password" [tooltipDisabled]="isTooltipDisabled">
+            <a class="p-d-flex p-flex-row p-ai-center" [attr.tabindex]="tabIndex" (click)="changePassword()">
+                <i class="pi pi-lock pi-fw"></i>
+                <span>Change Password</span>
+            </a>
+        </li>
+        <li class="layout-inline-menu-action-item" pTooltip="Logout" [tooltipDisabled]="isTooltipDisabled">
+            <a class="p-d-flex p-flex-row p-ai-center" [attr.tabindex]="tabIndex" (click)="authService.logOut()">
+                <i class="pi pi-sign-in pi-fw"></i>
+                <span>Login</span>
+            </a>
+        </li>
+        <li class="layout-inline-menu-action-item" pTooltip="Logout" [tooltipDisabled]="isTooltipDisabled">
+            <a class="p-d-flex p-flex-row p-ai-center" [attr.tabindex]="tabIndex" (click)="authService.logOut()">
+                <i class="pi pi-power-off pi-fw"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+    </ul>
+</div>

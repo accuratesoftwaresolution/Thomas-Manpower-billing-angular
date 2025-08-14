@@ -1,0 +1,186 @@
+.msger {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+   width: 100%;
+  max-width: auto;
+  margin: 25px 10px;
+  height: calc(100% - 50px);
+  border: var(--border);
+  border-radius: 5px;
+  background: var(--msger-bg);
+  box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+}
+
+.msger-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: var(--border);
+  background: rgb(0 0 0 / 12%);
+  color: #666;
+}
+
+.msger-chat {
+  flex: 1;
+  overflow-y: scroll;
+  padding: 10px;
+}
+.msger-chat::-webkit-scrollbar {
+  width: 6px;
+}
+.msger-chat::-webkit-scrollbar-track {
+  background: #ddd;
+}
+.msger-chat::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+}
+.msg {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+.msg:last-of-type {
+  margin: 0;
+}
+.msg-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background: #ddd;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+.msg-bubble {
+  max-width: 450px;
+  padding: 0px;
+  border-radius: 4px;
+  background: #5590c8;
+}
+.msg-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.msg-info-name {
+  margin-right: 10px;
+  font-weight: bold;
+}
+.msg-info-time {
+  font-size: 0.85em;
+}
+
+.left-msg .msg-bubble {
+  border-bottom-left-radius: 0;
+}
+
+.right-msg {
+  flex-direction: row-reverse;
+}
+.right-msg .msg-bubble {
+  background:#e0e0e0;
+  color: black;
+  border-bottom-right-radius: 0;
+}
+.right-msg .msg-img {
+  margin: 0 0 0 10px;
+}
+
+.msger-inputarea {
+  display: flex;
+  padding: 10px;
+  border-top: var(--border);
+  background: #3F4C6B;
+  border-radius: 8px;
+}
+.msger-inputarea * {
+  padding: 4px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
+}
+.msger-input {
+  flex: 1;
+  background: #ddd;
+}
+.msger-send-btn {
+  margin-left: 10px;
+  background: rgb(0, 196, 65);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.23s;
+}
+.msger-send-btn:hover {
+  background: rgb(0, 180, 50);
+}
+
+.msger-chat {
+  background-color: #fcfcfe;
+  }
+  div.highlight:hover {
+      font-size: 1.1rem;
+      background-color: var(--primary-color);
+      position: inherit;
+      height: max-content;
+      width: 100%;
+      color: rgb(2, 2, 2);
+      padding-top: 10px;
+  }
+
+  .selectedList {
+      background-color: #3F4C6B;
+      color:rgb(0, 0, 0);
+  }
+
+  :host ::ng-deep .p-col-1, .p-col-2, .p-col-3, .p-col-4, .p-col-5, .p-col-6, .p-col-7, .p-col-8, .p-col-9, .p-col-10, .p-col-11, .p-col-12 {
+      flex: 0 0 auto;
+      padding: 0.25rem;
+  }
+  .input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .btn {
+    padding: 4px;
+    color: white;
+    text-align: center;
+    height: 40px;
+    border-radius: 4px;
+  }
+
+  .card1{
+    padding: 1em;
+  }
+
+  .gridClass{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  
+  input[type=text],textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  
+  .avatar{
+    width: 320px;
+    height: 324px;
+  }

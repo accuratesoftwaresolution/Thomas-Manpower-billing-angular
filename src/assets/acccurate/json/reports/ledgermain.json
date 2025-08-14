@@ -1,0 +1,30 @@
+{
+    "reportHeading": "Ledger Report",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "acCode",
+    "detail": true,
+    "detailPropertyName": "detail",
+    "rptLanguage": "E",
+    "reportId": "ledgermain",
+    "printColumnMetaData": {
+        "headerMetaData": [
+            {   "column": "acCode", "columnHeading": "account","size":"7em"  },
+            {   "column": "ac4AcName", "columnHeading": "acName" },
+            {   "column": "ac4CurCode", "columnHeading": " ","size":"3em"  },
+            {   "column": "opening", "columnHeading": "opening" }
+        ],
+        "detailMetaData": [
+            {   "column": "brCode", "columnHeading": "ibr" },
+            {   "column": "intCode", "columnHeading": "type" },
+            {   "column": "vrNo", "columnHeading": "vrNumber" },
+            {   "column": "vrDate", "columnHeading": "ledgerDate","type": "date","size":"7em"  },
+            {   "column": "chqNo", "columnHeading": "chqNo" },
+            {   "column": "chqDate", "columnHeading": "chqDate","type": "date","size":"7em"  },
+            {   "column": "acamt_dr", "columnHeading": "debit", "type": "amount" },
+            {   "column": "acamt_cr", "columnHeading": "credit", "type": "amount" },
+            {   "column": "balance", "columnHeading": "balance", "type": "amountexp", 
+                            "expressionArray": { "type": "row", "exp": ["acamt_dr","-","acamt_cr"] }
+            }
+        ]
+    }
+}

@@ -1,0 +1,2220 @@
+<p-toast></p-toast>
+
+<div class="container" style="background-color: #d1e2f1 ; padding: 6px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">
+            Employee Creation Master
+        </h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Add" class="custom-button"></button>
+            <button pButton label="Save" (click)="save()" class="custom-button"></button>
+            <button pButton label="List" (click)="displayEmployeeList()" class="custom-button"></button>
+            <button pButton label="Delete"(click)="ConfirmDialog()" class="custom-button"></button>
+          
+        </div>
+    </div>
+
+
+    <div
+        style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+        <!-- <h5 style="color: #003366;">Basic Details</h5> -->
+        <div class="p-grid">
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Employee SysID</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_SysID" readOnly
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+        <div class="p-grid">
+
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Employee Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Employee Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Employee Group Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Group_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('EmployeeGroupCode')" icon="pi pi-ellipsis-h"
+                        class="popup-button" style="margin-left: 10px;"></button>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Employee Group Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Group_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Employee Category Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Categ_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('EmployeeCategoryCode')" icon="pi pi-ellipsis-h"
+                        class="popup-button" style="margin-left: 10px;"></button>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Employee Category Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Categ_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;"> Employee Module Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Modu_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('EmployeeModuleCode')" icon="pi pi-ellipsis-h"
+                        class="popup-button" style="margin-left: 10px;"></button>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;"> Employee Module Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Modu_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;"> Employee Type Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Type_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('EmployeeTypeCode')" icon="pi pi-ellipsis-h" class="popup-button"
+                        style="margin-left: 10px;"></button>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;"> Employee Type Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Type_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;"> Applicable Payroll Setup SysID</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HAppl_PaySetup_SysID"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+
+
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Applicable Payroll Setup Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HAppl_PaySetup_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('EmployeePayrollCode')" icon="pi pi-ellipsis-h"
+                        class="popup-button" style="margin-left: 10px;"></button>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Applicable Payroll Setup Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HAppl_PaySetup_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;"> Account SysID</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Acc_SysID"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid">
+
+
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;"> Account Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Acc_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('EmployeeAccountCode')" icon="pi pi-ellipsis-h"
+                        class="popup-button" style="margin-left: 10px;"></button>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;"> Account Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_Acc_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+        </div>
+
+        <!-- -------------------------------------- -->
+
+
+        <h5 style="color: #003366;">Activation & Deactivation</h5>
+        <div class="p-grid">
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Activation & Devactivation Y/n</label>
+                    <input type="checkbox" [(ngModel)]="TblHEmpl.HEmpl_AcDe_Yn">
+                </div>
+            </div>
+
+
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                        Code</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_AcDe_Code"
+                        style="background-color: #ffffff; width: 35%; height: 2vh;">
+                    <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h" class="popup-button"
+                        style="margin-left: 10px;"></button>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                <div class="p-field">
+                    <label style="display: inline-block; width: 30%;">Activation & Devactivation Name</label>
+                    <input type="text" pInputText [(ngModel)]="TblHEmpl.HEmpl_AcDe_Name"
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+
+                </div>
+            </div>
+        </div>
+        <h5 style="color: #003366;">Applicable Company Details</h5>
+
+        <p-table [value]="this.TblHEmpl.applicableCo" class="company-table" [style]="{'width' : '60%'}">
+            <ng-template pTemplate="header">
+                <tr style="background-color: #f0f0f0; text-align: left;">
+
+                    <th style="padding: 10px; font-size: 12px;">Applicable Employee SysID</th>
+                    <th style="padding: 10px; font-size: 12px;">Applicable Employee Code</th>
+                    <th style="padding: 10px; font-size: 12px;">Applicable Company Name</th>
+                    <th style="width: 4rem;"></th>
+                    <th style="width: 8rem;"></th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                <tr style="font-size: 12px; text-align: left;">
+                    <td style="padding: 8px;">{{ rowData.DcEmpl_SingleCo_SysID }}</td>
+                    <td style="padding: 8px;">{{ rowData.DcEmpl_SingleCo_Code}}
+                        <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                            (click)="ShowPopUp('ApplicableCompanyCode',i)" class="custom-button"></button>
+                    </td>
+                    <td style="padding: 8px;">{{ rowData.DcEmpl_SingleCo_Name }}</td>
+                    <td style="text-align: center;">
+                        <button pButton style=" padding: 0;" icon="pi pi-trash" (click)="deleteRow('applicableCo',i)"
+                            class="custom-button"></button>
+                    </td>
+                    <td style="text-align: center;">
+                        <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row" class="custom-button"
+                            (click)="addRow('applicableCo',i)"></button>
+                    </td>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="3" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                        No data available. Please check back later.
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <h5 style="color: #003366;">Employee Leave Summary</h5>
+
+        <div style="background-color: #ffffff ; border-radius: 4px;margin-bottom: 4px;">
+
+
+            <p-table [value]="TblHEmpl.TbldLeaveSum" [scrollable]="true" scrollHeight="270px" scrollWidth="100%"
+                [resizableColumns]="true" [responsive]="true" [reorderableColumns]="true">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem;">
+                            <input type="checkbox" [checked]="isAllSelected()" (change)="toggleSelectAll($event)" />
+                        </th>
+
+                        <ng-container *ngFor="let col of TableData">
+                            <th>
+                            <th *ngIf="!col.hide && !col.routeTo"
+                                [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                                <span>{{col.header}}</span>
+                            </th>
+                            <th *ngIf="!col.hide && col.routeTo" (click)="routeTo(col.routeTo)"
+                                [ngStyle]="{'width':col.width, 'white-space': 'normal','text-decoration': 'underline'}">
+                                <span>{{col.header}}</span>
+                            </th>
+
+                        </ng-container>
+
+                        <th style="width: 4rem;"></th>
+                        <th style="width: 8rem;"></th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-product let-i="rowIndex">
+                    <tr (click)="onRowClick(product, i)" (contextmenu)="onRightClick($event, product, i)">
+
+                        <td style="width: 3rem;">
+                            <input type="checkbox" [(ngModel)]="product.selected" />
+                        </td>
+
+                        <ng-container *ngFor="let col of TableData">
+                            <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                                [ngStyle]="{'width':col.width , 'text-align ': col.align}">
+
+                                <ng-container *ngIf="!col.PopUpData">
+                                    <input pInputText [type]="col.type" style="padding: 0;" [readonly]="col.readOnly"
+                                        [required]="col.mandatory" [ngClass]="{'manual-column': col.manual}"
+                                        [style]="{'width': '100%'}" [(ngModel)]="product[col.bind]"
+                                        (ngModelChange)="onInputChange(product, col.bind)" (click)="toggle(0)" />
+                                </ng-container>
+
+                                <!-- Editable Input with Pop-Up -->
+                                <ng-container *ngIf="!col.readOnly && col.PopUpData">
+
+                                    <input pInputText [type]="col.type" style="padding: 0;"
+                                        [ngClass]="{'manual-column': col.manual}" [style]="{'width': '70%'}"
+                                        [(ngModel)]="product[col.bind]" [readonly]="col.readOnly"
+                                        [required]="col.mandatory" (ngModelChange)="onInputChange(product, col.bind)"
+                                        (click)="toggle(0)" />
+
+                                    <button pButton *ngIf="col.PopUpData" icon="pi pi-ellipsis-h" class="custom-button"
+                                        style="position: absolute; padding: 0;"
+                                        (click)="ShowPopUp(col.PopUpData, i)"></button>
+
+                                </ng-container>
+
+                                <!-- Read-Only Fields -->
+                                <ng-container *ngIf="col.readOnly">
+                                    <span>{{ product[col.bind] | number: '1.2-2' }}</span>
+                                </ng-container>
+
+
+
+
+                            </td>
+
+
+                        </ng-container>
+
+
+                        <td style="width: 4rem;">
+                            <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                (click)="deleteRow1('TbldLeaveSum',i)" class="custom-button"></button>
+                        </td>
+                        <td style="width: 6rem;">
+                            <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row" class="custom-button"
+                                (click)="addRow1('TbldLeaveSum',i)"></button>
+                        </td>
+
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </div>
+
+
+
+        <!-- ---------------------------------------------------------------------- -->
+        <br>
+        <div class="custom-tabs">
+
+            <div class="tab-headers">
+                <ng-container *ngFor="let tab of scrollableTabs; let i = index">
+                    <div class="tab-header" [class.active]="activeIndex === i" *ngIf="tab.visible == true"
+                        (click)="changeIndex(i)">
+                        {{ tab.title }}
+                    </div>
+                </ng-container>
+            </div>
+
+                <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+                <!-- present address -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 0 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+
+                        <br>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee First Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_First_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Second Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Sec_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Payroll Full Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Full_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Email Address
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Email"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="p-grid">
+
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address One
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Add1_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address Two
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Add2_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address Three
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Add3_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address Four
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Add4_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+
+                                    <label style="display: inline-block; width: 40%;">City Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_City_Code"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CityCodeDataPopUp')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_City_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Country_Code"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CountryCodeDataPopUp')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Country_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Telephone Number
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Tel_Number"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Fax Number
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.presentadressdto[0].HEAdd_Fax_Number"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </ng-container>
+                <!-- permanent address -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 1 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                        <br>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee First Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_First_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Second Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Sec_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Payroll Full Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Full_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Email Address
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Email"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="p-grid">
+
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address One
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Add1_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address Two
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Add2_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address Three
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Add3_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address Four
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Add4_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+
+                                    <label style="display: inline-block; width: 40%;">City Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_City_Code"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CityCodeDataPopUp2')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_City_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Code
+
+                                    </label>
+                                    <input type="text" pInputText
+                                        [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Country_Code"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CountryCodeDataPopUp2')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Name
+
+                                    </label>
+                                    <input type="text" pInputText
+                                        [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Country_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Telephone Number
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Tel_Number"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Fax Number
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.permanentaddressdto[0].HEPAdd_Fax_Number"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </ng-container>
+                <!-- emergency details -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 2 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                        <br>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee First Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_First_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Second Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Sec_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Payroll Full Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Full_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Email Address
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Email"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="p-grid">
+
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address One
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Add1_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address Two
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Add2_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address Three
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Add3_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Employee Address Four
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Add4_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+
+                                    <label style="display: inline-block; width: 40%;">City Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_City_Code"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CityCodeDataPopUp3')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_City_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Code
+
+                                    </label>
+                                    <input type="text" pInputText
+                                        [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Country_Code"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CountryCodeDataPopUp3')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Name
+
+                                    </label>
+                                    <input type="text" pInputText
+                                        [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Country_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Telephone Number
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Tel_Number"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Fax Number
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmerAdd_Fax_Number"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </ng-container>
+                <!-- joining details -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 3 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+                        <br>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Join Date
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.joiningdetailsdto.HEmpl_Join_Date"
+                                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Job Confirmation Date
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.joiningdetailsdto.HEmpl_Confirm_Date"
+                                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Contract Start Date
+                                    </label>
+                                    <input type="date" pInputText
+                                        [(ngModel)]="TblHEmpl.joiningdetailsdto.HEmpl_ContStart_Date"
+                                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Contract End Date
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.joiningdetailsdto.HEmpl_ContEnd_Date"
+                                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Date of Retirement
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.joiningdetailsdto.HEmpl_Retire_Date"
+                                        style="background-color: #ffffff; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 30%;">Notice (days)
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emergencydetails[0].HEmpl_Notice_Period"
+                                        style="background-color: #ffffff !important; width: 45%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <!-- bank details -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 4 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                        <br>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Bank Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Bank Account Number
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Acc_No"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Bank Address One
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Add1_No"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Bank Address Two
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Add2_No"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Bank Address Three
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Add3_No"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Bank Address Four
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Add4_No"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City SysID
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_City_SysID"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_City_Code"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CityCodeDataPopUp4')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Name
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_City_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country SysID
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Count_SysID"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Count_Code"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CountryCodeDataPopUp4')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Count_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Telephone Number
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Tele_No"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Fax Number
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Fax_No"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Email Address
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Email"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Account Number
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_IBANAcc_No"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">IBAN Number
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_RouAcc_No"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Swift Code
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Swift_No"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Bank Routing Number
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_RouAcc_No"
+                                        style="background-color: #ffffff !important; width: 40%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Other Details One
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Oth1_No"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Other Details Two
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Oth2_No"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Other Details Three
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Oth3_No"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Other Details Four
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.bankdetailsdto[0].HEBank_Oth4_No"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <!-- passport Details -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 5 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+
+                        <br>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Passport Number
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_Number"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Birth Date
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_Bdate"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Date of Issue
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_Dissue"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Valid Upto
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_Valid_Date"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <!-- <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">City SysID
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="passportdetails[0].HEPass_City_SysID"
+                                    style="background-color: #ffffff !important; width: 45%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                     -->
+
+                        <div class="p-grid">
+
+
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_City_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CityCodeDataPopUp5')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_City_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="p-grid">
+
+                      
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Country SysID
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="passportdetails[0].HEPass_Count_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+                    </div> -->
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+
+                                    <label style="display: inline-block; width: 40%;">Country Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_Count_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CountryCodeDataPopUp5')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_Count_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Place of Issue Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_Place_Issue"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Marital Status
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.passportdetails[0].HEPass_Mstatus"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </ng-container>
+                <!-- Emirate Details -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 6 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+
+                        <br>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Emirates ID
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_Number"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Birth Date
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_Bdate"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Date of Issue
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_Dissue"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Valid Upto
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_Validtill"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">City SysID
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="emiratedetails[0].HEID_City_SysID"
+                                    style="background-color: #ffffff !important; width: 45%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                     -->
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_City_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CityCodeDataPopUp6')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_City_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Country SysID
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="emiratedetails[0].HEID_Count_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+                    </div> -->
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Code
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_Count_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CountryCodeDataPopUp6')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_Count_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Place of Issue Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_Place_Issue"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Marital Status
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.emiratedetails[0].HEID_Mstatus"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <!-- Driving License-->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 7 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+
+                        <br>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Driving ID Number
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.drivingdetails[0].HEDri_Number"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Birth Date
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.drivingdetails[0].HEDri_Bdate"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Date of Issue
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.drivingdetails[0].HEDri_Date_Issue"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Valid Upto
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.drivingdetails[0].HEDri_Validtill"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">City SysID
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="drivingdetails[0].HEDri_City_SysID"
+                                    style="background-color: #ffffff !important; width: 45%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                     -->
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.drivingdetails[0].HEDri_City_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CityCodeDataPopUp7')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.drivingdetails[0].HEDri_City_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Country SysID
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="drivingdetails[0].HEDri_Count_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div> -->
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+
+                                    <label style="display: inline-block; width: 40%;">Country Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.drivingdetails[0].HEDri_Count_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CountryCodeDataPopUp7')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.drivingdetails[0].HEDri_Count_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <!-- Insurance details -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 8 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+
+                        <br>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Driving ID Number
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.insurancedetails[0].HEInsu_Number"
+                                      style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Birth Date
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.insurancedetails[0].HEInsu_Bdate"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Date of Issue
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.insurancedetails[0].HEInsu_Date_Issue"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Valid Upto
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.insurancedetails[0].HEInsu_Validtill"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">City SysID
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="insurancedetails[0].HEInsu_City_SysID"
+                                    style="background-color: #ffffff !important; width: 45%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                     -->
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.insurancedetails[0].HEInsu_City_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CityCodeDataPopUp8')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">City Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.insurancedetails[0].HEInsu_City_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="p-grid">
+                        <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 40%;">Country SysID
+
+                                </label>
+                                <input type="text" pInputText [(ngModel)]="insurancedetails[0].HEInsu_Count_SysID"
+                                    style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+                    </div> -->
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+
+                                    <label style="display: inline-block; width: 40%;">Country Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.insurancedetails[0].HEInsu_Count_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('CountryCodeDataPopUp8')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Country Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.insurancedetails[0].HEInsu_Count_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </ng-container>
+                <!-- Wps details -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 9 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                        <br>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">EDR
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.wpsdetails[0].HEWps_EDR"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Labour Card Number
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.wpsdetails[0].HEWps_LabCard_No"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">SCR
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.wpsdetails[0].HEWps_SCR"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Company MOL ID
+
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.wpsdetails[0].HEWps_MOL_ID"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Pay Bank Routing Number
+                                    </label>
+                                    <input type="number" pInputText [(ngModel)]="TblHEmpl.wpsdetails[0].HEWps_Pay_Bank"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 40%;">Date of Payment
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.wpsdetails[0].HEWps_Date_Payment"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <!-- Calculation stop details -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 10 && scrollableTabs[activeIndex].visible == true">
+                    <div
+                        style="border: 1px solid #b7dbff; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+
+
+                        <br>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%; ">Employment Status
+                                    </label>
+                                    <p-dropdown [options]="mainGroupOptions" optionLabel="name"
+                                        placeholder="Select An Option" optionValue="code">
+                                    </p-dropdown>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">All Calculation Stop Date
+
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HCalStop_Date"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Apply to All Date Y/N </label>
+
+                                    <input type="checkbox" [(ngModel)]="TblHEmpl.calculationdetails[0].HCalStop_Allyn">
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Salary Calculation Stop
+                                        Y/N</label>
+                                    <input type="checkbox" [(ngModel)]="TblHEmpl.calculationdetails[0].HSalStop_yn">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Salary Calculation Stop Date
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HSalStop_Date"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Salary Calculation Remarks Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HSalStop_Rem_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('SalaryRemarksCode')" icon="pi pi-ellipsis-h"
+                                        class="custom-button" style="margin-left: 10px;"></button>
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Salary Calculation Remarks Name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HSalStop_Rem_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Overtime Calculation Stop
+                                        Y/N</label>
+                                    <input type="checkbox" [(ngModel)]="TblHEmpl.calculationdetails[0].HOverStop_yn">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Overtime Calculation Stop Date
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HOverStop_Date"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Overtime Calculation Remarks Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HOverStop_Rem_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('OvertimeCalculationCode')"
+                                        icon="pi pi-ellipsis-h" class="custom-button"
+                                        style="margin-left: 10px;"></button>
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Overtime Calculation Remarks name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HOverStop_Rem_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Leave Salary Calculation Stop
+                                        Y/N</label>
+                                    <input type="checkbox" [(ngModel)]="TblHEmpl.calculationdetails[0].HLSalStop_yn">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Leave Salary Calculation Stop Date
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HLSalStop_Date"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Leave Salary Calculation Remarks
+                                        Code
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HLSalStop_Rem_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('LeaveSalaryCalculationCode')"
+                                        icon="pi pi-ellipsis-h" class="custom-button"
+                                        style="margin-left: 10px;"></button>
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Leave Salary Calculation Remarks
+                                        name
+
+                                    </label>
+                                    <input type="text" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HLSalStop_Rem_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Gratuity Calculation Stop
+                                        Y/N</label>
+                                    <input type="checkbox" [(ngModel)]="TblHEmpl.calculationdetails[0].HLGratStop_yn">
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Gratuity Calculation Stop Date
+                                    </label>
+                                    <input type="date" pInputText [(ngModel)]="TblHEmpl.calculationdetails[0].HLGratStop_Date"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Gratuity Calculation Remarks Code
+
+                                    </label>
+                                    <input type="text" pInputText
+                                        [(ngModel)]="TblHEmpl.calculationdetails[0].HLGratStop_Rem_Code"
+                                        style="background-color: #ffffff !important; width: 30%; height: 2vh;">
+                                    <button pButton (click)="ShowPopUp('GratuityCalculationCode')"
+                                        icon="pi pi-ellipsis-h" class="custom-button"
+                                        style="margin-left: 10px;"></button>
+
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-4" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                                <div class="p-field">
+                                    <label style="display: inline-block; width: 45%;">Gratuity Calculation Remarks name
+
+                                    </label>
+                                    <input type="text" pInputText
+                                        [(ngModel)]="TblHEmpl.calculationdetails[0].HLGratStop_Rem_Name"
+                                        style="background-color: #ffffff !important; width: 55%; height: 2vh;">
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </ng-container>
+                <!-- document attachment -->
+                <ng-container
+                    *ngIf="scrollableTabs[activeIndex] && activeIndex == 11 && scrollableTabs[activeIndex].visible == true">
+                    <app-document-attachment
+                        [dto]="_salesService.headerData.tblDocAttach"></app-document-attachment>
+                </ng-container>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+<p-confirmDialog></p-confirmDialog>
+
+   <p-dialog [(visible)]="showEmployeemasterList" [modal]="true" [closable]="true" [style]="{ width: '80vw' }">
+
+        <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+            <div class="p-col-12 p-md-3">
+                <div class="p-inputgroup" style="max-width: 300px;">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-search"></i>
+                    </span>
+                    <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                        (input)="filterTable()" />
+                </div>
+            </div>
+
+            <div class="p-col-12 p-md-3">
+                <button pButton label="Back" (click)="Back()" class="custom-button"
+                    [style]="{ 'background-color': 'antiquewhite', color: 'black' } ">
+                </button>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="p-grid" style="padding: 0 1rem;">
+            <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+                <h6 style="
+            background-color: #5c96d4;
+            color: antiquewhite;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">
+                    Employee Creation Details
+                </h6>
+
+                <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                    [rowsPerPageOptions]="[5, 10, 20]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">Employee SysID</th>
+                            <th style="width: 8rem;">Employee Code</th>
+                            <th style="width: 8rem;">Employee Name</th>
+                            <th style="width:8rem">Actions</th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td>{{ rowData.HEmpl_SysID }}</td>
+                            <td>{{ rowData.HEmpl_Code }}</td>
+                            <td>{{ rowData.HEmpl_Name }}</td>
+                            <td>
+                                <span class="p-buttonset">
+                                    <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                        class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                        (click)="editRow(rowData)" class="custom-button">
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                                No Data available. Please check back later.
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+    </p-dialog>

@@ -1,0 +1,334 @@
+<div class="container" style="border: 1px solid #003366; padding: 20px; border-radius: 8px;">
+
+
+    <div class="p-grid">
+        <div class="p-col-12" style="padding: 0rem 0rem 0rem 0rem;text-align: center;">
+            <label style="display: inline-block;  font-weight: bold;">
+                <h3 style="color: #003366;">Attendance Employee Summary Checking</h3>
+            </label>
+        </div>
+    </div>
+
+    <div style=" padding: 5px; border-radius: 5px;display: flex;margin-left: 12px;margin-right: 12px">
+
+        <div class="p-col-9" style="border: 1px solid #003366;
+        border-radius: 5px;
+        min-height: 25vh;
+        padding: 9px;
+       ">
+
+            <h6 class="hide-when-print" style="
+                background-color: #5c96d4;
+                color: white;
+                height: 4vh;
+                align-items: center;
+                display: flex;
+                padding-left: 8px;"></h6>
+
+            <div class="p-grid">
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+                </div>
+                <!-- <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Employees Module SysID</label>
+                        <input type="text" [(ngModel)]="TblProjTransHead.Allh_EmplModu_SysID" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div> -->
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+                </div>
+            </div>
+            <br>
+            <div class="p-grid">
+
+                <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Employee Module
+                            Code</label>
+                        <input type="text" [(ngModel)]="TblProjTransHead.Allh_EmplModu_Code" pInputText
+                            style="width: 35%; height: 2vh; font-weight: bold;">
+                            <button pButton
+                            (click)="ShowPopUp()" icon="pi pi-ellipsis-h" class="custom-button"
+                            style="margin-left:10px"></button>
+                    </div>
+                </div>
+                <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Employee Module
+                            Name</label>
+                        <input type="text" [(ngModel)]="TblProjTransHead.Allh_EmplModu_Name" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="p-grid">
+
+                <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Job Code</label>
+                        <input type="text" [(ngModel)]="TblProjTransHead.Allh_Job_Code" pInputText
+                            style="width: 35%; height: 2vh; font-weight: bold;">
+                        <button pButton
+                            (click)="ShowPopUp()" icon="pi pi-ellipsis-h" class="custom-button"
+                            style="margin-left:10px"></button>
+                    </div>
+                </div>
+                <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Job Name</label>
+                        <input type="text" [(ngModel)]="TblProjTransHead.Allh_Job_Name" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-grid">
+
+                <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Relate Party Code</label>
+                        <input type="text" [(ngModel)]="TblProjTransHead.Allh_RParty_Code" pInputText
+                            style="width: 35%; height: 2vh; font-weight: bold;">
+                            <button pButton
+                            (click)="ShowPopUp()" icon="pi pi-ellipsis-h" class="custom-button"
+                            style="margin-left:10px"></button>
+                    </div>
+                </div>
+                <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">Relate Party Name</label>
+                        <input type="text" [(ngModel)]="TblProjTransHead.Allh_RParty_Name" pInputText
+                            style="width: 55%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-grid">
+
+                <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">From Date</label>
+                        <input type="date" [(ngModel)]="TblProjTransHead.Allh_FromDate" pInputText
+                            style="width: 30%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+                <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%; font-weight: bold;">To Date</label>
+                        <input type="date" [(ngModel)]="TblProjTransHead.Allh_ToDate" pInputText
+                            style="width: 30%; height: 2vh; font-weight: bold;">
+                    </div>
+                </div>
+
+            </div>
+            <div class="p-grid">
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+                </div>
+                <div class="p-col-4" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+                </div>
+                <div class="p-col-4" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <button pButton label="Filter Options" (click)="this.showFilterOption = true"
+                        class="custom-button hide-when-print"></button>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="p-col-1"></div>
+
+        <div class="p-col-2" style="border: 1px solid #003366;
+         border-radius: 5px;
+         min-height: 25vh;
+         align-items: center;
+         max-height: 25vh;
+         display: flex;
+         justify-content: center;">
+
+            <h6 style="height: 4vh;">Company Logo</h6>
+
+        </div>
+
+    </div>
+
+
+    <div style="padding: 5px; border-radius: 5px; display: flex; margin-left: 12px; margin-right: 12px">
+
+
+        <div class="p-col-12" style="border: 1px solid #003366;
+                         border-radius: 5px;
+                         min-height: 25vh;
+                         padding: 9px; ">
+
+            <h6 class="hide-when-print" style="
+       background-color: #5c96d4;
+       color: white;
+       height: 4vh;
+       align-items: center;
+       display: flex;
+       padding-left: 8px;"></h6>
+
+            <p-table [value]="LedgerAccountTable">
+                <ng-template pTemplate="header">
+
+                    <tr>
+                        <th style="width: 4rem;">Sl No.</th>
+                        <th style="width: 6rem;">Time Card SysID</th>
+                        <th style="width: 6rem;">Employee Code</th>
+                        <th style="width: 6rem;">Employee Name</th>
+                        <th style="width: 6rem;">Employee Module Code</th>
+                        <th style="width: 6rem;">Employee Module Name</th>
+                        <th style="width: 6rem;">Job Code</th>
+                        <th style="width: 6rem;">Job Name</th>
+                        <th style="width: 6rem;">Designation Code</th>
+                        <th style="width: 6rem;">Designation Name</th>
+                        <th style="width: 6rem;">Manpower Days</th>
+                        <th style="width: 6rem;">Total Working Days</th>
+                        <th style="width: 6rem;">Attendance as per Labour Camp</th>
+                        <th style="width: 6rem;"> Remarks Code</th>
+                        <th style="width: 6rem;"> Remarks Name</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td>{{ i + 1 }}</td> <!-- Serial Number -->
+                        <td>{{ rowData.timeCardSysID }}</td>
+                        <td>{{ rowData.employeeCode }}</td>
+                        <td>{{ rowData.employeeName }}</td>
+                        <td>{{ rowData.employeeModuleCode }}</td>
+                        <td>{{ rowData.employeeModuleName }}</td>
+                        <td>{{ rowData.jobCode }}</td>
+                        <td>{{ rowData.jobName }}</td>
+                        <td>{{ rowData.designationCode }}</td>
+                        <td>{{ rowData.designationName }}</td>
+                        <td>{{ rowData.manpowerDays }}</td>
+                        <td>{{ rowData.totalWorkingDays }}</td>
+                        <td>{{ rowData.attendancePerCamp }}</td>
+                        <td>{{ rowData.remarkCode }}</td>
+                        <td>{{ rowData.remarkName }}</td>
+
+
+                        <!-- <td style="text-align: right;">{{ rowData.debit | number: '1.2-2' }}</td>
+                        <td style="text-align: right;">{{ rowData.credit | number: '1.2-2' }}</td>
+                        <td style="text-align: right;">{{ rowData.balance | number: '1.2-2' }}</td> -->
+                    </tr>
+                </ng-template>
+            </p-table>
+
+
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<p-dialog [modal]="true" header="Filter Options" [(visible)]="showFilterOption" [style]="{width: '50vw'}">
+
+    <div style=" padding: 3px; border-radius: 5px;display: flex;margin-left: 12px;margin-right: 12px">
+
+        <div class="p-col-12" style="border: 1px solid #003366;
+        border-radius: 5px;
+        padding: 9px;
+       ">
+
+            <h6 style="
+                background-color: #5c96d4;
+                color: white;
+                height: 4vh;
+                align-items: center;
+                display: flex;
+                padding-left: 8px;"></h6>
+
+            <div class="p-grid">
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;">Account</label>
+                        <input type="text" pInputText style="width: 60%;  height: 2vh;">
+
+                    </div>
+                </div>
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;color: #003366;">Date
+                            Range</label>
+                    </div>
+                </div>
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;">From Date</label>
+                        <input type="date" pInputText style="width: 60%; height: 2vh;">
+                    </div>
+                </div>
+
+                <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;">To Date</label>
+                        <input type="date" pInputText style="width: 60%; height: 2vh;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid">
+                <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <label style="display: inline-block; width: 40%;font-weight: bold;color: #003366;">Output
+                            Options</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="p-grid">
+                <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                    <div class="p-field">
+                        <input type="radio" value="Screen"> Screen
+                        <input type="radio" value="Print"> Print
+                        <input type="radio" value="Export/Email"> Export/Email
+                        <input type="radio" value="HTML Page"> HTML Page
+                        <input type="radio" value="Excel"> Excel
+                        <input type="radio" value="PDF"> PDF
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <div class="p-grid">
+                <div class="p-col-12" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+                    <button pButton label="Apply Filters" (click)="this.showFilterOption = false"
+                        class="custom-button"></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</p-dialog>

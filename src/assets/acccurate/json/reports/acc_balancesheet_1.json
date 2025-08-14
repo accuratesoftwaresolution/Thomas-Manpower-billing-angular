@@ -1,0 +1,19 @@
+{
+    "reportHeading": "Balancesheet Report",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "code",
+    "detail": true,
+    "detailPropertyName": "detail",
+    "rptLanguage": "E",
+    "reportId": "acc_balancesheet_1",
+    "printColumnMetaData":{ 
+        "headerMetaData": [
+            {   "column": "name", "columnHeading": " ", "size":"50em"},
+            {   "column": "amount2", "columnHeading": " ","type":"amount" , "size":"50%"}
+        ],
+        "detailMetaData": [
+        {   "column": "iacatName", "columnHeading": " ", "size":"50%"},
+        {   "column": "amount2", "columnHeading": " ","type":"amount", "size":"50%" }
+        ]
+    }
+}

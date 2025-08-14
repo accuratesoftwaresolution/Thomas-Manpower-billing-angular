@@ -1,0 +1,14 @@
+:host ::ng-deep .p-panel.p-panel-toggleable .p-panel-header {
+    padding: 0.5rem 1rem;
+    background-color: #3f51b5de;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-header {
+    background-color: #3f51b5de;
+}
+.editable{
+    background-color: rgb(149, 236, 149);
+}
+.noneditable{
+    background-color:rgb(214, 210, 241);
+}

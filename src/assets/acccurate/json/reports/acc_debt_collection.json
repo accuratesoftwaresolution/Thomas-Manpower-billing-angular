@@ -1,0 +1,29 @@
+{
+    "reportHeading": "Debt Collector Collection Report",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "acCode",
+    "detail": true,
+    "detailPropertyName": "detail",
+    "rptLanguage": "E",
+    "reportId": "acc_debt_collection",
+    "printColumnMetaData": {
+        "headerMetaData": [
+            {   "column": "acCode", "columnHeading": "account" },
+            {   "column": "ac4AcName", "columnHeading": "acName" },
+            {   "column": "ac4CurCode", "columnHeading": " " }
+        ],
+        "detailMetaData": [
+            {   "column": "brCode", "columnHeading": "ibr" },
+            {   "column": "intCode", "columnHeading": "type" },
+            {   "column": "vrNo", "columnHeading": "vrNumber" },
+            {   "column": "vrDate", "columnHeading": "ledgerDate","type": "date" },
+            {   "column": "chqNo", "columnHeading": "chqNo" },
+            {   "column": "chqDate", "columnHeading": "chqDate","type": "date" },
+            {   "column": "acamt_dr", "columnHeading": "debit", "type": "amount" },
+            {   "column": "acamt_cr", "columnHeading": "credit", "type": "amount" },
+            {   "column": "balance", "columnHeading": "balance", "type": "amountexp", 
+                            "expressionArray": { "type": "row", "exp": ["acamt_dr","-","acamt_cr"] }
+            }
+        ]
+    }
+}

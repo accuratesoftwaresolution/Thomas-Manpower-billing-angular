@@ -1,0 +1,77 @@
+<!-- <p-table [value]="documentTableData" class="document-table" [style]="{'width': '90%'}">
+    <ng-template pTemplate="header">
+        <tr>
+           
+                <th style="width: 9rem;" >Document Code</th>
+            <th>Documnet Name</th>
+            <th>Path</th>
+            <th style="width: 7rem;">Expiry Date</th>
+            <th style="width: 7rem;">Document Next Renewal Date</th>
+            <th style="width: 7rem;">Alert Date</th>
+            <th>Document Alert by Mail</th>
+            <th style="width: 6rem;">Alert Code</th>
+            <th>Alert Name</th>
+            <th style="width: 6rem;">Alert Stop</th>
+            <th style="width: 8rem;">Upload File</th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData>
+        <tr>
+            <td style="text-align: left;">
+                <input type="text" pInputText [(ngModel)]="rowData.documentCode"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <input type="text" pInputText [(ngModel)]="rowData.documentName"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <input type="text" pInputText [(ngModel)]="rowData.path"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <input type="date" pInputText [(ngModel)]="rowData.expiryDate"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <input type="date" pInputText [(ngModel)]="rowData.nextRenewalDate"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <input type="date" pInputText [(ngModel)]="rowData.alertDate"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <input type="text" pInputText [(ngModel)]="rowData.documentAlertByMail"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <input type="text" pInputText [(ngModel)]="rowData.alertCode"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <input type="text" pInputText [(ngModel)]="rowData.alertName"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <input type="checkbox" [(ngModel)]="rowData.alertStop"
+                    style="width: 100%; padding: 0;" />
+            </td>
+            <td style="text-align: left;">
+                <button class="custom-button" type="button"
+                    (click)="uploadFile(fileInput)">Upload File</button>
+                <input type="file" (change)="onFileChange($event, rowData)" #fileInput
+                    style="display: none;" />
+            </td>
+
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <tr>
+            <td colspan="10" style="text-align: right;">Total Documents: {{
+                documentTableData.length }}</td>
+        </tr>
+    </ng-template>
+</p-table> -->

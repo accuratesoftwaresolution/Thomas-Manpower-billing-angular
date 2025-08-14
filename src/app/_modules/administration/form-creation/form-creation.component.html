@@ -1,0 +1,73 @@
+<ng-container >
+    <h4>Document Form Copy Creation</h4>
+    <p-table [value]="documentForms" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th colspan="6" style="text-align: center;background-color: #c0d6e9 !important;">Document Form</th>
+            <th colspan="6" style="text-align: center;background-color: #c0d6e9 !important;">Document Form Copy</th>
+          </tr>
+          <tr>
+            <th>Form Code</th>
+            <th>Form Name</th>
+            <th>Menu Code</th>
+            <th>Menu Name</th>
+            <th>Form Group Code</th>
+            <th>Form Group Name</th>
+            <th>New Form Code</th>
+            <th>New Form Name</th>
+            <th>Menu Code</th>
+            <th>Menu Name</th>
+            <th>Form Group Code</th>
+            <th>Form Group Name</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-form>
+          <tr>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.formCode"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.formName"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.menuCode"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.menuName"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.formGroupCode"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.formGroupName"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.newFormCode"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.newFormName"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.newMenuCode"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.newMenuName"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.newFormGroupCode"></td>
+            <td><input type="text" style="padding: 0;" pInputText [(ngModel)]="form.newFormGroupName"></td>
+          </tr>
+        </ng-template>
+      </p-table>
+            
+    </ng-container>
+
+<ng-container >
+    <h4>Document Form List</h4>
+    <p-table [value]="[1,2,3,4,5,6,7,8,9,10]" [style]="{'width': '100%'}" [responsive]="true" [reorderableColumns]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <ng-container *ngFor="let col of MasterFormTable">
+                    <th *ngIf="!col.hide" [ngStyle]="{'width':col.width, 'white-space': 'normal'}">
+                        <span>{{col.header}}</span>
+                    </th>
+                </ng-container>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <ng-container *ngFor="let col of MasterFormTable">
+                    <td pEditableColumn style="padding: 0.5rem 0.5rem;" *ngIf="!col.hide"
+                        [ngStyle]="{'width':col.width}">
+
+                        <input pInputText type="text" style="padding: 0;"
+                            [ngClass]="{'manual-column': col.manual}" [style]="{'width':'100%'}"
+                            [(ngModel)]="col.data">
+
+                    </td>
+                </ng-container>
+            </tr>
+        </ng-template>
+
+    </p-table>
+    </ng-container>

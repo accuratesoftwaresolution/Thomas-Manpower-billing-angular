@@ -1,0 +1,29 @@
+{
+    "reportHeading": "Purchase Register Report",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "haccode",
+    "detail": true,
+    "detailPropertyName": "detail",
+    "rptLanguage": "E",
+    "reportId": "purchase_register",
+    "printColumnMetaData": {
+        "headerMetaData": [
+            {   "column": "haccode", "columnHeading": "account","size":"7em"  },
+            {   "column": "ac_name", "columnHeading": "acName" },
+            {   "column": "cur_code", "columnHeading": " ","size":"3em"  },
+            {   "column": "opening", "columnHeading": "opening" }
+        ],
+        "detailMetaData": [
+            {   "column": "item_code", "columnHeading": "Item Code" },
+            {   "column": "item_desc", "columnHeading": "Item Name" },
+            {   "column": "br_code", "columnHeading": "Branch Code" },
+            {   "column": "int_code", "columnHeading": "type" },
+            {   "column": "vrNo", "columnHeading": "vrNumber" },
+            {   "column": "vr_date", "columnHeading": "ledgerDate","type": "date","size":"7em"  },
+            {   "column": "item_qty", "columnHeading": "Item Qty" },
+          {   "column": "item_rate", "columnHeading": "Item Rate"  }
+        
+           
+        ]
+    }
+}

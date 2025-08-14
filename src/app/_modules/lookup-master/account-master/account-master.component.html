@@ -1,0 +1,2762 @@
+<p-toast></p-toast>
+
+
+<div class="container" style="background-color: #d1e2f1 ; padding: 6px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Account Master</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Add" icon="pi pi-plus" (click)="add()" class="custom-button"> </button>
+            <button pButton label="Save" icon="pi pi-save" (click)="saveaccountmaster()" class="custom-button"></button>
+            <button pButton label="List" icon="pi pi-list" class="custom-button"
+                (click)="displayaccountlist()"></button>
+            <button pButton label="Delete" icon="pi pi-trash" (click)="confirmDelete()" class="custom-button"></button>
+        </div>
+    </div>
+
+
+
+    <div class="custom-tabs">
+
+        <div class="tab-headers">
+            <div class="tab-header" *ngFor="let tab of scrollableTabs; let i = index" [class.active]="activeIndex === i"
+                (click)="changeIndex(i)">
+                {{ tab.title }}
+            </div>
+        </div>
+
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 0">
+                <div
+                    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h5 style="color: #003366;">Account Group Details</h5>
+                    </div>
+
+                    <br>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account SysID</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_SysID"
+                                    (keydown.enter)="funcSearch()"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account
+                                    Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <h6 style="color: #003366;">Address & Others</h6>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Address
+                                    one</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Address_One"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Address
+                                    two</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Address_Two"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Address
+                                    three</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Address_Three"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Address
+                                    four</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Address_Four"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Area Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Area_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('AreaCode2')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Area Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Area_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">City Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_City_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CityCode2')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">City Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_City_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Country
+                                    Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Count_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CountryCode2')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Country
+                                    Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Count_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">TRN Number</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_TRN_Number"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Telephone
+                                    Number</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Phone"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Fax Number</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Fax"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Email
+                                    Address</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Email_Address"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Financial Main & Sub Group </h6>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Main Group Code</label>
+                                <p-dropdown [options]="mainGroupOptions" [(ngModel)]="selectedMainGroup"
+                                    optionLabel="code" placeholder="Select An Option"
+                                    (onChange)="onMainGroupChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Main Group Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_MainAssLiab_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Sub Group Code</label>
+                                <p-dropdown [options]="subGroupOptions" [(ngModel)]="selectedSubGroup"
+                                    optionLabel="code" placeholder="Select An Option"
+                                    (onChange)="onSubGroupChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Sub Group Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_SubAssLiab_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Account & Others</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Module Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Module_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('AccModuleCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Module Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Module_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Group Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Group_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('AccGroupCodeData')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Group Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Group_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Type
+                                    Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Type_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CompGrpWiseAccTypeCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Type
+                                    Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Type_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Fixed Assets Code</label>
+                                <p-dropdown [options]="fixedAssetsOptions" [(ngModel)]="selectedFixedGroup"
+                                    optionLabel="code" placeholder="Select An Option"
+                                    (onChange)="onFixedGroupChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Sub Group Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FA_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Employee Code</label>
+                                <p-dropdown [options]="employeeOptions" [(ngModel)]="selectedEmployeeGroup"
+                                    optionLabel="code" placeholder="Select An Option"
+                                    (onChange)="onEmployeeGroupChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Employee Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Emp_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Production Code</label>
+                                <p-dropdown [options]="productionOptions" [(ngModel)]="selectedProductionGroup"
+                                    optionLabel="code" placeholder="Select An Option"
+                                    (onChange)="onProductionGroupChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Production Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_Prod_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Accrual & Prepaid</h6>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Accrual & Prepaid Code</label>
+                                <p-dropdown [options]="accrualPrepaidOptions" [(ngModel)]="selectedAccrualGroup"
+                                    optionLabel="code" placeholder="Select An Option"
+                                    (onChange)="onAccrualGroupChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Accrual & Prepaid Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_AccPre_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Reporting Group</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group One</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FinGroup1"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Two</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FinGroup2"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group
+                                    Three</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FinGroup3"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Four</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FinGroup4"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Five</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FinGroup5"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Six</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FinGroup6"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group
+                                    Seven</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FinGroup7"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group
+                                    Eight</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FinGroup8"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Nine</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_FinGroup9"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Credit Limit</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Credit Limit</label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_CrLimit"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Credit Limit Days
+                                </label>
+                                <input type="number" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_CrLimit_Days"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Insurance Credit Limit</label>
+                                <input type="number" pInputText pInputText
+                                    [(ngModel)]="TblHAccGroupDto.HAccGroup_Insu_CrLimit"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Insurance Credit Limit Days
+                                </label>
+                                <input type="number" pInputText pInputText
+                                    [(ngModel)]="TblHAccGroupDto.HAccGroup_Insu_CrLimit_Days"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Block Credit Limit</label>
+                                <input type="number" pInputText pInputText
+                                    [(ngModel)]="TblHAccGroupDto.HAccGroup_Block_CrLimit"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Block Credit Limit Days
+                                </label>
+                                <input type="number" pInputText pInputText
+                                    [(ngModel)]="TblHAccGroupDto.HAccGroup_Block_CrLimit_Days"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Activation & Deactivation</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation Y/n</label>
+                                <input type="checkbox"
+                                    [ngModel]="TblHAccGroupDto.HAccGroup_AcDe_Yn === 'Y' ? true : false"
+                                    (ngModelChange)="TblHAccGroupDto.HAccGroup_AcDe_Yn = $event ? 'Y' : 'N'">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                    Code</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_AcDe_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('ActAndDeactCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                    Name</label>
+                                <input type="text" pInputText [(ngModel)]="TblHAccGroupDto.HAccGroup_AcDe_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 1">
+                <div
+                    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h5 style="color: #003366;">Account Company Wise Details</h5>
+                        <div class="p-grid" style="display: flex; gap: 10px;">
+
+                            <!-- <button pButton label="Add" class="custom-button"></button>
+                            <button pButton label="Edit" class="custom-button"></button>
+                            <button pButton label="Delete" class="custom-button"></button> -->
+                            <!-- <button pButton label="Previous" class="custom-button"></button>
+                            <button pButton label="Next" class="custom-button"></button>
+                            <button pButton label="List" class="custom-button"></button> -->
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account
+                                    Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Menu Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Menu_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('MenuCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Menu
+                                    Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Menu_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Address & Others</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Address
+                                    one</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Address_One"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Address
+                                    two</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Address_Two"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Address
+                                    three</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Address_Three"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Address
+                                    four</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Address_Four"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Area Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Area_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('AreaCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Area Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Area_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">City Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_City_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CityCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">City Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_City_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Country
+                                    Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Count_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CountryCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Country
+                                    Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Count_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">TRN Number</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_TRN_Number"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Telephone
+                                    Number</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Phone"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Fax Number</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Fax"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Email
+                                    Address</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Email_Address"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Financial Main & Sub Group </h6>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Main Group Code</label>
+                                <p-dropdown [options]="mainGroupcompanyOptions" [(ngModel)]="selectedcompanyMainGroup"
+                                    optionLabel="code" placeholder="Select An Option"
+                                    (onChange)="onMainGroupcompanyChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Main Group Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_MainAssLiab_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Sub Group Code</label>
+                                <p-dropdown [options]="subGroupCompanyOptions" [(ngModel)]="selectedSubcompanyGroup"
+                                    optionLabel="code" placeholder="Select An Option"
+                                    (onChange)="onSubGroupcompanyChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Sub Group Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_SubAssLiab_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Account & Others</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Module Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Module_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CompWiseAccModule')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Module Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Module_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Group Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Group_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CompWiseGroupCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Group Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Group_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Type
+                                    Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Type_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CompWiseAccTypeCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Type
+                                    Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Type_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Creation Date</label>
+                                <input type="date" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Creation_Date"
+                                    style="background-color: #ffffff; width: 30%; height: 2vh;">
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Account Fixed Assets Code</label>
+                                <p-dropdown [options]="fixedAssetscompanyOptions"
+                                    [(ngModel)]="selectedFixedcompanyGroup" optionLabel="code"
+                                    placeholder="Select An Option" (onChange)="onFixedGroupcompanyChange($event.value)"
+                                    [style.width.%]="55">
+                                </p-dropdown>
+
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Sub Group Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FA_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Employee Code</label>
+                                <p-dropdown [options]="employeeCompanyOptions"
+                                    [(ngModel)]="selectedEmployeeCompanyGroup" optionLabel="code"
+                                    placeholder="Select An Option"
+                                    (onChange)="onEmployeeGroupCompanyChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Employee Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Emp_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Production Code</label>
+                                <p-dropdown [options]="productionCompanyOptions"
+                                    [(ngModel)]="selectedProductioncompanyGroup" optionLabel="code"
+                                    placeholder="Select An Option"
+                                    (onChange)="onProductionGroupcompanyChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Production Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Prod_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Accrual & Prepaid Code</label>
+                                <p-dropdown [options]="accrualPrepaidCompanyOptions"
+                                    [(ngModel)]="selectedAccrualCompanyGroup" optionLabel="code"
+                                    placeholder="Select An Option"
+                                    (onChange)="onAccrualGroupCompanyChange($event.value)" [style.width.%]="55">
+                                </p-dropdown>
+
+
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Accrual & Prepaid Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_AccPre_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Reporting Group</h6>
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group One</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FinGroup1"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Two</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FinGroup2"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group
+                                    Three</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FinGroup3"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Four</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FinGroup4"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Five</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FinGroup5"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Six</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FinGroup6"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group
+                                    Seven</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FinGroup7"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group
+                                    Eight</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FinGroup8"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Financial Reporting Group Nine</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_FinGroup9"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Credit Limit</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Credit Limit</label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_CrLimit"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Credit Limit Days
+                                </label>
+                                <input type="number" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_CrLimit_Days"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Insurance Credit Limit</label>
+                                <input type="number" pInputText pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Insu_CrLimit"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Insurance Credit Limit Days
+                                </label>
+                                <input type="number" pInputText pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Insu_CrLimit_Days"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Block Credit Limit</label>
+                                <input type="number" pInputText pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Block_CrLimit"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Block Credit Limit Days
+                                </label>
+                                <input type="number" pInputText pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_Block_CrLimit_Days"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Account Details</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Inventory Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_InvAcc_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('InventoryAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Inventory Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_InvAcc_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Cost of Sales Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_COSAcc_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('CostOfSalesAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Cost of Sales Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_COSAcc_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Sales Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_SalAcc_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('SalesAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Sales Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_SalAcc_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Purchase Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HProd_PurAcc_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('PurcahseAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Purchase Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HProd_PurAcc_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Input Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_TaxInPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('VatInputAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Input Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_TaxInPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Output Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_TaxOutPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('VatOutputAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Output Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_TaxOutPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Advance Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_TaxAdvPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('VatAdvAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">VAT Advance Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_TaxAdvPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Other Tax Input Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_OtaxInPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('OtherTaxInputAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Other Tax Input Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_OtaxInPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Other Tax Output Account Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_OtaxOutPut_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('OtherTaxOutputAccCode')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Other Tax Output Account Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_OtaxOutPut_Name"
+                                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 style="color: #003366;">Activation & Deactivation</h6>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation Y/n</label>
+                                <input type="checkbox" [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_AcDe_Yn">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                    Code</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_AcDe_Code"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                                <button pButton (click)="ShowPopUp('ActAndDeactCodeCompany')" icon="pi pi-ellipsis-h"
+                                    class="popup-button" style="margin-left: 10px;"></button>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-5" style="padding: 0rem 0rem 0.5rem 0.5rem;">
+                            <div class="p-field">
+                                <label style="display: inline-block; width: 30%;">Activation & Devactivation
+                                    Name</label>
+                                <input type="text" pInputText
+                                    [(ngModel)]="this.TblHAccGroupDto.TblHAccOne[0].HAccOne_AcDe_Name"
+                                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h5 style="color: #003366;">Applicable Company Details</h5>
+
+                    <p-table [value]="this.TblHAccGroupDto.TblHAccOne[0].TbldAccOneCo" class="company-table"
+                        [style]="{'width' : '60%'}">
+                        <ng-template pTemplate="header">
+                            <tr style="background-color: #f0f0f0; text-align: left;">
+                                <th style="padding: 10px; font-size: 11px;">SysID</th>
+                                <th style="padding: 10px; font-size: 11px;">Applicable Company Code</th>
+                                <th style="padding: 10px; font-size: 11px;">Applicable Company Name</th>
+                                <th style="padding: 10px; font-size: 11px;">Actions</th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                            <tr style="font-size: 12px; text-align: left;">
+                                <td style="padding: 8px;">{{ rowData.DcAccOne_SingleCo_SysID }}</td>
+                                <td style="padding: 8px;">{{ rowData.DcAccOne_SingleCo_Code}}
+                                    <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                        (click)="ShowPopUp('ApplicableCompanyCode',i)" class="custom-button"></button>
+                                </td>
+                                <td style="padding: 8px;">{{ rowData.DcAccOne_SingleCo_Name }}</td>
+                                <td>
+                                    <button pButton icon="pi pi-trash" (click)="deleteRow('TbldAccOneCo',i)"
+                                        class="custom-button"></button>
+                                    <button pButton icon="pi pi-plus" label="Add Row" (click)="addRow('TbldAccOneCo',i)"
+                                        class="custom-button"></button>
+                                </td>
+
+                            </tr>
+                        </ng-template>
+                        <!-- <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="3"
+                                    style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                                    No data available. Please check back later.
+                                </td>
+                            </tr>
+                        </ng-template> -->
+                    </p-table>
+
+
+                    <div style="margin-top: 10px; ">
+                        <div class="p-grid">
+                            <div class="p-col-10" style="text-align:right">
+                                <button pButton label="Save" class="custom-button"></button>
+                            </div>
+                            <div class="p-col-2">
+                                <button pButton label="Cancel" class="custom-button"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 2">
+
+
+                <h5 style="color: #003366;">Supplier & Customer Grouping</h5>
+                <p-table [value]="this.supplierAndCustGrouping" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Custormer Group Company SysID</th>
+                            <th>Customer Group Company Code</th>
+                            <th>Customer Group Company Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('GroupCoCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('supplierAndCustGrouping',i,rowData)"
+                                    class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('supplierAndCustGrouping',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Cost Center</h5>
+                <p-table [value]="this.costCenterSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Cost Center SysID</th>
+                            <th>Cost Center Code</th>
+                            <th>Cost Center Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('CostCenterCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('costCenterSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('costCenterSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Profit Center</h5>
+                <p-table [value]="this.profitCenterSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Profit Center SysID</th>
+                            <th>Profit Center Code</th>
+                            <th>Profit Center Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('ProfitCenterCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('profitCenterSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('profitCenterSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Salesman</h5>
+                <p-table [value]="this.salesmanSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Salesman SysID</th>
+                            <th>Salesman Code</th>
+                            <th>Salesman Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('SalesmanCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('salesmanSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('salesmanSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Division</h5>
+                <p-table [value]="this.divisionSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Division SysID</th>
+                            <th>Division Code</th>
+                            <th>Division Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('DivisionCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('divisionSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('divisionSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Department</h5>
+                <p-table [value]="this.departmentSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Department SysID</th>
+                            <th>Department Code</th>
+                            <th>Department Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('DepartmentCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('departmentSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('departmentSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Job</h5>
+                <p-table [value]="this.jobSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Job SysID</th>
+                            <th>Job Code</th>
+                            <th>Job Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('JobCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('jobSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('jobSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Other Center</h5>
+                <p-table [value]="this.otherCenterSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Other Center SysID</th>
+                            <th>Other Center Code</th>
+                            <th>Other Center Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('OtherCentreCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('otherCenterSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('otherCenterSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Sales Organization</h5>
+                <p-table [value]="this.salesOrganizationSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Sales Organization SysID</th>
+                            <th>Sales Organization Code</th>
+                            <th>Sales Organization Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('SalesOrganizationCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('salesOrganizationSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('salesOrganizationSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Distribution Channel</h5>
+                <p-table [value]="this.distributionChannelSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Distribution Channel SysID</th>
+                            <th>Distribution Channel Code</th>
+                            <th>Distribution Channel Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('DistributionChannelCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('distributionChannelSelection',i)"
+                                    class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('distributionChannelSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Sales Office</h5>
+                <p-table [value]="this.salesOfficeSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Sales Office SysID</th>
+                            <th>Sales Office Code</th>
+                            <th>Sales Office Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('SalesOfficeCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('salesOfficeSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('salesOfficeSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Sales Group</h5>
+                <p-table [value]="this.salesGroupSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Sales Group SysID</th>
+                            <th>Sales Group Code</th>
+                            <th>Sales Group Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('SalesGroupCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('salesGroupSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('salesGroupSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Place Of Supply</h5>
+                <p-table [value]="this.placeOfSupplySelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Place Of Supply SysID</th>
+                            <th>Place Of Supply Code</th>
+                            <th>Place Of Supply Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('PlaceOfSupplyCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('placeOfSupplySelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('placeOfSupplySelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Jurisdiction</h5>
+                <p-table [value]="this.jurisdictionChannelSelection" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Jurisdiction SysID</th>
+                            <th>Jurisdiction Code</th>
+                            <th>Jurisdiction Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('JurisdictionCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('jurisdictionChannelSelection',i)"
+                                    class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('jurisdictionChannelSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Payment Terms</h5>
+                <p-table [value]="this.PaymentTermsSelection" [style]="{'width' : '85%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Payment Terms SysID</th>
+                            <th>Payment Terms Code</th>
+                            <th>Payment Terms Name</th>
+                            <th>Payment Terms Days</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('PaymentTerms',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Days">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('PaymentTermsSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('PaymentTermsSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: hwb(210 0% 60%);">Tax Selection</h5>
+                <p-table [value]="this.TaxSelection" [style]="{'width' : '95%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Tax SysID</th>
+                            <th>Tax Code</th>
+                            <th>Tax Name</th>
+                            <th>Tax Input %</th>
+                            <th>Tax Output %</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('TaxCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name ">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_TaxInPut_Prce">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_TaxOutPut_Prce">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('TaxSelection',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('TaxSelection',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Inter Company Purchase Account</h5>
+                <p-table [value]="this.InterCoPurchaseAcc" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Inter Company Purchase Account SysID</th>
+                            <th>Inter Company Purchase Account Code</th>
+                            <th>Inter Company Purchase Account Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('PurchaseAccountCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('InterCoPurchaseAcc',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('InterCoPurchaseAcc',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Inter Company Sales Account</h5>
+                <p-table [value]="this.InterCoSalesAcc" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Inter Company Sales Account SysID</th>
+                            <th>Inter Company Sales Account Code</th>
+                            <th>Inter Company Sales Account Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('CompanySalesCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('InterCoSalesAcc',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('InterCoSalesAcc',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Inter Company Expenses</h5>
+                <p-table [value]="this.InterCoExpenses" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Inter Company Expenses SysID</th>
+                            <th>Inter Company Expenses Code</th>
+                            <th>Inter Company Expenses Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('CompanyExpenseCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('InterCoExpenses',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('InterCoExpenses',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <h5 style="color: #003366;">Supplier & Customer Category</h5>
+                <p-table [value]="this.supplierAndCustCategory" [style]="{'width' : '70%'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 4rem;">SysID</th>
+                            <th>Supplier & Customer Category SysID</th>
+                            <th>Supplier & Customer Category Code</th>
+                            <th>Supplier & Customer Category Name</th>
+                            <th>Grid No.</th>
+                            <th style="width: 4rem;"></th>
+                            <th style="width: 8rem;"></th>
+
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                        <tr>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_SysID">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_SysID">
+                            </td>
+
+                            <td pEditableColumn style="text-align: center;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 80%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Code">
+                                <button pButton style="width: 20%; padding: 0;" icon="pi pi-ellipsis-h"
+                                    (click)="ShowPopUp('SupplierCustomerCode',i)" class="custom-button"></button>
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="text"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_AccComm_Name">
+                            </td>
+                            <td pEditableColumn style="text-align: left;">
+                                <input pInputText type="number"
+                                    style="padding: 0; width: 100%; background-color: transparent;"
+                                    [(ngModel)]="rowData.DcAccOne_Grid_Number">
+                            </td>
+
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 0;" icon="pi pi-trash"
+                                    (click)="deleteRow('supplierAndCustCategory',i)" class="custom-button"></button>
+                            </td>
+                            <td style="text-align: center;">
+                                <button pButton style=" padding: 1;" icon="pi pi-plus" label="Add Row"
+                                    class="custom-button" (click)="addRow('supplierAndCustCategory',i)"></button>
+                            </td>
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </ng-container>
+
+            <ng-container *ngIf="scrollableTabs[3]">
+                <app-account-document-attachment [hidden]="activeIndex !== 3" [dto]="TblHAccGroupDto.TblmDocAttach">
+                </app-account-document-attachment>
+            </ng-container>
+        </div>
+
+
+    </div>
+</div>
+
+<app-popup [displayData]="popUpService.popUpData" (backClick)="selectedItem($event)"></app-popup>
+
+
+<p-dialog [modal]="true" [(visible)]="display" [style]="{width: '50vw'}">
+    <p-table [value]="rights" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Rights</th>
+                <th>Rights Details</th>
+                <!-- <th>Action</th> -->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-right>
+            <tr>
+                <td>
+                    <input type="checkbox" [(ngModel)]="right.hasRight" />
+                </td>
+                <td>{{ right.detail }}</td>
+                <!-- <td>
+                    <input type="checkbox" [(ngModel)]="right.hasAction" />
+                </td> -->
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>
+<p-confirmDialog></p-confirmDialog>
+
+<p-dialog [(visible)]="showAccountMasterList" [modal]="true" [closable]="true" [style]="{ width: '60vw' }"
+    class="custom-dialog-position">
+
+    <div class="p-grid p-ai-center p-mb-3" style="padding: 0 1rem;">
+        <div class="p-col-12 p-md-3">
+            <div class="p-inputgroup" style="max-width: 300px;">
+                <span class="p-inputgroup-addon">
+                    <i class="pi pi-search"></i>
+                </span>
+                <input type="text" pInputText placeholder="Search..." [(ngModel)]="searchText"
+                    (input)="filterTable()" />
+            </div>
+        </div>
+
+        <div class="p-col-12 p-md-3">
+            <button pButton label="Back" (click)="Back()" class="custom-button"
+                [style]="{ 'background-color': 'antiquewhite', color: 'black' } ">
+            </button>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="p-grid" style="padding: 0 1rem;">
+        <div class="p-col-12" style="border: 1px solid #003366; border-radius: 5px;">
+            <h6 style="
+            background-color: #5c96d4;
+            color: antiquewhite;
+            height: 4vh;
+            align-items: center;
+            display: flex;
+            padding-left: 8px;">
+                Account Company Wise Details
+            </h6>
+
+            <p-table #dt [value]="filteredfilteredlistData" [paginator]="true" [rows]="5"
+                [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 6rem;">Account SysID</th>
+                        <th style="width: 8rem;">Account Code</th>
+                        <th style="width: 8rem;">Account Name</th>
+                        <th style="width:8rem">Actions</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                    <tr>
+                        <td>{{ rowData.HAccOne_SysID }}</td>
+                        <td>{{ rowData.HAccOne_Code }}</td>
+                        <td>{{ rowData.HAccOne_Name }}</td>
+                        <td>
+                            <span class="button-group-inline">
+                                <button pButton type="button" label="Edit" icon="pi pi-pencil"
+                                    class="custom-button p-button-sm" pTooltip="Edit" tooltipPosition="left"
+                                    (click)="editRow(rowData)">
+                                </button>
+
+                                <button pButton type="button" label="Delete" icon="pi pi-trash"
+                                    class="custom-button p-button-sm" pTooltip="Delete" tooltipPosition="left"
+                                    (click)="deletelistRow(rowData)">
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 1rem; font-size: 14px; color: #999;">
+                            No Data available. Please check back later.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+</p-dialog>

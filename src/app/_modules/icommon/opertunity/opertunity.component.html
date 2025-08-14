@@ -1,0 +1,968 @@
+<div class="container" style="background-color: #d1e2f1 ; padding: 20px; border-radius: 8px;">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="color: #003366;">Opportunity</h3>
+        <div class="p-grid" style="display: flex; gap: 10px;">
+
+            <button pButton label="Add" class="custom-button"></button>
+            <button pButton label="Edit" class="custom-button"></button>
+            <button pButton label="Delete" class="custom-button"></button>
+            <button pButton label="Previous" class="custom-button"></button>
+            <button pButton label="Next" class="custom-button"></button>
+            <button pButton label="List" class="custom-button"></button>
+            <button pButton label="Print" class="custom-button"></button>
+            <button pButton label="Suspended" class="custom-button"></button>
+            <button pButton label="Authorize" class="custom-button"></button>
+            <button pButton label="Reject" class="custom-button"></button>
+         
+        </div>
+    </div>
+
+    <div
+                style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+        
+                <div class="p-grid">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Opportunity type</label>
+                            <input type="radio" value="Sales"> Sales
+                            <input type="radio" value="Purchasing"> Purchasing
+                        </div>
+                    </div>
+                    <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        
+                    </div>
+                </div>
+        
+                <div class="p-grid">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Business Partner Code</label>
+                            <input id="voucherNumber" type="text" pInputText
+                                style="background-color: #ffffff; width: 35%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Opportunity Name</label>
+                            <input type="text" pInputText style="background-color: #ffffff; width: 65%; height: 2vh;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-grid">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Business Partner Name</label>
+                            <input id="voucherNumber" type="text" pInputText
+                                style="background-color: #ffffff; width: 35%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Opportunity No.</label>
+                            <input id="voucherNumber" type="text" pInputText 
+                                style="background-color: #ffffff; width: 65%; height: 2vh;">
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="p-grid">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Contact Person </label>
+                            <input id="voucherNumber" type="text" pInputText 
+                                style="background-color: #ffffff; width: 35%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Status</label>
+                            <input id="voucherNumber" type="text" pInputText 
+                                style="background-color: #ffffff; width: 65%; height: 2vh;">
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="p-grid">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Total Amount Invoiced</label>
+                            <input id="voucherNumber" type="text" pInputText
+                                style="background-color: #ffffff; width: 35%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Start Date</label>
+                            <input id="voucherNumber" type="text" pInputText 
+                                style="background-color: #ffffff; width: 65%; height: 2vh;">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Business Partner Territory</label>
+                            <input id="voucherNumber" type="text" pInputText
+                                style="background-color: #ffffff; width: 35%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Closing Date</label>
+                            <input type="text" pInputText style="background-color: #ffffff; width: 65%; height: 2vh;">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Sales Employee</label>
+                            <input id="voucherNumber" type="text" pInputText
+                                style="background-color: #ffffff; width: 35%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Open Activities</label>
+                            <input type="text" pInputText style="background-color: #ffffff; width: 65%; height: 2vh;">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Owner</label>
+                            <input id="voucherNumber" type="text" pInputText
+                                style="background-color: #ffffff; width: 35%; height: 2vh;">
+                        </div>
+                    </div>
+                    <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Closing %</label>
+                            <input type="text" pInputText style="background-color: #ffffff; width: 65%; height: 2vh;">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+                        <div class="p-field">
+                            <input id="voucherNumber" type="checkbox" >
+                            <label for="voucherNumber" style="display: inline-block; width: 30%;">Display In System Currency</label>
+                            
+                        </div>
+                    </div>
+                    <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+                </div>
+                <div style="margin-top: 10px; ">
+                    <div class="p-grid">
+                        <div class="p-col-10" style="text-align:right">
+                            <button pButton label="Save" class="custom-button"></button>
+                        </div>
+                        <div class="p-col-2">
+                            <button pButton label="Cancel" class="custom-button"></button>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+
+    <div class="custom-tabs">
+
+        <div class="tab-headers">
+            <div class="tab-header" *ngFor="let tab of scrollableTabs; let i = index"
+                [class.active]="activeIndex === i" (click)="changeIndex(i)">
+                {{ tab.title }}
+            </div>
+        </div>
+
+        <div class="tab-content" *ngIf="activeIndex || activeIndex == 0">
+        <ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 0">
+
+        </ng-container>
+
+<ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 1">
+                
+                <div
+    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+    
+
+    <div class="p-grid">
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 30%;">BP Channel Code</label>
+                <input id="voucherNumber" type="text" pInputText
+                    style="background-color: #ffffff; width: 35%; height: 2vh;">
+            </div>
+        </div>
+        <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 30%;">BP Project</label>
+                <input id="voucherNumber" type="text" pInputText 
+                    style="background-color: #ffffff; width: 65%; height: 2vh;">
+            </div>
+        </div>
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 30%;">ABP Channel Name</label>
+                <input id="voucherNumber" type="text" pInputText
+                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+            </div>
+        </div>
+        <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 30%;">Information source</label>
+                <input id="voucherNumber" type="text" pInputText 
+                    style="background-color: #ffffff; width: 65%; height: 2vh;">
+            </div>
+        </div>
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 30%;">BP Channel Contact</label>
+                <input id="voucherNumber" type="text" pInputText
+                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+            </div>
+        </div>
+        <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 30%;">Industry</label>
+                <input id="voucherNumber" type="text" pInputText 
+                    style="background-color: #ffffff; width: 65%; height: 2vh;">
+            </div>
+        </div>
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 30%;">Remarks</label>
+                <input id="voucherNumber" type="text" pInputText 
+                    style="background-color: #ffffff; width: 55%; height: 2vh;">
+            </div>
+        </div>
+        <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+           
+        </div>
+    </div>
+    </div>
+   
+</ng-container>
+
+<ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 2">
+    <div
+    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+    
+    <div style="min-height: 20vh;">
+
+
+        <p-table [value]="documentTableData" class="document-table" [style]="{'width': '100%'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 1rem !important;">#</th>
+                    <th style="width: 2rem !important;">Start Date</th>
+                    <th style="width: 2rem !important;">Closing Date</th>
+                    <th style="width: 4rem !important;">Sales </th>
+                    <th style="width: 3rem !important;">Stage</th>
+                    <th style="width: 3rem !important;">%</th>
+                    <th style="width: 4rem !important;">Potential Amount</th>
+                    <th style="width: 3rem !important;">Weighted Amount</th>
+                    <th style="width: 3rem !important;">Show</th>
+                    <th style="width: 3rem !important;">Document Type</th>
+                    <th style="width: 3rem !important;">Document Name</th>
+                    <th style="width: 3rem !important;">Active</th>
+                    <th style="width: 5rem !important;">Owner</th>
+                    
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData  let-i="rowIndex">
+                <tr *ngIf="i==0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 80%; padding: 0;" />
+
+                    </td>
+                    
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                   
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="checkbox" 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    
+                    
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                </tr>
+                <tr *ngIf="i!=0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 80%; padding: 0;" />
+
+                    </td>
+                    
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                   
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="checkbox" 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    
+                   
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+
+
+    </div>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 3">
+    <div
+    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+    
+    <div style="min-height: 20vh;">
+
+
+        <p-table [value]="documentTableData" class="document-table" [style]="{'width': '100%'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 2rem !important;">Name</th>
+                    <th style="width: 2rem !important;">Relationship</th>
+                    <th style="width: 2rem !important;">Related BP</th>
+                    <th style="width: 6rem !important;">Remarks </th>
+                    
+                    
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData  let-i="rowIndex">
+                <tr *ngIf="i==0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 80%; padding: 0;" />
+
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    
+                </tr>
+                <tr *ngIf="i!=0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 80%; padding: 0;" />
+
+                    </td>
+                    
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+
+        <div style="margin-top: 10px; ">
+            <div class="p-grid">
+                <div class="p-col-1" >
+                    <button pButton label="OK" class="custom-button"></button>
+                </div>
+                <div class="p-col-2">
+                    <button pButton label="Cancel" class="custom-button"></button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 4">
+    <div
+    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+    
+    <div style="min-height: 20vh;">
+
+
+        <p-table [value]="documentTableData" class="document-table" [style]="{'width': '100%'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 2rem !important;">Name</th>
+                    <th style="width: 2rem !important;">Threat Level</th>
+                    <th style="width: 2rem !important;">Remarks</th>
+                    <th style="width: 6rem !important;">Won </th>
+                    
+                    
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData  let-i="rowIndex">
+                <tr *ngIf="i==0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 80%; padding: 0;" />
+
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    
+                </tr>
+                <tr *ngIf="i!=0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 80%; padding: 0;" />
+
+                    </td>
+                    
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+
+        <div style="margin-top: 10px; ">
+            <div class="p-grid">
+                <div class="p-col-1" >
+                    <button pButton label="OK" class="custom-button"></button>
+                </div>
+                <div class="p-col-2">
+                    <button pButton label="Cancel" class="custom-button"></button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 5">
+
+    <div
+    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+    
+
+    <div class="p-grid">
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 25%;">Opportunity Status</label>
+                <input  type="radio" value="Open" >Open
+                <input  type="radio" value="Won" >Won
+                <input  type="radio" value="Lost" >Lost
+            </div>
+        </div>
+        <div class="p-col-5" style="padding: 0rem 0rem 0rem 0.5rem;">
+            
+        </div>
+    </div>
+
+    <div class="p-grid">
+
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field">
+                    <label for="voucherNumber" style="display: inline-block; width: 30%;">Document Type</label>
+                    <input id="voucherNumber" type="text" pInputText
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field">
+                    <label for="voucherNumber" style="display: inline-block; width: 30%;">Document No.</label>
+                    <input id="voucherNumber" type="text" pInputText
+                        style="background-color: #ffffff; width: 55%; height: 2vh;">
+                </div>
+            </div>
+            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field">
+                    <input  type="checkbox" >
+                    <label for="voucherNumber" style="display: inline-block; width: 60%;">Show Documents Related To BP</label>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            
+            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field">
+                    <label for="voucherNumber" style="display: inline-block; width: 30%;">Reasons:</label>
+                    
+                </div>
+                <p-panel>
+                    <label for="voucherNumber" style="display: inline-block; width: 30%;">Reasons:</label>
+
+                    <div style="max-height: 35vh;overflow-y: auto;">
+
+                    <p-table [value]="Reasons" class="document-table" [style]="{'width': '100%'}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 1rem !important;">#</th>
+                                <th style="width: 8rem !important;">Descriptions</th>
+                                
+                            </tr>
+                        </ng-template>
+            
+                        <ng-template pTemplate="body" let-rowData  let-i="rowIndex">
+                            <tr >
+                                <td style="text-align: left;">
+                                    <input type="text" pInputText 
+                                        style="width: 100%; padding: 0;" />
+                                </td>
+                                <td style="text-align: left;">
+                                    <input type="text" pInputText 
+                                        style="width: 80%; padding: 0;" />
+            
+                                </td>
+                                
+                            </tr>
+                            
+                        </ng-template>
+                    </p-table>
+                </div>
+                  </p-panel>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+</ng-container>
+
+<ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 6">
+
+
+    <div
+    style="border: 1px solid #003366; padding: 15px; border-radius: 5px; background-color: #d1e2f1; font-size: 10px;">
+    
+
+    <div class="p-grid">
+
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+
+            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <button pButton label="Opportunity Items" (click)="goToOpportunity()" class="custom-button"></button>
+            </div>
+
+            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field"></div>
+            </div>
+
+            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field">
+                    <input  type="checkbox" >
+                    <label for="voucherNumber" style="display: inline-block; width: 60%;">Show Documents Related To BP</label>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            
+            <div class="p-col-12" style="padding: 0rem 0rem 0rem 0.5rem;">
+                <div class="p-field">
+                    <label for="voucherNumber" style="display: inline-block; width: 30%;">Reasons:</label>
+                    
+                </div>
+                <p-panel>
+                    <label for="voucherNumber" style="display: inline-block; width: 30%;">Reasons:</label>
+
+                    <div style="max-height: 35vh;overflow-y: auto;">
+
+                    <p-table [value]="Reasons" class="document-table" [style]="{'width': '100%'}">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 1rem !important;">#</th>
+                                <th style="width: 8rem !important;">Descriptions</th>
+                                
+                            </tr>
+                        </ng-template>
+            
+                        <ng-template pTemplate="body" let-rowData  let-i="rowIndex">
+                            <tr >
+                                <td style="text-align: left;">
+                                    <input type="text" pInputText 
+                                        style="width: 100%; padding: 0;" />
+                                </td>
+                                <td style="text-align: left;">
+                                    <input type="text" pInputText 
+                                        style="width: 80%; padding: 0;" />
+            
+                                </td>
+                                
+                            </tr>
+                            
+                        </ng-template>
+                    </p-table>
+                </div>
+                  </p-panel>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</ng-container>
+
+
+
+
+<ng-container *ngIf="scrollableTabs[activeIndex] && activeIndex == 7">
+
+    <h5 style="margin-bottom: 20px;">Screen Level Validations</h5>
+    <div class="p-grid" *ngFor="let field of DigiLockerFields">
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label style="display: inline-block; width: 50%;">{{field?.fieldName}}</label>
+                <input type="text" pInputText style="background-color: #ffffff !important; width: 50%; height: 2vh;">
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 20px; min-height: 20vh;" >
+        <p-table [value]="documentTableData" class="document-table" [style]="{'width': '70%'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 2rem !important;">All Transaction Number</th>
+                    <th style="width: 2rem !important;">Approved User Code</th>
+                    <th style="width: 4rem !important;">Approved User Name</th>
+                    <!-- <th style="width: 3rem !important;"></th> -->
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData  let-i="rowIndex">
+                <tr *ngIf="i==0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                </tr>
+                <tr *ngIf="i!=0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+
+        <br>
+        <h3 style="color: #003366;">Applicable Companies</h3>
+
+        <p-table [value]="documentTableData" class="document-table" [style]="{'width': '90%'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 2rem !important;">Inco Terms SysID</th>
+                    <th style="width: 2rem !important;">Inco Terms Code</th>
+                    <th style="width: 4rem !important;">Inco Terms Name</th>
+                    <!-- <th style="width: 3rem !important;"></th> -->
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData  let-i="rowIndex">
+                <tr *ngIf="i==0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText [ngModel]="chosenCountry"
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText [(ngModel)]="chosenCountry"
+                            style="width: 80%; padding: 0;" />
+                        <button pButton style="width: 20%;" icon="pi pi-ellipsis-h" (click)="showCompany=!showCompany" class="custom-button"></button>
+
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText [(ngModel)]="chosenCountry"
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <!-- <td style="text-align: left;">
+                        <button pButton  icon="pi pi-ellipsis-h" (click)="showCompany=!showCompany" class="custom-button"></button>
+                    </td> -->
+                </tr>
+                <tr *ngIf="i!=0">
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText 
+                            style="width: 80%; padding: 0;" />
+                        <button pButton style="width: 20%;" icon="pi pi-ellipsis-h" (click)="showCompany=!showCompany" class="custom-button"></button>
+
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" pInputText
+                            style="width: 100%; padding: 0;" />
+                    </td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+
+
+    </div>
+
+    
+
+    <div class="p-grid" style="margin-top: 20px;">
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 60%;">Deactivate and use for Reports Only</label>
+                <input  type="checkbox" >
+            </div>
+        </div>
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 60%;">Active & Deactive Code</label>
+                <input id="voucherNumber" type="text" pInputText
+                    style="background-color: #ffffff; width: 26%; height: 2vh;">
+                    <button pButton  icon="pi pi-ellipsis-h" style="margin-left: 10px;" (click)="showAmendment=!showAmendment" class="custom-button"></button>
+
+            </div>
+        </div>
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;">
+            <div class="p-field">
+                <label for="voucherNumber" style="display: inline-block; width: 60%;">Active & Deactive Name</label>
+                <input id="voucherNumber" type="text" pInputText
+                    style="background-color: #ffffff; width: 40%; height: 2vh;">
+            </div>
+        </div>
+        <div class="p-col-6" style="padding: 0rem 0rem 0rem 0.5rem;"></div>
+    </div>
+</ng-container>
+</div>
+
+
+    </div>
+</div>
+
+<p-dialog  [modal]="true" [(visible)]="display" [style]="{width: '50vw'}">
+    <p-table [value]="rights" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Rights</th>
+                <th>Rights Details</th>
+                <!-- <th>Action</th> -->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-right>
+            <tr>
+                <td>
+                    <input type="checkbox" [(ngModel)]="right.hasRight" />
+                </td>
+                <td>{{ right.detail }}</td>
+                <!-- <td>
+                    <input type="checkbox" [(ngModel)]="right.hasAction" />
+                </td> -->
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>
+
+<p-dialog  [modal]="true" [(visible)]="showAmendment" [style]="{width: '50vw'}">
+    <p-table [value]="documentTableData" class="document-table" [style]="{'width': '90%'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem !important;">Activate & Deactivate Code</th>
+                <th style="width: 3rem !important;">Activate & Deactivate Name</th>
+
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+            <tr style="cursor: pointer;" (click)="chooseAmendment(i+1)" >
+                <td style="text-align: left;">Activate & Deactivate {{i+1}}</td>
+                <td style="text-align: left;">Activate & Deactivate {{i+1}}</td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+</p-dialog>
+
+<p-dialog  [modal]="true" [(visible)]="showCompany" [style]="{width: '50vw'}">
+    <p-table [value]="documentTableData" class="document-table" [style]="{'width': '90%'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem !important;">Company Code</th>
+                <th style="width: 3rem !important;">Company Name</th>
+
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+            <tr style="cursor: pointer;" (click)="chooseCompany(i+1)" >
+                <td style="text-align: left;">Company{{i+1}}</td>
+                <td style="text-align: left;">Company{{i+1}}</td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+</p-dialog>

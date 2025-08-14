@@ -1,0 +1,28 @@
+{
+    "reportHeading": "Statement of Accounts",
+    "detailPrintColumnMetaData": [],
+    "groupDataBy": "acCode",
+    "detail": true,
+    "detailPropertyName": "detail",
+    "rptLanguage": "E",
+    "reportId": "acc_statement_of_account",
+    "printColumnMetaData": {
+        "headerMetaData": [
+            {   "column": "acCode", "columnHeading": "account","size":"7em" },
+            {   "column": "ac4AcName", "columnHeading": "acName" },
+            {   "column": "ac4CurCode", "columnHeading": " " ,"size":"3em"},
+            {   "column": "opening", "columnHeading": "opening" }
+        ],
+        "detailMetaData": [
+            {   "column": "brCode", "columnHeading": "ibr" },
+            {   "column": "intCode", "columnHeading": "type" },
+            {   "column": "vrNo", "columnHeading": "vrNumber" },
+            {   "column": "vrDate", "columnHeading": "vrDate","type": "date","size":"7em" },
+            {   "column": "billNo", "columnHeading": "billNo" },
+            {   "column": "billDate", "columnHeading": "billDate","type": "date","size":"7em" },
+            {   "column": "debit", "columnHeading": "debit", "type": "amount" },
+            {   "column": "credit", "columnHeading": "credit", "type": "amount" },
+            {   "column": "bal_amt", "columnHeading": "balance", "type": "amount" }
+        ]
+    }
+}

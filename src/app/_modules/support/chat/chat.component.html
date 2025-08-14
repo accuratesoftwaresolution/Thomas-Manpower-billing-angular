@@ -1,0 +1,208 @@
+<p-toast></p-toast>
+<div class="p-col-12 p-md-12 p-lg-12">
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-lg-12">
+            <div class="card" style="background-color: white;">
+                <div class="p-grid nested-grid">
+                    <div class="p-col-12 p-md-12 p-lg-12">
+                        <div class="p-grid nested-grid">
+                            <div class="p-col-12 p-md-5 p-lg-5" style="overflow-y: scroll;height: 500px;">
+                                <p-table [value]="issueTrackerData" appendTo="body">
+                                    <ng-template let-issue pTemplate="body">
+                                        <div class="p-col-12 p-md-12 p-lg-12 card highlight"
+                                            [class]="issue.code== selectedIssueTrackerData?.code? 'selectedList' : ''"
+                                            (click)="goToViewPage(issue)">
+                                            <tr>
+                                                <div class="p-grid nested-grid">
+                                                    <div class="p-col-1"></div>
+
+                                                    <div class="p-col-6">
+                                                        <div class="p-grid nested-grid">
+                                                            <div class="p-col-12">
+                                                                <div style="padding-top: 10px;">
+                                                                    Issue Id :
+                                                                    <b> <span>{{issue.code}}</span>
+                                                                        &nbsp;
+                                                                    </b>
+                                                                </div>
+                                                            </div>
+                                                            <div class="p-col-12">
+                                                                <div>
+                                                                    Start Date :
+                                                                    <b> <span>{{issue.identifiedDate | date:
+                                                                            'dd/MM/yyyy'}}</span>
+                                                                        &nbsp;
+                                                                    </b>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-col-5">
+                                                        <div class="p-col-12">
+                                                            <div style="float:right;">Status :
+                                                                <b *ngIf="(issue.status =='O')">{{'open'|
+                                                                    first}}</b>
+                                                                <b *ngIf="(issue.status =='W')">{{'wip' |
+                                                                    first}}</b>
+                                                                <b *ngIf="(issue.status =='H')">{{'hold' |
+                                                                    first}}</b>
+                                                                <b *ngIf="(issue.status =='C')">{{'closed'
+                                                                    |first}}</b>
+                                                                <b *ngIf="(issue.status =='CN')">{{'cancelled' |
+                                                                    first}}</b>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <div style="padding-left:35px;">
+                                                            <span>Subject
+                                                                :<b>{{issue.summary}}</b></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="p-col-12">
+                                                        <div style="padding-right:10px;float:right"
+                                                            *ngIf="(issue.unreadCount>0)">
+                                                            <span>
+                                                                <b style="color: red;">{{issue.unreadCount}}<i
+                                                                        class="pi pi-comments"></i> Unread
+                                                                    Meassages</b></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </tr>
+                                        </div>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                            <div class="p-col-12 p-md-7 p-lg-7">
+                                <div *ngIf="isChatBox" style="background-color: white;">
+                                    <section class="msger">
+                                        <div class="msger-inputarea">
+                                            <div class="p-col-12 p-md-12 p-lg-12">
+                                                <div class="p-grid">
+                                                    <div class="p-col-12 p-md-12 p-lg-12">
+
+                                                        <div class="input-container">
+                                                            <input type="text" placeholder="Enter message......"
+                                                                pInputText [(ngModel)]="chatDescription"
+                                                                class="input-field"
+                                                                style="width: 100%; height: 40px; border-radius: 4px;">
+                                                            <p-button label="Send" class="btn" (onClick)="sendReplay()"
+                                                                [style]="{'float':'right'}">
+                                                            </p-button>
+                                                            <p-fileUpload mode="basic" chooseLabel="Image"
+                                                                uploadLabel="upload" multiple="false" method="post"
+                                                                name="file" [auto]="true"
+                                                                [url]="basicUrl+ '/file-upload/issue-image'"
+                                                                [ngStyle]="{'float': 'right'}" maxFileSize="1000000"
+                                                                (onUpload)="onBasicUpload($event)"
+                                                                invalidFileSizeMessageSummary="{0} has wrong size, "
+                                                                invalidFileSizeMessageDetail="it exceeds {0}.">
+                                                            </p-fileUpload>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <header class="msger-header">
+                                            <div class="msger-header-title">
+                                                Chat..<i class="pi pi-comments" style="font-size: 1rem"></i>
+                                            </div>
+                                            <div class="msger-header-options">
+                                                <span><i class="fas fa-cog"></i></span>
+                                            </div>
+                                            <div>
+                                                <p-button label="Cancel Issue" class="btn" (onClick)="cancelIssue()"
+                                                    [style]="{'float':'right'}">
+                                                </p-button>
+                                            </div>
+                                        </header>
+                                        <main class="msger-chat">
+                                            <div class="msg-text" *ngFor="let detail of issueDetails">
+                                                <div class="msg right-msg">
+                                                    <div *ngIf="detail.developerYn !='Y'">
+                                                        <img src="assets/acccurate/images/user.png"
+                                                            class="msg-img">
+                                                    </div>
+                                                    <div class="msg-bubble">
+                                                        <div class="msg-info">
+                                                            <div *ngIf="detail.developerYn !='Y'" class="msg-info-name">
+                                                                {{name | uppercase}}</div>
+                                                            <div *ngIf="detail.developerYn !='Y'" class="msg-info-time">
+                                                                {{detail.createdDate |
+                                                                date : 'dd-MM-yyyy hh:mm a'}}</div>
+                                                        </div>
+                                                        <div *ngIf="detail.developerYn !='Y'">
+                                                            <span
+                                                                style="word-break: break-all; font-size: small;">{{detail.description}}</span>
+                                                        </div>
+                                                        <div *ngIf="detail.developerYn !='Y'">
+                                                            <img style="max-width: -webkit-fill-available;"
+                                                                *ngIf="detail.imagePath"
+                                                                (click)="viewImage(images[detail[dataKey]])"
+                                                                [src]="images[detail[dataKey]]" alt="Avatar"
+                                                                class="avatar">
+                                                            <p-button *ngIf="detail.imagePath"
+                                                                label="{{'download'|first}}"
+                                                                [ngStyle]="{'float': 'right'}"
+                                                                (click)="downloadImage(detail.imagePath)"
+                                                                icon="pi pi-download" styleClass="p-button">
+                                                            </p-button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="msg left-msg">
+                                                    <div *ngIf="detail.developerYn =='Y'">
+                                                        <img src="assets/acccurate/images/coding.png"
+                                                            class="msg-img">
+                                                    </div>
+
+                                                    <div class="msg-bubble">
+                                                        <div class="msg-info">
+                                                            <div *ngIf="detail.developerYn =='Y'" class="msg-info-name">
+                                                                {{'innovationsTeam' | first}}
+                                                            </div>
+                                                            <div *ngIf="detail.developerYn =='Y'" class="msg-info-time">
+                                                                {{detail.createdDate |
+                                                                date : 'dd-MM-yyyy hh:mm a'}}</div>
+                                                        </div>
+                                                        <div *ngIf="detail.developerYn =='Y'">
+                                                            <span
+                                                                style="word-break: break-all; font-size: small;">{{detail.description}}</span>
+                                                        </div>
+                                                        <div *ngIf="detail.developerYn =='Y'">
+                                                            <img style="max-width: -webkit-fill-available;"
+                                                                *ngIf="detail.imagePath" [src]="images[detail[dataKey]]"
+                                                                alt="Avatar" class="avatar"
+                                                                (click)="viewImage(images[detail[dataKey]]);">
+                                                            <p-button *ngIf="detail.imagePath"
+                                                                label="{{'download'|first}}"
+                                                                [ngStyle]="{'float': 'right'}"
+                                                                (click)="downloadImage(detail.imagePath)"
+                                                                icon="pi pi-download" styleClass="p-button">
+                                                            </p-button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </main>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Image" [(visible)]="showImage" [style]="{width: '80%',height:'80%'}">
+    <div>
+        <img style="width: '100%';height:'100%'" [src]="image" alt="Avatar" class="avatar">
+    </div>
+
+</p-dialog>
